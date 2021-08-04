@@ -1,7 +1,7 @@
 <script>
 import { get } from 'lodash-es'
 import { Message } from 'element-ui'
-import { utils } from '../../service'
+import { utils } from '@xt/service'
 import baseMixin from './baseMixin'
 
 export default {

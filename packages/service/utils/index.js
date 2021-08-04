@@ -17,12 +17,7 @@ const errorMessage = function (error) {
   Message.error(msg)
 }
 
-export default {
-  fixLength,
-  errorMessage,
-}
-
 export {
   fixLength,
-  errorMessage,
+  errorMessage
 }

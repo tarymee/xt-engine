@@ -1,18 +1,21 @@
 {
-  "name": "@xt/cli",
+  "name": "@xt/ide",
   "version": "0.1.4-alpha.0",
   "description": "> TODO: description",
-  "author": "tarymee <tarymee@gmail.com>",
-  "homepage": "https://github.com/tarymee/xt-engine#readme",
-  "license": "ISC",
-  "main": "lib/cli.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "files": [
-    "lib"
-  ],
+  "keywords": [],
+  "author": "tarymee <tarymee@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "element-ui": "^2.15.5",
+    "lodash-es": "^4.17.21",
+    "uuid": "^8.3.2",
+    "vuedraggable": "^2.24.3"
+  },
+  "homepage": "https://github.com/tarymee/xt-engine#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -20,14 +23,7 @@
     "type": "git",
     "url": "git+https://github.com/tarymee/xt-engine.git"
   },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "bugs": {
     "url": "https://github.com/tarymee/xt-engine/issues"
-  },
-  "dependencies": {
-    "lodash-es": "^4.17.21",
-    "uuid": "^8.3.2"
   }
 }

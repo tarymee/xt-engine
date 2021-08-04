@@ -1,6 +1,6 @@
 <script>
 import { get, cloneDeep } from 'lodash-es'
-import { utils } from '../../service'
+import { utils } from '@xt/service'
 
 export default {
   inject: {
