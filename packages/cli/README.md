@@ -1,11 +1,11 @@
-# `gpnote`
+# `@xt/cli`
 
 > TODO: description
 
 ## Usage
 
 ```
-const gpnote = require('gpnote');
+const cli = require('@xt/cli');
 
 // TODO: DEMONSTRATE API
 ```

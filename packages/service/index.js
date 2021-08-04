@@ -1,11 +1,7 @@
-var version = '1.0.0'
-var test = function () {
-  return 'test'
-}
-
-
+import utils from './utils'
+import loading from './loading'
 
 export {
-  version,
-  test
+  utils,
+  loading
 }
