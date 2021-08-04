@@ -1,0 +1,100 @@
+html,
+body,
+#app {
+  height: 100vh;
+}
+.app-container {
+  height: 100vh;
+}
+
+
+
+.app-header {
+  height: 60px;
+  padding: 0 15px;
+  font-size: 12px;
+  background-color: #272c2e;
+  overflow: hidden;
+  color: #9fa4a9;
+}
+.app-header-logo {
+  float: left;
+  margin-top: 15px;
+}
+.app-header-logo img {
+  display: block;
+  height: 30px;
+}
+.app-header-tit {
+  float: left;
+  height: 60px;
+  line-height: 60px;
+  font-size: 14px;
+  margin-left: 15px;
+  color: #eee;
+}
+.app-header-user {
+  float: right;
+  cursor: pointer;
+  border-left: 1px solid #777;
+  padding: 15px;
+}
+.app-header-user-con i {
+  vertical-align: top;
+  text-align: center;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  background-color: #FFF;
+}
+.app-header-user-con span {
+  margin-left: 8px;
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  color: #9fa4a9;
+}
+.app-header-loginout {
+  float: right;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  margin: 15px 15px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+
+.app-content {
+  height: calc(100% - 60px);
+  display: flex;
+}
+
+.app-menu {
+  flex: none;
+  width: 200px;
+  height: 100%;
+  background-color: #f3f3f3;
+  overflow: auto;
+}
+.app-menu .el-menu {
+  height: 100%;
+  border-right: none;
+}
+.app-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.app-body {
+  height: 100%;
+  flex: 1;
+  overflow: auto;
+}
+
+.app-loading {
+  background-color: rgba(255,255,255,0);
+}

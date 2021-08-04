@@ -1,0 +1,2601 @@
+{
+  "pageinfo": {
+    "marktype": "1",
+    "status": "1",
+    "clientcategorycode": "1",
+    "pagetemplatecode": "200",
+    "type": "200",
+    "code": "1227845624897081443",
+    "title": "tarymeetest",
+    "pagedescr": "web-tarymeetest",
+    "directorytypecode": "30010",
+    "versionnum": "2.0",
+    "reportdesclist": []
+  },
+  "view": {
+    "body": {
+      "type": "layout",
+      "code": "layout-8161770481264333",
+      "flexdirection": "vertical",
+      "flex": "1",
+      "hidden": "",
+      "content": [
+        {
+          "type": "filter",
+          "code": "filter-1",
+          "name": "查询栏",
+          "title": "查询栏",
+          "searchcondition": {
+            "basic": [
+              {
+                "type": "dropdownbox",
+                "code": "dropdownbox-145454",
+                "title": "查询-租户类型",
+                "name": "查询-租户类型",
+                "placeholder": "租户类型",
+                "required": "",
+                "value": "1",
+                "hidden": "1",
+                "options": [
+                  {
+                    "key": "1",
+                    "text": "企业",
+                    "isselected": "0"
+                  },
+                  {
+                    "key": "0",
+                    "text": "产品开发",
+                    "isselected": "0"
+                  }
+                ],
+                "hiddenclearbtn": "1",
+                "eventlist": []
+              },
+              {
+                "type": "filtertextinput",
+                "code": "textinput-1",
+                "title": "查询-企业编码",
+                "name": "查询-企业编码",
+                "placeholder": "企业编码",
+                "eventlist": []
+              },
+              {
+                "type": "filtertextinput",
+                "code": "textinput-2",
+                "title": "查询-企业名称",
+                "name": "查询-企业名称",
+                "placeholder": "企业名称",
+                "required": "",
+                "eventlist": []
+              },
+              {
+                "type": "dropdownbox",
+                "code": "dropdownbox-2",
+                "title": "查询-开通用途",
+                "name": "查询-开通用途",
+                "placeholder": "开通用途",
+                "required": "",
+                "readonly": "",
+                "hiddenclearbtn": "",
+                "options": [],
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1402930156032626776"
+                  }
+                ]
+              },
+              {
+                "type": "dropdownbox",
+                "code": "dropdownbox-1",
+                "title": "查询-企业状态",
+                "name": "查询-企业状态",
+                "placeholder": "企业状态",
+                "required": "",
+                "options": [
+                  {
+                    "key": 1,
+                    "text": "启用",
+                    "isselected": "0"
+                  },
+                  {
+                    "key": 2,
+                    "text": "停用",
+                    "isselected": "0"
+                  },
+                  {
+                    "key": 3,
+                    "text": "下线",
+                    "isselected": "0"
+                  }
+                ],
+                "eventlist": []
+              },
+              {
+                "type": "dropdownbox",
+                "code": "dropdownbox-3",
+                "title": "查询-部署方式",
+                "name": "查询-部署方式",
+                "placeholder": "部署方式",
+                "required": "",
+                "options": [],
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1402930156032626774"
+                  }
+                ]
+              },
+              {
+                "type": "dropdownbox",
+                "code": "dropdownbox-4",
+                "title": "查询-开通状态",
+                "name": "查询-开通状态",
+                "placeholder": "开通状态",
+                "required": "",
+                "options": [],
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1402930156032626763"
+                  }
+                ]
+              },
+              {
+                "type": "dropdownbox",
+                "code": "dropdownbox-5",
+                "title": "查询-产品版本",
+                "name": "查询-产品版本",
+                "placeholder": "产品版本",
+                "required": "",
+                "options": [],
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1402930156032626764"
+                  }
+                ]
+              }
+            ],
+            "advanced": []
+          },
+          "eventlist": [
+            {
+              "trigger": "onvaluechange",
+              "handler": "1402930156032626778"
+            }
+          ]
+        },
+        {
+          "type": "infotable",
+          "code": "1402930156032626765",
+          "title": "表格",
+          "name": "表格",
+          "checkable": "0",
+          "pageable": "1",
+          "pagesize": "20",
+          "hasheaderbar": "1",
+          "fixednumber": "0",
+          "datastructure": {
+            "id": ""
+          },
+          "cols": [],
+          "columns": [
+            {
+              "type": "link",
+              "code": "link-1",
+              "title": "企业名称",
+              "name": "tenantname",
+              "width": "200",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1405086907611877474"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "code": "text-2",
+              "title": "企业号",
+              "name": "tenantcode",
+              "width": "150",
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "code": "text-3",
+              "title": "企业联系人",
+              "name": "contact",
+              "width": "150",
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "code": "text-4",
+              "title": "联系人手机号",
+              "name": "mobile",
+              "width": "150",
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "code": "text-5",
+              "title": "部署方式",
+              "name": "deploytypename",
+              "width": "150",
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "code": "text-6",
+              "title": "租户类型",
+              "name": "tenanttypename",
+              "width": "150",
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "code": "text-7",
+              "title": "所属行业",
+              "name": "industryname",
+              "width": "150",
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "code": "text-8",
+              "title": "产品版本名称",
+              "name": "productversionname",
+              "width": "150",
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "code": "text-9",
+              "title": "套餐",
+              "name": "servicepackagename",
+              "width": "150",
+              "eventlist": []
+            },
+            {
+              "type": "tags",
+              "code": "tags-10",
+              "title": "企业状态",
+              "name": "status",
+              "width": "120",
+              "options": [
+                {
+                  "key": 1,
+                  "text": "启用"
+                },
+                {
+                  "key": 2,
+                  "text": "停用"
+                },
+                {
+                  "key": 3,
+                  "text": "下线"
+                }
+              ],
+              "eventlist": []
+            },
+            {
+              "type": "tags",
+              "code": "tags-11",
+              "title": "开通状态",
+              "name": "openstatus",
+              "width": "180",
+              "options": [
+                {
+                  "key": 1,
+                  "text": "租户登记(待申请资源)"
+                },
+                {
+                  "key": 2,
+                  "text": "资源申请(待数据初始化)"
+                },
+                {
+                  "key": 3,
+                  "text": "数据初始化过程中"
+                },
+                {
+                  "key": 4,
+                  "text": "数据初始化(待初始帐号)"
+                },
+                {
+                  "key": 5,
+                  "text": "帐号已建(待租户建帐号)"
+                },
+                {
+                  "key": 6,
+                  "text": "帐号已建(待初始化调度)"
+                },
+                {
+                  "key": 100,
+                  "text": "开通完成"
+                }
+              ],
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "code": "text-12",
+              "title": "开通用途",
+              "name": "tenantapplytypename",
+              "width": "150",
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "code": "text-13",
+              "title": "开通日期",
+              "name": "createtime",
+              "width": "150",
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "code": "text-14",
+              "title": "有效截止日期",
+              "name": "expiredtime",
+              "width": "150",
+              "eventlist": []
+            }
+          ],
+          "dynamiccols": [],
+          "guidecols": {
+            "frozen": "1",
+            "merged": "0",
+            "cols": []
+          },
+          "groupcols": [],
+          "operations": [
+            {
+              "text": "新建企业",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1402930156032626783"
+                }
+              ]
+            },
+            {
+              "text": "导入",
+              "icon": "",
+              "disabled": "",
+              "hidden": "1",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": ""
+                }
+              ]
+            },
+            {
+              "text": "全部导出",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1405806234455642208"
+                }
+              ]
+            },
+            {
+              "text": "测试",
+              "icon": "",
+              "disabled": "",
+              "hidden": "1",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1402930156032626748"
+                }
+              ]
+            },
+            {
+              "text": "测试2",
+              "icon": "",
+              "disabled": "",
+              "hidden": "1",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1402930156032626848"
+                }
+              ]
+            }
+          ],
+          "rowoperations": [
+            {
+              "text": "开户",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1404996914516201559"
+                }
+              ]
+            },
+            {
+              "text": "设置初始密码",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1405466657119408222"
+                }
+              ]
+            },
+            {
+              "text": "设置开发人员",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1405466657119408215"
+                }
+              ]
+            },
+            {
+              "text": "设置License数",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1405466657119408214"
+                }
+              ]
+            },
+            {
+              "text": "启用",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1405466657119408218"
+                }
+              ]
+            },
+            {
+              "text": "停用",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1405466657119408216"
+                }
+              ]
+            },
+            {
+              "text": "清理租户级元数据",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1405466657119408212"
+                }
+              ]
+            },
+            {
+              "text": "生成管理员账号",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1405466657119408213"
+                }
+              ]
+            },
+            {
+              "text": "开户预执行SQL",
+              "icon": "",
+              "disabled": "",
+              "hidden": "1",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1405466657119408290"
+                }
+              ]
+            },
+            {
+              "text": "设置营销区域地图",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "1410482775198404707"
+                }
+              ]
+            },
+            {
+              "text": "导出",
+              "icon": "",
+              "disabled": "",
+              "functioncode": "",
+              "hidden": "",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "14058062344556422081"
+                }
+              ]
+            }
+          ],
+          "defpagesize": "20",
+          "eventlist": [
+            {
+              "trigger": "onload",
+              "handler": "1402930156032626778"
+            }
+          ]
+        }
+      ],
+      "eventlist": []
+    },
+    "subviews": [
+      {
+        "type": "popview",
+        "code": "popview-1",
+        "name": "企业信息",
+        "title": "企业信息",
+        "width": "1000",
+        "operations": [
+          {
+            "text": "确 定",
+            "icon": "",
+            "code": "339975623173792787",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1402930156032626780"
+              }
+            ]
+          },
+          {
+            "text": "取消",
+            "icon": "",
+            "code": "339975623176163549",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1402930156032626749"
+              }
+            ]
+          }
+        ],
+        "content": [
+          {
+            "type": "layout",
+            "code": "1402928065813811297",
+            "title": "布局",
+            "flexdirection": "horizontal",
+            "flexwrap": "wrap",
+            "shape": "rect",
+            "bordercolor": "lightgray",
+            "bordersides": "",
+            "overflowy": "",
+            "content": [
+              {
+                "type": "textinput",
+                "code": "1402928065813811299",
+                "titlewidth": "110",
+                "title": "企业名称",
+                "placeholder": "企业名称",
+                "name": "企业信息-企业名称",
+                "width": "50%",
+                "required": "1",
+                "eventlist": []
+              },
+              {
+                "type": "textinput",
+                "code": "1402928065813811292",
+                "titlewidth": "110",
+                "title": "企业id",
+                "placeholder": "企业id",
+                "name": "企业信息-企业id",
+                "width": "35%",
+                "required": "1",
+                "readonly": "1",
+                "eventlist": []
+              },
+              {
+                "type": "button",
+                "code": "1402928065818741292",
+                "text": "生成id",
+                "name": "企业信息-生成id",
+                "displaytype": "primary",
+                "eventlist": [
+                  {
+                    "trigger": "onclicked",
+                    "handler": "1402930156032626759"
+                  }
+                ]
+              },
+              {
+                "type": "textinput",
+                "code": "1402928065813811293",
+                "titlewidth": "110",
+                "title": "企业简称",
+                "placeholder": "企业简称",
+                "name": "企业信息-企业简称",
+                "width": "50%",
+                "required": "",
+                "eventlist": []
+              },
+              {
+                "type": "dropdownbox",
+                "code": "1402928065813811291",
+                "titlewidth": "110",
+                "title": "人员规模",
+                "placeholder": "人员规模",
+                "name": "企业信息-人员规模",
+                "hiddenclearbtn": "0",
+                "searchable": "0",
+                "options": [],
+                "width": "50%",
+                "required": "1",
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1402930156032626761"
+                  }
+                ]
+              },
+              {
+                "type": "dropdownbox",
+                "code": "1402928065813811289",
+                "titlewidth": "110",
+                "title": "实施级别",
+                "placeholder": "实施级别",
+                "name": "企业信息-实施级别",
+                "hiddenclearbtn": "0",
+                "searchable": "0",
+                "options": [],
+                "width": "50%",
+                "required": "1",
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1407605397547782241"
+                  }
+                ]
+              },
+              {
+                "type": "dropdownbox",
+                "code": "1402928065813811290",
+                "titlewidth": "110",
+                "title": "资源等级",
+                "placeholder": "资源等级",
+                "name": "企业信息-资源等级",
+                "hiddenclearbtn": "0",
+                "searchable": "0",
+                "options": [],
+                "width": "50%",
+                "required": "1",
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1402930156032626757"
+                  }
+                ]
+              },
+              {
+                "type": "dropdownbox",
+                "code": "1402928065813811286",
+                "titlewidth": "110",
+                "title": "租户类型",
+                "placeholder": "租户类型",
+                "name": "企业信息-租户类型",
+                "hiddenclearbtn": "0",
+                "searchable": "0",
+                "options": [
+                  {
+                    "key": 1,
+                    "text": "战略客户",
+                    "isselected": "0"
+                  },
+                  {
+                    "key": 2,
+                    "text": "核心客户",
+                    "isselected": "0"
+                  },
+                  {
+                    "key": 3,
+                    "text": "价值客户",
+                    "isselected": "0"
+                  }
+                ],
+                "width": "50%",
+                "required": "1",
+                "eventlist": []
+              },
+              {
+                "type": "dropdownbox",
+                "code": "1402928065813811287",
+                "titlewidth": "110",
+                "title": "所属行业",
+                "placeholder": "所属行业",
+                "name": "企业信息-所属行业",
+                "hiddenclearbtn": "0",
+                "searchable": "0",
+                "options": [],
+                "width": "50%",
+                "required": "1",
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1402930156032626755"
+                  }
+                ]
+              },
+              {
+                "type": "textinput",
+                "code": "1402928065813811285",
+                "titlewidth": "110",
+                "title": "企业联系人",
+                "placeholder": "企业联系人",
+                "name": "企业信息-企业联系人",
+                "width": "50%",
+                "required": "1",
+                "eventlist": []
+              },
+              {
+                "type": "textinput",
+                "code": "1402928065813811284",
+                "titlewidth": "110",
+                "title": "联系人手机号",
+                "placeholder": "联系人手机号",
+                "name": "企业信息-联系人手机号",
+                "width": "50%",
+                "required": "1",
+                "eventlist": []
+              },
+              {
+                "type": "textinput",
+                "code": "1402928065813811282",
+                "titlewidth": "110",
+                "title": "联系邮箱",
+                "placeholder": "联系邮箱",
+                "name": "企业信息-联系邮箱",
+                "width": "50%",
+                "required": "1",
+                "eventlist": []
+              },
+              {
+                "type": "textinput",
+                "code": "1402928065813811283",
+                "titlewidth": "110",
+                "title": "公司座机",
+                "placeholder": "公司座机",
+                "name": "企业信息-公司座机",
+                "width": "50%",
+                "required": "1",
+                "eventlist": []
+              },
+              {
+                "type": "dropdownbox",
+                "code": "1402928065813811281",
+                "titlewidth": "110",
+                "title": "开通用途",
+                "placeholder": "开通用途",
+                "name": "企业信息-开通用途",
+                "hiddenclearbtn": "0",
+                "searchable": "0",
+                "options": [],
+                "width": "50%",
+                "required": "1",
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1402930156032626753"
+                  },
+                  {
+                    "trigger": "onvaluechange",
+                    "handler": "1405086907611877473"
+                  }
+                ]
+              },
+              {
+                "type": "dropdownbox",
+                "code": "1402928065813811280",
+                "titlewidth": "110",
+                "title": "部署方式",
+                "placeholder": "开通用途",
+                "name": "企业信息-部署方式",
+                "hiddenclearbtn": "0",
+                "searchable": "0",
+                "options": [],
+                "width": "50%",
+                "required": "1",
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1402930156032626751"
+                  }
+                ]
+              },
+              {
+                "type": "date",
+                "code": "1402930156032626786",
+                "titlewidth": "110",
+                "title": "有效截止日期",
+                "placeholder": "有效截止日期",
+                "name": "企业信息-有效截止日期",
+                "value": "",
+                "hiddenclearbtn": "0",
+                "customoptions": [],
+                "width": "50%",
+                "required": "",
+                "eventlist": []
+              },
+              {
+                "type": "textinput",
+                "code": "1402928065813811279",
+                "titlewidth": "110",
+                "title": "企业地址",
+                "placeholder": "企业地址",
+                "name": "企业信息-企业地址",
+                "width": "100%",
+                "required": "1",
+                "eventlist": []
+              },
+              {
+                "type": "textinput",
+                "code": "1402930156032626787",
+                "titlewidth": "110",
+                "title": "企业介绍",
+                "placeholder": "企业介绍",
+                "name": "企业信息-企业介绍",
+                "width": "100%",
+                "required": "",
+                "displaytype": "textarea",
+                "eventlist": []
+              }
+            ],
+            "eventlist": []
+          }
+        ],
+        "eventlist": []
+      },
+      {
+        "type": "popview",
+        "name": "开户",
+        "title": "开户",
+        "width": "800",
+        "operations": [
+          {
+            "text": "确 定",
+            "icon": "",
+            "code": "33997562313332787",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1402930156032677481"
+              }
+            ]
+          },
+          {
+            "text": "取消",
+            "icon": "",
+            "code": "33997679963549",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "14029301560326267491"
+              }
+            ]
+          }
+        ],
+        "content": [
+          {
+            "type": "layout",
+            "code": "1404996914516201567",
+            "title": "布局",
+            "flexdirection": "vertical",
+            "shape": "rect",
+            "bordercolor": "lightgray",
+            "bordersides": "",
+            "overflowy": "",
+            "content": [
+              {
+                "type": "cascade",
+                "code": "1404996914516201563",
+                "titlewidth": "110",
+                "title": "应用模块",
+                "placeholder": "应用模块",
+                "name": "开户-应用模块",
+                "searchable": "1",
+                "multiselectable": "0",
+                "hiddenclearbtn": "0",
+                "width": "100%",
+                "options": [],
+                "required": "1",
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1404996914516201570"
+                  }
+                ]
+              },
+              {
+                "type": "textinput",
+                "code": "1404996914516201562",
+                "titlewidth": "110",
+                "title": "数据库只读",
+                "placeholder": "数据库只读",
+                "name": "开户-数据库只读",
+                "displaytype": "textarea",
+                "width": "100%",
+                "required": "1",
+                "eventlist": []
+              },
+              {
+                "type": "textinput",
+                "code": "1404996914516201560",
+                "titlewidth": "110",
+                "title": "数据库读写",
+                "placeholder": "数据库读写",
+                "name": "开户-数据库读写",
+                "displaytype": "textarea",
+                "width": "100%",
+                "required": "1",
+                "eventlist": []
+              },
+              {
+                "type": "textinput",
+                "code": "1404996914516201561",
+                "titlewidth": "110",
+                "title": "数据库报表",
+                "placeholder": "数据库报表",
+                "name": "开户-数据库报表",
+                "displaytype": "textarea",
+                "width": "100%",
+                "required": "1",
+                "eventlist": []
+              }
+            ],
+            "eventlist": []
+          }
+        ],
+        "code": "1404996914516201568",
+        "eventlist": []
+      },
+      {
+        "type": "popview",
+        "code": "140499691555441568",
+        "name": "设置初始密码",
+        "title": "设置初始密码",
+        "width": "600",
+        "operations": [
+          {
+            "text": "确 定",
+            "icon": "",
+            "code": "33997511112787",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1402930156032677481"
+              }
+            ]
+          },
+          {
+            "text": "取消",
+            "icon": "",
+            "code": "33997673333549",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1405466657119408220"
+              }
+            ]
+          }
+        ],
+        "content": [
+          {
+            "type": "layout",
+            "code": "14049112301567",
+            "title": "布局",
+            "flexdirection": "vertical",
+            "shape": "rect",
+            "bordercolor": "lightgray",
+            "bordersides": "",
+            "overflowy": "",
+            "content": [
+              {
+                "type": "dropdownbox",
+                "code": "14022222433811289",
+                "titlewidth": "180",
+                "title": "新增账号的密码生成方式",
+                "placeholder": "新增账号的密码生成方式",
+                "name": "设置初始密码-新增账号的密码生成方式",
+                "hiddenclearbtn": "0",
+                "searchable": "0",
+                "options": [
+                  {
+                    "key": "1",
+                    "text": "随机密码",
+                    "isselected": "0"
+                  },
+                  {
+                    "key": "2",
+                    "text": "指定密码",
+                    "isselected": "0"
+                  }
+                ],
+                "width": "100%",
+                "required": "1",
+                "value": "2",
+                "eventlist": [
+                  {
+                    "trigger": "onvaluechange",
+                    "handler": "1405466657119408224"
+                  }
+                ]
+              },
+              {
+                "type": "textinput",
+                "code": "14049334561561",
+                "titlewidth": "180",
+                "title": "指定密码",
+                "placeholder": "指定密码",
+                "name": "设置初始密码-指定密码",
+                "displaytype": "",
+                "width": "100%",
+                "required": "1",
+                "eventlist": []
+              }
+            ],
+            "eventlist": []
+          }
+        ],
+        "eventlist": []
+      },
+      {
+        "type": "popview",
+        "code": "14049969155544322218",
+        "name": "生成管理员账号",
+        "title": "生成管理员账号",
+        "width": "600",
+        "operations": [
+          {
+            "text": "确 定",
+            "icon": "",
+            "code": "3399722287",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1405806234455642210"
+              }
+            ]
+          },
+          {
+            "text": "取消",
+            "icon": "",
+            "code": "339976654549",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1405466657119408209"
+              }
+            ]
+          }
+        ],
+        "content": [
+          {
+            "type": "layout",
+            "code": "14049112222567",
+            "title": "布局",
+            "flexdirection": "vertical",
+            "shape": "rect",
+            "bordercolor": "lightgray",
+            "bordersides": "",
+            "overflowy": "",
+            "content": [
+              {
+                "type": "textinput",
+                "titlewidth": "110",
+                "title": "手机号码",
+                "placeholder": "手机号码",
+                "name": "生成管理员账号-手机号码",
+                "displaytype": "",
+                "width": "100%",
+                "required": "1",
+                "code": "400398163298068611",
+                "eventlist": []
+              },
+              {
+                "type": "textinput",
+                "titlewidth": "110",
+                "title": "姓名",
+                "placeholder": "姓名",
+                "name": "生成管理员账号-姓名",
+                "displaytype": "",
+                "width": "100%",
+                "required": "1",
+                "code": "400398163222910396",
+                "eventlist": []
+              },
+              {
+                "type": "textinput",
+                "titlewidth": "110",
+                "title": "邮箱",
+                "placeholder": "邮箱",
+                "name": "生成管理员账号-邮箱",
+                "displaytype": "",
+                "width": "100%",
+                "required": "1",
+                "code": "400398163251283196",
+                "eventlist": []
+              }
+            ],
+            "eventlist": []
+          }
+        ],
+        "eventlist": []
+      },
+      {
+        "type": "popview",
+        "name": "清理租户级元数据",
+        "title": "清理租户级元数据",
+        "width": "600",
+        "operations": [
+          {
+            "text": "确 定",
+            "icon": "",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1405806234455642209"
+              }
+            ]
+          },
+          {
+            "text": "取消",
+            "icon": "",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1405466657119408208"
+              }
+            ]
+          }
+        ],
+        "content": [
+          {
+            "type": "layout",
+            "title": "布局",
+            "flexdirection": "vertical",
+            "content": [
+              {
+                "type": "textinput",
+                "titlewidth": "80",
+                "title": "确认密码",
+                "placeholder": "确认密码",
+                "name": "清理租户级元数据-确认密码",
+                "displaytype": "",
+                "width": "100%",
+                "required": "1",
+                "code": "400398163232138484",
+                "eventlist": []
+              }
+            ],
+            "code": "400398163293143722",
+            "eventlist": []
+          }
+        ],
+        "code": "400398163285076742",
+        "eventlist": []
+      },
+      {
+        "type": "popview",
+        "name": "设置license数",
+        "title": "设置license数",
+        "width": "600",
+        "operations": [
+          {
+            "text": "确 定",
+            "icon": "",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1405806234455642211"
+              }
+            ]
+          },
+          {
+            "text": "取消",
+            "icon": "",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1405466657119408210"
+              }
+            ]
+          }
+        ],
+        "content": [
+          {
+            "type": "layout",
+            "title": "布局",
+            "flexdirection": "vertical",
+            "content": [
+              {
+                "type": "infotable",
+                "code": "140293015654652626765",
+                "title": "表格",
+                "name": "设置license数-表格",
+                "checkable": "0",
+                "pageable": "0",
+                "pagesize": "20",
+                "height": "200",
+                "flex": "none",
+                "hasheaderbar": "1",
+                "fixednumber": "0",
+                "datastructure": {
+                  "id": ""
+                },
+                "cols": [],
+                "columns": [
+                  {
+                    "type": "text",
+                    "code": "text-564964654",
+                    "title": "应用",
+                    "name": "appcode",
+                    "width": "150",
+                    "eventlist": []
+                  },
+                  {
+                    "type": "textinput",
+                    "code": "textinput-123",
+                    "title": "购买数",
+                    "name": "buylicense",
+                    "width": "150",
+                    "required": "1",
+                    "eventlist": []
+                  },
+                  {
+                    "type": "textinput",
+                    "code": "textinput-125646546543",
+                    "title": "最大数",
+                    "name": "maxlicense",
+                    "width": "150",
+                    "required": "1",
+                    "eventlist": []
+                  }
+                ],
+                "dynamiccols": [],
+                "guidecols": {
+                  "frozen": "1",
+                  "merged": "0",
+                  "cols": []
+                },
+                "groupcols": [],
+                "operations": [],
+                "rowoperations": [],
+                "defpagesize": "20",
+                "eventlist": []
+              }
+            ],
+            "code": "400398163444422",
+            "eventlist": []
+          }
+        ],
+        "code": "4003981632345742",
+        "eventlist": []
+      },
+      {
+        "type": "popview",
+        "name": "设置开发人员",
+        "title": "设置开发人员",
+        "width": "600",
+        "operations": [
+          {
+            "text": "确 定",
+            "icon": "",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1405466657119408207"
+              }
+            ]
+          },
+          {
+            "text": "取消",
+            "icon": "",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1405466657119408211"
+              }
+            ]
+          }
+        ],
+        "content": [
+          {
+            "type": "layout",
+            "title": "布局",
+            "flexdirection": "vertical",
+            "content": [
+              {
+                "type": "dropdownbox",
+                "code": "dropdownbox-6546546546",
+                "title": "开发人员",
+                "name": "设置开发人员-开发人员",
+                "placeholder": "开发人员",
+                "required": "",
+                "titlewidth": "100",
+                "readonly": "",
+                "hiddenclearbtn": "",
+                "multiselectable": "1",
+                "options": [],
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1407605397547782243"
+                  }
+                ]
+              }
+            ],
+            "code": "400392222244422",
+            "eventlist": []
+          }
+        ],
+        "code": "4003911111345742",
+        "eventlist": []
+      },
+      {
+        "type": "popview",
+        "name": "导入",
+        "title": "导入",
+        "width": "600",
+        "operations": [
+          {
+            "text": "确 定",
+            "icon": "",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": ""
+              }
+            ]
+          },
+          {
+            "text": "取消",
+            "icon": "",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": ""
+              }
+            ]
+          }
+        ],
+        "content": [
+          {
+            "type": "layout",
+            "title": "布局",
+            "flexdirection": "vertical",
+            "content": [],
+            "code": "400398163311383548",
+            "eventlist": []
+          }
+        ],
+        "code": "400398163222222210881",
+        "eventlist": []
+      },
+      {
+        "type": "popview",
+        "name": "开户预执行SQL",
+        "title": "开户预执行SQL",
+        "width": "600",
+        "operations": [],
+        "content": [
+          {
+            "type": "layout",
+            "title": "布局",
+            "flexdirection": "vertical",
+            "content": [
+              {
+                "type": "infotable",
+                "code": "14029306546545465466765",
+                "title": "表格",
+                "name": "开户预执行SQL-表格",
+                "checkable": "0",
+                "pageable": "0",
+                "pagesize": "20",
+                "height": "400",
+                "flex": "none",
+                "hasheaderbar": "1",
+                "fixednumber": "0",
+                "datastructure": {
+                  "id": ""
+                },
+                "cols": [],
+                "columns": [
+                  {
+                    "type": "text",
+                    "code": "text-5649545644",
+                    "title": "执行SQL",
+                    "name": "execsql",
+                    "width": "200",
+                    "eventlist": []
+                  }
+                ],
+                "dynamiccols": [],
+                "guidecols": {
+                  "frozen": "1",
+                  "merged": "0",
+                  "cols": []
+                },
+                "groupcols": [],
+                "operations": [
+                  {
+                    "text": "新建SQL",
+                    "icon": "",
+                    "disabled": "",
+                    "functioncode": "",
+                    "eventlist": [
+                      {
+                        "trigger": "onclicked",
+                        "handler": "1413414630084186210"
+                      }
+                    ]
+                  }
+                ],
+                "rowoperations": [
+                  {
+                    "text": "编辑",
+                    "icon": "",
+                    "disabled": "",
+                    "functioncode": "",
+                    "eventlist": [
+                      {
+                        "trigger": "onclicked",
+                        "handler": "1413414630084186209"
+                      }
+                    ]
+                  },
+                  {
+                    "text": "删除",
+                    "icon": "",
+                    "disabled": "",
+                    "functioncode": "",
+                    "eventlist": [
+                      {
+                        "trigger": "onclicked",
+                        "handler": "1413414630084186208"
+                      }
+                    ]
+                  }
+                ],
+                "defpagesize": "20",
+                "eventlist": [
+                  {
+                    "trigger": "onload",
+                    "handler": "1413414630084186211"
+                  }
+                ]
+              }
+            ],
+            "code": "4003981465465444422",
+            "eventlist": []
+          }
+        ],
+        "code": "400398163234456542",
+        "eventlist": []
+      },
+      {
+        "type": "popview",
+        "name": "开户预执行SQL详情",
+        "title": "开户预执行SQL详情",
+        "width": "600",
+        "operations": [
+          {
+            "text": "确 定",
+            "icon": "",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1413414630084186206"
+              }
+            ]
+          },
+          {
+            "text": "取消",
+            "icon": "",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "handler": "1413414630084186205"
+              }
+            ]
+          }
+        ],
+        "content": [
+          {
+            "type": "layout",
+            "title": "布局",
+            "flexdirection": "vertical",
+            "content": [
+              {
+                "type": "textinput",
+                "code": "textinput-6565465546",
+                "title": "SQL",
+                "name": "开户预执行SQL详情-SQL",
+                "placeholder": "SQL",
+                "required": "1",
+                "titlewidth": "100",
+                "readonly": "",
+                "eventlist": []
+              }
+            ],
+            "code": "40035646546546444422",
+            "eventlist": []
+          }
+        ],
+        "code": "400391546541111345742",
+        "eventlist": []
+      }
+    ]
+  },
+  "presenter": {
+    "initial": [],
+    "interface": [],
+    "handlers": [
+      {
+        "code": "1402930156032626748",
+        "desc": "测试",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626747",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "location.href = '/#/management/editmap'"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626848",
+        "desc": "测试2",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "14029301560326534626747",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "console.log(Page.getCtrl('查询-测试').value)\n"
+          }
+        ]
+      },
+      {
+        "code": "1405806234455642208",
+        "desc": "全部导出",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405806234455642207",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/tenant/export', {\r\n  implementlevels: Page.getCtrl('查询-租户类型').value === '1' ? [1, 2, 3, 4] : [0]\r\n}, {\r\n  'responseType': 'blob'\r\n}).then(res => {\r\n  if (res.body.size === 0) {\r\n    _this.$message({\r\n      type: \"warming\",\r\n      message: \"没有数据可导出\"\r\n    })\r\n  }\r\n  return res.blob()\r\n}).then(blob => {\r\n  if (blob) {\r\n    let a = document.createElement('a')\r\n    a.href = window.URL.createObjectURL(blob)\r\n    document.body.appendChild(a)\r\n    let evt = document.createEvent('MouseEvents')\r\n    evt.initEvent('click', false, false)\r\n    a.dispatchEvent(evt)\r\n    document.body.removeChild(a)\r\n  }\r\n}).catch(error => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "14058062344556422081",
+        "desc": "导出",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405806234455642207",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nconst focusedValue = Page.getCtrl('表格').focusedValue\r\nPage.api.post('/platserv/tenant/export', {\r\n  tenantcode: focusedValue.tenantcode\r\n}, {\r\n  'responseType': 'blob'\r\n}).then(res => {\r\n  if (res.body.size === 0) {\r\n    _this.$message({\r\n      type: \"warming\",\r\n      message: \"没有数据可导出\"\r\n    })\r\n  }\r\n  return res.blob()\r\n}).then(blob => {\r\n  if (blob) {\r\n    let a = document.createElement('a')\r\n    a.href = window.URL.createObjectURL(blob)\r\n    document.body.appendChild(a)\r\n    let evt = document.createEvent('MouseEvents')\r\n    evt.initEvent('click', false, false)\r\n    a.dispatchEvent(evt)\r\n    document.body.removeChild(a)\r\n  }\r\n}).catch(error => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626778",
+        "desc": "表格-加载数据",
+        "name": "表格-加载数据",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626777",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "const tableCtrl = Page.getCtrl('表格')\r\n\r\nconst postData = {\r\n  tenantcode: Page.getCtrl('查询-企业编码').value,\r\n  tenantname: Page.getCtrl('查询-企业名称').value,\r\n  tenantapplytype: Page.getCtrl('查询-开通用途').value,\r\n  status: Page.getCtrl('查询-企业状态').value,\r\n  deploytype: Page.getCtrl('查询-部署方式').value,\r\n  openstatus: Page.getCtrl('查询-开通状态').value,\r\n  productversioncode: Page.getCtrl('查询-产品版本').value,\r\n  implementlevels: Page.getCtrl('查询-租户类型').value === '1' ? [1, 2, 3, 4] : [0]\r\n}\r\n\r\nif (tableCtrl.pageable) {\r\n  if (eventTarget && eventTarget.pageInfo) {\r\n    postData.__paging = {\r\n      __pageindex: eventTarget.pageInfo.__pageindex.toString(),\r\n      __pagesize: eventTarget.pageInfo.__pagesize.toString()\r\n    }\r\n  } else {\r\n    postData.__paging = {\r\n      __pageindex: '1',\r\n      __pagesize: tableCtrl.pageInfo.__pagesize.toString()\r\n    }\r\n  }\r\n}\r\nPage.openLoading()\r\nPage.api.post('/platserv/tenant/list', postData).then((res) => {\r\n  const data = res.data.resp_data.data\r\n  if (data) {\r\n    const __paging = res.data.resp_data.__paging\r\n    tableCtrl.value = data\r\n    tableCtrl.pageInfo = __paging\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626776",
+        "desc": "开通用途-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626775",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/dictionary/getDictionaryByKey', {\r\n  'dickey': 'applytype'\r\n}).then((res) => {\r\n  const data = res.data.resp_data\r\n  if (data && data.length) {\r\n    const options = data.map((item) => {\r\n      return {\r\n        ...item,\r\n        key: item.dictionaryid,\r\n        text: item.dicvalue,\r\n      }\r\n    })\r\n    Page.getCtrl('查询-开通用途').options = options\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626774",
+        "desc": "部署方式-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626773",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/dictionary/getDictionaryByKey', {\r\n  'dickey': 'deploytype'\r\n}).then((res) => {\r\n  const data = res.data.resp_data\r\n  if (data && data.length) {\r\n    const options = data.map((item) => {\r\n      return {\r\n        ...item,\r\n        key: item.dictionaryid,\r\n        text: item.dicvalue,\r\n      }\r\n    })\r\n    Page.getCtrl('查询-部署方式').options = options\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626763",
+        "desc": "开通状态-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626762",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/dictionary/getOpenStatusDict', {}).then((res) => {\r\n  const data = res.data.resp_data\r\n  if (data && data.length) {\r\n    const options = data.map((item) => {\r\n      return {\r\n        ...item,\r\n        key: item.key,\r\n        text: item.value,\r\n      }\r\n    })\r\n    Page.getCtrl('查询-开通状态').options = options\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626764",
+        "desc": "产品版本-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626762",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/productVersion/list', {}).then((res) => {\r\n  const data = res.data.resp_data.data\r\n  if (data && data.length) {\r\n    const options = data.map((item) => {\r\n      return {\r\n        ...item,\r\n        key: item.productversioncode,\r\n        text: item.productversionname,\r\n      }\r\n    })\r\n    Page.getCtrl('查询-产品版本').options = options\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626783",
+        "desc": "新建企业",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626782",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.setValue('企业信息-type', 'add')\r\nPage.openPopview('企业信息')"
+          },
+          {
+            "code": "1402930153336032626781",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.getCtrl('企业信息').setProp('title', '新建企业')\r\n"
+          }
+        ]
+      },
+      {
+        "code": "1405086907611877474",
+        "desc": "编辑企业",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626782",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.setValue('企业信息-type', 'edit')\r\nPage.setValue('企业信息-focusedValue', Page.getCtrl('表格').focusedValue)\r\nPage.openPopview('企业信息')"
+          },
+          {
+            "code": "1402930153336032626781",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.getCtrl('企业信息').setProp('title', '编辑企业')\r\nPage.getCtrl('企业信息-生成id').hidden = true\r\n\r\nlet focusedValue = Page.getValue('企业信息-focusedValue')\r\nPage.getCtrl('企业信息-企业名称').value = focusedValue.tenantname\r\nPage.getCtrl('企业信息-企业id').value = focusedValue.tenantcode\r\nPage.getCtrl('企业信息-企业简称').value = focusedValue.tenantshortname\r\nPage.getCtrl('企业信息-人员规模').value = focusedValue.personnelscale\r\nPage.getCtrl('企业信息-实施级别').value = focusedValue.implementlevel\r\nPage.getCtrl('企业信息-资源等级').value = focusedValue.sourcetype\r\nPage.getCtrl('企业信息-租户类型').value = focusedValue.tenanttype\r\nPage.getCtrl('企业信息-所属行业').value = focusedValue.industry\r\nPage.getCtrl('企业信息-企业联系人').value = focusedValue.contact\r\nPage.getCtrl('企业信息-联系人手机号').value = focusedValue.mobile\r\nPage.getCtrl('企业信息-联系邮箱').value = focusedValue.email\r\nPage.getCtrl('企业信息-公司座机').value = focusedValue.telephone\r\nPage.getCtrl('企业信息-开通用途').value = focusedValue.tenantapplytype\r\nPage.getCtrl('企业信息-部署方式').value = focusedValue.deploytype\r\nPage.getCtrl('企业信息-企业地址').value = focusedValue.address\r\nPage.getCtrl('企业信息-企业介绍').value = focusedValue.tenantdescr\r\nif (focusedValue.expiredtime) {\r\n  Page.getCtrl('企业信息-有效截止日期').value = new Date(focusedValue.expiredtime).getTime()\r\n}"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626780",
+        "desc": "p-企业-确认",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "if (!Page.getCtrl('企业信息').validata()) {\r\n  throw Error('validata')\r\n}\r\n\r\nconst timestampToFormat = function (timestamp, fmt = 'yyyy-MM-dd HH:mm:ss') {\r\n  const date = new Date(Number(timestamp))\r\n  var o = {\r\n    'y': date.getFullYear(), // 年份 注意必须用getFullYear\r\n    'M': date.getMonth() + 1, // 月份 注意是从0-11\r\n    'd': date.getDate(), // 日期\r\n    'q': Math.floor((date.getMonth() + 3) / 3), // 季度\r\n    'w': ['日', '一', '二', '三', '四', '五', '六'][date.getDay()], // 星期 注意是0-6\r\n    'H': date.getHours(), // 24小时制\r\n    'h': date.getHours() % 12 === 0 ? 12 : date.getHours() % 12, // 12小时制\r\n    'm': date.getMinutes(), // 分钟\r\n    's': date.getSeconds(), // 秒\r\n    'S': date.getMilliseconds() // 毫秒\r\n  }\r\n  for (var i in o) {\r\n    fmt = fmt.replace(new RegExp(i + '+', 'g'), function (m) {\r\n      var val = o[i] + ''\r\n      if (i === 'w') return val\r\n      // 补0\r\n      for (var j = 0, len = val.length; j < m.length - len; j++) val = '0' + val\r\n      // 截取\r\n      return m.length === 1 ? val : val.substring(val.length - m.length)\r\n    })\r\n  }\r\n  return fmt\r\n}\r\n\r\nconst type = Page.getValue('企业信息-type')\r\nlet expiredtime = Page.getCtrl('企业信息-有效截止日期').value\r\nexpiredtime && (expiredtime = timestampToFormat(expiredtime, 'yyyy-MM-dd') + ' 23:59:59')\r\nPage.openLoading()\r\nPage.api.post(type === 'add' ? '/platserv/tenant/add' : '/platserv/tenant/update', {\r\n  tenantname: Page.getCtrl('企业信息-企业名称').value,\r\n  tenantcode: Page.getCtrl('企业信息-企业id').value,\r\n  tenantshortname: Page.getCtrl('企业信息-企业简称').value,\r\n  personnelscale: Page.getCtrl('企业信息-人员规模').value,\r\n  implementlevel: Page.getCtrl('企业信息-实施级别').value,\r\n  sourcetype: Page.getCtrl('企业信息-资源等级').value,\r\n  tenanttype: Page.getCtrl('企业信息-租户类型').value,\r\n  industry: Page.getCtrl('企业信息-所属行业').value,\r\n  contact: Page.getCtrl('企业信息-企业联系人').value,\r\n  mobile: Page.getCtrl('企业信息-联系人手机号').value,\r\n  email: Page.getCtrl('企业信息-联系邮箱').value,\r\n  telephone: Page.getCtrl('企业信息-公司座机').value,\r\n  tenantapplytype: Page.getCtrl('企业信息-开通用途').value,\r\n  deploytype: Page.getCtrl('企业信息-部署方式').value,\r\n  expiredtime: expiredtime,\r\n  address: Page.getCtrl('企业信息-企业地址').value,\r\n  tenantdescr: Page.getCtrl('企业信息-企业介绍').value\r\n}).then((res) => {\r\n  Page.message.success('保存成功！')\r\n  Page.closePopview('企业信息')\r\n  Page.runEvent('表格-加载数据')\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626749",
+        "desc": "p-企业-取消",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.closePopview('企业信息')"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626761",
+        "desc": "p-企业-人员规模-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626760",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/dictionary/getDictionaryByKey', {\r\n  'dickey': 'personnelscale'\r\n}).then((res) => {\r\n  const data = res.data.resp_data\r\n  if (data && data.length) {\r\n    const options = data.map((item) => {\r\n      return {\r\n        ...item,\r\n        key: item.dictionaryid,\r\n        text: item.dicvalue,\r\n      }\r\n    })\r\n    Page.getCtrl('企业信息-人员规模').options = options\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626757",
+        "desc": "p-企业-资源等级-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626756",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/dictionary/getDictionaryByKey', {\r\n  'dickey': 'sourcetype'\r\n}).then((res) => {\r\n  const data = res.data.resp_data\r\n  if (data && data.length) {\r\n    const options = data.map((item) => {\r\n      return {\r\n        ...item,\r\n        key: item.dictionaryid,\r\n        text: item.dicvalue,\r\n      }\r\n    })\r\n    Page.getCtrl('企业信息-资源等级').options = options\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1407605397547782241",
+        "desc": "p-企业-实施级别-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626756",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "if (Page.getCtrl('查询-租户类型').value === '1') {\r\n  Page.getCtrl('企业信息-实施级别').options = [\r\n    {\r\n      'key': 1,\r\n      'text': '标准产品'\r\n    },\r\n    {\r\n      'key': 2,\r\n      'text': '标准配置'\r\n    },\r\n    {\r\n      'key': 3,\r\n      'text': '实施级配置'\r\n    },\r\n    {\r\n      'key': 4,\r\n      'text': '代码级修改'\r\n    }\r\n  ]\r\n} else {\r\n  Page.getCtrl('企业信息-实施级别').options = [\r\n    {\r\n      'key': 0,\r\n      'text': '产品开发'\r\n    }\r\n  ]\r\n}"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626755",
+        "desc": "p-企业-所属行业-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626754",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/industry/getAllIndustry', {}).then((res) => {\r\n  const data = res.data.resp_data\r\n  if (data && data.length) {\r\n    const options = data.map((item) => {\r\n      return {\r\n        ...item,\r\n        key: item.industrycode,\r\n        text: item.industryname,\r\n      }\r\n    })\r\n    Page.getCtrl('企业信息-所属行业').options = options\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626753",
+        "desc": "p-企业-开通用途-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626752",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/dictionary/getDictionaryByKey', {\r\n  'dickey': 'applytype'\r\n}).then((res) => {\r\n  const data = res.data.resp_data\r\n  if (data && data.length) {\r\n    const options = data.map((item) => {\r\n      return {\r\n        ...item,\r\n        key: item.dictionaryid,\r\n        text: item.dicvalue,\r\n      }\r\n    })\r\n    Page.getCtrl('企业信息-开通用途').options = options\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1405086907611877473",
+        "desc": "p-企业-开通用途-值改变时",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405086907611877472",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var a = Page.getCtrl('企业信息-开通用途').value\r\nif (a === '1') {\r\n  Page.getCtrl('企业信息-有效截止日期').required = true\r\n} else {\r\n  Page.getCtrl('企业信息-有效截止日期').required = false\r\n}"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626759",
+        "desc": "p-企业-生成id-单击",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626758",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/tenant/genCode', {}).then((res) => {\r\n  const data = res.data.resp_data\r\n  data && (Page.getCtrl('企业信息-企业id').value = data)\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032626751",
+        "desc": "p-企业-部署方式-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626750",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/dictionary/getDictionaryByKey', {\r\n  'dickey': 'deploytype'\r\n}).then((res) => {\r\n  const data = res.data.resp_data\r\n  if (data && data.length) {\r\n    const options = data.map((item) => {\r\n      return {\r\n        ...item,\r\n        key: item.dictionaryid,\r\n        text: item.dicvalue,\r\n      }\r\n    })\r\n    Page.getCtrl('企业信息-部署方式').options = options\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1404996914516201570",
+        "desc": "p-开户-应用模块-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1404996914516201569",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.openLoading()\r\nPage.api.post('/platserv/productSeries/getProductSeries', {}).then((res) => {\r\n  const data = res.data.resp_data\r\n  if (data && data.length) {\r\n    let options = []\r\n    data.forEach((item) => {\r\n      options.push({\r\n        parentid: '',\r\n        id: item.productseriescode,\r\n        key: item.productseriescode,\r\n        text: item.productseriesname,\r\n      })\r\n      item.products.forEach((item1) => {\r\n        options.push({\r\n          parentid: item.productseriescode,\r\n          id: item1.productcode,\r\n          key: item1.productcode,\r\n          text: item1.productname,\r\n        })\r\n        item1.productversions.forEach((item2) => {\r\n          options.push({\r\n            parentid: item1.productcode,\r\n            id: item2.productversioncode,\r\n            key: item2.productversioncode,\r\n            text: item2.productversionname,\r\n          })\r\n          item2.productPackages.forEach((item3) => {\r\n            options.push({\r\n              parentid: item2.productversioncode,\r\n              id: item3.productpackagecode,\r\n              key: item3.productpackagecode,\r\n              text: item3.productpackagename,\r\n            })\r\n          })\r\n        })\r\n      })\r\n    })\r\n    console.log(options)\r\n    Page.getCtrl('开户-应用模块').options = options\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1404996914516201559",
+        "desc": "开户",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626782",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.setValue('开户-focusedValue', Page.getCtrl('表格').focusedValue)\r\nPage.openPopview('开户')"
+          },
+          {
+            "code": "1405466657119408227",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "let focusedValue = Page.getValue('开户-focusedValue')\r\nif (focusedValue.openstatus === 100) {\r\n  Page.getCtrl('开户-应用模块').value = JSON.stringify([\r\n    focusedValue.productseriescode,\r\n    focusedValue.productcode,\r\n    focusedValue.productversioncode,\r\n    focusedValue.productpackagecode\r\n  ])\r\n}\r\nPage.openLoading()\r\nPage.api.post((focusedValue.openstatus === 100) ? '/platserv/tenantDb/list' : '/platserv/tenantDb/createjdbcurl', {\r\n  'tenantcode': focusedValue.tenantcode\r\n}).then((res) => {\r\n  const data = res.data.resp_data\r\n  if (data && data.length) {\r\n    data.forEach((item) => {\r\n      if (item.tenantdbtype === 1) {\r\n        Page.getCtrl('开户-数据库只读').value = item.connstr\r\n      } else if (item.tenantdbtype === 2) {\r\n        Page.getCtrl('开户-数据库读写').value = item.connstr\r\n      } else if (item.tenantdbtype === 3) {\r\n        Page.getCtrl('开户-数据库报表').value = item.connstr\r\n      }\r\n    })\r\n  }\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1402930156032677481",
+        "desc": "p-开户-确认",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930152226779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "if (!Page.getCtrl('开户').validata()) {\r\n  return false\r\n}\r\nvar focusedValue = Page.getValue('开户-focusedValue')\r\nif (focusedValue.openstatus === 100) {\r\n  Page.message.warn('租户已开通，无需重复开通。')\r\n  // Page.confirm('此企业已开户, 是否重新开户？', '提示', {\r\n  //   confirmButtonText: '确定',\r\n  //   cancelButtonText: '取消'\r\n  // }).then(() => {\r\n  //   tenantInit(focusedValue.tenantcode)\r\n  // }).catch(() => { })\r\n} else {\r\n  tenantInit(focusedValue.tenantcode)\r\n}\r\n\r\nfunction tenantInit (tenantcode) {\r\n  let product = Page.getCtrl('开户-应用模块').value\r\n  product && (product = JSON.parse(product))\r\n  Page.openLoading()\r\n  Page.api.post('/platserv/tenant/saveModuleConfig', {\r\n    'productseriescode': product[0],\r\n    'productcode': product[1],\r\n    'productversioncode': product[2],\r\n    'productpackagecode': product[3],\r\n    'tenantcode': tenantcode,\r\n  }).then((res) => {\r\n    Page.api.post('/platserv/tenantDb/updateDbConnstr', {\r\n      tenantcode: tenantcode,\r\n      productcode: product[1],\r\n      dbs: [{\r\n        tenantdbtype: 1,\r\n        tenantdbname: '只读',\r\n        connstr: Page.getCtrl('开户-数据库只读').value\r\n      }, {\r\n        tenantdbtype: 2,\r\n        tenantdbname: '读写',\r\n        connstr: Page.getCtrl('开户-数据库读写').value\r\n      }, {\r\n        tenantdbtype: 3,\r\n        tenantdbname: '报表',\r\n        connstr: Page.getCtrl('开户-数据库报表').value\r\n      }]\r\n    }).then((res) => {\r\n      Page.api.post('/platserv/tenant/init', {\r\n        tenantcode: tenantcode,\r\n        productcode: product[1],\r\n        productversioncode: product[2]\r\n      }).then((res) => {\r\n        Page.message.success('开户成功！')\r\n        Page.closePopview('开户')\r\n        Page.runEvent('表格-加载数据')\r\n      }).catch((err) => {\r\n        console.error(err)\r\n        let msg = (err.body && err.body.error_code) || err.statusText || err\r\n        Page.message.error(msg)\r\n      })\r\n    }).catch((err) => {\r\n      console.error(err)\r\n      let msg = (err.body && err.body.error_code) || err.statusText || err\r\n      Page.message.error(msg)\r\n    })\r\n  }).catch((err) => {\r\n    console.error(err)\r\n    let msg = (err.body && err.body.error_code) || err.statusText || err\r\n    Page.message.error(msg)\r\n  }).finally(() => {\r\n    Page.closeLoading()\r\n  })\r\n}"
+          }
+        ]
+      },
+      {
+        "code": "14029301560326267491",
+        "desc": "p-开户-取消",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.closePopview('开户')"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408222",
+        "desc": "设置初始密码",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405466657119408221",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getCtrl('表格').focusedValue\r\nPage.setValue('设置初始密码-focusedValue', focusedValue)\r\nif (focusedValue.openstatus !== 100) {\r\n  Page.message.error('租户数据库尚未开通！')\r\n} else {\r\n  Page.openPopview('设置初始密码')\r\n  Page.openLoading()\r\n  Page.api.post('/platserv/tenant/getInitPassword', {\r\n    tenantcode: focusedValue.tenantcode\r\n  }).then((res) => {\r\n    setTimeout(() => {\r\n      Page.getCtrl('设置初始密码-指定密码').value = res.data.resp_data\r\n    }, 200)\r\n  }).catch((err) => {\r\n    console.error(err)\r\n    let msg = (err.body && err.body.error_code) || err.statusText || err\r\n    Page.message.error(msg)\r\n  }).finally(() => {\r\n    Page.closeLoading()\r\n  })\r\n}"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408219",
+        "desc": "p-设置初始密码-确认",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930152226779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "if (!Page.getCtrl('设置初始密码').validata()) {\r\n  return false\r\n}\r\nvar focusedValue = Page.getValue('设置初始密码-focusedValue')\r\nPage.openLoading()\r\nPage.api.post('/platserv/tenant/saveInitPassword', {\r\n  'password': Page.getCtrl('设置初始密码-指定密码').value,\r\n  'tenantcode': focusedValue.tenantcode\r\n}).then((res) => {\r\n  Page.message.success('设置成功！')\r\n  Page.closePopview('设置初始密码')\r\n  // Page.runEvent('表格-加载数据')\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408220",
+        "desc": "p-设置初始密码-取消",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.closePopview('设置初始密码')"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408224",
+        "desc": "p-设置初始密码-新增账号的密码生成方式-值改变时",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405466657119408223",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var a = Page.getCtrl('设置初始密码-新增账号的密码生成方式').value\r\nif (a === '1') {\r\n  Page.getCtrl('设置初始密码-指定密码').hidden = true\r\n  Page.getCtrl('设置初始密码-指定密码').required = false\r\n  Page.getCtrl('设置初始密码-指定密码').value = ''\r\n} else {\r\n  Page.getCtrl('设置初始密码-指定密码').hidden = false\r\n  Page.getCtrl('设置初始密码-指定密码').required = true\r\n}"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408218",
+        "desc": "启用",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405466657119408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getCtrl('表格').focusedValue\r\nPage.confirm('确定启用该租户？', '提示', {\r\n  confirmButtonText: '确定',\r\n  cancelButtonText: '取消'\r\n}).then(() => {\r\n  Page.openLoading()\r\n  Page.api.post('/platserv/tenant/enable', {\r\n    tenantcode: focusedValue.tenantcode\r\n  }).then((res) => {\r\n    Page.message.success('启用成功！')\r\n    Page.runEvent('表格-加载数据')\r\n  }).catch((err) => {\r\n    console.error(err)\r\n    let msg = (err.body && err.body.error_code) || err.statusText || err\r\n    Page.message.error(msg)\r\n  }).finally(() => {\r\n    Page.closeLoading()\r\n  })\r\n}).catch(() => { })"
+          }
+        ]
+      },
+      {
+        "code": "1410482775198404707",
+        "desc": "设置营销区域地图",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405466657119408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getCtrl('表格').focusedValue\r\nlocation.href = `/#/management/editmap?tenantcode=${focusedValue.tenantcode}&productcode=${focusedValue.productcode}`"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408216",
+        "desc": "停用",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405466657119408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getCtrl('表格').focusedValue\r\nPage.confirm('确定停用该租户？', '提示', {\r\n  confirmButtonText: '确定',\r\n  cancelButtonText: '取消'\r\n}).then(() => {\r\n  Page.openLoading()\r\n  Page.api.post('/platserv/tenant/disable', {\r\n    tenantcode: focusedValue.tenantcode\r\n  }).then((res) => {\r\n    Page.message.success('停用成功！')\r\n    Page.runEvent('表格-加载数据')\r\n  }).catch((err) => {\r\n    console.error(err)\r\n    let msg = (err.body && err.body.error_code) || err.statusText || err\r\n    Page.message.error(msg)\r\n  }).finally(() => {\r\n    Page.closeLoading()\r\n  })\r\n}).catch(() => { })"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408215",
+        "desc": "设置开发人员",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405466657119408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getCtrl('表格').focusedValue\r\nPage.setValue('设置开发人员-focusedValue', focusedValue)\r\nPage.openPopview('设置开发人员')\r\n// if (focusedValue.openstatus !== 100) {\r\n//   Page.message.error('租户数据库尚未开通！')\r\n// } else {\r\n//   Page.openPopview('设置开发人员')\r\n// }"
+          }
+        ]
+      },
+      {
+        "code": "1407605397547782243",
+        "desc": "p-设置开发人员-开发人员-加载",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1407605397547782242",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getValue('设置开发人员-focusedValue')\r\nPage.openLoading()\r\nPage.api.post('/platserv/tenant/findTenantPlatAccount', {\r\n  'bindstatus': '',\r\n  'tenantcode': focusedValue.tenantcode\r\n}).then((res) => {\r\n  const optionsData = res.data.resp_data.data\r\n  if (optionsData && optionsData.length) {\r\n    const options = optionsData.map((item) => {\r\n      return {\r\n        ...item,\r\n        key: item.plataccountcode,\r\n        text: item.contact,\r\n      }\r\n    })\r\n    Page.getCtrl('设置开发人员-开发人员').options = options\r\n  }\r\n\r\n  Page.openLoading()\r\n  Page.api.post('/platserv/tenant/findTenantPlatAccount', {\r\n    'bindstatus': '1',\r\n    'tenantcode': focusedValue.tenantcode\r\n  }).then((res) => {\r\n    const valueData = res.data.resp_data.data\r\n    if (valueData && valueData.length) {\r\n      const keys = valueData.map((item) => item.plataccountcode)\r\n      Page.getCtrl('设置开发人员-开发人员').value = JSON.stringify(keys)\r\n    }\r\n  }).catch((err) => {\r\n    console.error(err)\r\n    let msg = (err.body && err.body.error_code) || err.statusText || err\r\n    Page.message.error(msg)\r\n  }).finally(() => {\r\n    Page.closeLoading()\r\n  })\r\n\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408207",
+        "desc": "p-设置开发人员-确定",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "if (!Page.getCtrl('设置开发人员').validata()) {\r\n  throw Error('validata')\r\n}\r\nvar focusedValue = Page.getValue('设置开发人员-focusedValue')\r\nPage.openLoading()\r\nlet value = Page.getCtrl('设置开发人员-开发人员').value\r\nPage.api.post('/platserv/tenant/bindTenantPlatAccount', {\r\n  plataccountcodes: value ? JSON.parse(value) : [],\r\n  tenantcode: focusedValue.tenantcode,\r\n}).then((res) => {\r\n  Page.message.success('设置开发人员成功！')\r\n  Page.closePopview('设置开发人员')\r\n  // Page.runEvent('表格-加载数据')\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408211",
+        "desc": "p-设置开发人员-取消",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.closePopview('设置开发人员')"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408214",
+        "desc": "设置license数",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405466657119408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getCtrl('表格').focusedValue\r\nPage.setValue('设置license数-focusedValue', focusedValue)\r\nif (focusedValue.openstatus !== 100) {\r\n  Page.message.error('租户数据库尚未开通！')\r\n  throw Error('租户数据库尚未开通！')\r\n} else {\r\n  Page.openPopview('设置license数')\r\n}"
+          },
+          {
+            "code": "1407257053449293923",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getValue('设置license数-focusedValue')\r\nPage.openLoading()\r\nPage.api.post('/platserv/subApplication/getSubApplications', {\r\n  productpackagecode: focusedValue.productpackagecode\r\n}).then((res) => {\r\n  const subApplications = res.data.resp_data\r\n  let count = 0\r\n  subApplications.forEach((item) => {\r\n    Page.openLoading()\r\n    Page.api.post('/platserv/tenantLicense/get', {\r\n      appcode: item.appcode,\r\n      tenantcode: focusedValue.tenantcode\r\n    }).then((res) => {\r\n      const data = res.data.resp_data\r\n      Object.assign(item, data[0])\r\n      count++\r\n      if (count === subApplications.length) {\r\n        Page.getCtrl('设置license数-表格').value = subApplications\r\n      }\r\n    }).catch((err) => {\r\n      console.error(err)\r\n      let msg = (err.body && err.body.error_code) || err.statusText || err\r\n      Page.message.error(msg)\r\n    }).finally(() => {\r\n      Page.closeLoading()\r\n    })\r\n  })\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1405806234455642211",
+        "desc": "p-设置license数-确定",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "if (!Page.getCtrl('设置license数').validata()) {\r\n  throw Error('validata')\r\n}\r\nvar focusedValue = Page.getValue('设置license数-focusedValue')\r\nPage.openLoading()\r\nlet tableData = Page.getCtrl('设置license数-表格').value\r\nPage.api.post('/platserv/tenantLicense/init', {\r\n  licenses: tableData.map((item) => {\r\n    return {\r\n      appcode: item.appcode,\r\n      buylicense: Number(item.buylicense),\r\n      maxlicense: Number(item.maxlicense),\r\n      descr: ''\r\n    }\r\n  }),\r\n  tenantcode: focusedValue.tenantcode,\r\n}).then((res) => {\r\n  Page.message.success('设置license数成功！')\r\n  Page.closePopview('设置license数')\r\n  // Page.runEvent('表格-加载数据')\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408210",
+        "desc": "p-设置license数-取消",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.closePopview('设置license数')"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408213",
+        "desc": "生成管理员账号",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405466657119408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getCtrl('表格').focusedValue\r\nPage.setValue('生成管理员账号-focusedValue', focusedValue)\r\nif (focusedValue.openstatus !== 100) {\r\n  Page.message.error('租户尚未开通，不能生成管理员账号！')\r\n} else {\r\n  Page.openPopview('生成管理员账号')\r\n}"
+          }
+        ]
+      },
+      {
+        "code": "1405806234455642210",
+        "desc": "p-生成管理员账号-确定",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "if (!Page.getCtrl('生成管理员账号').validata()) {\r\n  throw Error('validata')\r\n}\r\nvar focusedValue = Page.getValue('生成管理员账号-focusedValue')\r\nPage.openLoading()\r\nPage.api.post('/platserv/tenantAccount/generateAdminAccount', {\r\n  mobile: Page.getCtrl('生成管理员账号-手机号码').value,\r\n  username: Page.getCtrl('生成管理员账号-姓名').value,\r\n  email: Page.getCtrl('生成管理员账号-邮箱').value,\r\n  tenantcode: focusedValue.tenantcode,\r\n  productcode: focusedValue.productcode,\r\n  productversioncode: focusedValue.productversioncode\r\n}).then((res) => {\r\n  Page.message.success('生成管理员账号成功！')\r\n  Page.closePopview('生成管理员账号')\r\n  // Page.runEvent('表格-加载数据')\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408209",
+        "desc": "p-生成管理员账号-取消",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.closePopview('生成管理员账号')"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408212",
+        "desc": "清理租户级元数据",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1405466657119408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.setValue('清理租户级元数据-focusedValue', Page.getCtrl('表格').focusedValue)\r\nPage.openPopview('清理租户级元数据')"
+          }
+        ]
+      },
+      {
+        "code": "1405806234455642209",
+        "desc": "p-清理租户级元数据-确定",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "if (!Page.getCtrl('清理租户级元数据').validata()) {\r\n  throw Error('validata')\r\n}\r\nvar focusedValue = Page.getValue('清理租户级元数据-focusedValue')\r\nPage.openLoading()\r\nPage.api.post('/platserv/metamodel/deleteAllData', {\r\n  password: Page.getCtrl('清理租户级元数据-确认密码').value,\r\n  tenantcode: focusedValue.tenantCode\r\n}).then((res) => {\r\n  Page.message.success('清理成功！')\r\n  Page.closePopview('清理租户级元数据')\r\n  // Page.runEvent('表格-加载数据')\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408208",
+        "desc": "p-清理租户级元数据-取消",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.closePopview('清理租户级元数据')"
+          }
+        ]
+      },
+      {
+        "code": "1405466657119408290",
+        "desc": "开户预执行SQL",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "14054666571194408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getCtrl('表格').focusedValue\r\nPage.setValue('开户预执行SQL-focusedValue', focusedValue)\r\nif (focusedValue.openstatus !== 100) {\r\n  Page.message.error('租户尚未开通，暂不能编辑开户预执行SQL！')\r\n} else {\r\n  Page.openPopview('开户预执行SQL')\r\n}"
+          }
+        ]
+      },
+      {
+        "code": "1413414630084186211",
+        "desc": "p-开户预执行SQL-加载",
+        "name": "p-开户预执行SQL-加载",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "14054666571194408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getValue('开户预执行SQL-focusedValue')\r\nPage.openLoading()\r\nPage.api.post('/platserv/presql/list', {\r\n  productversioncode: focusedValue.productversioncode\r\n}).then((res) => {\r\n  const list = res.data.resp_data\r\n  Page.getCtrl('开户预执行SQL-表格').value = list\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1413414630084186210",
+        "desc": "p-开户预执行SQL-新增",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "14054666571194408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.setValue('开户预执行SQL详情-focusedValue', null)\r\nPage.openPopview('开户预执行SQL详情')"
+          }
+        ]
+      },
+      {
+        "code": "1413414630084186209",
+        "desc": "p-开户预执行SQL-编辑",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "14054666571194408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getCtrl('开户预执行SQL-表格').focusedValue\r\nPage.setValue('开户预执行SQL详情-focusedValue', focusedValue)\r\nPage.openPopview('开户预执行SQL详情')"
+          },
+          {
+            "code": "1413414630084186207",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "const focusedValue = Page.getValue('开户预执行SQL详情-focusedValue')\r\nPage.getCtrl('开户预执行SQL详情-SQL').value = focusedValue.execsql"
+          }
+        ]
+      },
+      {
+        "code": "1413414630084186208",
+        "desc": "p-开户预执行SQL-删除",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "14054666571194408217",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "var focusedValue = Page.getCtrl('开户预执行SQL-表格').focusedValue\r\nPage.confirm('确定删除该SQL？', '提示', {\r\n  confirmButtonText: '确定',\r\n  cancelButtonText: '取消'\r\n}).then(() => {\r\n  Page.openLoading()\r\n  Page.api.post('/platserv/presql/delete', {\r\n    sqlid: focusedValue.sqlid\r\n  }).then((res) => {\r\n    Page.message.success('删除成功！')\r\n    Page.runEvent('p-开户预执行SQL-加载')\r\n  }).catch((err) => {\r\n    console.error(err)\r\n    let msg = (err.body && err.body.error_code) || err.statusText || err\r\n    Page.message.error(msg)\r\n  }).finally(() => {\r\n    Page.closeLoading()\r\n  })\r\n}).catch(() => { })"
+          }
+        ]
+      },
+      {
+        "code": "1413414630084186206",
+        "desc": "p-开户预执行SQL详情-确定",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "if (!Page.getCtrl('开户预执行SQL详情').validata()) {\r\n  return false\r\n}\r\nconst detailFocusedValue = Page.getValue('开户预执行SQL详情-focusedValue')\r\nconst focusedValue = Page.getValue('开户预执行SQL-focusedValue')\r\nconsole.log(detailFocusedValue)\r\nconsole.log(focusedValue)\r\nPage.openLoading()\r\nPage.api.post('/platserv/presql/update', {\r\n  productversioncode: focusedValue.productversioncode,\r\n  execsql: Page.getCtrl('开户预执行SQL详情-SQL').value,\r\n  sqlid: detailFocusedValue ? detailFocusedValue.sqlid : ''\r\n}).then((res) => {\r\n  Page.message.success('保存成功！')\r\n  Page.closePopview('开户预执行SQL详情')\r\n  Page.runEvent('p-开户预执行SQL-加载')\r\n}).catch((err) => {\r\n  console.error(err)\r\n  let msg = (err.body && err.body.error_code) || err.statusText || err\r\n  Page.message.error(msg)\r\n}).finally(() => {\r\n  Page.closeLoading()\r\n})"
+          }
+        ]
+      },
+      {
+        "code": "1413414630084186205",
+        "desc": "p-开户预执行SQL详情-取消",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626779",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": "Page.closePopview('开户预执行SQL详情')"
+          }
+        ]
+      }
+    ]
+  },
+  "businessmodel": []
+}
