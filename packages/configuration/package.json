@@ -1,5 +1,5 @@
 {
-  "name": "configuration",
+  "name": "xt-configuration",
   "version": "0.1.3-alpha.0",
   "description": "",
   "main": "index.js",
@@ -12,5 +12,5 @@
   "dependencies": {
     "lodash-es": "^4.17.21"
   },
-  "gitHead": "d6643bd6c8cd6551c19fcc160e96823b7befeccb"
+  "gitHead": "f83fa7191d1a16f1cdc8ac302962759d40373d13"
 }
