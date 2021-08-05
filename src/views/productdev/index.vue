@@ -6,7 +6,7 @@
 
 <script>
 import protocol from './protocol.json'
-import { components } from '@/engine'
+import { components } from '@xt/engine'
 
 export default {
   components: {

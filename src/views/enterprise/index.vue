@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { components } from '@/engine'
+import { components } from '@xt/engine'
 import protocol from './protocol.json'
 
 export default {

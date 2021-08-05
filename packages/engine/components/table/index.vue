@@ -8,7 +8,7 @@ import render from './render'
 export default {
   name: 'xt-table',
   components: {
-    'xt-widget-none': () => import('../../widget/none')
+    'xt-widget-none': () => import('@xt/widget/none')
   },
   mixins: [baseMixin],
   data () {

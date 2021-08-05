@@ -81,7 +81,7 @@
 <script>
 import { get, some, cloneDeep } from 'lodash-es'
 import IEcharts from 'vue-echarts-v3'
-import { components } from '@/engine'
+import { components } from '@xt/engine'
 import xtWidgetNone from '../../components/none'
 
 export default {

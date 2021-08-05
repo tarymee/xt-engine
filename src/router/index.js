@@ -21,10 +21,10 @@ const routes = [
     path: '/',
     component: () => import('@/views/login')
   },
-  {
-    path: '/ide',
-    component: () => import('@/engine/ide')
-  },
+  // {
+  //   path: '/ide',
+  //   component: () => import('@xt/ide')
+  // },
   {
     path: '/management',
     component: () => import('@/views/management'),
@@ -36,15 +36,15 @@ const routes = [
       {
         path: 'productdev',
         component: () => import('@/views/productdev')
-      },
-      {
-        path: 'editmap',
-        component: () => import('@/views/editmap')
-      },
-      {
-        path: 'regionmap',
-        component: () => import('@/views/regionmap')
       }
+      // {
+      //   path: 'editmap',
+      //   component: () => import('@/views/editmap')
+      // },
+      // {
+      //   path: 'regionmap',
+      //   component: () => import('@/views/regionmap')
+      // }
     ]
   }
 ]
