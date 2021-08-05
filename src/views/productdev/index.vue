@@ -6,7 +6,7 @@
 
 <script>
 import protocol from './protocol.json'
-import { components } from '@xt/engine'
+import { components } from '@xwchina/smart100-web-engine'
 
 export default {
   components: {

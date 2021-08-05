@@ -1,11 +1,11 @@
-# `@xt/engine`
+# `@xwchina/smart100-web-engine`
 
 > TODO: description
 
 ## Usage
 
 ```
-const engine = require('@xt/engine');
+const engine = require('@xwchina/smart100-web-engine');
 
 // TODO: DEMONSTRATE API
 ```

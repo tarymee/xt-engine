@@ -1,5 +1,5 @@
 {
-  "name": "@xt/engine",
+  "name": "@xwchina/smart100-web-engine",
   "version": "0.1.5-alpha.0",
   "description": "> TODO: description",
   "author": "tarymee <tarymee@gmail.com>",
@@ -23,5 +23,6 @@
     "element-ui": "^2.15.5",
     "lodash-es": "^4.17.21",
     "uuid": "^8.3.2"
-  }
+  },
+  "gitHead": "98ed157b59c52e9e5e12a11d97916a3e26c5e023"
 }

@@ -1,6 +1,6 @@
 <script>
 import { get, cloneDeep } from 'lodash-es'
-import { utils } from '@xt/service'
+import { fixLength } from '../../utils'
 
 export default {
   inject: {
@@ -102,23 +102,23 @@ export default {
       const styleObj = {
         // flex: this.viewRule.flex === '1' ? this.viewRule.flex + ' 0 auto' : '',
         flex: this.viewRule.flex,
-        width: utils.fixLength(this.viewRule.width),
-        height: utils.fixLength(this.viewRule.height),
-        marginLeft: utils.fixLength(this.viewRule.marginLeft),
-        marginRight: utils.fixLength(this.viewRule.marginRight),
-        marginTop: utils.fixLength(this.viewRule.marginTop),
-        marginBottom: utils.fixLength(this.viewRule.marginBottom),
-        paddingLeft: utils.fixLength(this.viewRule.paddingLeft),
-        paddingRight: utils.fixLength(this.viewRule.paddingRight),
-        paddingTop: utils.fixLength(this.viewRule.paddingTop),
-        paddingBottom: utils.fixLength(this.viewRule.paddingBottom),
+        width: fixLength(this.viewRule.width),
+        height: fixLength(this.viewRule.height),
+        marginLeft: fixLength(this.viewRule.marginLeft),
+        marginRight: fixLength(this.viewRule.marginRight),
+        marginTop: fixLength(this.viewRule.marginTop),
+        marginBottom: fixLength(this.viewRule.marginBottom),
+        paddingLeft: fixLength(this.viewRule.paddingLeft),
+        paddingRight: fixLength(this.viewRule.paddingRight),
+        paddingTop: fixLength(this.viewRule.paddingTop),
+        paddingBottom: fixLength(this.viewRule.paddingBottom),
         flexDirection: this.viewRule.flexDirection,
         flexWrap: this.viewRule.flexWrap,
         justifyContent: this.viewRule.justifyContent,
-        // maxWidth: utils.fixLength(this.viewRule.maxwidth),
-        // minWidth: utils.fixLength(this.viewRule.minwidth),
-        // maxHeight: utils.fixLength(this.viewRule.maxheight),
-        // minHeight: utils.fixLength(this.viewRule.minheight),
+        // maxWidth: fixLength(this.viewRule.maxwidth),
+        // minWidth: fixLength(this.viewRule.minwidth),
+        // maxHeight: fixLength(this.viewRule.maxheight),
+        // minHeight: fixLength(this.viewRule.minheight),
         // flexWrap: this.viewRule.flexwrap,
         // flexShrink: this.viewRule.flexshrink || (this.viewRule.flex && this.viewRule.flex !== '' ? 0 : 1),
         // alignItems: this.viewRule.alignitems ? this.viewRule.alignitems : 'stretch'

@@ -52,8 +52,7 @@
 </template>
 
 <script>
-  import { loading, utils } from '@xt/service'
-  console.log(loading)
+  import { loading, utils } from '@/service'
   export default {
     data() {
       return {

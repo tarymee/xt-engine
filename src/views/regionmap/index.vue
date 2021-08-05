@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { get, some, cloneDeep } from 'lodash-es'
+import { get, cloneDeep } from 'lodash-es'
 import IEcharts from 'vue-echarts-v3'
 import xtWidgetNone from '../../components/none'
 import { loading } from '../../service'

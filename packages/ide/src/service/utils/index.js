@@ -35,17 +35,8 @@ const copyNewViewRule = function (viewRule) {
   return newViewRule
 }
 
-
-
-
-export default {
-  fixLength,
-  errorMessage,
-  copyNewViewRule,
-}
-
 export {
   fixLength,
   errorMessage,
-  copyNewViewRule,
+  copyNewViewRule
 }

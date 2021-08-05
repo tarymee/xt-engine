@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { components } from '@xt/engine'
+import { components } from '@xwchina/smart100-web-engine'
 import protocol from './protocol.json'
 
 export default {

@@ -1,4 +1,4 @@
-import components from './components'
+import components from './src/components'
 
 export default {
   components

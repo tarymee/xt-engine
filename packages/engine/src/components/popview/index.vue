@@ -1,6 +1,6 @@
 <script>
 import { get, cloneDeep } from 'lodash-es'
-import { utils } from '@xt/service'
+import { fixLength } from '../../utils'
 import baseMixin from '../common/baseMixin'
 import renderComponent from '../common/renderComponent'
 
@@ -9,7 +9,7 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      width: utils.fixLength(this.viewRule.width),
+      width: fixLength(this.viewRule.width),
     }
   },
   computed: {

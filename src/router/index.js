@@ -23,7 +23,7 @@ const routes = [
   },
   // {
   //   path: '/ide',
-  //   component: () => import('@xt/ide')
+  //   component: () => import('@xwchina/smart100-web-ide')
   // },
   {
     path: '/management',

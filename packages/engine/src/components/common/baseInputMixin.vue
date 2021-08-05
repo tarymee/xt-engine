@@ -1,7 +1,7 @@
 <script>
 import { get } from 'lodash-es'
 import { Message } from 'element-ui'
-import { utils } from '@xt/service'
+import { fixLength } from '../../utils'
 import baseMixin from './baseMixin'
 
 export default {
@@ -19,7 +19,7 @@ export default {
     this.required = get(this, 'viewRule.required', false)
     this.placeholder = get(this, 'viewRule.placeholder', '')
     this.hiddenclearbtn = get(this, 'viewRule.hiddenclearbtn', false)
-    this.titlewidth = utils.fixLength(get(this, 'viewRule.titlewidth', '')) || '30%'
+    this.titlewidth = fixLength(get(this, 'viewRule.titlewidth', '')) || '30%'
   },
   methods: {
     requiredValidata () {

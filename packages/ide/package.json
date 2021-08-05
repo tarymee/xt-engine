@@ -1,5 +1,5 @@
 {
-  "name": "@xt/ide",
+  "name": "@xwchina/smart100-web-ide",
   "version": "0.1.5-alpha.0",
   "description": "> TODO: description",
   "main": "index.js",
@@ -25,5 +25,6 @@
   },
   "bugs": {
     "url": "https://github.com/tarymee/xt-engine/issues"
-  }
+  },
+  "gitHead": "98ed157b59c52e9e5e12a11d97916a3e26c5e023"
 }
