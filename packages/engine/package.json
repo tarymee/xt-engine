@@ -1,7 +1,7 @@
 {
   "name": "@xwchina/smart100-web-engine",
   "version": "0.1.6-alpha.0",
-  "description": "> TODO: description",
+  "description": "",
   "author": "tarymee <tarymee@gmail.com>",
   "homepage": "https://github.com/tarymee/xt-engine#readme",
   "license": "ISC",
@@ -24,5 +24,5 @@
     "lodash-es": "^4.17.21",
     "uuid": "^8.3.2"
   },
-  "gitHead": "98ed157b59c52e9e5e12a11d97916a3e26c5e023"
+  "gitHead": "5e3518fdb90717dc345e7710713142e63445213c"
 }

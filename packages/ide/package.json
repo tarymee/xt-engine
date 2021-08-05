@@ -1,7 +1,7 @@
 {
   "name": "@xwchina/smart100-web-ide",
   "version": "0.1.6-alpha.0",
-  "description": "> TODO: description",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,5 +26,5 @@
   "bugs": {
     "url": "https://github.com/tarymee/xt-engine/issues"
   },
-  "gitHead": "98ed157b59c52e9e5e12a11d97916a3e26c5e023"
+  "gitHead": "5e3518fdb90717dc345e7710713142e63445213c"
 }
