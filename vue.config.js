@@ -6,12 +6,12 @@ module.exports = {
     proxy: {
       '/platserv': {
         // target: 'http://101.200.205.231:9018',
-        target: 'http://172.16.31.92:8092',
+        target: 'http://101.200.205.231:9019',
         changeOrigin: true
       },
       '/resourceconfig': {
         // target: 'http://101.200.205.231:9018',
-        target: 'http://172.16.31.92:8092',
+        target: 'http://101.200.205.231:9019',
         changeOrigin: true
       }
     }

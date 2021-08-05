@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "xt-engine",
   "private": true,
   "workspaces": [
     "packages/*"
