@@ -21,10 +21,10 @@ const routes = [
     path: '/',
     component: () => import('@/views/login')
   },
-  // {
-  //   path: '/ide',
-  //   component: () => import('@xwchina/smart100-web-ide')
-  // },
+  {
+    path: '/ide',
+    component: () => import('@xwchina/smart100-web-ide')
+  },
   {
     path: '/management',
     component: () => import('@/views/management'),
