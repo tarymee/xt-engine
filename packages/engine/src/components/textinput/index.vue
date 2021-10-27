@@ -45,7 +45,7 @@ export default {
   mixins: [baseInputMixin],
   data () {
     return {
-      displaytype: ''
+      displaytype: '' // password || textarea || input
     }
   },
   created () {

@@ -60,9 +60,13 @@ export default {
     this.title = get(this, 'viewRule.title', '')
     this.name = get(this, 'viewRule.name', '')
     this.type = get(this, 'viewRule.type', '')
-    // todo 如果是string 表示是fylcode 要执行
     this.eventlist = get(this, 'viewRule.eventlist', [])
+    // todo 如果是string 表示是fylcode 要执行
     this.readonly = get(this, 'viewRule.readonly', false)
+    // 兼容 table operations 按钮的 readonly 关键字
+    if (this.readonly === 'tableCheckedNumberIsEqualToZero' || this.readonly === 'tableCheckedNumberIsNotEqualToOne') {
+      this.readonly = false
+    }
     this.hidden = get(this, 'viewRule.hidden', false)
     this.$$intable = get(this, 'viewRule.$$intable', false)
     this.$$infilter = get(this, 'viewRule.$$infilter', false)
@@ -178,6 +182,7 @@ export default {
       return type === 'value' ? this.getValue(getter) : cloneDeep(this[type])
     },
     setProp (type, value, setter) {
+      // debugger
       type === 'value' ? this.setValue(value, setter) : this[type] = cloneDeep(value)
     },
     validata () {

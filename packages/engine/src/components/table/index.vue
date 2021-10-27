@@ -122,7 +122,7 @@ export default {
         if (!btnVm) return
         let checkData = this.value.filter((item) => item.__$$checked)
         if (item.readonly === 'tableCheckedNumberIsEqualToZero') {
-          btnVm.setProp('readonly', checkData.length = 0)
+          btnVm.setProp('readonly', checkData.length === 0)
         } else if (item.readonly === 'tableCheckedNumberIsNotEqualToOne') {
           btnVm.setProp('readonly', checkData.length !== 1)
         }

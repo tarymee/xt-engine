@@ -25,7 +25,7 @@ export default {
     requiredValidata () {
       let res = true
       const value = this.getValue()
-      if (this.required && !this.hidden && value === '') {
+      if (this.required && !this.hidden && (value === '' || (Array.isArray(value) && !value.length))) {
         res = false
         Message({
           message: `${this.title}不能为空`,

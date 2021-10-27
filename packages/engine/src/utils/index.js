@@ -1,9 +1,14 @@
+
+const isNumber = function (value) {
+  return value ? (Number(value) === +Number(value)) : false
+}
+
 const fixLength = function (str) {
   if (str) {
-    if (str.indexOf('%') > -1 || str.indexOf('px') > -1) {
-      return str
-    } else {
+    if (isNumber(str)) {
       return str + 'px'
+    } else {
+      return str
     }
   } else {
     return ''

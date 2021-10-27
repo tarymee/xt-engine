@@ -21,7 +21,8 @@ const renderColumns = function (h, viewRule, context) {
   columns.forEach((item, i) => {
     const dataObj = {
       props: {
-        minWidth: Number(item.width || 150),
+        // minWidth: Number(item.width || 150),
+        minWidth: item.width || 150,
         prop: item.name,
         // label: item.title,
         label: `${item.required ? '* ' : ''}${item.title}`,

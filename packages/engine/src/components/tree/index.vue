@@ -15,6 +15,7 @@
       v-if="displaytype !== 'navigation'"
       class="xt-input-content"
     >
+      <!-- todo 处理readonly样式和逻辑 -->
       <el-input
         v-model="valueText"
         v-popover:popover
@@ -120,6 +121,7 @@ export default {
         pidKey: 'parentid',
         childrenKey: 'children'
       })
+      console.log(treeData)
       return treeData
     },
     defaultExpandedKeys () {
@@ -166,37 +168,28 @@ export default {
   },
   methods: {
     getValue (getter) {
+      const component = get(getter, 'ctrl.component', 'id')
       if (this.multiselectable) {
-        if (getter) {
-          if (this.value && this.value.length) {
-            const component = get(getter, 'ctrl.component', 'id')
-            const selectOptions = this.options.filter((item) => {
-              return this.value.some((item2) => item2 === item.id)
-            })
-            if (component === 'fullvalue') {
-              return selectOptions
-            } else {
-              return selectOptions.map((item) => item[component])
-            }
+        if (this.value && this.value.length) {
+          const selectOptions = this.options.filter((item) => {
+            return this.value.some((item2) => item2 === item.id)
+          })
+          if (component === 'fullvalue') {
+            return selectOptions
           } else {
-            return null
+            return selectOptions.map((item) => item[component])
           }
         } else {
-          return (this.value && this.value.length) ? cloneDeep(this.value) : null
+          return []
         }
       } else {
-        if (getter) {
-          const component = get(getter, 'ctrl.component', '')
-          const valueNode = cloneDeep(this.options.find((item) => {
-            return item.id === this.value
-          }))
-          if (component === 'fullvalue') {
-            return valueNode ? valueNode : null
-          } else {
-            return valueNode ? valueNode[component] : null
-          }
+        const valueNode = cloneDeep(this.options.find((item) => {
+          return item.id === this.value
+        }))
+        if (component === 'fullvalue') {
+          return valueNode ? valueNode : ''
         } else {
-          return this.value
+          return valueNode ? valueNode[component] : ''
         }
       }
     },

@@ -21,6 +21,13 @@ export default {
       return style
     }
   },
+  watch: {
+    hidden (newValue, oldValue) {
+      if (newValue) {
+        this.setValue(null)
+      }
+    }
+  },
   methods: {
     validata () {
       // console.log(this.engine.ctrlCodeMap)
