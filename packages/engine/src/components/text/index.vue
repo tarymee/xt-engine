@@ -19,7 +19,8 @@ export default {
 </script>
 
 <style scope>
-/* .xt-text {
+/* todo 做垂直居中 */
+.xt-text {
 
-} */
+}
 </style>

@@ -103,7 +103,7 @@ export default {
   },
   methods: {
     createBaseStyle () {
-      const styleObj = {
+      let styleObj = {
         // flex: this.viewRule.flex === '1' ? this.viewRule.flex + ' 0 auto' : '',
         flex: this.viewRule.flex,
         width: fixLength(this.viewRule.width),
@@ -126,6 +126,12 @@ export default {
         // flexWrap: this.viewRule.flexwrap,
         // flexShrink: this.viewRule.flexshrink || (this.viewRule.flex && this.viewRule.flex !== '' ? 0 : 1),
         // alignItems: this.viewRule.alignitems ? this.viewRule.alignitems : 'stretch'
+      }
+      if (this.viewRule.style) {
+        styleObj = {
+          ...styleObj,
+          ...this.viewRule.style
+        }
       }
       // const styleObj = this.viewRule.style
       // 表格里的控件不需要宽度 继承表格头部的宽度

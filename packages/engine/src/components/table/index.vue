@@ -33,6 +33,7 @@ export default {
     // https://blog.csdn.net/qq_36016136/article/details/107398528
     // setTimeout(() => {
       this.dealBtnsState()
+      this.executeEvent('onchecked')
     // }, 0)
   },
   methods: {
@@ -55,6 +56,7 @@ export default {
     },
     getValue (getter) {
       console.log(this.getCellCtrlMap())
+      // debugger
       const scope = get(getter, 'ctrl.scope', 'all')
       // const datatype = get(getter, 'datatype', '1')
       const realtimeValue = cloneDeep(this.value)
@@ -63,9 +65,12 @@ export default {
       const cellCtrl = this.getCellCtrlMap()
       cellCtrl.forEach((rowsInstance, i) => {
         for (const x in rowsInstance) {
-          realtimeValue[i][x] = rowsInstance[x].getValue()
+          if (realtimeValue[i]) {
+            realtimeValue[i][x] = rowsInstance[x].getValue()
+          }
         }
       })
+      // debugger
       if (scope === 'all') {
         return realtimeValue
       } else if (scope === 'focused') {
@@ -103,6 +108,7 @@ export default {
             ...item
           }
         }))
+        // this.executeEvent('onchecked')
       }, 0)
     },
     setPageInfo (pageInfo) {

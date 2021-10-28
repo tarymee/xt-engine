@@ -366,6 +366,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
+  font-size: 14px;
 }
 .xt-engine .el-loading-mask{
   z-index: 99999;

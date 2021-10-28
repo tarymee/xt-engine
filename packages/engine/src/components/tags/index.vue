@@ -36,41 +36,46 @@ export default {
     texts () {
       // 单值 + 有options属性
       const dealSingle = (value) => {
+        // console.log(value)
+        // debugger
         const selectOptions = this.options.filter((item) => item.key === value)
         return selectOptions.map(item => item.text)
       }
 
       // todo: 仔细测试 优化写法
       let texts = []
-      try {
-        const valueJson = JSON.parse(this.value)
-        if (Array.isArray(valueJson)) {
-          if (!valueJson.length) {
-            texts = []
-          } else {
-            if (typeof valueJson[0] !== 'object') {
-              // 多值 + 有options属性，json对象字符串
-              texts = valueJson.map((item) => {
-                return this.options.find((item2) => item === item2.key) || item
-              })
-            } else {
-              // 多值 + 无options属性，json对象字符串
-              texts = valueJson.map(item => item.text)
-            }
-          }
-        } else {
-          if (typeof valueJson !== 'object') {
-            texts = dealSingle(valueJson)
-          } else {
-            // 单值 + 无options属性，json对象字符串
-            texts = [valueJson].map(item => item.text)
-          }
+      let valueJson = this.value
+      if (typeof this.value === 'string' && (this.value.indexOf('[') === 0 || this.value.indexOf('{') === 0)) {
+        valueJson = JSON.parse(this.value)
+        try {
+          valueJson = JSON.parse(this.value)
+        } catch (err) {
+          console.error(err)
         }
-      } catch (err) {
-        texts = dealSingle(this.value)
       }
 
-
+      if (Array.isArray(valueJson)) {
+        if (!valueJson.length) {
+          texts = []
+        } else {
+          if (typeof valueJson[0] !== 'object') {
+            // 多值 + 有options属性，json对象字符串
+            texts = valueJson.map((item) => {
+              return this.options.find((item2) => item === item2.key) || item
+            })
+          } else {
+            // 多值 + 无options属性，json对象字符串
+            texts = valueJson.map(item => item.text)
+          }
+        }
+      } else {
+        if (typeof valueJson !== 'object') {
+          texts = dealSingle(valueJson)
+        } else {
+          // 单值 + 无options属性，json对象字符串
+          texts = [valueJson].map(item => item.text)
+        }
+      }
       return texts
     }
   },
