@@ -55,7 +55,7 @@ export default {
       return cellCtrl
     },
     getValue (getter) {
-      console.log(this.getCellCtrlMap())
+      // console.log(this.getCellCtrlMap())
       // debugger
       const scope = get(getter, 'ctrl.scope', 'all')
       // const datatype = get(getter, 'datatype', '1')
@@ -71,25 +71,34 @@ export default {
         }
       })
       // debugger
-      if (scope === 'all') {
-        return realtimeValue
-      } else if (scope === 'focused') {
-        return realtimeValue.find((item) => item.__$$focused)
+      if (scope === 'focused') {
+        let result = realtimeValue.find((item) => item.__$$focused)
+        return this.delInsidePropery(result)
       } else if (scope === 'checked') {
-        return realtimeValue.filter((item) => item.__$$checked)
+        let result = realtimeValue.filter((item) => item.__$$checked)
+        return this.delInsidePropery(result)
       } else {
-        return realtimeValue
+        return this.delInsidePropery(realtimeValue)
       }
-
-      // const result = realtimeValue.filter((item) => {
-      //   if (scope === 'checked') {
-      //     return item.__$$checked
-      //   } else if (scope === 'focused') {
-      //     return item.__$$focused
-      //   } else {
-      //     return true
-      //   }
-      // })
+    },
+    // 删除内部属性
+    delInsidePropery (data) {
+      if (Array.isArray(data)) {
+        data.forEach((item) => {
+          for (const x in item) {
+            if (x.indexOf('__$$') === 0) {
+              delete item[x]
+            }
+          }
+        })
+      } else if (Object.prototype.toString.call(data) === '[object Object]') {
+        for (const x in data) {
+          if (x.indexOf('__$$') === 0) {
+            delete data[x]
+          }
+        }
+      }
+      return data
     },
     getPageInfo () {
       return cloneDeep(this.pageInfo)

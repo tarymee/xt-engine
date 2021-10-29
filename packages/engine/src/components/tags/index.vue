@@ -39,6 +39,7 @@ export default {
         // console.log(value)
         // debugger
         const selectOptions = this.options.filter((item) => item.key === value)
+        // debugger
         return selectOptions.map(item => item.text)
       }
 
@@ -69,7 +70,7 @@ export default {
           }
         }
       } else {
-        if (typeof valueJson !== 'object') {
+        if (Object.prototype.toString.call(valueJson) !== '[object Object]') {
           texts = dealSingle(valueJson)
         } else {
           // 单值 + 无options属性，json对象字符串
