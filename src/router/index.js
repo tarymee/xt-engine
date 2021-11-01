@@ -19,7 +19,8 @@ const routes = [
   // },
   {
     path: '/',
-    component: () => import('@/views/login')
+    // component: () => import('@/views/login')
+    component: () => import('@/views/test')
   },
   {
     path: '/ide',

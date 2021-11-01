@@ -9,7 +9,7 @@
       class="xt-input-label"
       :style="{ width: titlewidth }"
     >
-      <span v-if="required">*</span>{{ title }}
+      <span v-if="required">*</span>{{ title }} {{ intermediateselectmode }}
     </div>
     <div
       v-if="displaytype !== 'navigation'"
@@ -17,6 +17,7 @@
     >
       <!-- todo 处理readonly样式和逻辑 -->
       <el-input
+        v-if="intermediateselectmode !== 'individual'"
         v-model="valueText"
         v-popover:popover
         size="small"
@@ -26,13 +27,22 @@
         <template
           #suffix
         >
-          <i
-            class="el-input__icon el-icon-arrow-down"
-          />
+          <i class="el-input__icon el-icon-arrow-down" />
         </template>
       </el-input>
+      <div v-else v-popover:popover class="xt-tree-input">
+        <div class="xt-tree-input-icon">
+          <i class="el-icon-arrow-down" />
+        </div>
+        <div v-for="(item, index) in valueTextArr" :key="index" class="xt-tree-input-item">
+          {{ item.name }}
+          <i v-if="!readonly" class="xt-tree-input-item-close el-icon-close" @click="delItem(index)"></i>
+        </div>
+        <div v-if="!valueTextArr.length" class="xt-tree-input-placeholder">{{ placeholder }}</div>
+      </div>
       <el-popover
         ref="popover"
+        :disabled="readonly"
         placement="bottom"
         width="200"
         trigger="click"
@@ -103,9 +113,11 @@ export default {
       // noexpand allexpand rootexpand
       expandmodel: 'rootexpand',
       valueText: '',
+      valueTextArr: [],
       highlightCurrent: true,
       expandOnClickNode: false,
       options: [],
+      // treeData: [],
       multiselectable: false,
       defaultProps: {
         children: 'children',
@@ -116,6 +128,9 @@ export default {
   },
   computed: {
     treeData () {
+      // if (this.code === 'tree-145454') {
+      //   console.log('treeData')
+      // }
       const treeData = this.listToTree(this.options, {
         idKey: 'id',
         pidKey: 'parentid',
@@ -132,7 +147,7 @@ export default {
         })
       }
       return keys
-    },
+    }
     // valueText () {
     //   if (this.multiselectable) {
     //     const selectOptions = this.options.filter((item) => {
@@ -150,6 +165,7 @@ export default {
   created () {
     // todo autofillvalue
     this.options = get(this.viewRule, 'options', [])
+    // this.treeData = this.getTreeData(this.options)
     this.multiselectable = get(this.viewRule, 'multiselectable', false)
     this.expandmodel = get(this.viewRule, 'expandmodel', 'rootexpand')
     this.displaytype = this.viewRule.displaytype || 'custom'
@@ -209,22 +225,47 @@ export default {
         this.$refs.tree.setCheckedKeys(value)
         this.value = this.getCheckValue()
       } else {
+        // 赋值options之后马上setValue不成功 因为需要转换treeData
         this.value = value
+        // if (this.code === 'tree-145454') {
+        //   // console.log(this)
+        //   console.log('setValue')
+        // }
         this.$refs.tree.setCurrentKey(this.value || null)
       }
       this.dealValueText()
     },
+    // getTreeData (options) {
+    //   const treeData = this.listToTree(options, {
+    //     idKey: 'id',
+    //     pidKey: 'parentid',
+    //     childrenKey: 'children'
+    //   })
+    //   this.treeData = treeData
+    // },
+    // setProp (type, value, setter) {
+    //   if (type === 'value') {
+    //     this.setValue(value, setter)
+    //   } else {
+    //     this[type] = cloneDeep(value)
+    //     if (type === 'options') {
+    //       this.treeData = this.getTreeData(this.options)
+    //     }
+    //   }
+    // },
     dealValueText () {
       if (this.multiselectable) {
         const selectOptions = this.options.filter((item) => {
           return this.value.some((item2) => item2 === item.id)
         })
         this.valueText = selectOptions.map((item) => item.name).join('，')
+        this.valueTextArr = selectOptions
       } else {
         const valueNode = this.options.find((item) => {
           return item.id === this.value
         })
-        this.valueText =  valueNode ? valueNode.name : ''
+        this.valueText = valueNode ? valueNode.name : ''
+        this.valueTextArr = valueNode ? [valueNode] : []
       }
     },
     // 单选
@@ -277,17 +318,19 @@ export default {
       // console.log(e)
       // e.stopPropagation()
       // e.preventDefault()
+      // console.log(this.$refs.popover)
       // console.log(this.$refs.popover.value)
-      // setTimeout(() => {
-      //     console.log(this.$refs.popover.value)
-      // }, 1000)
-
-      // 只读模式下 如果选择人员为空 则不打开弹窗
-      if (this.readonly && !this.$refs.popover.value) {
-        setTimeout(() => {
-          this.$refs.popover && this.$refs.popover.doClose()
-        }, 0)
-      }
+      // if (!this.$refs.popover.value) {
+      //   this.$refs.popover && this.$refs.popover.doShow()
+      // } else {
+      //   this.$refs.popover && this.$refs.popover.doClose()
+      // }
+      // // 只读模式下 如果选择人员为空 则不打开弹窗
+      // if (this.readonly && !this.$refs.popover.value) {
+      //   setTimeout(() => {
+      //     this.$refs.popover && this.$refs.popover.doClose()
+      //   }, 0)
+      // }
     },
     handlePopoverShow () {
       // this.loadSource()
@@ -328,6 +371,19 @@ export default {
         }
       }
       return re
+    },
+    delItem (index) {
+      // console.log(item, index)
+      this.valueTextArr.splice(index, 1)
+      // console.log(this.valueTextArr)
+      const value = this.valueTextArr.map((item) => item.id)
+      // console.log(value)
+      if (this.multiselectable) {
+        this.setValue(value)
+      } else {
+        this.setValue(value.length ? value[0] : '')
+      }
+      this.executeEvent('onvaluechange')
     }
   }
 }
@@ -338,7 +394,7 @@ export default {
   background-color: #FFF;
   border-color: #DCDFE6;
   color: #606266;
-  cursor: default;
+  cursor: pointer;
 }
 .xt-tree-tree {
   overflow: auto;
@@ -356,4 +412,42 @@ export default {
   height: 100%;
 }
 
+.xt-tree-input {
+  overflow: hidden;
+  border: 1px solid #DCDFE6;
+  padding: 0 30px 0 0;
+  min-height: 30px;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+.xt-tree-input-icon {
+  height: 12px;
+  width: 30px;
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -6px;
+}
+.xt-tree-input-placeholder {
+  color: #ccc;
+  line-height: 30px;
+  font-size: 13px;
+  padding-left: 15px;
+}
+.xt-tree-input-item {
+  float: left;
+  font-size: 13px;
+  background-color: #fafafa;
+  border: 1px solid #e8e8e8;
+  padding: 0 5px;
+  line-height: 20px;
+  margin: 4px 0 4px 5px;
+  border-radius: 2px;
+}
+.xt-tree-input-item-close {
+  cursor: pointer;
+}
 </style>

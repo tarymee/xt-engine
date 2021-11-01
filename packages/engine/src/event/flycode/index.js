@@ -1,5 +1,7 @@
 import Page from './Page'
 import System from './System'
+import flycodeVariable from './flycodeVariable'
+console.warn(flycodeVariable)
 
 export default class Flycode {
 
@@ -58,6 +60,13 @@ export default class Flycode {
     // todo 放到Page里面
     keyArray.push('eventTarget')
     valueArray.push(option.eventTarget || null)
+
+    // 用户注册的变量
+    // todo 检测用户变量是否系统私有
+    for (const x in flycodeVariable) {
+      keyArray.push(x)
+      valueArray.push(flycodeVariable[x])
+    }
 
     const fn = new Function(
       // 依赖注入

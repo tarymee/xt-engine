@@ -21,4 +21,7 @@ export default {
   cascade: require('./cascade').default,
   page: require('./page').default,
   default: require('./default').default,
+  baseMixin: require('./common/baseMixin').default,
+  baseInputMixin: require('./common/baseInputMixin').default
 }
+

@@ -9,11 +9,21 @@ export default class MemoryPool {
   memory = new Map()
 
   get (name) {
-    return cloneDeep(this.memory.get(name))
+    const data = this.memory.get(name)
+    if (typeof data === 'function') {
+      return data
+    } else {
+      return cloneDeep(data)
+    }
   }
 
+  // Lodash的cloneDeep复制函数有问题 https://zhuanlan.zhihu.com/p/35530976
   set (name, data) {
-    this.memory.set(name, cloneDeep(data))
+    if (typeof data === 'function') {
+      this.memory.set(name, data)
+    } else {
+      this.memory.set(name, cloneDeep(data))
+    }
   }
 
   clear () {
