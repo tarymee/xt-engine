@@ -1,8 +1,7 @@
 import Page from './Page'
 import System from './System'
 import flycodeVariable from './flycodeVariable'
-console.warn(flycodeVariable)
-
+import axios from 'axios'
 export default class Flycode {
 
   eventManager
@@ -12,8 +11,27 @@ export default class Flycode {
     this.eventManager = eventManager
 
     // 这里预先收集固定不变的依赖
-    this.dependenceMap.set('Page', new Page(this.eventManager))
-    this.dependenceMap.set('System', new System(this.eventManager))
+    // page 应小写 因为是页面实例
+    this.dependenceMap.set('page', new Page(this.eventManager))
+    this.dependenceMap.set('system', new System(this.eventManager))
+
+    // 每个表单创建一个axios实例 自动添加loading
+    const axiosInstance = axios.create()
+    axiosInstance.interceptors.request.use(config => {
+      this.eventManager.engine.openLoading()
+      return config
+    }, error => {
+      return Promise.reject(error)
+    })
+    axiosInstance.interceptors.response.use(response => {
+      this.eventManager.engine.closeLoading()
+      return response
+    }, error => {
+      this.eventManager.engine.closeLoading()
+      return Promise.reject(error)
+    })
+    this.dependenceMap.set('axios', axiosInstance)
+
     this.dependenceMap.set('day', function (number) {
       return number
     })
@@ -57,7 +75,7 @@ export default class Flycode {
       keyArray.push(key)
       valueArray.push(value)
     })
-    // todo 放到Page里面
+    // todo 放到page里面
     keyArray.push('eventTarget')
     valueArray.push(option.eventTarget || null)
 
@@ -67,6 +85,8 @@ export default class Flycode {
       keyArray.push(x)
       valueArray.push(flycodeVariable[x])
     }
+
+    // todo 传入table上下文变量以便做针对table按钮的只读操作
 
     const fn = new Function(
       // 依赖注入

@@ -317,8 +317,11 @@ export default {
     openLoading () {
       this.loadingCount++
       this.loading = true
+      // console.log('openLoading')
+      // console.log(this.loadingCount)
     },
     closeLoading () {
+      // console.log('closeLoading')
       this.loadingCount--
       if (this.loadingCount <= 0) {
         this.loadingCount = 0
@@ -333,7 +336,7 @@ export default {
       'div',
       {
         attrs: {
-          class: 'xt-engine',
+          class: 'xt-engine xt-page',
           // 'element-loading-spinner': 'el-icon-loading',
           // 'element-loading-text': '加载中...'
         },
