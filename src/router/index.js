@@ -27,25 +27,17 @@ const routes = [
     component: () => import('@xwchina/smart100-web-ide')
   },
   {
+    path: '/test',
+    component: () => import('@/views/test')
+  },
+  {
     path: '/management',
     component: () => import('@/views/management'),
     children: [
       {
         path: 'enterprise',
         component: () => import('@/views/enterprise')
-      },
-      {
-        path: 'productdev',
-        component: () => import('@/views/productdev')
       }
-      // {
-      //   path: 'editmap',
-      //   component: () => import('@/views/editmap')
-      // },
-      // {
-      //   path: 'regionmap',
-      //   component: () => import('@/views/regionmap')
-      // }
     ]
   }
 ]

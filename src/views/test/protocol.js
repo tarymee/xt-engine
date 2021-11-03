@@ -18,6 +18,16 @@ export default {
       },
       "content": [
         {
+          "type": "progress",
+          "code": "1405646561561",
+          "title": "进度",
+          "name": "进度",
+          "displaytype": "",
+          "width": "",
+          "value": "0.5",
+          "eventlist": []
+        },
+        {
           "type": "textinput",
           "code": "14049334561561",
           "titlewidth": "70",
@@ -75,6 +85,20 @@ export default {
                   "handler": "handle-save"
                 }
               ]
+            },
+            {
+              "type": "button",
+              "code": "1404564654561561",
+              "title": "测试",
+              "value": "测试",
+              "displaytype": "primary",
+              "width": "100",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-test"
+                }
+              ]
             }
           ]
         }
@@ -87,6 +111,27 @@ export default {
     "initial": [],
     "interface": [],
     "handlers": [
+      {
+        "code": "handle-test",
+        "desc": "测试",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626777",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": `
+              page.getCtrl('进度').value = '1'
+            `
+          }
+        ]
+      },
       {
         "code": "handle-save",
         "desc": "修改密码",
