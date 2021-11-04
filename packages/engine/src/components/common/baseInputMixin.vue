@@ -8,7 +8,7 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      __$$input: true,
+      isInputCtrl: true,
       required: false,
       placeholder: '',
       hiddenclearbtn: false,

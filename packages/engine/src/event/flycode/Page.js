@@ -154,8 +154,8 @@ export default class Page {
   validata () {
     let res = true
     for (var [key, item] of this.eventManager.ctrlCodeMap) {
-      // todo 可以去掉 item.__$$input || item.type === 'table' 判断
-      if (item.__$$input || item.type === 'table') {
+      // todo 可以去掉 item.isInputCtrl || item.type === 'table' 判断
+      if (item.isInputCtrl || item.type === 'table') {
         res = item.validata()
       }
       if (!res) {

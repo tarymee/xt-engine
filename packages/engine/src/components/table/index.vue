@@ -175,7 +175,7 @@ export default {
       for (let i = 0, len = cellCtrl.length; i < len; i++) {
         for (const x in cellCtrl[i]) {
           const ctrl = cellCtrl[i][x]
-          if (ctrl.__$$input) {
+          if (ctrl.isInputCtrl) {
             res = ctrl.validata()
           }
           if (!res) {

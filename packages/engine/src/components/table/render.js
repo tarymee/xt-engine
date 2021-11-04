@@ -6,7 +6,7 @@ const renderColumns = function (h, viewRule, context) {
   const columns = viewRule.columns || []
   const columnsArr = []
 
-  if (viewRule.checkable) {
+  if (context.checkable) {
     columnsArr.push(h(
       'el-table-column', {
         props: {
