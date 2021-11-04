@@ -67,6 +67,11 @@ export default class EventManager {
    */
   flycode = new Flycode(this)
   runFlycode (value, option = {}) {
+    // if (value === 'fly: console.warn(eventTarget);return false') {
+    //   console.log(value)
+    //   console.log(option)
+    //   debugger
+    // }
     return this.flycode.run(value, option)
   }
 

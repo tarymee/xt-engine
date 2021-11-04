@@ -49,7 +49,7 @@ export default {
     }
   },
   created () {
-    this.displaytype = get(this, 'viewRule.displaytype', '')
+    this.computeStringProp('displaytype')
   },
   methods: {
     handleChange (e) {

@@ -8,7 +8,7 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      isinputctrl: true,
+      __$$input: true,
       required: false,
       placeholder: '',
       hiddenclearbtn: false,
@@ -16,10 +16,11 @@ export default {
     }
   },
   created () {
-    this.required = get(this, 'viewRule.required', false)
-    this.placeholder = get(this, 'viewRule.placeholder', '')
-    this.hiddenclearbtn = get(this, 'viewRule.hiddenclearbtn', false)
-    this.titlewidth = fixLength(get(this, 'viewRule.titlewidth', '')) || '30%'
+    this.computeBooleanProp('required')
+    this.computeBooleanProp('hiddenclearbtn')
+    this.computeStringProp('placeholder')
+    this.computeStringProp('titlewidth')
+    this.titlewidth = fixLength(this.titlewidth) || '30%'
   },
   methods: {
     requiredValidata () {

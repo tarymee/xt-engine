@@ -9,11 +9,6 @@ export default class Page {
     this.eventManager = eventManager
   }
 
-  // 请求服务
-  get api () {
-    return this.eventManager.engine.$http
-  }
-
   get message () {
     return Message
   }
@@ -159,8 +154,8 @@ export default class Page {
   validata () {
     let res = true
     for (var [key, item] of this.eventManager.ctrlCodeMap) {
-      // todo 可以去掉 item.isinputctrl || item.type === 'table' 判断
-      if (item.isinputctrl || item.type === 'table') {
+      // todo 可以去掉 item.__$$input || item.type === 'table' 判断
+      if (item.__$$input || item.type === 'table') {
         res = item.validata()
       }
       if (!res) {

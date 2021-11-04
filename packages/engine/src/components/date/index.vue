@@ -40,9 +40,9 @@ export default {
   },
   computed: {},
   created () {
-    this.format = get(this, 'viewRule.format', 'yyyy-MM-dd')
-    this.unit = get(this, 'viewRule.unit', 'date')
-    this.setValue(get(this, 'viewRule.value', ''))
+    this.computeStringProp('format', 'yyyy-MM-dd')
+    this.computeStringProp('unit', 'date')
+    this.setValue(this.value)
   },
   methods: {
     handleChange (e) {

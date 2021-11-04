@@ -9,7 +9,7 @@
       class="xt-input-label"
       :style="{ width: titlewidth }"
     >
-      <span v-if="required">*</span>{{ title }} {{ intermediateselectmode }}
+      <span v-if="required">*</span>{{ title }}
     </div>
     <div
       v-if="displaytype !== 'navigation'"
@@ -165,21 +165,23 @@ export default {
   created () {
     // todo autofillvalue
     this.options = get(this.viewRule, 'options', [])
-    // this.treeData = this.getTreeData(this.options)
-    this.multiselectable = get(this.viewRule, 'multiselectable', false)
-    this.expandmodel = get(this.viewRule, 'expandmodel', 'rootexpand')
-    this.displaytype = this.viewRule.displaytype || 'custom'
-    if (this.multiselectable) {
-      this.intermediateselectmode = this.viewRule.intermediateselectmode || 'gather'
-    } else {
-      this.intermediateselectmode = this.viewRule.intermediateselectmode || 'individual'
+    this.computeBooleanProp('multiselectable')
+    this.computeStringProp('expandmodel', 'rootexpand')
+    this.computeStringProp('displaytype', 'custom')
+    this.computeStringProp('intermediateselectmode')
+    if (this.intermediateselectmode === '') {
+      if (this.multiselectable) {
+        this.intermediateselectmode = 'gather'
+      } else {
+        this.intermediateselectmode = 'individual'
+      }
     }
   },
   mounted () {
     if (this.multiselectable) {
-      this.setValue(this.viewRule.value || [])
+      this.setValue(this.value || [])
     } else {
-      this.setValue(this.viewRule.value || null)
+      this.setValue(this.value || null)
     }
   },
   methods: {

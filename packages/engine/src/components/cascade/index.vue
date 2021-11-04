@@ -54,7 +54,7 @@ export default {
   },
   created () {
     this.options = get(this.viewRule, 'options', [])
-    this.setValue(get(this, 'viewRule.value', ''))
+    this.setValue(this.value)
   },
   methods: {
     handleChange () {

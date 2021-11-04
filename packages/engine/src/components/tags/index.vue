@@ -81,8 +81,7 @@ export default {
     }
   },
   created () {
-    const options = get(this.viewRule, 'options')
-    options && (this.options = options)
+    this.options = get(this.viewRule, 'options', [])
   },
   methods: {}
 }

@@ -30,19 +30,7 @@ export default {
       $$intable: false,
       $$infilter: false,
       $$inpopview: false,
-      $$notMap: false,
-      // value: get(this, 'viewRule.value', ''),
-      // code: get(this, 'viewRule.code', ''),
-      // title: get(this, 'viewRule.title', ''),
-      // name: get(this, 'viewRule.name', ''),
-      // type: get(this, 'viewRule.type', ''),
-      // eventlist: get(this, 'viewRule.eventlist', []),
-      // readonly: get(this, 'viewRule.readonly', false),
-      // hidden: get(this, 'viewRule.hidden', false),
-      // $$intable: get(this, 'viewRule.$$intable', false),
-      // $$infilter: get(this, 'viewRule.$$infilter', false),
-      // $$inpopview: get(this, 'viewRule.$$inpopview', false),
-      // $$notMap: get(this, 'viewRule.$$notMap', false),
+      $$notMap: false
     }
   },
   computed: {
@@ -55,34 +43,37 @@ export default {
     }
   },
   created () {
-    this.value = get(this, 'viewRule.value', '')
-    this.code = get(this, 'viewRule.code', '')
-    this.title = get(this, 'viewRule.title', '')
-    this.name = get(this, 'viewRule.name', '')
-    this.type = get(this, 'viewRule.type', '')
+    this.computeValueProp('type')
+    this.computeStringProp('code')
+    this.computeStringProp('title')
+    this.computeStringProp('name')
+    this.computeStringProp('value')
+
+
+    this.computeBooleanProp('readonly')
+    this.computeBooleanProp('hidden')
+    this.computeBooleanProp('$$intable')
+    this.computeBooleanProp('$$infilter')
+    this.computeBooleanProp('$$inpopview')
+    this.computeBooleanProp('$$notMap')
+
     this.eventlist = get(this, 'viewRule.eventlist', [])
-    // todo 如果是string 表示是fylcode 要执行
-    this.readonly = get(this, 'viewRule.readonly', false)
-    // 兼容 table operations 按钮的 readonly 关键字
-    if (this.readonly === 'tableCheckedNumberIsEqualToZero' || this.readonly === 'tableCheckedNumberIsNotEqualToOne') {
+
+    // 暂时兼容 table operations 按钮的 readonly 关键字
+    if (this.viewRule.readonly === 'tableCheckedNumberIsEqualToZero' || this.viewRule.readonly === 'tableCheckedNumberIsNotEqualToOne') {
       this.readonly = false
     }
-    this.hidden = get(this, 'viewRule.hidden', false)
-    this.$$intable = get(this, 'viewRule.$$intable', false)
-    this.$$infilter = get(this, 'viewRule.$$infilter', false)
-    this.$$inpopview = get(this, 'viewRule.$$inpopview', false)
-    this.$$notMap = get(this, 'viewRule.$$notMap', false)
 
     if (!this.notInEngine) {
       if (!this.$$notMap) {
         if (this.engine.ctrlCodeMap.get(this.code)) {
-          console.error(`code为${this.code}的控件重复`)
+          console.error(`code为${this.code}的控件重复, 请修改。`)
         }
         this.engine.ctrlCodeMap.set(this.code, this)
 
         if (this.name) {
           if (this.engine.ctrlNameCodeMap.get(this.name)) {
-            console.error(`name为${this.name}的控件重复`)
+            console.error(`name为${this.name}的控件重复, 请修改。`)
           }
           this.engine.ctrlNameCodeMap.set(this.name, this.code)
         }
@@ -92,7 +83,6 @@ export default {
   mounted () {
     this.executeEvent('onload')
   },
-  // beforeDestroy () { },
   destroyed () {
     if (!this.notInEngine) {
       if (!this.$$notMap) {
@@ -102,6 +92,44 @@ export default {
     }
   },
   methods: {
+    // todo 如果是string 表示是fylcode 要执行
+    // todo 如果是空字符串 表示是默认值
+    // readonly viewRule 上的值为 'fly: xxx' | '' | '1' | '0'
+    // 映射到 vm 上的为 true | false
+    computeBooleanProp (type) {
+      const originValue = this.viewRule[type]
+      if (originValue && typeof originValue === 'string' && originValue.indexOf('fly:') === 0) {
+        // todo flycode
+        this[type] = this.executeFlycode(originValue, {
+          eventTarget: this
+        })
+      } else {
+        this[type] = originValue === '1'
+      }
+    },
+    computeStringProp (type, defaultValue = '') {
+      const originValue = this.viewRule[type]
+      if (originValue && typeof originValue === 'string' && originValue.indexOf('fly:') === 0) {
+        // todo flycode
+        this[type] = this.executeFlycode(originValue, {
+          eventTarget: this
+        })
+      } else {
+        this[type] = originValue || defaultValue
+      }
+    },
+    // value 有可能是任意类型值
+    computeValueProp (type, defaultValue = '') {
+      const originValue = this.viewRule[type]
+      if (originValue && typeof originValue === 'string' && originValue.indexOf('fly:') === 0) {
+        // todo flycode
+        this[type] = this.executeFlycode(originValue, {
+          eventTarget: this
+        })
+      } else {
+        this[type] = (typeof originValue !== 'undefined') ? cloneDeep(originValue) : defaultValue
+      }
+    },
     createBaseStyle () {
       let styleObj = {
         // flex: this.viewRule.flex === '1' ? this.viewRule.flex + ' 0 auto' : '',
@@ -175,8 +203,13 @@ export default {
      * @return {any} 返回 flycode 执行结果
      * @example
      */
-    executeFlycode (value) {
-      return this.engine.eventManager.runFlycode(value)
+    executeFlycode (value, option = {}) {
+      // if (value === 'fly: console.warn(eventTarget);return false') {
+      //   console.log(value)
+      //   console.log(option)
+      //   debugger
+      // }
+      return this.engine.eventManager.runFlycode(value, option)
     },
     getValue (getter) {
       return cloneDeep(this.value)

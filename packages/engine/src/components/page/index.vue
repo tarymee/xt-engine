@@ -13,10 +13,6 @@ function dealPropMap (ctrlViewRule, oldProp, newProp, valueMap) {
     delete ctrlViewRule[oldProp]
   }
   if (valueMap && typeof ctrlViewRule[newProp] !== 'undefined') {
-    // valueMap = {
-    //   horizontal: 'row',
-    //   vertical: 'column',
-    // }
     if (ctrlViewRule[newProp] === '') {
       ctrlViewRule[newProp] = valueMap['defaultValue']
     } else if (typeof valueMap[ctrlViewRule[newProp]] !== 'undefined') {
@@ -76,41 +72,41 @@ const dealOldView = (ctrlViewRule) => {
   })
 
 
-  dealPropMap(ctrlViewRule, 'multiselectable', 'multiselectable', {
-    'defaultValue': false,
-    '0': false,
-    '1': true,
-  })
-  dealPropMap(ctrlViewRule, 'hidden', 'hidden', {
-    'defaultValue': false,
-    '0': false,
-    '1': true,
-  })
-  dealPropMap(ctrlViewRule, 'required', 'required', {
-    'defaultValue': false,
-    '0': false,
-    '1': true,
-  })
-  dealPropMap(ctrlViewRule, 'readonly', 'readonly', {
-    'defaultValue': false,
-    '0': false,
-    '1': true,
-  })
-  dealPropMap(ctrlViewRule, 'hiddenclearbtn', 'hiddenclearbtn', {
-    'defaultValue': false,
-    '0': false,
-    '1': true,
-  })
-  dealPropMap(ctrlViewRule, 'pageable', 'pageable', {
-    'defaultValue': false,
-    '0': false,
-    '1': true,
-  })
-  dealPropMap(ctrlViewRule, 'checkable', 'checkable', {
-    'defaultValue': false,
-    '0': false,
-    '1': true,
-  })
+  // dealPropMap(ctrlViewRule, 'multiselectable', 'multiselectable', {
+  //   'defaultValue': '',
+  //   '0': false,
+  //   '1': true,
+  // })
+  // dealPropMap(ctrlViewRule, 'hidden', 'hidden', {
+  //   'defaultValue': '',
+  //   '0': false,
+  //   '1': true,
+  // })
+  // dealPropMap(ctrlViewRule, 'required', 'required', {
+  //   'defaultValue': '',
+  //   '0': false,
+  //   '1': true,
+  // })
+  // dealPropMap(ctrlViewRule, 'readonly', 'readonly', {
+  //   'defaultValue': '',
+  //   '0': false,
+  //   '1': true,
+  // })
+  // dealPropMap(ctrlViewRule, 'hiddenclearbtn', 'hiddenclearbtn', {
+  //   'defaultValue': '',
+  //   '0': false,
+  //   '1': true,
+  // })
+  // dealPropMap(ctrlViewRule, 'pageable', 'pageable', {
+  //   'defaultValue': '',
+  //   '0': false,
+  //   '1': true,
+  // })
+  // dealPropMap(ctrlViewRule, 'checkable', 'checkable', {
+  //   'defaultValue': '',
+  //   '0': false,
+  //   '1': true,
+  // })
 
   dealPropMap(ctrlViewRule, 'flexwrap', 'flexWrap')
   dealPropMap(ctrlViewRule, 'justifycontent', 'justifyContent')
@@ -123,9 +119,6 @@ const dealOldView = (ctrlViewRule) => {
   dealPropMap(ctrlViewRule, 'paddingbottom', 'paddingBottom')
   dealPropMap(ctrlViewRule, 'paddingleft', 'paddingLeft')
   dealPropMap(ctrlViewRule, 'paddingright', 'paddingRight')
-
-
-
 }
 
 
@@ -143,7 +136,7 @@ const dealView = (ctrlViewRule, addProps = {}) => {
 
   // 处理 popview
   if (ctrlViewRule.type === 'popview') {
-    ctrlViewRule.hidden = true
+    ctrlViewRule.hidden = '1'
     ctrlViewRule.flexDirection = ctrlViewRule.flexDirection || 'column'
   }
 
@@ -173,7 +166,7 @@ const dealView = (ctrlViewRule, addProps = {}) => {
     let content = get(ctrlViewRule, 'content', [])
     content.forEach((item) => {
       dealView(item, {
-        $$inpopview: true
+        $$inpopview: '1'
       })
     })
 
@@ -181,9 +174,9 @@ const dealView = (ctrlViewRule, addProps = {}) => {
     operations.forEach((item) => {
       dealView(item, {
         type: 'button',
-        $$notMap: true,
+        $$notMap: '1',
         marginLeft: '8',
-        $$inpopview: true
+        $$inpopview: '1'
       })
     })
   } else {
@@ -199,7 +192,7 @@ const dealView = (ctrlViewRule, addProps = {}) => {
     let basic = get(ctrlViewRule, 'searchcondition.basic', [])
     basic.forEach((item) => {
       dealView(item, {
-        $$infilter: true,
+        $$infilter: '1',
         paddingRight: '0',
         width: '200'
       })
@@ -212,26 +205,26 @@ const dealView = (ctrlViewRule, addProps = {}) => {
     let columns = get(ctrlViewRule, 'columns', [])
     columns.forEach((item) => {
       dealView(item, {
-        $$notMap: true,
-        $$intable: true
+        $$notMap: '1',
+        $$intable: '1'
       })
     })
     let operations = get(ctrlViewRule, 'operations', [])
     operations.forEach((item) => {
       dealView(item, {
         type: 'button',
-        $$notMap: true,
+        $$notMap: '1',
         marginLeft: '8',
         marginBottom: '8',
-        $$intable: true
+        $$intable: '1'
       })
     })
     let rowoperations = get(ctrlViewRule, 'rowoperations', [])
     rowoperations.forEach((item) => {
       dealView(item, {
         type: 'button',
-        $$notMap: true,
-        $$intable: true,
+        $$notMap: '1',
+        $$intable: '1',
         displaytype: 'text',
         marginRight: '8'
       })

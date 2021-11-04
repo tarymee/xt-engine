@@ -48,8 +48,8 @@ export default {
   computed: {},
   created () {
     this.options = get(this.viewRule, 'options', [])
-    this.multiselectable = get(this.viewRule, 'multiselectable', false)
-    this.setValue(get(this, 'viewRule.value', ''))
+    this.computeBooleanProp('multiselectable')
+    this.setValue(this.value)
   },
   methods: {
     handleChange () {

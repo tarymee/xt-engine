@@ -39,8 +39,12 @@ const renderColumns = function (h, viewRule, context) {
     dataObj.scopedSlots = {
       default: scope => {
         // console.log(scope)
+        // console.log(55555)
+        // console.log(item)
         let viewRule = Object.assign(cloneDeep(item), {
-          value: scope.row[item.name]
+          value: scope.row[item.name],
+          // 如果为默认值 则继承 table 的值
+          readonly: (item.readonly !== '' && typeof item.readonly !== 'undefined') ? item.readonly : context.readonly
         })
         return renderComponent(h, viewRule)
       }

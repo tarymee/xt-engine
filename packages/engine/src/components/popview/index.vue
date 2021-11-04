@@ -29,14 +29,22 @@ export default {
     }
   },
   methods: {
+    // todo 这里有bug 两个popview同时打开的话 校验会出错
     validata () {
       // console.log(this.engine.ctrlCodeMap)
       // debugger
+
+
+
+      // this.viewRule.content
+
+
+
       let res = true
       for (var [key, item] of this.engine.ctrlCodeMap) {
         if (item.$$inpopview) {
-          // todo 可以去掉 item.isinputctrl || item.type === 'table' 判断
-          if (item.isinputctrl || item.type === 'table') {
+          // todo 可以去掉 item.__$$input || item.type === 'table' 判断
+          if (item.__$$input || item.type === 'table') {
             res = item.validata()
           }
         }

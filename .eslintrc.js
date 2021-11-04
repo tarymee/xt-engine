@@ -16,6 +16,7 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/name-property-casing': ["error", "kebab-case"],
+    'vue/no-reserved-keys': 'off',
     'no-unused-vars': 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off'

@@ -21,8 +21,8 @@ export default {
   },
   created () {
     this.value = get(this, 'viewRule.value', [])
-    this.pageable = get(this, 'viewRule.pageable', false)
-    this.checkable = get(this, 'viewRule.checkable', false)
+    this.computeBooleanProp('pageable')
+    this.computeBooleanProp('checkable')
     this.pageInfo = this.pageable ? {
       __pageindex: 1,
       __pagesize: Number(this.viewRule.pagesize || 20),
@@ -175,7 +175,7 @@ export default {
       for (let i = 0, len = cellCtrl.length; i < len; i++) {
         for (const x in cellCtrl[i]) {
           const ctrl = cellCtrl[i][x]
-          if (ctrl.isinputctrl) {
+          if (ctrl.__$$input) {
             res = ctrl.validata()
           }
           if (!res) {
