@@ -32,7 +32,6 @@ export default {
             {
               "title": "基本信息",
               "hidden": "",
-              "flexdirection": "vertical",
               "content": [
                 {
                   "type": "progress",
@@ -123,8 +122,7 @@ export default {
             },
             {
               "title": "基本信息2",
-              "hidden": "1",
-              "flexdirection": "vertical",
+              "hidden": "",
               "content": []
             }
           ]

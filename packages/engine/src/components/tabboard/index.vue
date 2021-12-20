@@ -1,6 +1,5 @@
 <script>
 import { get, cloneDeep } from 'lodash-es'
-import { fixLength } from '../../utils'
 import baseMixin from '../common/baseMixin'
 import renderComponent from '../common/renderComponent'
 
@@ -9,47 +8,44 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      width: fixLength(this.viewRule.width),
       index: 0,
       currentTitle: ''
     }
   },
   computed: {
     viewStyle () {
-      // tabboard 的 width 和 hidden 应用于 el-dialog 组件
       const style = this.createBaseStyle()
-      delete style.width
       return style
     }
   },
-  watch: {
-    hidden (newValue, oldValue) {
-      if (newValue) {
-        this.setValue(null)
-      }
-    }
-  },
   created() {
-      this.currentTitle = this.viewRule.cards[this.index || 0].title || ''
+    this.currentTitle = this.viewRule.cards[this.index || 0].title || ''
+  },
+  mounted () {
+    this.dealTabHidden()
   },
   methods: {
-    // todo 这里有bug 两个tabboard同时打开的话 校验会出错
-    validata () {
-      // console.log(this.engine.ctrlCodeMap)
-      // debugger
-      let res = true
-      for (var [key, item] of this.engine.ctrlCodeMap) {
-        if (item.$$intabboard) {
-          // todo 可以去掉 item.isInputCtrl || item.type === 'table' 判断
-          if (item.isInputCtrl || item.type === 'table') {
-            res = item.validata()
+    dealTabHidden() {
+      this.$nextTick(() => {
+        if (this.$el && this.$el.querySelectorAll('.el-tabs__item')) {
+          let cards = (this.viewRule.cards || [])
+          for (let i = 0, len = cards.length; i < len; i++) {
+            let isHidden = cards[i].hidden === '1'
+            const elTabsItem = this.$el.querySelectorAll('.el-tabs__item')[i]
+            if (elTabsItem) {
+              if (isHidden) {
+                elTabsItem.style.display = 'none'
+              } else {
+                elTabsItem.style.display = 'inline-block'
+              }
+            }
           }
         }
-        if (!res) {
-          break
-        }
-      }
-      return res
+      })
+    },
+    // todo
+    validata () {
+      return true
     }
   },
   render: function (h) {
@@ -72,12 +68,13 @@ export default {
             },
             on: {
               input (newVal) {
-                console.log(newVal)
+                // console.log(newVal)
                 if (_this.currentTitle !== newVal) {
                   _this.currentTitle = newVal
                   _this.index = cards.findIndex((item) => {
                     return item.title === newVal
                   })
+                  // console.log(_this.index)
                 }
               },
               'tab-click' (tab, event) {
@@ -118,10 +115,6 @@ export default {
 <style scoped>
 .xt-tabboard {
   display: flex;
-}
-.xt-tabboard-footer {
-  display: flex;
-  flex-direction: row-reverse;
 }
 </style>
 
