@@ -22,6 +22,7 @@ export default {
   select: require('./select').default,
   tree: require('./tree').default,
   cascade: require('./cascade').default,
+  tabboard: require('./tabboard').default,
   baseMixin: require('./common/baseMixin').default,
   baseInputMixin: require('./common/baseInputMixin').default
 }

@@ -179,6 +179,15 @@ const dealView = (ctrlViewRule, addProps = {}) => {
         $$inpopview: '1'
       })
     })
+  } else if (ctrlViewRule.type === 'tabboard') {
+    // tabboard 递归处理
+    let cards = get(ctrlViewRule, 'cards', [])
+    cards.forEach((item) => {
+      item.type = 'layout'
+      dealView(item, {
+        $$notMap: '1'
+      })
+    })
   } else {
     // 普通 layout 递归处理
     let content = get(ctrlViewRule, 'content', [])
