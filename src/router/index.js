@@ -24,7 +24,7 @@ const routes = [
   },
   {
     path: '/ide',
-    component: () => import('@xwchina/smart100-web-ide')
+    component: () => import('@smart100/web-ide')
   },
   {
     path: '/test',

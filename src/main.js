@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { xtEngine } from '@xwchina/smart100-web-engine'
+import { xtEngine } from '@smart100/web-engine'
 import Resource from 'vue-resource'
 import ElementUI from 'element-ui'
 
