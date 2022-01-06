@@ -6,7 +6,7 @@
 
 <script>
 import { components } from '@smart100/web-engine'
-import protocol from './protocol.js'
+import protocol from './attachment.js'
 
 export default {
   components: {

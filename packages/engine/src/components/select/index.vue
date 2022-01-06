@@ -78,7 +78,7 @@ export default {
       } else {
         this.value = value
       }
-    },
+    }
   }
 }
 </script>

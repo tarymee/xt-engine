@@ -43,7 +43,7 @@ export default {
     }
   },
   created () {
-    this.computeValueProp('type')
+    this.computeStringProp('type')
     this.computeStringProp('code')
     this.computeStringProp('title')
     this.computeStringProp('name')
@@ -118,8 +118,8 @@ export default {
         this[type] = originValue || defaultValue
       }
     },
-    // value 有可能是任意类型值
-    computeValueProp (type, defaultValue = '') {
+    // value 有可能是任意类型值 暂时没用到
+    computeValueProp (type, defaultValue) {
       const originValue = this.viewRule[type]
       if (originValue && typeof originValue === 'string' && originValue.indexOf('fly:') === 0) {
         // todo flycode

@@ -68,6 +68,7 @@ export default class Flycode {
   }
 
   runFlycode (script, option = {}) {
+    // debugger
     // 收集需要注入的依赖
     const keyArray = []
     const valueArray = []
