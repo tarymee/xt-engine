@@ -118,6 +118,23 @@ export default {
         this[type] = originValue || defaultValue
       }
     },
+    computeNumberProp (type, defaultValue) {
+      const originValue = this.viewRule[type]
+      if (originValue && typeof originValue === 'string' && originValue.indexOf('fly:') === 0) {
+        // todo flycode
+        this[type] = this.executeFlycode(originValue, {
+          eventTarget: this
+        })
+      } else {
+        if (typeof originValue === 'number') {
+          this[type] = originValue
+        } else if (typeof originValue === 'string' && originValue) {
+          this[type] = Number(originValue)
+        } else {
+          this[type] = defaultValue
+        }
+      }
+    },
     // value 有可能是任意类型值 暂时没用到
     computeValueProp (type, defaultValue) {
       const originValue = this.viewRule[type]

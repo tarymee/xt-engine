@@ -28,10 +28,13 @@
         :on-remove="handleRemove"
         :http-request="handleHttpRequest"
         :file-list="value"
-        :show-file-list="true"
+        :show-file-list="false"
         :multiple="true"
       >
         <el-button size="small" icon="el-icon-plus">点击上传</el-button>
+        <div v-for="(item, index) in value" :key="index">
+          {{ item.name }}
+        </div>
       </el-upload>
 
       <!-- <el-input
@@ -67,12 +70,16 @@ export default {
   mixins: [baseInputMixin],
   data () {
     return {
-      selectFile: null
+      selectFile: null,
+      maxnumber: 5,
+      maxsize: 10240,
+      accept: ''
     }
   },
   created () {
-    this.computeStringProp('maxnumber')
-    this.computeStringProp('maxsize')
+    this.computeNumberProp('maxnumber', 5)
+    // maxsize 单位 kb 默认 10m
+    this.computeStringProp('maxsize', 10240)
     this.computeStringProp('accept')
     this.setValue(this.value)
   },
@@ -114,6 +121,10 @@ export default {
       console.log('handlerBeforeUpload')
       console.log(file)
       console.log(this.value.length)
+      if (this.value.length >= this.maxnumber) {
+        console.log(`最多支持上传${this.maxnumber}个`)
+        return false
+      }
       // return false
     },
     // handleOnProgress (event, file, fileList) {
