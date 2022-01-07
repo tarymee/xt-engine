@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
   "pageinfo": {
-    "code": "attachment",
-    "title": "attachment",
-    "pagedescr": "attachment"
+    "code": "test",
+    "title": "test",
+    "pagedescr": "test"
   },
   "view": {
     "body": {
@@ -19,15 +19,75 @@ export default {
       "content": [
         {
           "type": "attachment",
-          "code": "attachment-8115001595939472",
-          "name": "文件",
+          "code": "14049334561561",
+          "titlewidth": "70",
           "title": "文件",
-          "height": "",
-          "hidden": "",
-          "width": "",
-          "flex": "",
-          "overflow": "",
+          "placeholder": "6-20个字符，区分大小写",
+          "name": "文件",
+          "width": "100%",
+          "required": "1",
+          "maxnumber": "",
+          "accept": "image/png,image/jpg,text/txt,.zip",
+          "maxsize": "300",
+          "eventlist": [
+            {
+              "trigger": "onvaluechange",
+              "handler": "handle-valuechange"
+            },
+            {
+              "trigger": "onupload",
+              "handler": "handle-onupload"
+            }
+          ]
+        },
+        {
+          "type": "textinput",
+          "code": "140493345621561",
+          "titlewidth": "70",
+          "title": "新密码",
+          "placeholder": "6-20个字符，区分大小写",
+          "name": "新密码",
+          "displaytype": "password",
+          "width": "100%",
+          "required": "1",
           "eventlist": []
+        },
+        {
+          "type": "textinput",
+          "code": "140493345461561",
+          "titlewidth": "70",
+          "title": "确认密码",
+          "placeholder": "6-20个字符，区分大小写",
+          "name": "确认密码",
+          "displaytype": "password",
+          "width": "100%",
+          "required": "1",
+          "eventlist": []
+        },
+        {
+          "type": "layout",
+          "code": "layout-8166354650481264333",
+          "flexdirection": "horizontal",
+          "justifyContent": "center",
+          "flex": "1",
+          "width": "",
+          "hidden": "",
+          "content": [
+            {
+              "type": "button",
+              "code": "1404933544224561561",
+              "title": "确认",
+              "value": "确认",
+              "displaytype": "primary",
+              "width": "100",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-save"
+                }
+              ]
+            }
+          ]
         }
       ],
       "eventlist": []
@@ -35,12 +95,48 @@ export default {
     "subviews": []
   },
   "presenter": {
-    "initial": [],
+    "initial": [
+      {
+        "code": "1454645626748",
+        "desc": "初始化",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626747",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": `
+              // 为本页面axios注册拦截器
+              axios.interceptors.response.use(response => {
+                return response
+              }, err => {
+                let msg
+                if (err.response && err.response.data && err.response.data.error_code) {
+                  msg = err.response.data.error_code
+                } else if (err.response.statusText) {
+                  msg = err.response.statusText
+                } else {
+                  msg = err.message
+                }
+                page.message.error(msg)
+                return Promise.reject(err)
+              })
+            `
+          }
+        ]
+      }
+    ],
     "interface": [],
     "handlers": [
       {
-        "code": "handle-test",
-        "desc": "测试",
+        "code": "handle-valuechange",
+        "desc": "",
         "name": "",
         "successhint": "",
         "notice": "",
@@ -54,7 +150,62 @@ export default {
             "desc": "flycode",
             "condition": "",
             "script": `
-              page.getCtrl('进度').value = '1'
+              console.log(eventTarget)
+            `
+          }
+        ]
+      },
+      {
+        "code": "handle-onupload",
+        "desc": "",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626777",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": `
+              const file = page.getCtrl('文件')
+              console.log(file)
+              console.log(eventTarget)
+
+
+              // page.confirm('确定启用所选帐号？', '提示', {
+              //   confirmButtonText: '确定',
+              //   cancelButtonText: '取消'
+              // }).then(() => {
+              //   axios.post('/platserv/platAccount/enable', {
+              //     plataccountcodes: checkedValue.map(item => item.plataccountcode)
+              //   }).then((res) => {
+              //     page.message.success('启用成功！')
+              //     page.runEvent('表格-加载数据')
+              //   })
+              // }).catch(() => { })
+
+
+              // var formdata = new FormData()
+              // formdata.append('file', eventTarget.selectFile)
+              // formdata.append('fileName', 'xxxx.png')
+
+
+              // axios.post('/platserv/FileUpload/SingleFile/uploadFile', formdata, {
+              //   headers: {
+              //     'Content-Type': 'multipart/form-data'
+              //   }
+              // }).then((res) => {
+              //   console.log(res)
+              // })
+
+              eventTarget.handleSuccess({
+                name: eventTarget.selectFile.name,
+                url: 'eventTarget.selectFile.name'
+              })
             `
           }
         ]
@@ -75,12 +226,12 @@ export default {
             "desc": "flycode",
             "condition": "",
             "script": `
-              if (!Page.validata()) {
+              if (!page.validata()) {
                 throw Error('validata')
               }
-              const oldpassword = Page.getCtrl('旧密码').value
-              const newpassword = Page.getCtrl('新密码').value
-              const confirmpassword = Page.getCtrl('确认密码').value
+              const oldpassword = page.getCtrl('旧密码').value
+              const newpassword = page.getCtrl('新密码').value
+              const confirmpassword = page.getCtrl('确认密码').value
               let msg = ''
               if (oldpassword.length < 6 || oldpassword.length > 20) {
                 msg = '请输入6-20位字符的旧密码'
@@ -90,27 +241,20 @@ export default {
                 msg = '新密码与确认密码不一致'
               }
               if (msg) {
-                Page.message.error(msg)
+                page.message.error(msg)
                 return
               }
 
-              Page.openLoading()
-              Page.api.post('/platserv/platAccount/updatePwd', {
+              axios.post('/platserv/platAccount/updatePwd', {
                 oldpassword: oldpassword,
                 newpassword: newpassword
               }).then((res) => {
                 if (res.data.resp_data === 'ok') {
-                  Page.message.success('修改密码成功！')
+                  page.message.success('修改密码成功！')
                   // location.href = '/'
                 } else {
-                  Page.message.error('修改密码失败！')
+                  page.message.error('修改密码失败！')
                 }
-              }).catch((err) => {
-                console.error(err)
-                let msg = (err.body && err.body.error_code) || err.statusText || err
-                Page.message.error(msg)
-              }).finally(() => {
-                Page.closeLoading()
               })
             `
           }
