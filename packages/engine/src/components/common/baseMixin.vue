@@ -63,6 +63,9 @@ export default {
     if (this.viewRule.readonly === 'tableCheckedNumberIsEqualToZero' || this.viewRule.readonly === 'tableCheckedNumberIsNotEqualToOne') {
       this.readonly = false
     }
+    // if (this.code === '14049334561561') {
+    //   debugger
+    // }
 
     if (!this.notInEngine) {
       if (!this.$$notMap) {

@@ -23,10 +23,10 @@ function dealPropMap (ctrlViewRule, oldProp, newProp, valueMap) {
 
 // todo 兼容旧协议 方便使用ide配置 后期可删
 const dealOldView = (ctrlViewRule) => {
-  // todo 如果没定义type 一般是按钮 先简单粗暴处理
-  if (!ctrlViewRule.type) {
-    ctrlViewRule.type = 'button'
-  }
+  // // todo 如果没定义type 一般是按钮 先简单粗暴处理
+  // if (!ctrlViewRule.type) {
+  //   ctrlViewRule.type = 'button'
+  // }
 
   delete ctrlViewRule.functioncode
   delete ctrlViewRule.titleflex
@@ -71,43 +71,6 @@ const dealOldView = (ctrlViewRule) => {
     vertical: 'column',
   })
 
-
-  // dealPropMap(ctrlViewRule, 'multiselectable', 'multiselectable', {
-  //   'defaultValue': '',
-  //   '0': false,
-  //   '1': true,
-  // })
-  // dealPropMap(ctrlViewRule, 'hidden', 'hidden', {
-  //   'defaultValue': '',
-  //   '0': false,
-  //   '1': true,
-  // })
-  // dealPropMap(ctrlViewRule, 'required', 'required', {
-  //   'defaultValue': '',
-  //   '0': false,
-  //   '1': true,
-  // })
-  // dealPropMap(ctrlViewRule, 'readonly', 'readonly', {
-  //   'defaultValue': '',
-  //   '0': false,
-  //   '1': true,
-  // })
-  // dealPropMap(ctrlViewRule, 'hiddenclearbtn', 'hiddenclearbtn', {
-  //   'defaultValue': '',
-  //   '0': false,
-  //   '1': true,
-  // })
-  // dealPropMap(ctrlViewRule, 'pageable', 'pageable', {
-  //   'defaultValue': '',
-  //   '0': false,
-  //   '1': true,
-  // })
-  // dealPropMap(ctrlViewRule, 'checkable', 'checkable', {
-  //   'defaultValue': '',
-  //   '0': false,
-  //   '1': true,
-  // })
-
   dealPropMap(ctrlViewRule, 'flexwrap', 'flexWrap')
   dealPropMap(ctrlViewRule, 'justifycontent', 'justifyContent')
 
@@ -125,7 +88,7 @@ const dealOldView = (ctrlViewRule) => {
 // 递归处理协议 为没有 code 的控件添加 uuid
 // 为 table 和 filter 里的控件添加识别属性
 // todo: 优化
-const dealView = (ctrlViewRule, addProps = {}) => {
+const dealView = (ctrlViewRule, addProps = {}, extendProps = {}) => {
   // todo 兼容旧协议 方便使用ide配置 后期可删
   dealOldView(ctrlViewRule)
 
@@ -134,30 +97,59 @@ const dealView = (ctrlViewRule, addProps = {}) => {
     ctrlViewRule.code = uuidv4()
   }
 
-  // 处理 popview
-  if (ctrlViewRule.type === 'popview') {
-    ctrlViewRule.hidden = '1'
-    ctrlViewRule.flexDirection = ctrlViewRule.flexDirection || 'column'
-  }
-
-  if (ctrlViewRule.type === 'layout') {
-    ctrlViewRule.flexDirection = ctrlViewRule.flexDirection || 'column'
-  }
-
-  if (ctrlViewRule.type === 'filter') {
-    ctrlViewRule.flexDirection = 'row'
-    ctrlViewRule.flexWrap = 'wrap'
-    ctrlViewRule.paddingTop = '8'
-  }
-
-  if (ctrlViewRule.type === 'table') {
-    ctrlViewRule.flexDirection = 'column'
+  if (!ctrlViewRule.style) {
+    ctrlViewRule.style = {}
   }
 
   for (const x in addProps) {
-    if (!ctrlViewRule[x]) {
+    if (typeof ctrlViewRule[x] === 'undefined') {
       ctrlViewRule[x] = addProps[x]
     }
+  }
+  if (addProps.style) {
+    ctrlViewRule.style = {
+      ...ctrlViewRule.style,
+      ...addProps.style
+    }
+  }
+
+  for (const x in extendProps) {
+    if (typeof ctrlViewRule[x] === 'undefined') {
+      ctrlViewRule[x] = extendProps[x]
+    }
+  }
+  if (extendProps.style) {
+    ctrlViewRule.style = {
+      ...ctrlViewRule.style,
+      ...extendProps.style
+    }
+  }
+
+
+  // 处理 popview
+  if (ctrlViewRule.type === 'popview') {
+    ctrlViewRule.hidden = '1'
+    // ctrlViewRule.flexDirection = ctrlViewRule.flexDirection || 'column'
+    ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
+  }
+
+  if (ctrlViewRule.type === 'layout') {
+    // ctrlViewRule.flexDirection = ctrlViewRule.flexDirection || 'column'
+    ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
+  }
+
+  if (ctrlViewRule.type === 'filter') {
+    // ctrlViewRule.flexDirection = 'row'
+    // ctrlViewRule.flexWrap = 'wrap'
+    // ctrlViewRule.paddingTop = '8'
+    ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'row'
+    ctrlViewRule.style.flexWrap = ctrlViewRule.style.flexWrap || ctrlViewRule.flexWrap || 'wrap'
+    ctrlViewRule.style.paddingTop = ctrlViewRule.style.paddingTop || ctrlViewRule.paddingTop || '8px'
+  }
+
+  if (ctrlViewRule.type === 'table') {
+    // ctrlViewRule.flexDirection = 'column'
+    ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
   }
 
 
@@ -165,17 +157,22 @@ const dealView = (ctrlViewRule, addProps = {}) => {
     // popview 递归处理
     let content = get(ctrlViewRule, 'content', [])
     content.forEach((item) => {
-      dealView(item, {
+      dealView(item, {}, {
+        ...extendProps,
         $$inpopview: '1'
       })
     })
 
     let operations = get(ctrlViewRule, 'operations', [])
     operations.forEach((item) => {
+      item.type = 'button'
       dealView(item, {
-        type: 'button',
+        style: {
+          marginLeft: '8px'
+        }
+      }, {
+        ...extendProps,
         $$notMap: '1',
-        marginLeft: '8',
         $$inpopview: '1'
       })
     })
@@ -184,62 +181,68 @@ const dealView = (ctrlViewRule, addProps = {}) => {
     let cards = get(ctrlViewRule, 'cards', [])
     cards.forEach((item) => {
       item.type = 'layout'
-      dealView(item, {
-        $$notMap: '1'
+      dealView(item, {}, {
+        ...extendProps
       })
     })
-  } else {
-    // 普通 layout 递归处理
-    let content = get(ctrlViewRule, 'content', [])
-    content.forEach((item) => {
-      dealView(item, addProps)
-    })
-  }
-
-  // 基础搜索
-  if (ctrlViewRule.type === 'filter') {
+  } else if (ctrlViewRule.type === 'filter') {
+    // 基础搜索
     let basic = get(ctrlViewRule, 'searchcondition.basic', [])
     basic.forEach((item) => {
       dealView(item, {
-        $$infilter: '1',
-        paddingRight: '0',
-        width: '200'
+        style: {
+          paddingRight: '0',
+          width: '200px'
+        }
+      }, {
+        ...extendProps,
+        $$infilter: '1'
       })
     })
-  }
-
-
-  // table
-  if (ctrlViewRule.type === 'table') {
+  } else if (ctrlViewRule.type === 'table') {
     let columns = get(ctrlViewRule, 'columns', [])
     columns.forEach((item) => {
-      dealView(item, {
+      dealView(item, {}, {
+        ...extendProps,
         $$notMap: '1',
         $$intable: '1'
       })
     })
     let operations = get(ctrlViewRule, 'operations', [])
     operations.forEach((item) => {
+      item.type = 'button'
       dealView(item, {
-        type: 'button',
+        style: {
+          marginLeft: '8px',
+          marginBottom: '8px'
+        }
+      }, {
+        ...extendProps,
         $$notMap: '1',
-        marginLeft: '8',
-        marginBottom: '8',
         $$intable: '1'
       })
     })
     let rowoperations = get(ctrlViewRule, 'rowoperations', [])
     rowoperations.forEach((item) => {
+      item.type = 'button'
+      item.displaytype = 'text'
       dealView(item, {
-        type: 'button',
+        style: {
+          marginRight: '8px'
+        }
+      }, {
+        ...extendProps,
         $$notMap: '1',
-        $$intable: '1',
-        displaytype: 'text',
-        marginRight: '8'
+        $$intable: '1'
       })
     })
+  } else {
+    // 普通 layout 递归处理
+    let content = get(ctrlViewRule, 'content', [])
+    content.forEach((item) => {
+      dealView(item, {}, extendProps)
+    })
   }
-
 }
 
 

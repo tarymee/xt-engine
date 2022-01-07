@@ -10,7 +10,7 @@ Vue.config.productionTip = false
 
 xtEngine.registerFlycode('xxx', 'ssss')
 
-console.warn(xtEngine)
+// console.warn(xtEngine)
 
 
 import 'element-ui/lib/theme-chalk/index.css'

@@ -22,10 +22,16 @@ export default {
     this.currentTitle = this.viewRule.cards[this.index || 0].title || ''
   },
   mounted () {
+    this.dealHeight()
     this.dealTabHidden()
   },
   methods: {
-    dealTabHidden() {
+    dealHeight () {
+      if (this.viewStyle.height) {
+        this.$el.querySelector('.el-tabs__content').style = `height: calc(100% - 45px);overflow: auto;`
+      }
+    },
+    dealTabHidden () {
       this.$nextTick(() => {
         if (this.$el && this.$el.querySelectorAll('.el-tabs__item')) {
           let cards = (this.viewRule.cards || [])
@@ -64,6 +70,10 @@ export default {
           'el-tabs',
           {
             props: {
+              type: '',
+              style: {
+                height: '300px'
+              },
               value: this.currentTitle || ''
             },
             on: {
@@ -114,7 +124,10 @@ export default {
 
 <style scoped>
 .xt-tabboard {
-  display: flex;
+  /* display: flex; */
+}
+.xt-tabboard .el-tabs {
+  height: 100%;
 }
 </style>
 
