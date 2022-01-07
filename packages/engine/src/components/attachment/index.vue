@@ -17,7 +17,7 @@
       <!-- :on-exceed="handleExceed" -->
       <!-- :on-change="handleChange" -->
       <!-- :on-success="handleSuccess" -->
-      <!-- :on-error="handleOnError" -->
+      <!-- :on-error="handleError" -->
       <!-- :on-progress="handleOnProgress" -->
       <el-upload
         v-show="!readonly"
@@ -85,42 +85,37 @@ export default {
   },
   methods: {
     getValue (getter) {
-      return cloneDeep(this.value)
+      return this.value.filter(item => !item.uoloadding)
     },
     setValue (value, setter) {
-      value = cloneDeep(value)
       this.value = Array.isArray(value) ? value : []
-      // 有 selectFile 表示正在上传中
-      if (this.selectFile) {
-        this.selectFile = null
-        this.executeEvent('onvaluechange')
-      }
     },
-    // handleChange (file, fileList) {
-    //   console.log('handleChange')
-    //   console.log(file, fileList)
-    //   // this.executeEvent('onvaluechange')
-    // },
-    // handleSuccess (response, file, fileList) {
-    //   console.log('handleSuccess')
-    //   console.log(response, file, fileList)
-    // },
+    handleSuccess (response) {
+      console.log('handleSuccess')
+      console.log(response)
+      // 有 selectFile 表示正在上传中
+      this.selectFile = null
+      this.value.shift()
+      this.value.unshift(response)
+      this.executeEvent('onvaluechange')
+    },
+    handleFail () {
+      console.log('handleError')
+      this.value.shift()
+    },
     handleRemove (file, fileList) {
       console.log('handleRemove')
       console.log(file, fileList)
+      this.executeEvent('onvaluechange')
     },
     // handlePreview (file) {
     //   console.log('handlePreview')
     //   console.log(file)
     // },
-    // handleExceed (files, fileList) {
-    //   console.log('handleExceed')
-    //   this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
-    // },
     handlerBeforeUpload (file) {
-      console.log('handlerBeforeUpload')
-      console.log(file)
-      console.log(this.value.length)
+      // console.log('handlerBeforeUpload')
+      // console.log(file)
+      // console.log(this.value.length)
       if (this.value.length >= this.maxnumber) {
         console.log(`最多支持上传${this.maxnumber}个`)
         return false
@@ -131,14 +126,12 @@ export default {
     //   console.log('handleOnProgress')
     //   console.log(event, file, fileList)
     // },
-    // handleOnError (err, file, fileList) {
-    //   console.log('handleOnError')
-    //   console.error(err, file, fileList)
-    // },
     handleHttpRequest (attachment) {
       console.log('handleHttpRequest')
       // console.log(attachment)
+      attachment.file.uploadding = true
       this.selectFile = attachment.file
+      this.value.unshift(this.selectFile)
       // return Promise.resolve(attachment.file)
       this.executeEvent('onupload')
     }
