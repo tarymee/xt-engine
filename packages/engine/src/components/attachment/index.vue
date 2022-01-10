@@ -19,22 +19,25 @@
       <!-- :on-success="handleSuccess" -->
       <!-- :on-error="handleError" -->
       <!-- :on-progress="handleOnProgress" -->
+
+      <div v-for="(item, index) in value" :key="index" class="xt-attachment-item">
+        <a class="xt-attachment-item-file" :href="item.url" target="_blank"><i class="el-icon-document"></i>{{ item.name }}</a>
+        <i v-if="item.uploadding" class="xt-attachment-item-icon el-icon-loading"></i>
+        <i v-if="!item.uploadding" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
+        <i v-if="!item.uploadding" class="xt-attachment-item-icon el-icon-success"></i>
+      </div>
       <el-upload
         v-show="!readonly"
         ref="attachment"
-        class="upload-demo"
+        class="xt-attachment-upload"
         action="javascript:;"
         :before-upload="handlerBeforeUpload"
-        :on-remove="handleRemove"
         :http-request="handleHttpRequest"
         :file-list="value"
         :show-file-list="false"
         :multiple="true"
       >
-        <el-button size="small" icon="el-icon-plus">点击上传</el-button>
-        <div v-for="(item, index) in value" :key="index">
-          {{ item.name }}
-        </div>
+        <el-button size="small" icon="el-icon-plus" class="xt-attachment-btn">点击上传</el-button>
       </el-upload>
 
       <!-- <el-input
@@ -64,6 +67,7 @@
 <script>
 import { get, cloneDeep } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
+import { Message } from 'element-ui'
 
 export default {
   name: 'xt-attachment',
@@ -82,13 +86,34 @@ export default {
     this.computeStringProp('maxsize', 10240)
     this.computeStringProp('accept')
     this.setValue(this.value)
+    // this.setValue([{
+    //   name: 'kjshkj客家话客家话看喀什法国航空结果很快就会可结合公司会计和高科技规划算法v控件',
+    //   url: ''
+    // }])
   },
   methods: {
     getValue (getter) {
-      return this.value.filter(item => !item.uoloadding)
+      return this.value.filter(item => !item.uploadding)
     },
     setValue (value, setter) {
       this.value = Array.isArray(value) ? value : []
+    },
+    validata () {
+      const requiredRes = this.requiredValidata()
+      if (requiredRes) {
+        return requiredRes
+      } else {
+        const isUploadding = this.value.some(item => item.uploadding)
+        if (isUploadding) {
+          Message({
+            message: `${this.title}正在上传中...`,
+            type: 'error'
+          })
+          return false
+        } else {
+          return true
+        }
+      }
     },
     handleSuccess (response) {
       console.log('handleSuccess')
@@ -103,9 +128,10 @@ export default {
       console.log('handleError')
       this.value.shift()
     },
-    handleRemove (file, fileList) {
-      console.log('handleRemove')
-      console.log(file, fileList)
+    handleRemove (index) {
+      // console.log(index)
+      // console.log('handleRemove')
+      this.value.splice(index, 1)
       this.executeEvent('onvaluechange')
     },
     // handlePreview (file) {
@@ -113,19 +139,14 @@ export default {
     //   console.log(file)
     // },
     handlerBeforeUpload (file) {
-      // console.log('handlerBeforeUpload')
-      // console.log(file)
-      // console.log(this.value.length)
       if (this.value.length >= this.maxnumber) {
-        console.log(`最多支持上传${this.maxnumber}个`)
+        Message({
+          message: `${this.title}最多支持上传${this.maxnumber}个`,
+          type: 'error'
+        })
         return false
       }
-      // return false
     },
-    // handleOnProgress (event, file, fileList) {
-    //   console.log('handleOnProgress')
-    //   console.log(event, file, fileList)
-    // },
     handleHttpRequest (attachment) {
       console.log('handleHttpRequest')
       // console.log(attachment)
@@ -140,7 +161,52 @@ export default {
 </script>
 
 <style scope>
-/* .xt-attachment {
-
-} */
+.xt-attachment-item {
+  display: flex;
+  justify-content: space-between;
+  /* height: 24px; */
+  line-height: 24px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 0 4px;
+  color: #606266;
+}
+.xt-attachment-item-file {
+  width: 90%;
+  display: block;
+  cursor: pointer;
+  color: #606266;
+}
+.xt-attachment-item-icon {
+  line-height: 24px!important;
+}
+.el-icon-error {
+  display: none!important;
+  color: red!important;
+  cursor: pointer;
+}
+.el-icon-success {
+  display: block!important;
+  color: #67c23a!important;
+}
+.xt-attachment-item:hover {
+  background-color: #f5f7fa;
+}
+.xt-attachment-item:hover .xt-attachment-item-file {
+  color: #409eff;
+}
+.xt-attachment-item:hover .el-icon-success{
+  display: none!important;
+}
+.xt-attachment-item:hover .el-icon-error{
+  display: block!important;
+}
+.xt-attachment-upload .el-upload {
+  width: 100%;
+}
+.xt-attachment-btn {
+  display: block;
+  width: 100%;
+}
 </style>
