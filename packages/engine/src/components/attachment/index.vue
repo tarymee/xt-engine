@@ -22,10 +22,11 @@
 
       <div v-for="(item, index) in value" :key="index" class="xt-attachment-item">
         <a class="xt-attachment-item-file" :href="item.url" target="_blank"><i class="el-icon-document"></i>{{ item.filename }}</a>
-        <i v-if="item.uploadding" class="xt-attachment-item-icon el-icon-loading"></i>
-        <i v-if="!item.uploadding" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
-        <i v-if="!item.uploadding" class="xt-attachment-item-icon el-icon-success"></i>
+        <i v-if="item.status === 'uploadding'" class="xt-attachment-item-icon el-icon-loading"></i>
+        <i v-if="item.status !== 'uploadding'" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
+        <i v-if="item.status !== 'uploadding'" class="xt-attachment-item-icon el-icon-success"></i>
       </div>
+      <!-- :file-list="value" -->
       <el-upload
         v-show="!readonly"
         ref="attachment"
@@ -33,7 +34,6 @@
         action="javascript:;"
         :before-upload="handlerBeforeUpload"
         :http-request="handleHttpRequest"
-        :file-list="value"
         :show-file-list="false"
         :multiple="true"
       >
@@ -93,7 +93,12 @@ export default {
   },
   methods: {
     getValue (getter) {
-      return this.value.filter(item => !item.uploadding)
+      return this.value.filter(item => item.status !== 'uploadding').map((item) => {
+        return {
+          filename: item.filename,
+          url: item.url
+        }
+      })
     },
     setValue (value, setter) {
       this.value = Array.isArray(value) ? value : []
@@ -103,7 +108,7 @@ export default {
       if (requiredRes) {
         return requiredRes
       } else {
-        const isUploadding = this.value.some(item => item.uploadding)
+        const isUploadding = this.value.some(item => item.status === 'uploadding')
         if (isUploadding) {
           Message({
             message: `${this.title}正在上传中...`,
@@ -150,7 +155,7 @@ export default {
     handleHttpRequest (attachment) {
       console.log('handleHttpRequest')
       // console.log(attachment)
-      attachment.file.uploadding = true
+      attachment.file.status = 'uploadding'
       attachment.file.filename = attachment.file.name
       this.selectFile = attachment.file
       this.value.unshift(this.selectFile)
