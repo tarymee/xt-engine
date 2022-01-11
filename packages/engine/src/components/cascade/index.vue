@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-import { get } from 'lodash-es'
+import { get, cloneDeep } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 
 export default {
@@ -97,11 +97,11 @@ export default {
       return re
     },
     getValue (getter) {
-      return (this.value && this.value.length) ? JSON.stringify(this.value) : ''
+      return (this.value && this.value.length) ? cloneDeep(this.value) : []
     },
     setValue (value, setter) {
-      value ? this.value = JSON.parse(value) : this.value = []
-    },
+      value ? this.value = cloneDeep(value) : this.value = []
+    }
   }
 }
 </script>

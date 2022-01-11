@@ -21,7 +21,7 @@
       <!-- :on-progress="handleOnProgress" -->
 
       <div v-for="(item, index) in value" :key="index" class="xt-attachment-item">
-        <a class="xt-attachment-item-file" :href="item.url" target="_blank"><i class="el-icon-document"></i>{{ item.name }}</a>
+        <a class="xt-attachment-item-file" :href="item.url" target="_blank"><i class="el-icon-document"></i>{{ item.filename }}</a>
         <i v-if="item.uploadding" class="xt-attachment-item-icon el-icon-loading"></i>
         <i v-if="!item.uploadding" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
         <i v-if="!item.uploadding" class="xt-attachment-item-icon el-icon-success"></i>
@@ -151,6 +151,7 @@ export default {
       console.log('handleHttpRequest')
       // console.log(attachment)
       attachment.file.uploadding = true
+      attachment.file.filename = attachment.file.name
       this.selectFile = attachment.file
       this.value.unshift(this.selectFile)
       // return Promise.resolve(attachment.file)
