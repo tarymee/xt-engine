@@ -22,6 +22,8 @@ export default {
   select: require('./select').default,
   tree: require('./tree').default,
   attachment: require('./attachment').default,
+  radio: require('./radio').default,
+  checkbox: require('./checkbox').default,
   cascade: require('./cascade').default,
   tabboard: require('./tabboard').default,
   baseMixin: require('./common/baseMixin').default,

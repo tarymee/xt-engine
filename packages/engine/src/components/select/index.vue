@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-import { get, cloneDeep } from 'lodash-es'
+import { get } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 
 export default {
@@ -45,10 +45,9 @@ export default {
       multiselectable: false,
     }
   },
-  computed: {},
   created () {
-    this.options = get(this.viewRule, 'options', [])
-    this.computeBooleanProp('multiselectable')
+    this.dealViewRuleProp('options', 'array', [])
+    this.dealViewRuleProp('multiselectable', 'boolean')
     this.setValue(this.value)
   },
   methods: {
@@ -56,6 +55,7 @@ export default {
       console.log(this.value)
       this.executeEvent('onvaluechange')
     },
+    // todo 多选改成数组
     getValue (getter) {
       if (this.multiselectable) {
         return (this.value && this.value.length) ? JSON.stringify(this.value) : ''

@@ -164,11 +164,11 @@ export default {
   },
   created () {
     // todo autofillvalue
-    this.options = get(this.viewRule, 'options', [])
-    this.computeBooleanProp('multiselectable')
-    this.computeStringProp('expandmodel', 'rootexpand')
-    this.computeStringProp('displaytype', 'custom')
-    this.computeStringProp('intermediateselectmode')
+    this.dealViewRuleProp('options', 'array', [])
+    this.dealViewRuleProp('multiselectable', 'boolean')
+    this.dealViewRuleProp('expandmodel', 'string', 'rootexpand')
+    this.dealViewRuleProp('displaytype', 'string', 'custom')
+    this.dealViewRuleProp('intermediateselectmode', 'string', '')
     if (this.intermediateselectmode === '') {
       if (this.multiselectable) {
         this.intermediateselectmode = 'gather'

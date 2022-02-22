@@ -16,10 +16,10 @@ export default {
     }
   },
   created () {
-    this.computeBooleanProp('required')
-    this.computeBooleanProp('hiddenclearbtn')
-    this.computeStringProp('placeholder')
-    this.computeStringProp('titlewidth')
+    this.dealViewRuleProp('required', 'boolean')
+    this.dealViewRuleProp('hiddenclearbtn', 'boolean')
+    this.dealViewRuleProp('placeholder', 'string')
+    this.dealViewRuleProp('titlewidth', 'string')
     this.titlewidth = fixLength(this.titlewidth) || '30%'
   },
   methods: {

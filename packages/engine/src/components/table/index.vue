@@ -20,9 +20,9 @@ export default {
     }
   },
   created () {
-    this.value = get(this, 'viewRule.value', [])
-    this.computeBooleanProp('pageable')
-    this.computeBooleanProp('checkable')
+    this.dealViewRuleProp('value', 'array', [])
+    this.dealViewRuleProp('pageable', 'boolean')
+    this.dealViewRuleProp('checkable', 'boolean')
     this.pageInfo = this.pageable ? {
       __pageindex: 1,
       __pagesize: Number(this.viewRule.pagesize || 20),

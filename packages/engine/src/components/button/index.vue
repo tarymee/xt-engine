@@ -15,7 +15,6 @@
   </div>
 </template>
 <script>
-import { get } from 'lodash-es'
 import baseMixin from '../common/baseMixin'
 
 export default {
@@ -27,7 +26,7 @@ export default {
     }
   },
   created () {
-    this.computeStringProp('displaytype')
+    this.dealViewRuleProp('displaytype', 'string')
   },
   methods: {
     handleClick () {

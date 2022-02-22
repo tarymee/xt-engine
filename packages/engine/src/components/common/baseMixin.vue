@@ -43,21 +43,20 @@ export default {
     }
   },
   created () {
-    this.computeStringProp('type')
-    this.computeStringProp('code')
-    this.computeStringProp('title')
-    this.computeStringProp('name')
-    this.computeStringProp('value')
+    this.dealViewRuleProp('type', 'string')
+    this.dealViewRuleProp('code', 'string')
+    this.dealViewRuleProp('title', 'string')
+    this.dealViewRuleProp('name', 'string')
+    this.dealViewRuleProp('value', 'string')
 
+    this.dealViewRuleProp('readonly', 'boolean')
+    this.dealViewRuleProp('hidden', 'boolean')
+    this.dealViewRuleProp('$$intable', 'boolean')
+    this.dealViewRuleProp('$$infilter', 'boolean')
+    this.dealViewRuleProp('$$inpopview', 'boolean')
+    this.dealViewRuleProp('$$notMap', 'boolean')
 
-    this.computeBooleanProp('readonly')
-    this.computeBooleanProp('hidden')
-    this.computeBooleanProp('$$intable')
-    this.computeBooleanProp('$$infilter')
-    this.computeBooleanProp('$$inpopview')
-    this.computeBooleanProp('$$notMap')
-
-    this.eventlist = get(this, 'viewRule.eventlist', [])
+    this.dealViewRuleProp('eventlist', 'array', [])
 
     // 暂时兼容 table operations 按钮的 readonly 关键字
     if (this.viewRule.readonly === 'tableCheckedNumberIsEqualToZero' || this.viewRule.readonly === 'tableCheckedNumberIsNotEqualToOne') {
@@ -95,59 +94,44 @@ export default {
     }
   },
   methods: {
-    // todo 如果是string 表示是fylcode 要执行
-    // todo 如果是空字符串 表示是默认值
-    // readonly viewRule 上的值为 'fly: xxx' | '' | '1' | '0'
-    // 映射到 vm 上的为 true | false
-    computeBooleanProp (type) {
-      const originValue = this.viewRule[type]
+    // 处理控件属性值
+    // 如果带有 fly 前缀 则使用 flycode 执行结果
+    // 依据各属性值所属变量类型处理
+    // 以 readonly 为例 它的值为 'fly: return true' | '' | '1' | '0' 映射到 vm 上的为 true | false
+    dealViewRuleProp (propName, type, defaultValue) {
+      // if (this.type === 'checkbox') {
+      //   debugger
+      // }
+      const originValue = this.viewRule[propName]
       if (originValue && typeof originValue === 'string' && originValue.indexOf('fly:') === 0) {
         // todo flycode
-        this[type] = this.executeFlycode(originValue, {
+        this[propName] = this.executeFlycode(originValue, {
           eventTarget: this
         })
       } else {
-        this[type] = originValue === '1'
-      }
-    },
-    computeStringProp (type, defaultValue = '') {
-      const originValue = this.viewRule[type]
-      if (originValue && typeof originValue === 'string' && originValue.indexOf('fly:') === 0) {
-        // todo flycode
-        this[type] = this.executeFlycode(originValue, {
-          eventTarget: this
-        })
-      } else {
-        this[type] = originValue || defaultValue
-      }
-    },
-    computeNumberProp (type, defaultValue) {
-      const originValue = this.viewRule[type]
-      if (originValue && typeof originValue === 'string' && originValue.indexOf('fly:') === 0) {
-        // todo flycode
-        this[type] = this.executeFlycode(originValue, {
-          eventTarget: this
-        })
-      } else {
-        if (typeof originValue === 'number') {
-          this[type] = originValue
-        } else if (typeof originValue === 'string' && originValue) {
-          this[type] = Number(originValue)
+        if (type === 'boolean') {
+          this[propName] = originValue === '1'
+        } else if (type === 'string') {
+          defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : ''
+          this[propName] = originValue || defaultValue
+        } else if (type === 'number') {
+          defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : 0
+          if (typeof originValue === 'number') {
+            this[propName] = originValue
+          } else if (typeof originValue === 'string' && originValue) {
+            this[propName] = Number(originValue)
+          } else {
+            this[propName] = defaultValue
+          }
+        } else if (type === 'array') {
+          // options eventlist
+          defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : []
+          this[propName] = Array.isArray(originValue) ? cloneDeep(originValue) : defaultValue
         } else {
-          this[type] = defaultValue
+          // 有可能是其他任意类型值
+          defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : null
+          this[propName] = (typeof originValue !== 'undefined') ? cloneDeep(originValue) : defaultValue
         }
-      }
-    },
-    // value 有可能是任意类型值 暂时没用到
-    computeValueProp (type, defaultValue) {
-      const originValue = this.viewRule[type]
-      if (originValue && typeof originValue === 'string' && originValue.indexOf('fly:') === 0) {
-        // todo flycode
-        this[type] = this.executeFlycode(originValue, {
-          eventTarget: this
-        })
-      } else {
-        this[type] = (typeof originValue !== 'undefined') ? cloneDeep(originValue) : defaultValue
       }
     },
     createBaseStyle () {

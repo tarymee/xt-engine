@@ -6,6 +6,7 @@ const xtComponents = components
 
 const xtEngine = {
   // 导出全局的axios以便用户修改配置以及注册拦截器
+  // todo: 不要导出全局 有可能容器应用本身就用了全局的 axios
   axios,
   // use: function () {
   // },

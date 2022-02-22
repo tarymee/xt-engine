@@ -81,10 +81,9 @@ export default {
     }
   },
   created () {
-    this.computeNumberProp('maxnumber', 5)
-    // maxsize 单位 kb 默认 10m
-    this.computeStringProp('maxsize', 10240)
-    this.computeStringProp('accept')
+    this.dealViewRuleProp('maxnumber', 'number', 5)
+    this.dealViewRuleProp('maxsize', 'number', 10240) // maxsize 单位 kb 默认 10m
+    this.dealViewRuleProp('accept', 'string')
     this.setValue(this.value)
     // this.setValue([{
     //   name: 'kjshkj客家话客家话看喀什法国航空结果很快就会可结合公司会计和高科技规划算法v控件',

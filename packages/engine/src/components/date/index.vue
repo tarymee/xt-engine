@@ -40,8 +40,8 @@ export default {
   },
   computed: {},
   created () {
-    this.computeStringProp('format', 'yyyy-MM-dd')
-    this.computeStringProp('unit', 'date')
+    this.dealViewRuleProp('format', 'string', 'yyyy-MM-dd')
+    this.dealViewRuleProp('unit', 'string', 'date')
     this.setValue(this.value)
   },
   methods: {

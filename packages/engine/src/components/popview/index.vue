@@ -10,6 +10,7 @@ export default {
   data () {
     return {
       width: fixLength(this.viewRule.width),
+      value: null,
     }
   },
   computed: {
@@ -27,6 +28,9 @@ export default {
         this.setValue(null)
       }
     }
+  },
+  created () {
+    this.dealViewRuleProp('value', 'other', null)
   },
   methods: {
     // todo 这里有bug 两个popview同时打开的话 校验会出错

@@ -18,6 +18,7 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
+      // todo: 圆环模式
       displaytype: ''
     }
   },
@@ -42,8 +43,7 @@ export default {
     }
   },
   created () {
-    // todo: 圆环模式
-    this.computeStringProp('displaytype')
+    this.dealViewRuleProp('displaytype', 'string')
   },
   methods: {
     // todo: 赋值检测 赋值错误，您的传值为${data}，进度条控件只接受[0-1]之间的字符串数字。

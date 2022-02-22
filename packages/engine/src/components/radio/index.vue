@@ -1,6 +1,6 @@
 <template>
   <div
-    class="xt-input xt-textinput"
+    class="xt-input xt-radio"
     :class="{ 'xt-input-intable': $$intable }"
     :style="[viewStyle]"
   >
@@ -12,44 +12,39 @@
       <span v-if="required">*</span>{{ title }}
     </div>
     <div class="xt-input-content">
-      <el-input
+      <el-radio-group
         v-model="value"
-        size="small"
-        :type="displaytype === 'textarea' ? 'textarea' : ''"
-        :autosize="{ minRows: 2, maxRows: 4}"
         :disabled="readonly"
-        :placeholder="placeholder"
-        :show-password="displaytype === 'password'"
+        class="xt-radio-group"
+        :class="{ 'xt-radio-group-vertical': displaytype === 'vertical' }"
         @change="handleChange"
       >
-        <template
-          v-if="$$infilter"
-          #suffix
+        <el-radio
+          v-for="(item, index) in options"
+          :key="index"
+          :label="item.key"
         >
-          <i
-            class="el-input__icon el-icon-search"
-            style="cursor: pointer;"
-            @click="handleChange"
-          />
-        </template>
-      </el-input>
+          {{ item.text }}
+        </el-radio>
+      </el-radio-group>
     </div>
   </div>
 </template>
 <script>
-import { get } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 
 export default {
-  name: 'xt-textinput',
+  name: 'xt-radio',
   mixins: [baseInputMixin],
   data () {
     return {
-      displaytype: 'input' // password || textarea || input
+      options: [],
+      displaytype: '' // vertical || horizontal
     }
   },
   created () {
-    this.dealViewRuleProp('displaytype', 'string', 'input')
+    this.dealViewRuleProp('options', 'array', [])
+    this.dealViewRuleProp('displaytype', 'string', 'horizontal')
   },
   methods: {
     handleChange (e) {
@@ -60,7 +55,18 @@ export default {
 </script>
 
 <style scope>
-/* .xt-textinput {
+/* .xt-radio {
 
 } */
+.xt-radio-group {
+  display: block!important;
+  padding: 6px 0;
+}
+.xt-radio-group .el-radio {
+  line-height: 20px;
+}
+.xt-radio-group-vertical .el-radio {
+  display: block;
+  margin-right: 0;
+}
 </style>
