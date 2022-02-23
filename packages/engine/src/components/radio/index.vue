@@ -39,7 +39,7 @@ export default {
   data () {
     return {
       options: [],
-      displaytype: '' // vertical || horizontal
+      displaytype: '' // vertical | horizontal
     }
   },
   created () {
