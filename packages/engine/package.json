@@ -1,6 +1,6 @@
 {
   "name": "@smart100/web-engine",
-  "version": "0.1.4-alpha.0",
+  "version": "0.1.5-alpha.0",
   "description": "",
   "author": "tarymee <tarymee@gmail.com>",
   "homepage": "https://github.com/tarymee/xt-engine#readme",
@@ -24,6 +24,5 @@
     "element-ui": "^2.15.5",
     "lodash-es": "^4.17.21",
     "uuid": "^8.3.2"
-  },
-  "gitHead": "5e3518fdb90717dc345e7710713142e63445213c"
+  }
 }

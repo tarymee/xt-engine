@@ -13,7 +13,7 @@ export default {
       "flex": "1",
       "hidden": "",
       "style": {
-        "width": "400px",
+        "width": "800px",
         "margin": "30px auto"
       },
       "content": [
@@ -22,7 +22,7 @@ export default {
           "titlewidth": "70",
           "title": "单选",
           "placeholder": "",
-          "displaytype": "vertical",
+          "displaytype": "3",
           "name": "单选",
           "width": "100%",
           "required": "1",
@@ -32,15 +32,33 @@ export default {
           "options": [
             {
               "key": "1",
-              "text": "启用"
+              "disabled": "1",
+              "text": "启用启用启用启用启用"
             },
             {
               "key": "0",
-              "text": "停用"
+              "disabled": "",
+              "text": "停用停用停用停用停用"
             },
             {
               "key": "3",
-              "text": "停用3"
+              "disabled": "1",
+              "text": "停用3停用3停用3停用3停用3"
+            },
+            {
+              "key": "4",
+              "disabled": "1",
+              "text": "停用4停用4停用4停用4停用4"
+            },
+            {
+              "key": "5",
+              "disabled": "1",
+              "text": "停用5停用5停用5停用5停用5"
+            },
+            {
+              "key": "6",
+              "disabled": "1",
+              "text": "停用6停用6停用6停用6停用6"
             }
           ],
           "eventlist": [
@@ -70,7 +88,7 @@ export default {
           "titlewidth": "70",
           "title": "多选",
           "placeholder": "",
-          "displaytype": "vertical",
+          "displaytype": "auto",
           "name": "多选",
           "hidden": "",
           "width": "100%",
@@ -80,15 +98,33 @@ export default {
           "options": [
             {
               "key": "1",
-              "text": "启用"
+              "disabled": "1",
+              "text": "启用启用启用启用启用"
             },
             {
               "key": "0",
-              "text": "停用"
+              "disabled": "",
+              "text": "停用停用停用停用停用"
             },
             {
               "key": "3",
-              "text": "停用3"
+              "disabled": "1",
+              "text": "停用3停用3停用3停用3停用3"
+            },
+            {
+              "key": "4",
+              "disabled": "1",
+              "text": "停用4停用4停用4停用4停用4"
+            },
+            {
+              "key": "5",
+              "disabled": "1",
+              "text": "停用5停用5停用5停用5停用5"
+            },
+            {
+              "key": "6",
+              "disabled": "1",
+              "text": "停用6停用6停用6停用6停用6"
             }
           ],
           "eventlist": [
@@ -258,7 +294,7 @@ export default {
             "condition": "",
             "script": `
               page.getCtrl('单选').value = '0'
-              page.getCtrl('多选').value = []
+              page.getCtrl('多选').value = ['1']
             `
           }
         ]

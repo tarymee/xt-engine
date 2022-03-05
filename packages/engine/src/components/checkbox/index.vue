@@ -16,13 +16,14 @@
         v-model="value"
         :disabled="readonly"
         class="xt-checkbox-group"
-        :class="{ 'xt-checkbox-group-vertical': displaytype === 'vertical' }"
         @change="handleChange"
       >
         <el-checkbox
           v-for="(item, index) in options"
           :key="index"
           :label="item.key"
+          :disabled="item.disabled === '1'"
+          :style="[checkboxStyle]"
         >
           {{ item.text }}
         </el-checkbox>
@@ -42,13 +43,24 @@ export default {
     return {
       value: [],
       options: [],
-      displaytype: '' // vertical || horizontal
+      displaytype: '' // auto / number
+    }
+  },
+  computed: {
+    checkboxStyle () {
+      let styleObj = {}
+      if (this.displaytype !== 'auto') {
+        styleObj.width = `${100 / Number(this.displaytype) - 5}%`
+        styleObj.marginRight = `5%`
+        styleObj.overflow = `hidden`
+      }
+      return styleObj
     }
   },
   created () {
-    this.dealViewRuleProp('value', 'array', [])
     this.dealViewRuleProp('options', 'array', [])
-    this.dealViewRuleProp('displaytype', 'string', 'horizontal')
+    this.dealViewRuleProp('displaytype', 'string', 'auto')
+    this.dealViewRuleProp('value', 'array', [])
   },
   methods: {
     handleChange (e) {
@@ -67,12 +79,5 @@ export default {
 } */
 .xt-checkbox-group {
   padding: 6px 0;
-}
-.xt-checkbox-group .el-checkbox {
-  /* line-height: 20px; */
-}
-.xt-checkbox-group-vertical .el-checkbox {
-  display: block;
-  margin-right: 0;
 }
 </style>

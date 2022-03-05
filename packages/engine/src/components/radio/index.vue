@@ -16,13 +16,14 @@
         v-model="value"
         :disabled="readonly"
         class="xt-radio-group"
-        :class="{ 'xt-radio-group-vertical': displaytype === 'vertical' }"
         @change="handleChange"
       >
         <el-radio
           v-for="(item, index) in options"
           :key="index"
           :label="item.key"
+          :disabled="item.disabled === '1'"
+          :style="[radioStyle]"
         >
           {{ item.text }}
         </el-radio>
@@ -39,12 +40,23 @@ export default {
   data () {
     return {
       options: [],
-      displaytype: '' // vertical | horizontal
+      displaytype: '' // auto / number
+    }
+  },
+  computed: {
+    radioStyle () {
+      let styleObj = {}
+      if (this.displaytype !== 'auto') {
+        styleObj.width = `${100 / Number(this.displaytype) - 5}%`
+        styleObj.marginRight = `5%`
+        styleObj.overflow = `hidden`
+      }
+      return styleObj
     }
   },
   created () {
     this.dealViewRuleProp('options', 'array', [])
-    this.dealViewRuleProp('displaytype', 'string', 'horizontal')
+    this.dealViewRuleProp('displaytype', 'string', 'auto')
   },
   methods: {
     handleChange (e) {
@@ -64,9 +76,5 @@ export default {
 }
 .xt-radio-group .el-radio {
   line-height: 20px;
-}
-.xt-radio-group-vertical .el-radio {
-  display: block;
-  margin-right: 0;
 }
 </style>
