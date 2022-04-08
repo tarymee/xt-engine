@@ -40,6 +40,7 @@
         </div>
         <div v-if="!valueTextArr.length" class="xt-tree-input-placeholder">{{ placeholder }}</div>
       </div>
+      <!-- todo 宽度基于控件宽度 -->
       <el-popover
         ref="popover"
         :disabled="readonly"
