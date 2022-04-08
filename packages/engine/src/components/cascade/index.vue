@@ -69,30 +69,30 @@ export default {
       const re = []
       // 将数组中数据转为键值对结构 (这里的数组和obj会相互引用)
       list.map((el) => {
-          obj[el[idKey]] = el
+        obj[el[idKey]] = el
       })
       // debugger
       for (let i = 0, len = list.length; i < len; i++) {
-          const pid = list[i][pidKey]
-          if (!pid) {
-              // 如果pid为空 说明是根节点
-              re.push(list[i])
+        const pid = list[i][pidKey]
+        if (!pid) {
+          // 如果pid为空 说明是根节点
+          re.push(list[i])
+        } else {
+          // 如果pid不为空 则寻找父级 如果没父级 则判定为根节点
+          var isin = list.some((item) => {
+            return item[idKey] === pid
+          })
+          if (!isin) {
+            re.push(list[i])
+          }
+        }
+        if (obj[pid]) {
+          if (obj[pid][childrenKey]) {
+            obj[pid][childrenKey].push(list[i])
           } else {
-              // 如果pid不为空 则寻找父级 如果没父级 则判定为根节点
-              var isin = list.some((item) => {
-                  return item[idKey] === pid
-              })
-              if (!isin) {
-                  re.push(list[i])
-              }
+            obj[pid][childrenKey] = [list[i]]
           }
-          if (obj[pid]) {
-              if (obj[pid][childrenKey]) {
-                  obj[pid][childrenKey].push(list[i])
-              } else {
-                  obj[pid][childrenKey] = [list[i]]
-              }
-          }
+        }
       }
       return re
     },
