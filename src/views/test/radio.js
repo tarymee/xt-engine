@@ -77,10 +77,14 @@ export default {
           "titlewidth": "70",
           "title": "测试",
           "placeholder": "测试",
+          "value": "测试\nsdd测试d",
           "name": "测试",
-          "displaytype": "",
+          "displaytype": "textarea",
           "width": "100%",
           "required": "",
+          "minrow": "2",
+          "maxrow": "20",
+          "readonly": "",
           "eventlist": []
         },
         {

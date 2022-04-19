@@ -16,7 +16,7 @@
         v-model="value"
         size="small"
         :type="displaytype === 'textarea' ? 'textarea' : ''"
-        :autosize="{ minRows: 2, maxRows: 4}"
+        :autosize="{ minRows: minrow, maxRows: maxrow}"
         :disabled="readonly"
         :placeholder="placeholder"
         :show-password="displaytype === 'password'"
@@ -37,7 +37,6 @@
   </div>
 </template>
 <script>
-import { get } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 
 export default {
@@ -45,11 +44,15 @@ export default {
   mixins: [baseInputMixin],
   data () {
     return {
-      displaytype: 'input' // password || textarea || input
+      displaytype: 'input', // password || textarea || input
+      minrow: 2,
+      maxrow: 6
     }
   },
   created () {
     this.dealViewRuleProp('displaytype', 'string', 'input')
+    this.dealViewRuleProp('minrow', 'number', 2)
+    this.dealViewRuleProp('maxrow', 'number', 6)
   },
   methods: {
     handleChange (e) {
