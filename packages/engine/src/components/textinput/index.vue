@@ -16,7 +16,7 @@
         v-model="value"
         size="small"
         :type="displaytype === 'textarea' ? 'textarea' : ''"
-        :autosize="{ minRows: minrow, maxRows: maxrow}"
+        :autosize="{ minRows: minrow, maxRows: maxrow }"
         :disabled="readonly"
         :placeholder="placeholder"
         :show-password="displaytype === 'password'"
