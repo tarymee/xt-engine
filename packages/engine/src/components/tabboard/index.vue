@@ -28,7 +28,7 @@ export default {
   methods: {
     dealHeight () {
       if (this.viewStyle.height) {
-        this.$el.querySelector('.el-tabs__content').style = `height: calc(100% - 45px);overflow: auto;`
+        this.$el.querySelector('.el-tabs__content').style = `height: calc(100% - 55px);overflow: auto;`
       }
     },
     dealTabHidden () {

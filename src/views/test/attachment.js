@@ -8,7 +8,6 @@ export default {
   "view": {
     "body": {
       "type": "layout",
-      "code": "layout-8161770481264333",
       "flexdirection": "vertical",
       "flex": "1",
       "hidden": "",
@@ -19,14 +18,13 @@ export default {
       "content": [
         {
           "type": "attachment",
-          "code": "14049334561561",
           "titlewidth": "70",
           "title": "文件",
           "placeholder": "6-20个字符，区分大小写",
           "name": "文件",
           "width": "100%",
           "required": "1",
-          "maxnumber": "",
+          "maxnumber": "2",
           "accept": "image/png,image/jpg,text/txt,.zip",
           "maxsize": "300",
           "eventlist": [
@@ -42,7 +40,6 @@ export default {
         },
         {
           "type": "textinput",
-          "code": "140493345621561",
           "titlewidth": "70",
           "title": "新密码",
           "placeholder": "6-20个字符，区分大小写",
@@ -54,7 +51,6 @@ export default {
         },
         {
           "type": "textinput",
-          "code": "140493345461561",
           "titlewidth": "70",
           "title": "确认密码",
           "placeholder": "6-20个字符，区分大小写",
@@ -66,7 +62,6 @@ export default {
         },
         {
           "type": "layout",
-          "code": "layout-8166354650481264333",
           "flexdirection": "horizontal",
           "justifyContent": "center",
           "flex": "1",
@@ -75,15 +70,25 @@ export default {
           "content": [
             {
               "type": "button",
-              "code": "1404933544224561561",
               "title": "确认",
               "value": "确认",
               "displaytype": "primary",
-              "width": "100",
               "eventlist": [
                 {
                   "trigger": "onclicked",
                   "handler": "handle-save"
+                }
+              ]
+            },
+            {
+              "type": "button",
+              "title": "test",
+              "value": "test",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-test"
                 }
               ]
             }
@@ -135,6 +140,31 @@ export default {
     "interface": [],
     "handlers": [
       {
+        "code": "handle-test",
+        "desc": "",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": `
+              console.log(eventTarget)
+              let ctrl = page.getCtrl('文件')
+              console.log(ctrl.value)
+              // console.log(ctrl.readonly)
+              ctrl.readonly = !ctrl.readonly
+              ctrl.required = !ctrl.required
+            `
+          }
+        ]
+      },
+      {
         "code": "handle-valuechange",
         "desc": "",
         "name": "",
@@ -145,7 +175,6 @@ export default {
         "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "desc": "flycode",
             "condition": "",
@@ -171,29 +200,11 @@ export default {
             "desc": "flycode",
             "condition": "",
             "script": `
-              const file = page.getCtrl('文件')
-              console.log(file)
               console.log(eventTarget)
-
-
-              // page.confirm('确定启用所选帐号？', '提示', {
-              //   confirmButtonText: '确定',
-              //   cancelButtonText: '取消'
-              // }).then(() => {
-              //   axios.post('/platserv/platAccount/enable', {
-              //     plataccountcodes: checkedValue.map(item => item.plataccountcode)
-              //   }).then((res) => {
-              //     page.message.success('启用成功！')
-              //     page.runEvent('表格-加载数据')
-              //   })
-              // }).catch(() => { })
-
 
               // var formdata = new FormData()
               // formdata.append('file', eventTarget.selectFile)
               // formdata.append('fileName', 'xxxx.png')
-
-
               // axios.post('/platserv/FileUpload/SingleFile/uploadFile', formdata, {
               //   headers: {
               //     'Content-Type': 'multipart/form-data'
@@ -203,8 +214,8 @@ export default {
               // })
 
               eventTarget.handleSuccess({
-                name: eventTarget.selectFile.name,
-                url: 'eventTarget.selectFile.name'
+                filename: eventTarget.selectFile.name,
+                url: location.origin + location.pathname + eventTarget.selectFile.name
               })
             `
           }
@@ -212,7 +223,7 @@ export default {
       },
       {
         "code": "handle-save",
-        "desc": "修改密码",
+        "desc": "",
         "name": "",
         "successhint": "",
         "notice": "",
@@ -221,7 +232,6 @@ export default {
         "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "desc": "flycode",
             "condition": "",

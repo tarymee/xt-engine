@@ -28,16 +28,17 @@
       </div>
       <!-- :file-list="value" -->
       <el-upload
-        v-show="!readonly"
+        v-show="value.length < maxnumber"
         ref="attachment"
         class="xt-attachment-upload"
         action="javascript:;"
+        :disabled="readonly"
         :before-upload="handlerBeforeUpload"
         :http-request="handleHttpRequest"
         :show-file-list="false"
         :multiple="true"
       >
-        <el-button size="small" icon="el-icon-plus" class="xt-attachment-btn">点击上传</el-button>
+        <el-button size="small" :disabled="readonly" icon="el-icon-plus" class="xt-attachment-btn">点击上传</el-button>
       </el-upload>
 
       <!-- <el-input
