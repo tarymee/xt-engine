@@ -399,6 +399,11 @@ export default {
   color: #606266;
   cursor: pointer;
 }
+/* 三角形大一点 */
+.xt-tree .el-tree-node__content>.el-tree-node__expand-icon {
+  font-size: 16px;
+  padding: 4px 8px;
+}
 .xt-tree-tree {
   overflow: auto;
   min-height: 200px;
