@@ -32,8 +32,11 @@ export default {
   mounted () {
     // https://blog.csdn.net/qq_36016136/article/details/107398528
     // setTimeout(() => {
-      this.dealBtnsState()
-      this.executeEvent('onchecked')
+    this.dealBtnsState()
+    this.executeEvent('onchecked')
+    setTimeout(() => {
+      this.dealInTabboardTableHeight()
+    }, 0)
     // }, 0)
   },
   methods: {
@@ -143,6 +146,22 @@ export default {
         }
       })
     },
+    dealInTabboardTableHeight () {
+      // console.log()
+      // console.log(this)
+      // debugger
+      if (this.$$intabboard) {
+        const table = this.$el.getElementsByClassName('el-table')[0]
+        const intervalFn = setInterval(() => {
+          // console.log('intervalFn')
+          const height = table.getBoundingClientRect().height
+          if (table.getBoundingClientRect().height) {
+            table.style.height = height + 'px'
+            clearInterval(intervalFn)
+          }
+        }, 500)
+      }
+    },
     handleSelectionChange (selection) {
       // console.log('handleSelectionChange')
       // console.log(selection)
@@ -201,6 +220,7 @@ export default {
   width: 100%;
   display: flex;
 }
+
 .xt-table-operations {
   border: 1px solid #EBEEF5;
   border-bottom: 0;
@@ -208,13 +228,16 @@ export default {
   flex: none;
   display: flex;
 }
+
 .xt-table-con {
   flex: auto;
 }
+
 .xt-table-rowoperations {
   display: flex;
   flex-wrap: wrap;
 }
+
 .xt-table-page {
   flex: none;
   height: 40px;
@@ -225,10 +248,12 @@ export default {
   background-color: #f5f7fa;
   box-sizing: border-box;
 }
+
 .xt-table .el-table th {
   /* background-color: #eef1f6; */
   background-color: #f5f7fa;
 }
+
 .xt-table .el-table thead {
   color: #333;
 }

@@ -30,6 +30,7 @@ export default {
       $$intable: false,
       $$infilter: false,
       $$inpopview: false,
+      $$intabboard: false,
       $$notMap: false
     }
   },
@@ -54,6 +55,7 @@ export default {
     this.dealViewRuleProp('$$intable', 'boolean')
     this.dealViewRuleProp('$$infilter', 'boolean')
     this.dealViewRuleProp('$$inpopview', 'boolean')
+    this.dealViewRuleProp('$$intabboard', 'boolean')
     this.dealViewRuleProp('$$notMap', 'boolean')
 
     this.dealViewRuleProp('eventlist', 'array', [])
@@ -171,7 +173,7 @@ export default {
         delete styleObj.width
       }
       if (this.hidden) {
-          styleObj.display = 'none'
+        styleObj.display = 'none'
       }
       return styleObj
     },

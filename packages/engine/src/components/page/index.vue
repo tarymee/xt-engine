@@ -182,7 +182,8 @@ const dealView = (ctrlViewRule, addProps = {}, extendProps = {}) => {
     cards.forEach((item) => {
       item.type = 'layout'
       dealView(item, {}, {
-        ...extendProps
+        ...extendProps,
+        $$intabboard: '1'
       })
     })
   } else if (ctrlViewRule.type === 'filter') {
