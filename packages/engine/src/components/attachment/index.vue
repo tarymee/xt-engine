@@ -187,12 +187,12 @@ export default {
 .xt-attachment-item-icon {
   line-height: 24px!important;
 }
-.el-icon-error {
+.xt-attachment-item .el-icon-error {
   display: none!important;
   color: red!important;
   cursor: pointer;
 }
-.el-icon-success {
+.xt-attachment-item .el-icon-success {
   display: block!important;
   color: #67c23a!important;
 }
