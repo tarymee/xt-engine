@@ -151,12 +151,17 @@ export default {
       // console.log(this)
       // debugger
       if (this.$$intabboard) {
-        const table = this.$el.getElementsByClassName('el-table')[0]
         const intervalFn = setInterval(() => {
-          // console.log('intervalFn')
-          const height = table.getBoundingClientRect().height
-          if (table.getBoundingClientRect().height) {
-            table.style.height = height + 'px'
+          const table = this.$el
+          const tableCon = this.$el.getElementsByClassName('xt-table-con')[0]
+          const tablePage = this.$el.getElementsByClassName('xt-table-page')[0]
+          const tableOperations = this.$el.getElementsByClassName('xt-table-operations')[0]
+          const tableHeight = table.getBoundingClientRect().height
+          const tablePageHeight = tablePage ? tablePage.getBoundingClientRect().height : 0
+          const tableOperationsHeight = tableOperations ? tableOperations.getBoundingClientRect().height : 0
+          if (tableHeight) {
+            table.style.height = tableHeight + 'px'
+            tableCon.style.height = (tableHeight - tablePageHeight - tableOperationsHeight) + 'px'
             clearInterval(intervalFn)
           }
         }, 500)
