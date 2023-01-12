@@ -206,6 +206,22 @@ export default {
         }
       }
       return res
+    },
+    setCheck (value, index) {
+      // debugger
+      setTimeout(() => {
+        // console.log(this.value)
+        const row = this.value[index]
+        // console.log(row)
+        // debugger
+        if (row) {
+          if (value !== row.__$$checked) {
+            // debugger
+            row.__$$checked = value
+            this.$refs[this.code].toggleRowSelection(row)
+          }
+        }
+      }, 0)
     }
   },
   render: function (h) {

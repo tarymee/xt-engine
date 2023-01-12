@@ -9,12 +9,12 @@ const renderColumns = function (h, viewRule, context) {
   if (context.checkable) {
     columnsArr.push(h(
       'el-table-column', {
-        props: {
-          fixed: 'left',
-          type: 'selection',
-          width: 40
-        }
+      props: {
+        fixed: 'left',
+        type: 'selection',
+        width: 40
       }
+    }
     ))
   }
 
@@ -109,6 +109,7 @@ const renderTable = function (h, viewRule, context) {
         stripe: true
       },
       // ref: `el-table`,
+      ref: context.code,
       on: {
         'selection-change': context.handleSelectionChange,
         'row-click': context.handleRowClick

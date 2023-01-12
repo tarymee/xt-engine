@@ -113,6 +113,10 @@ class Ctrl {
 }
 class ArrayCtrl extends Ctrl {
 
+  setCheck (value, index) {
+    this.instance.setCheck(value, index)
+  }
+
   get focusedValue () {
     return this.instance.getValue({
       datatype: '0',
