@@ -58,6 +58,9 @@ export default {
   flex: none;
   display: flex;
   background-color: #eee;
+  box-sizing: border-box;
+  border: 1px solid #EBEEF5;
+  border-bottom: none;
 }
 </style>
 

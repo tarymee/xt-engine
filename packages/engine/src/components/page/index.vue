@@ -94,7 +94,7 @@ const dealView = (ctrlViewRule, addProps = {}, extendProps = {}) => {
 
   // 为没有 code 的控件添加 uuid
   if (!ctrlViewRule.code) {
-    ctrlViewRule.code = uuidv4()
+    ctrlViewRule.code = `${ctrlViewRule.type}-${uuidv4()}`
   }
 
   if (!ctrlViewRule.style) {
