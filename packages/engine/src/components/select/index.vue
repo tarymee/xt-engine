@@ -1,6 +1,7 @@
 <template>
   <div
     class="xt-input xt-select"
+    :class="{ 'xt-input-intable': $$intable }"
     :style="[viewStyle]"
   >
     <div
@@ -18,6 +19,8 @@
         :multiple="multiselectable"
         :placeholder="placeholder"
         filterable
+        :remote="remotesearch"
+        :remote-method="remoteMethod"
         :clearable="!hiddenclearbtn"
         :disabled="readonly"
         @change="handleChange"
@@ -33,7 +36,7 @@
   </div>
 </template>
 <script>
-import { get } from 'lodash-es'
+// import { get } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 
 export default {
@@ -43,11 +46,14 @@ export default {
     return {
       options: [],
       multiselectable: false,
+      remotesearch: false,
+      remotesearchText: ''
     }
   },
   created () {
     this.dealViewRuleProp('options', 'array', [])
     this.dealViewRuleProp('multiselectable', 'boolean')
+    this.dealViewRuleProp('remotesearch', 'boolean')
     this.setValue(this.value)
   },
   methods: {
@@ -78,6 +84,10 @@ export default {
       } else {
         this.value = value
       }
+    },
+    remoteMethod (query) {
+      this.remotesearchText = query
+      this.executeEvent('onremotesearch')
     }
   }
 }

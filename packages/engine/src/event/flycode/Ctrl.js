@@ -153,6 +153,13 @@ class ArrayCtrl extends Ctrl {
     return this.instance.setPageInfo(pageInfo)
   }
 
+  deleteInScope (scope) {
+    return this.instance.deleteInScope(scope)
+  }
+
+  append (data, type) {
+    return this.instance.append(data, type)
+  }
 }
 
 export {

@@ -3,6 +3,7 @@
 import { get, cloneDeep } from 'lodash-es'
 import { v4 as uuidv4 } from 'uuid'
 import baseMixin from '../common/baseMixin'
+import { Message } from 'element-ui'
 import render from './render'
 
 export default {
@@ -13,6 +14,7 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
+      required: false,
       pageable: false,
       checkable: false,
       pageInfo: null,
@@ -23,6 +25,7 @@ export default {
     this.dealViewRuleProp('value', 'array', [])
     this.dealViewRuleProp('pageable', 'boolean')
     this.dealViewRuleProp('checkable', 'boolean')
+    this.dealViewRuleProp('required', 'boolean')
     this.pageInfo = this.pageable ? {
       __pageindex: 1,
       __pagesize: Number(this.viewRule.pagesize || 20),
@@ -32,11 +35,11 @@ export default {
   mounted () {
     // https://blog.csdn.net/qq_36016136/article/details/107398528
     // setTimeout(() => {
-    this.dealBtnsState()
-    this.executeEvent('onchecked')
-    setTimeout(() => {
-      this.dealInTabboardTableHeight()
-    }, 0)
+      this.dealBtnsState()
+      this.executeEvent('onchecked')
+      setTimeout(() => {
+        this.dealInTabboardTableHeight()
+      }, 0)
     // }, 0)
   },
   methods: {
@@ -57,14 +60,9 @@ export default {
       })
       return cellCtrl
     },
-    getValue (getter) {
-      // console.log(this.getCellCtrlMap())
-      // debugger
-      const scope = get(getter, 'ctrl.scope', 'all')
-      // const datatype = get(getter, 'datatype', '1')
+    // 如果 table 里有输入型控件 那么 this.value 则非实时数据 这里取实时数据
+    getRealtimeValue () {
       const realtimeValue = cloneDeep(this.value)
-
-      // 如果 table 里有输入型控件 那么 this.value 则非实时数据 这里取实时数据
       const cellCtrl = this.getCellCtrlMap()
       cellCtrl.forEach((rowsInstance, i) => {
         for (const x in rowsInstance) {
@@ -73,6 +71,13 @@ export default {
           }
         }
       })
+      return realtimeValue
+    },
+    getValue (getter) {
+      // debugger
+      const scope = get(getter, 'ctrl.scope', 'all')
+      // const datatype = get(getter, 'datatype', '1')
+      const realtimeValue = this.getRealtimeValue()
       // debugger
       if (scope === 'focused') {
         let result = realtimeValue.find((item) => item.__$$focused)
@@ -88,11 +93,12 @@ export default {
     delInsidePropery (data) {
       if (Array.isArray(data)) {
         data.forEach((item) => {
-          for (const x in item) {
-            if (x.indexOf('__$$') === 0) {
-              delete item[x]
-            }
-          }
+          item = this.delInsidePropery(item)
+          // for (const x in item) {
+          //   if (x.indexOf('__$$') === 0) {
+          //     delete item[x]
+          //   }
+          // }
         })
       } else if (Object.prototype.toString.call(data) === '[object Object]') {
         for (const x in data) {
@@ -168,8 +174,10 @@ export default {
       }
     },
     handleSelectionChange (selection) {
-      // console.log('handleSelectionChange')
-      // console.log(selection)
+      // debugger
+      console.log('handleSelectionChange')
+      console.log(selection)
+      // debugger
       this.value.forEach((item) => {
         item.__$$checked = false
         let isin = selection.some((item2) => item2.__$$index === item.__$$index)
@@ -193,21 +201,84 @@ export default {
       this.pageInfo.__pageindex = e
       this.executeEvent('onload')
     },
-    validata () {
+    // 针对数组进行插入 删除等操作后 对内部 __$$index 属性重新排序
+    sortValue () {
+      this.value.forEach((item, i) => {
+        item.__$$index = i
+      })
+    },
+    delCheck () {
+      const index = this.value.findIndex((item) => item.__$$checked)
+      if (index !== -1) {
+        this.value.splice(index, 1)
+        this.delCheck()
+      }
+    },
+    deleteInScope (scope) {
+      if (scope === 'focused') {
+        const index = this.value.findIndex((item) => item.__$$focused)
+        if (index !== -1) {
+          this.value.splice(index, 1)
+          this.sortValue()
+        }
+      } else if (scope === 'checked') {
+        this.delCheck()
+        this.sortValue()
+      } else {
+        for (let i = 0, len = this.value.length; i < len; i++) {
+          this.value.pop()
+        }
+      }
+    },
+    // type = head | tail
+    append (data, type = 'tail') {
+      const appendData = cloneDeep(data)
+      appendData.forEach((item) => {
+        item.__$$uuid = uuidv4()
+        item.__$$focused = false
+        item.__$$checked = false
+      })
+      if (type === 'head') {
+        appendData.reverse().forEach((item) => {
+          this.value.unshift(item)
+        })
+      } else {
+        appendData.forEach((item) => {
+          this.value.push(item)
+        })
+      }
+      this.sortValue()
+      console.log(this.value)
+    },
+    requiredValidata () {
       let res = true
-      const cellCtrl = this.getCellCtrlMap()
-      for (let i = 0, len = cellCtrl.length; i < len; i++) {
-        for (const x in cellCtrl[i]) {
-          const ctrl = cellCtrl[i][x]
-          if (ctrl.isInputCtrl) {
-            res = ctrl.validata()
+      const value = this.getValue()
+      if (this.required && !this.hidden && (value === '' || (Array.isArray(value) && !value.length))) {
+        res = false
+        Message({
+          message: `${this.title}不能为空`,
+          type: 'error'
+        })
+      }
+      return res
+    },
+    validata () {
+      let res = this.requiredValidata()
+      if (res) {
+        const cellCtrl = this.getCellCtrlMap()
+        for (let i = 0, len = cellCtrl.length; i < len; i++) {
+          for (const x in cellCtrl[i]) {
+            const ctrl = cellCtrl[i][x]
+            if (ctrl.isInputCtrl) {
+              res = ctrl.validata()
+            }
+            if (!res) {
+              break
+            }
           }
           if (!res) {
             break
           }
-        }
-        if (!res) {
-          break
         }
       }
       return res
@@ -241,7 +312,6 @@ export default {
   width: 100%;
   display: flex;
 }
-
 .xt-table-operations {
   border: 1px solid #EBEEF5;
   border-bottom: 0;
@@ -249,16 +319,13 @@ export default {
   flex: none;
   display: flex;
 }
-
 .xt-table-con {
   flex: auto;
 }
-
 .xt-table-rowoperations {
   display: flex;
   flex-wrap: wrap;
 }
-
 .xt-table-page {
   flex: none;
   height: 40px;
@@ -269,12 +336,10 @@ export default {
   background-color: #f5f7fa;
   box-sizing: border-box;
 }
-
 .xt-table .el-table th {
   /* background-color: #eef1f6; */
   background-color: #f5f7fa;
 }
-
 .xt-table .el-table thead {
   color: #333;
 }
