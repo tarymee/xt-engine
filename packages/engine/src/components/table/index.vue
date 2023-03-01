@@ -73,32 +73,42 @@ export default {
       })
       return realtimeValue
     },
+    getIndex (type = 'all') {
+      const realtimeValue = this.getRealtimeValue()
+      let result
+      // debugger
+      if (type === 'focused') {
+        result = realtimeValue.find((item) => item.__$$focused)
+        return result ? result.__$$index : null
+      } else if (type === 'checked') {
+        result = realtimeValue.filter((item) => item.__$$checked)
+        return result.map((item) => item.__$$index)
+      } else {
+        result = realtimeValue
+        return result.map((item) => item.__$$index)
+      }
+    },
     getValue (getter) {
       // debugger
       const scope = get(getter, 'ctrl.scope', 'all')
       // const datatype = get(getter, 'datatype', '1')
       const realtimeValue = this.getRealtimeValue()
+      let result
       // debugger
       if (scope === 'focused') {
-        let result = realtimeValue.find((item) => item.__$$focused)
-        return this.delInsidePropery(result)
+        result = realtimeValue.find((item) => item.__$$focused)
       } else if (scope === 'checked') {
-        let result = realtimeValue.filter((item) => item.__$$checked)
-        return this.delInsidePropery(result)
+        result = realtimeValue.filter((item) => item.__$$checked)
       } else {
-        return this.delInsidePropery(realtimeValue)
+        result = realtimeValue
       }
+      return this.delInsidePropery(result)
     },
     // 删除内部属性
     delInsidePropery (data) {
       if (Array.isArray(data)) {
         data.forEach((item) => {
           item = this.delInsidePropery(item)
-          // for (const x in item) {
-          //   if (x.indexOf('__$$') === 0) {
-          //     delete item[x]
-          //   }
-          // }
         })
       } else if (Object.prototype.toString.call(data) === '[object Object]') {
         for (const x in data) {
@@ -191,6 +201,7 @@ export default {
       // console.log(row)
       // console.log(column)
       // console.log(event)
+      // debugger
       row.__$$focused = true
       setTimeout(() => {
         row.__$$focused = false
@@ -214,7 +225,7 @@ export default {
         this.delCheck()
       }
     },
-    deleteInScope (scope) {
+    deleteInScope (scope = 'all') {
       if (scope === 'focused') {
         const index = this.value.findIndex((item) => item.__$$focused)
         if (index !== -1) {
@@ -232,6 +243,7 @@ export default {
     },
     // type = head | tail
     append (data, type = 'tail') {
+      if (!data || !data.length) return
       const appendData = cloneDeep(data)
       appendData.forEach((item) => {
         item.__$$uuid = uuidv4()
@@ -248,6 +260,36 @@ export default {
         })
       }
       this.sortValue()
+      console.log(this.value)
+    },
+    update (data = [], index = []) {
+      // debugger
+      if (!data || !data.length) return
+      const updateData = cloneDeep(data)
+      const cellCtrl = this.getCellCtrlMap()
+      console.log(cellCtrl)
+      index.forEach((item, i) => {
+        console.log(this.value)
+        // debugger
+        const oldRowValue = this.value[item]
+        const updateRowValue = updateData[i]
+        // 删除除了内部属性的其他属性
+        for (const x in oldRowValue) {
+          if (x.indexOf('__$$') != 0) {
+            delete oldRowValue[x]
+          }
+        }
+        // 添加更新属性
+        for (const x in updateRowValue) {
+          oldRowValue[x] = updateRowValue[x]
+        }
+        // 更新单元格控件值
+        for (const x in updateRowValue) {
+          if (cellCtrl[item][x]) {
+            cellCtrl[item][x].setValue(updateRowValue[x])
+          }
+        }
+      })
       console.log(this.value)
     },
     requiredValidata () {

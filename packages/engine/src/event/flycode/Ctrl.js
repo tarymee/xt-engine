@@ -137,6 +137,18 @@ class ArrayCtrl extends Ctrl {
     })
   }
 
+  get index () {
+    return this.instance.getIndex('all')
+  }
+
+  get focusedIndex () {
+    return this.instance.getIndex('focused')
+  }
+
+  get checkedIndex () {
+    return this.instance.getIndex('checked')
+  }
+
   get pageable () {
     return this.instance.getProp('pageable')
   }
@@ -153,12 +165,16 @@ class ArrayCtrl extends Ctrl {
     return this.instance.setPageInfo(pageInfo)
   }
 
-  deleteInScope (scope) {
+  deleteInScope (scope = 'all') {
     return this.instance.deleteInScope(scope)
   }
 
-  append (data, type) {
+  append (data, type = 'tail') {
     return this.instance.append(data, type)
+  }
+
+  update (data = [], index = []) {
+    return this.instance.update(data, index)
   }
 }
 
