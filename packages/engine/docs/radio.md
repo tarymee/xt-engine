@@ -9,7 +9,6 @@
 ```json
 {
   "type": "radio",
-  "code": "radio-1",
   "title": "单选控件",
   "value": "",
   "displaytype": "",

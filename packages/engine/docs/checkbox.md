@@ -9,7 +9,6 @@
 ```json
 {
   "type": "checkbox",
-  "code": "checkbox-1",
   "title": "多选框控件",
   "value": [],
   "displaytype": "",
