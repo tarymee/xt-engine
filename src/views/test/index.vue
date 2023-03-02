@@ -7,7 +7,7 @@
 <script>
 import { components } from '@smart100/web-engine'
 // import protocol from './radio.js'
-import protocol from './attachment.js'
+import protocol from './table.js'
 
 export default {
   components: {

@@ -43,7 +43,7 @@ export default {
     // }, 0)
   },
   methods: {
-    getCellCtrlMap () {
+    getAllRowsCtrlMap () {
       // todo 如果设置了 fixnumber 则应该取 el-table__fixed-body-wrapper 里的 row
       const rowsEle = this.$el.querySelectorAll('.el-table__body-wrapper .el-table__row')
       const cellCtrl = []
@@ -60,10 +60,16 @@ export default {
       })
       return cellCtrl
     },
+    getRowsCtrlMap (indexes = []) {
+      const allRowsCtrlMap = this.getAllRowsCtrlMap()
+      return indexes.map((index) => {
+        return allRowsCtrlMap[index]
+      })
+    },
     // 如果 table 里有输入型控件 那么 this.value 则非实时数据 这里取实时数据
     getRealtimeValue () {
       const realtimeValue = cloneDeep(this.value)
-      const cellCtrl = this.getCellCtrlMap()
+      const cellCtrl = this.getAllRowsCtrlMap()
       cellCtrl.forEach((rowsInstance, i) => {
         for (const x in rowsInstance) {
           if (realtimeValue[i]) {
@@ -185,8 +191,8 @@ export default {
     },
     handleSelectionChange (selection) {
       // debugger
-      console.log('handleSelectionChange')
-      console.log(selection)
+      // console.log('handleSelectionChange')
+      // console.log(selection)
       // debugger
       this.value.forEach((item) => {
         item.__$$checked = false
@@ -260,16 +266,16 @@ export default {
         })
       }
       this.sortValue()
-      console.log(this.value)
+      // console.log(this.value)
     },
     update (data = [], index = []) {
       // debugger
       if (!data || !data.length) return
       const updateData = cloneDeep(data)
-      const cellCtrl = this.getCellCtrlMap()
-      console.log(cellCtrl)
+      const cellCtrl = this.getAllRowsCtrlMap()
+      // console.log(cellCtrl)
       index.forEach((item, i) => {
-        console.log(this.value)
+        // console.log(this.value)
         // debugger
         const oldRowValue = this.value[item]
         const updateRowValue = updateData[i]
@@ -290,7 +296,7 @@ export default {
           }
         }
       })
-      console.log(this.value)
+      // console.log(this.value)
     },
     requiredValidata () {
       let res = true
@@ -307,7 +313,7 @@ export default {
     validata () {
       let res = this.requiredValidata()
       if (res) {
-        const cellCtrl = this.getCellCtrlMap()
+        const cellCtrl = this.getAllRowsCtrlMap()
         for (let i = 0, len = cellCtrl.length; i < len; i++) {
           for (const x in cellCtrl[i]) {
             const ctrl = cellCtrl[i][x]

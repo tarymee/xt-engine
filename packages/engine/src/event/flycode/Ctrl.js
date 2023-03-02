@@ -111,11 +111,8 @@ class Ctrl {
   }
 
 }
-class ArrayCtrl extends Ctrl {
 
-  setCheck (value, index) {
-    this.instance.setCheck(value, index)
-  }
+class ArrayCtrl extends Ctrl {
 
   get focusedValue () {
     return this.instance.getValue({
@@ -170,12 +167,90 @@ class ArrayCtrl extends Ctrl {
   }
 
   append (data, type = 'tail') {
-    return this.instance.append(data, type)
+    if (Array.isArray(data)) {
+      this.instance.append(data, type)
+    } else if (Object.prototype.toString.call(data) === '[object Object]') {
+      this.instance.append([data], type)
+    } else {
+      console.error('传入 data 类型错误。')
+    }
   }
 
   update (data = [], index = []) {
-    return this.instance.update(data, index)
+    if (Array.isArray(data) && Array.isArray(index)) {
+      this.instance.update(data, index)
+    } else if (Object.prototype.toString.call(data) === '[object Object]' && typeof index === 'number') {
+      this.instance.update([data], [index])
+    } else {
+      console.error('传入 data index 类型错误。')
+    }
   }
+
+  // 行控件
+  get row () {
+    const index = this.index
+    return this.getRow(index)
+  }
+
+  get focusedRow () {
+    const focusedIndex = this.focusedIndex
+    return focusedIndex === null ? null : this.getRow(focusedIndex)
+  }
+
+  get checkedRow () {
+    const checkedIndex = this.checkedIndex
+    return this.getRow(checkedIndex)
+  }
+
+  getRow (index) {
+    if (Array.isArray(index)) {
+      const maps = this.instance.getRowsCtrlMap(index)
+      // console.log(maps)
+      return maps.map((item, i) => {
+        return new Row(item, index[i])
+      })
+    } else if (typeof index === 'number') {
+      const map = this.instance.getRowsCtrlMap([index])[0]
+      return map ? new Row(map, index) : null
+    } else {
+      console.error('传入 index 类型错误。')
+      return null
+    }
+  }
+
+  setCheck (value, index) {
+    this.instance.setCheck(value, index)
+  }
+}
+
+
+class Row {
+  rowsCtrlMap
+  index
+
+  constructor (rowsCtrlMap, index) {
+    this.rowsCtrlMap = rowsCtrlMap
+    this.index = index
+  }
+
+  get index () {
+    return this.index
+  }
+
+  getCtrl (name) {
+    const tipPrefix = '[Page.getCtrl()]'
+    if (!name) {
+      console.error(`${tipPrefix} 请传入控件 name 值。`)
+      return
+    }
+    const instance = this.rowsCtrlMap[name]
+    if (!instance) {
+      console.error(`${tipPrefix} 找不到 name 为【${name}】的控件实例，请检查。`)
+      return
+    }
+    return new Ctrl(instance)
+  }
+
 }
 
 export {
