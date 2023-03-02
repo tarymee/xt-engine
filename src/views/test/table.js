@@ -2,30 +2,24 @@
 export default {
   "pageinfo": {
     "code": "table",
-    "title": "table",
-    "pagedescr": "table"
+    "title": "table"
   },
   "view": {
     "body": {
       "type": "layout",
       "flexdirection": "vertical",
       "flex": "1",
-      "hidden": "",
       "content": [
         {
           "type": "layout",
           "flexdirection": "horizontal",
-          "justifyContent": "",
           "flex": "",
-          "width": "",
-          "hidden": "",
           "style": {
             "backgroundColor": "#eee"
           },
           "content": [
             {
               "type": "button",
-              "title": "取值",
               "value": "取值",
               "displaytype": "primary",
               "eventlist": [
@@ -40,7 +34,6 @@ export default {
             },
             {
               "type": "button",
-              "title": "赋值",
               "value": "赋值",
               "displaytype": "primary",
               "eventlist": [
@@ -89,11 +82,11 @@ export default {
               "width": "80",
               "options": [
                 {
-                  "key": 1,
+                  "key": "1",
                   "text": "启用"
                 },
                 {
-                  "key": 2,
+                  "key": "0",
                   "text": "停用"
                 }
               ],
@@ -105,8 +98,6 @@ export default {
               "name": "unit",
               "placeholder": "选择单位",
               "required": "1",
-              "readonly": "",
-              "value": "",
               "width": "120",
               "hiddenclearbtn": "1",
               "options": [
@@ -124,10 +115,7 @@ export default {
           ],
           "operations": [
             {
-              "text": "新增",
-              "icon": "",
-              "disabled": "",
-              "functioncode": "",
+              "text": "新增(append)",
               "eventlist": [
                 {
                   "trigger": "onclicked",
@@ -136,40 +124,49 @@ export default {
               ]
             },
             {
-              "text": "getRows",
-              "icon": "",
-              "disabled": "",
-              "functioncode": "",
+              "text": "更新第一行数据(update)",
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-getRows"
+                  "handler": "handle-update"
                 }
               ]
             },
             {
-              "text": "单选多选可用",
-              "icon": "",
+              "text": "勾选第一行(setCheck)",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-setCheck"
+                }
+              ]
+            },
+            {
+              "text": "获取第一行控件(getRow)",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-getRow"
+                }
+              ]
+            },
+            {
+              "text": "删除(deleteInScope)",
               "readonly": "tableCheckedNumberIsEqualToZero",
-              "hidden": "",
-              "functioncode": "",
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": ""
+                  "handler": "handle-del"
                 }
               ]
             },
             {
-              "text": "单选可用",
-              "icon": "",
+              "text": "打印勾选行数据(checkedIndex)",
               "readonly": "tableCheckedNumberIsNotEqualToOne",
-              "hidden": "",
-              "functioncode": "",
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": ""
+                  "handler": "handle-print"
                 }
               ]
             }
@@ -177,9 +174,6 @@ export default {
           "rowoperations": [
             {
               "text": "编辑",
-              "icon": "",
-              "disabled": "",
-              "functioncode": "",
               "eventlist": [
                 {
                   "trigger": "onclicked",
@@ -259,7 +253,20 @@ export default {
             "desc": "flycode",
             "condition": "",
             "script": `
-              page.getCtrl('表格').value = []
+              page.getCtrl('表格').value = [
+                {
+                  productname: '可口可乐',
+                  productcode: '001',
+                  status: '1',
+                  unit: 'box'
+                },
+                {
+                  productname: '百事可乐',
+                  productcode: '002',
+                  status: '1',
+                  unit: 'bottle'
+                }
+              ]
             `
           }
         ]
@@ -280,13 +287,18 @@ export default {
             "desc": "flycode",
             "condition": "",
             "script": `
-              page.getCtrl('表格').append([{}])
+              page.getCtrl('表格').append({
+                productname: '果粒橙',
+                productcode: '003',
+                status: '1',
+                unit: 'bottle'
+              })
             `
           }
         ]
       },
       {
-        "code": "handle-getRows",
+        "code": "handle-update",
         "desc": "",
         "name": "",
         "successhint": "",
@@ -301,10 +313,102 @@ export default {
             "desc": "flycode",
             "condition": "",
             "script": `
-              const ctrl = page.getCtrl('表格')
-              console.log(ctrl.row)
-              ctrl.row[0].getCtrl('productname').value = 'xxxx'
-              ctrl.row[0].getCtrl('unit').options = [
+              page.getCtrl('表格').update({
+                productname: '娃哈哈',
+                productcode: '004',
+                status: '0',
+                unit: 'box'
+              }, 0)
+            `
+          }
+        ]
+      },
+      {
+        "code": "handle-setCheck",
+        "desc": "",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626777",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": `
+              page.getCtrl('表格').setCheck(true, 0)
+            `
+          }
+        ]
+      },
+      {
+        "code": "handle-del",
+        "desc": "",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626777",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": `
+              page.getCtrl('表格').deleteInScope('checked')
+            `
+          }
+        ]
+      },
+      {
+        "code": "handle-print",
+        "desc": "",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626777",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": `
+              const checkedValue = page.getCtrl('表格').checkedValue
+              console.log(checkedValue)
+            `
+          }
+        ]
+      },
+      {
+        "code": "handle-getRow",
+        "desc": "",
+        "name": "",
+        "successhint": "",
+        "notice": "",
+        "key": "",
+        "condition": "",
+        "remark": "",
+        "actions": [
+          {
+            "code": "1402930156032626777",
+            "type": "flycode",
+            "desc": "flycode",
+            "condition": "",
+            "script": `
+              const firstRow = page.getCtrl('表格').row[0]
+              // const firstRow = page.getCtrl('表格').getRow(0)
+              console.log(firstRow)
+              firstRow.getCtrl('productname').value = 'xxxx'
+              firstRow.getCtrl('unit').value = ''
+              firstRow.getCtrl('unit').options = [
                 {
                   key: 'xx',
                   text: 'xx'
@@ -340,6 +444,5 @@ export default {
         ]
       }
     ]
-  },
-  "businessmodel": []
+  }
 }

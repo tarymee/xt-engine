@@ -77,7 +77,7 @@ export default class EventManager {
 
   // 重置事件管理器 回到初始状态
   reset () {
-    console.log(`[eventManager] 【${this.pagecode}】 reset`)
+    // console.log(`[eventManager] 【${this.pagecode}】 reset`)
     this.isInit = false
     this.isRunInitialEvent = false
     this.waitEventQueue = []
@@ -165,7 +165,7 @@ export default class EventManager {
     // debugger
     // console.log('runInitialEvent')
     const done = () => {
-      console.log(`[eventManager] 【${this.pagecode}】 init done`)
+      // console.log(`[eventManager] 【${this.pagecode}】 init done`)
       this.isRunInitialEvent = true
       while (this.waitEventQueue.length > 0) {
         const waitEvent = this.waitEventQueue.shift()
@@ -214,7 +214,7 @@ export default class EventManager {
   init () {
     if (!this.isInit) {
       this.isInit = true
-      console.log(`[eventManager] 【${this.pagecode}】 init`)
+      // console.log(`[eventManager] 【${this.pagecode}】 init`)
       this.runInitialEvent()
       this.runInterfaceEvent()
     }

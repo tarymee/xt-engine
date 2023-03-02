@@ -183,7 +183,7 @@ export default {
           // console.log(triggerType)
           // console.log(this)
           // debugger
-          console.log(`${this.type}【${this.title || this.name || this.code}】执行 ${triggerType}`)
+          // console.log(`${this.type}【${this.title || this.name || this.code}】执行 ${triggerType}`)
           if (!this.notInEngine) {
             this.engine.eventManager.runEvent(event.handler, {
               eventTarget: this,
