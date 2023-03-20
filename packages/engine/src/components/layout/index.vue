@@ -22,7 +22,10 @@ export default {
       },
       [
         content.map((item, i) => {
-          return renderComponent(h, item)
+          return renderComponent(h, item, {
+            ...this.viewRule,
+            parent: this.parentViewRule
+          })
         })
       ]
     )

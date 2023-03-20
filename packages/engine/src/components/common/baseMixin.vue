@@ -1,6 +1,7 @@
 <script>
 import { get, cloneDeep } from 'lodash-es'
 import { fixLength } from '../../utils'
+import { v4 as uuidv4 } from 'uuid'
 
 export default {
   inject: {
@@ -11,6 +12,12 @@ export default {
   },
   props: {
     viewRule: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    },
+    parentViewRule: {
       type: Object,
       default: function () {
         return {}
@@ -27,11 +34,11 @@ export default {
       eventlist: [],
       readonly: false,
       hidden: false,
-      $$intable: false,
-      $$infilter: false,
-      $$inpopview: false,
-      $$intabboard: false,
-      $$notMap: false
+      intable: this.dealInnerProps('intable', this.parentViewRule),
+      infilter: this.dealInnerProps('infilter', this.parentViewRule),
+      inpopview: this.dealInnerProps('inpopview', this.parentViewRule),
+      intabboard: this.dealInnerProps('intabboard', this.parentViewRule),
+      notCreateVMInEngineMp: false
     }
   },
   computed: {
@@ -45,20 +52,19 @@ export default {
   },
   created () {
     this.dealViewRuleProp('type', 'string')
+
     this.dealViewRuleProp('code', 'string')
+    this.code = this.code || `${this.type}-${uuidv4()}`
+
     this.dealViewRuleProp('title', 'string')
     this.dealViewRuleProp('name', 'string')
     this.dealViewRuleProp('value', 'string')
 
     this.dealViewRuleProp('readonly', 'boolean')
     this.dealViewRuleProp('hidden', 'boolean')
-    this.dealViewRuleProp('$$intable', 'boolean')
-    this.dealViewRuleProp('$$infilter', 'boolean')
-    this.dealViewRuleProp('$$inpopview', 'boolean')
-    this.dealViewRuleProp('$$intabboard', 'boolean')
-    this.dealViewRuleProp('$$notMap', 'boolean')
-
     this.dealViewRuleProp('eventlist', 'array', [])
+
+    this.dealViewRuleProp('notCreateVMInEngineMp', 'boolean')
 
     // 暂时兼容 table operations 按钮的 readonly 关键字
     if (this.viewRule.readonly === 'tableCheckedNumberIsEqualToZero' || this.viewRule.readonly === 'tableCheckedNumberIsNotEqualToOne') {
@@ -69,7 +75,7 @@ export default {
     // }
 
     if (!this.notInEngine) {
-      if (!this.$$notMap) {
+      if (!this.notCreateVMInEngineMp) {
         if (this.engine.ctrlCodeMap.get(this.code)) {
           console.error(`code为${this.code}的控件重复, 请修改。`)
         }
@@ -89,13 +95,51 @@ export default {
   },
   destroyed () {
     if (!this.notInEngine) {
-      if (!this.$$notMap) {
+      if (!this.notCreateVMInEngineMp) {
         this.engine.ctrlCodeMap.delete(this.code)
         this.name && (this.engine.ctrlNameCodeMap.delete(this.name))
       }
     }
   },
   methods: {
+    dealInnerProps (innerProp, parentViewRule) {
+      if (!parentViewRule) return false
+
+      const parentType = get(parentViewRule, 'type')
+      if (innerProp === 'intable') {
+        if (parentType === 'table') {
+          return true
+        } else if (parentType !== 'table' && parentViewRule.parent) {
+          return this.dealInnerProps(innerProp, parentViewRule.parent)
+        } else {
+          return false
+        }
+      } else if (innerProp === 'infilter') {
+        if (parentType === 'filter') {
+          return true
+        } else if (parentType !== 'filter' && parentViewRule.parent) {
+          return this.dealInnerProps(innerProp, parentViewRule.parent)
+        } else {
+          return false
+        }
+      } else if (innerProp === '$$popview') {
+        if (parentType === 'popview') {
+          return true
+        } else if (parentType !== 'popview' && parentViewRule.parent) {
+          return this.dealInnerProps(innerProp, parentViewRule.parent)
+        } else {
+          return false
+        }
+      } else if (innerProp === '$$tabboard') {
+        if (parentType === 'tabboard') {
+          return true
+        } else if (parentType !== 'tabboard' && parentViewRule.parent) {
+          return this.dealInnerProps(innerProp, parentViewRule.parent)
+        } else {
+          return false
+        }
+      }
+    },
     // 处理控件属性值
     // 如果带有 fly 前缀 则使用 flycode 执行结果
     // 依据各属性值所属变量类型处理
@@ -169,7 +213,7 @@ export default {
       }
       // const styleObj = this.viewRule.style
       // 表格里的控件不需要宽度 继承表格头部的宽度
-      if (this.$$intable) {
+      if (this.intable) {
         delete styleObj.width
       }
       if (this.hidden) {

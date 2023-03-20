@@ -6,8 +6,12 @@
 
 <script>
 import { components } from '@smart100/web-engine'
-// import protocol from './radio.js'
-import protocol from './table.js'
+
+import radio from './radio.js'
+import table from './table.js'
+import smartcenter from './smartcenter.js'
+import attachment from './attachment.js'
+import tabboard from './tabboard.js'
 
 export default {
   components: {
@@ -15,7 +19,22 @@ export default {
   },
   data: function () {
     return {
-      protocol: protocol
+      protocol: null
+    }
+  },
+  created () {
+    const protocol = this.$route.query.protocol
+    // console.log(protocol)
+    if (protocol === 'table') {
+      this.protocol = table
+    } else if (protocol === 'radio') {
+      this.protocol = radio
+    } else if (protocol === 'smartcenter') {
+      this.protocol = smartcenter
+    } else if (protocol === 'attachment') {
+      this.protocol = attachment
+    } else if (protocol === 'tabboard') {
+      this.protocol = tabboard
     }
   }
 }

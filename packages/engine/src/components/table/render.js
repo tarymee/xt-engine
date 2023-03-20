@@ -47,7 +47,10 @@ const renderColumns = function (h, viewRule, context) {
           // 如果为默认值 则继承 table 的值
           readonly: (item.readonly !== '' && typeof item.readonly !== 'undefined') ? item.readonly : context.readonly
         })
-        return renderComponent(h, viewRule)
+        return renderComponent(h, viewRule, {
+          ...context.viewRule,
+          parent: context.parentViewRule
+        })
       }
     }
     // dataObj.ref = `xt-table-item-${item.name}`
@@ -79,7 +82,10 @@ const renderColumns = function (h, viewRule, context) {
             }
           },
           viewRule.rowoperations.map((item, i) => {
-            return renderComponent(h, item)
+            return renderComponent(h, item, {
+              ...context.viewRule,
+              parent: context.parentViewRule
+            })
           })
         )
       }
@@ -156,6 +162,9 @@ const render = function (h, viewRule, context) {
         // todo: 换成普通el控件？
         viewRule.operations.map((item, i) => {
           return renderComponent(h, item, {
+            ...context.viewRule,
+            parent: context.parentViewRule
+          }, {
             ref: `xt-table-operations-${i}`
           })
         })

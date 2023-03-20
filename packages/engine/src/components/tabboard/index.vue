@@ -107,10 +107,13 @@ export default {
                   key: item.title
                 },
                 [
-                  // item.content.map((item2) => {
-                  //   return renderComponent(h, item2)
-                  // })
-                  renderComponent(h, item)
+                  renderComponent(h, item, {
+                    ...cards,
+                    parent: {
+                      ...this.viewRule,
+                      parent: this.parentViewRule
+                    }
+                  })
                 ]
               )
             })

@@ -28,7 +28,7 @@ export default {
     handleClick () {
       // console.log(this.engine)
       // 如果是在table中 则需要等 row-click 执行完毕之后再执行
-      if (this.$$intable) {
+      if (this.intable) {
         setTimeout(() => {
           this.executeEvent('onclicked')
         }, 0)

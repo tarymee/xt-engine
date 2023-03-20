@@ -10,14 +10,14 @@ export default class EventManager {
     this.engine = option.engine
     this.ctrlNameCodeMap = option.engine.ctrlNameCodeMap
     this.ctrlCodeMap = option.engine.ctrlCodeMap
-    this.protocol = option.engine.protocol
+    this.protocolFormat = option.engine.protocolFormat
     this.pagecode = option.engine.pagecode
     this.register()
   }
 
   pagecode = null
   engine = null
-  protocol = null
+  protocolFormat = null
 
   // 控件映射表
   ctrlNameCodeMap = null
@@ -35,7 +35,7 @@ export default class EventManager {
 
   // 注册事件 接口 等
   register () {
-    const presenter = get(this.protocol, 'presenter', {
+    const presenter = get(this.protocolFormat, 'presenter', {
       initial: [],
       interface: [],
       handlers: []

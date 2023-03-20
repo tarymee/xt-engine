@@ -1,9 +1,12 @@
 import components from '../index'
+import { get, cloneDeep } from 'lodash-es'
 
-const renderComponent = function (h, viewRule, other = {}) {
+const renderComponent = function (h, viewRule, parentViewRule, other = {}) {
+  // viewRule = cloneDeep(viewRule)
   return h((components[viewRule.type] || components.default), {
     props: {
-      viewRule: viewRule
+      parentViewRule,
+      viewRule
     },
     ...other
   })

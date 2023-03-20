@@ -14,23 +14,20 @@ export default {
   },
   methods: {},
   render: function (h) {
-    const context = this
-    let basic = []
-    if (context.viewRule.searchcondition && context.viewRule.searchcondition.basic) {
-      basic = context.viewRule.searchcondition.basic
-    }
+    let searchcondition = get(this.viewRule, 'searchcondition')
+    let basic = get(searchcondition, 'basic', [])
     return h(
       'div',
       {
         attrs: {
           class: 'xt-filter'
         },
-        style: context.viewStyle,
+        style: this.viewStyle,
       },
-      [
+      searchcondition ? [
         basic.map((item, i) => {
           // 代理事件
-          let filterEventlist = context.viewRule.eventlist || []
+          let filterEventlist = this.viewRule.eventlist || []
           if (filterEventlist.length) {
             const filterHasOnvaluechange = filterEventlist.some((item) => {
                 return item.trigger === 'onvaluechange' && item.handler
@@ -45,9 +42,17 @@ export default {
               }
             }
           }
-          return renderComponent(h, item)
+          return renderComponent(h, item, {
+            ...searchcondition,
+            parent: {
+              ...this.viewRule,
+              parent: {
+                ...this.parentViewRule
+              }
+            }
+          })
         })
-      ]
+      ] : null
     )
   }
 }

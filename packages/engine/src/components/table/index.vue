@@ -52,7 +52,7 @@ export default {
         const cellsEle = rowEle.querySelectorAll('.cell')
         cellsEle.forEach((cellEle) => {
           const ctrl = cellEle.firstElementChild.__vue__
-          if (ctrl && ctrl.name && ctrl.$$intable) {
+          if (ctrl && ctrl.name && ctrl.intable) {
             rowsInstance[ctrl.name] = ctrl
           }
         })
@@ -172,7 +172,7 @@ export default {
       // console.log()
       // console.log(this)
       // debugger
-      if (this.$$intabboard) {
+      if (this.intabboard) {
         const intervalFn = setInterval(() => {
           const table = this.$el
           const tableCon = this.$el.getElementsByClassName('xt-table-con')[0]

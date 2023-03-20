@@ -1,263 +1,9 @@
 <script>
 import { get } from 'lodash-es'
+import { dealProtocol } from './dealProtocol'
 import EventManager from '../../event'
 import renderComponent from '../common/renderComponent'
-import { v4 as uuidv4 } from 'uuid'
-
-function dealPropMap (ctrlViewRule, oldProp, newProp, valueMap) {
-  // if (oldProp === 'hidden') {
-  //   // debugger
-  // }
-  if (ctrlViewRule[oldProp] && ctrlViewRule[newProp] !== ctrlViewRule[oldProp] && oldProp !== newProp) {
-    ctrlViewRule[newProp] = ctrlViewRule[oldProp]
-    delete ctrlViewRule[oldProp]
-  }
-  if (valueMap && typeof ctrlViewRule[newProp] !== 'undefined') {
-    if (ctrlViewRule[newProp] === '') {
-      ctrlViewRule[newProp] = valueMap['defaultValue']
-    } else if (typeof valueMap[ctrlViewRule[newProp]] !== 'undefined') {
-      ctrlViewRule[newProp] = valueMap[ctrlViewRule[newProp]]
-    }
-  }
-}
-
-// todo 兼容旧协议 方便使用ide配置 后期可删
-const dealOldView = (ctrlViewRule) => {
-  // // todo 如果没定义type 一般是按钮 先简单粗暴处理
-  // if (!ctrlViewRule.type) {
-  //   ctrlViewRule.type = 'button'
-  // }
-
-  delete ctrlViewRule.functioncode
-  delete ctrlViewRule.titleflex
-  delete ctrlViewRule.shape
-  delete ctrlViewRule.bordercolor
-  delete ctrlViewRule.bordersides
-
-  delete ctrlViewRule.marktype
-  delete ctrlViewRule.status
-  delete ctrlViewRule._ide_propertytypecode
-  delete ctrlViewRule._ide_componenttype
-  delete ctrlViewRule._ide_name
-  delete ctrlViewRule._type_ctrlarea
-  delete ctrlViewRule._ide_spancol
-
-  if (ctrlViewRule.type === 'table') {
-    delete ctrlViewRule.hasheaderbar
-    delete ctrlViewRule.datastructure
-    delete ctrlViewRule.dynamiccols
-    delete ctrlViewRule.guidecols
-    delete ctrlViewRule.groupcols
-    delete ctrlViewRule.defpagesize
-    delete ctrlViewRule.guidecols
-    delete ctrlViewRule.guidecols
-  }
-
-  if (ctrlViewRule.type === 'button') {
-    dealPropMap(ctrlViewRule, 'text', 'value')
-  }
-
-
-  dealPropMap(ctrlViewRule, 'type', 'type', {
-    dropdownbox: 'select',
-    infotable: 'table',
-    filtertextinput: 'textinput',
-    picktree: 'tree',
-    datatree: 'tree',
-  })
-
-  dealPropMap(ctrlViewRule, 'flexdirection', 'flexDirection', {
-    horizontal: 'row',
-    vertical: 'column',
-  })
-
-  dealPropMap(ctrlViewRule, 'flexwrap', 'flexWrap')
-  dealPropMap(ctrlViewRule, 'justifycontent', 'justifyContent')
-
-  dealPropMap(ctrlViewRule, 'margintop', 'marginTop')
-  dealPropMap(ctrlViewRule, 'marginbottom', 'marginBottom')
-  dealPropMap(ctrlViewRule, 'marginleft', 'marginLeft')
-  dealPropMap(ctrlViewRule, 'marginright', 'marginRight')
-  dealPropMap(ctrlViewRule, 'paddingtop', 'paddingTop')
-  dealPropMap(ctrlViewRule, 'paddingbottom', 'paddingBottom')
-  dealPropMap(ctrlViewRule, 'paddingleft', 'paddingLeft')
-  dealPropMap(ctrlViewRule, 'paddingright', 'paddingRight')
-}
-
-
-// 递归处理协议 为没有 code 的控件添加 uuid
-// 为 table 和 filter 里的控件添加识别属性
-// todo: 优化
-const dealView = (ctrlViewRule, addProps = {}, extendProps = {}) => {
-  // todo 兼容旧协议 方便使用ide配置 后期可删
-  dealOldView(ctrlViewRule)
-
-  // 为没有 code 的控件添加 uuid
-  if (!ctrlViewRule.code) {
-    ctrlViewRule.code = `${ctrlViewRule.type}-${uuidv4()}`
-  }
-
-  if (!ctrlViewRule.style) {
-    ctrlViewRule.style = {}
-  }
-
-  for (const x in addProps) {
-    if (typeof ctrlViewRule[x] === 'undefined') {
-      ctrlViewRule[x] = addProps[x]
-    }
-  }
-  if (addProps.style) {
-    ctrlViewRule.style = {
-      ...ctrlViewRule.style,
-      ...addProps.style
-    }
-  }
-
-  for (const x in extendProps) {
-    if (typeof ctrlViewRule[x] === 'undefined') {
-      ctrlViewRule[x] = extendProps[x]
-    }
-  }
-  if (extendProps.style) {
-    ctrlViewRule.style = {
-      ...ctrlViewRule.style,
-      ...extendProps.style
-    }
-  }
-
-
-  // 处理 popview
-  if (ctrlViewRule.type === 'popview') {
-    ctrlViewRule.hidden = '1'
-    // ctrlViewRule.flexDirection = ctrlViewRule.flexDirection || 'column'
-    ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
-  }
-
-  if (ctrlViewRule.type === 'layout') {
-    // ctrlViewRule.flexDirection = ctrlViewRule.flexDirection || 'column'
-    ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
-  }
-
-  if (ctrlViewRule.type === 'filter') {
-    // ctrlViewRule.flexDirection = 'row'
-    // ctrlViewRule.flexWrap = 'wrap'
-    // ctrlViewRule.paddingTop = '8'
-    ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'row'
-    ctrlViewRule.style.flexWrap = ctrlViewRule.style.flexWrap || ctrlViewRule.flexWrap || 'wrap'
-    ctrlViewRule.style.paddingTop = ctrlViewRule.style.paddingTop || ctrlViewRule.paddingTop || '8px'
-  }
-
-  if (ctrlViewRule.type === 'table') {
-    // ctrlViewRule.flexDirection = 'column'
-    ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
-  }
-
-
-  if (ctrlViewRule.type === 'popview') {
-    // popview 递归处理
-    let content = get(ctrlViewRule, 'content', [])
-    content.forEach((item) => {
-      dealView(item, {}, {
-        ...extendProps,
-        $$inpopview: '1'
-      })
-    })
-
-    let operations = get(ctrlViewRule, 'operations', [])
-    operations.forEach((item) => {
-      item.type = 'button'
-      dealView(item, {
-        style: {
-          marginLeft: '8px'
-        }
-      }, {
-        ...extendProps,
-        $$notMap: '1',
-        $$inpopview: '1'
-      })
-    })
-  } else if (ctrlViewRule.type === 'tabboard') {
-    // tabboard 递归处理
-    let cards = get(ctrlViewRule, 'cards', [])
-    cards.forEach((item) => {
-      item.type = 'layout'
-      dealView(item, {}, {
-        ...extendProps,
-        $$intabboard: '1'
-      })
-    })
-  } else if (ctrlViewRule.type === 'filter') {
-    // 基础搜索
-    let basic = get(ctrlViewRule, 'searchcondition.basic', [])
-    basic.forEach((item) => {
-      dealView(item, {
-        style: {
-          paddingRight: '0',
-          width: '200px'
-        }
-      }, {
-        ...extendProps,
-        $$infilter: '1'
-      })
-    })
-  } else if (ctrlViewRule.type === 'table') {
-    let columns = get(ctrlViewRule, 'columns', [])
-    columns.forEach((item) => {
-      dealView(item, {}, {
-        ...extendProps,
-        $$notMap: '1',
-        $$intable: '1'
-      })
-    })
-    let operations = get(ctrlViewRule, 'operations', [])
-    operations.forEach((item) => {
-      item.type = 'button'
-      dealView(item, {
-        style: {
-          marginLeft: '8px',
-          marginBottom: '8px'
-        }
-      }, {
-        ...extendProps,
-        $$notMap: '1',
-        $$intable: '1'
-      })
-    })
-    let rowoperations = get(ctrlViewRule, 'rowoperations', [])
-    rowoperations.forEach((item) => {
-      item.type = 'button'
-      item.displaytype = 'text'
-      dealView(item, {
-        style: {
-          marginRight: '8px'
-        }
-      }, {
-        ...extendProps,
-        $$notMap: '1',
-        $$intable: '1'
-      })
-    })
-  } else {
-    // 普通 layout 递归处理
-    let content = get(ctrlViewRule, 'content', [])
-    content.forEach((item) => {
-      dealView(item, {}, extendProps)
-    })
-  }
-}
-
-
-const dealHandler = (handler) => {
-  delete handler.key
-  delete handler.successhint
-  delete handler.notice
-  delete handler.remark
-  dealPropMap(handler, 'desc', 'title')
-  Array.isArray(handler.actions) && handler.actions.forEach((item) => {
-    delete handler.remark
-    dealPropMap(item, 'desc', 'title')
-  })
-}
+// import { v4 as uuidv4 } from 'uuid'
 
 export default {
   name: 'xt-page',
@@ -276,6 +22,7 @@ export default {
   },
   data: function () {
     return {
+      protocolFormat: dealProtocol(this.protocol),
       loading: false,
       loadingCount: 0,
       pagecode: '',
@@ -286,32 +33,10 @@ export default {
     }
   },
   created: function () {
-    this.pagecode = get(this.protocol, 'pageinfo.code', '')
-    this.title = get(this.protocol, 'pageinfo.title', '')
-
-    // 统一处理协议
-    dealView(this.protocol.view.body)
-    if (this.protocol.view.subviews) {
-      this.protocol.view.subviews.forEach((item) => {
-        dealView(item)
-      })
-    }
-
-    Array.isArray(this.protocol.presenter.initial) && this.protocol.presenter.initial.forEach((item) => {
-      dealHandler(item)
-    })
-
-    Array.isArray(this.protocol.presenter.interface) && this.protocol.presenter.interface.forEach((item) => {
-      dealHandler(item)
-    })
-
-    Array.isArray(this.protocol.presenter.handlers) && this.protocol.presenter.handlers.forEach((item) => {
-      dealHandler(item)
-    })
-
     console.log(this.protocol)
-
-
+    console.log(this.protocolFormat)
+    this.pagecode = get(this.protocolFormat, 'pageinfo.code', '')
+    this.title = get(this.protocolFormat, 'pageinfo.title', '')
     this.eventManager = new EventManager({
       engine: this
     })
@@ -336,8 +61,8 @@ export default {
     }
   },
   render: function (h) {
-    const body = get(this.protocol, 'view.body')
-    const subviews = get(this.protocol, 'view.subviews', [])
+    const body = get(this.protocolFormat, 'view.body')
+    const subviews = get(this.protocolFormat, 'view.subviews', [])
     return h(
       'div',
       {
@@ -358,9 +83,9 @@ export default {
         ]
       },
       [
-        renderComponent(h, body),
+        renderComponent(h, body, null),
         subviews.map((item) => {
-          return renderComponent(h, item)
+          return renderComponent(h, item, null)
         })
       ]
     )

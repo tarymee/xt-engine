@@ -20,12 +20,14 @@ export default {
   tags: require('./tags').default,
   date: require('./date').default,
   select: require('./select').default,
+  dropdownbox: require('./select').default,
   tree: require('./tree').default,
   attachment: require('./attachment').default,
   radio: require('./radio').default,
   checkbox: require('./checkbox').default,
   cascade: require('./cascade').default,
   tabboard: require('./tabboard').default,
+  list: require('./list').default,
   baseMixin: require('./common/baseMixin').default,
   baseInputMixin: require('./common/baseInputMixin').default
 }

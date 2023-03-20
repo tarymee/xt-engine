@@ -335,7 +335,7 @@ console.log(pageable)
 ```typescript
 interface PageInfo {
   __itemcount: number | string;
-  __pageindex: number | string;
+  __pageindex: number | string; // 第一页为 1 而不是 0
   __pagesize: number | string;
 }
 

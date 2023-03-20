@@ -39,7 +39,7 @@ export default {
       // debugger
       let res = true
       for (var [key, item] of this.engine.ctrlCodeMap) {
-        if (item.$$inpopview) {
+        if (item.inpopview) {
           // todo 可以去掉 item.isInputCtrl || item.type === 'table' 判断
           if (item.isInputCtrl || item.type === 'table') {
             res = item.validata()
@@ -54,9 +54,7 @@ export default {
   },
   render: function (h) {
     const content = get(this.viewRule, 'content', [])
-    const operations = get(this.viewRule, 'operations', [])
-    // const operationsReverse = cloneDeep(operations).reverse()
-    const operationsClone = cloneDeep(operations)
+    const operations = cloneDeep(get(this.viewRule, 'operations', []))
     return h(
       'el-dialog',
       {
@@ -91,7 +89,10 @@ export default {
           },
           [
             content.map((item, i) => {
-              return renderComponent(h, item)
+              return renderComponent(h, item, {
+                ...this.viewRule,
+                parent: this.parentViewRule
+              })
             })
           ]
         ),
@@ -103,22 +104,11 @@ export default {
               class: 'xt-popview-footer'
             },
           },
-          // operationsClone.map((item, i) => {
-          //   return h('el-button', {
-          //     props: {
-          //       type: i === (operationsClone.length - 1) ? 'primary' : ''
-          //     },
-          //     on: {
-          //       'click': () => {
-          //         console.log(this)
-          //         this.executeEvent('onclicked')
-          //       }
-          //     },
-          //   }, item.value)
-          // })
-          operationsClone.map((item, i) => {
-            item.displaytype = (i === 0 ? 'primary' : '')
-            return renderComponent(h, item)
+          operations.map((item, i) => {
+            return renderComponent(h, item, {
+              ...this.viewRule,
+              parent: this.parentViewRule
+            })
           })
         ) : null,
         // h(

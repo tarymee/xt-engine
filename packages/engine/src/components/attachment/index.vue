@@ -1,11 +1,11 @@
 <template>
   <div
     class="xt-input xt-attachment"
-    :class="{ 'xt-input-intable': $$intable }"
+    :class="{ 'xt-input-intable': intable }"
     :style="[viewStyle]"
   >
     <div
-      v-if="!$$infilter && !$$intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'"
+      v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'"
       class="xt-input-label"
       :style="{ width: titlewidth }"
     >
@@ -52,7 +52,7 @@
         @change="handleChange"
       >
         <template
-          v-if="$$infilter"
+          v-if="infilter"
           #suffix
         >
           <i
