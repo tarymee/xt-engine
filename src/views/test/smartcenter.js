@@ -143,7 +143,7 @@ export default {
                 "eventlist": []
               },
               {
-                "type": "dropdownbox",
+                "type": "select",
                 "title": "单位",
                 "name": "unit",
                 "placeholder": "选择单位",

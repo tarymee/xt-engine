@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     handleClick () {
-      // console.log(this.parentViewRule)
+      // console.log(this)
       // console.log(this.engine)
       // 如果是在table中 则需要等 row-click 执行完毕之后再执行
       if (this.intable) {

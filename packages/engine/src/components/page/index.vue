@@ -21,22 +21,23 @@ export default {
     }
   },
   data: function () {
+    const protocolData = dealProtocol(this.protocol)
     return {
-      protocolFormat: dealProtocol(this.protocol),
-      loading: false,
-      loadingCount: 0,
-      pagecode: '',
-      title: '',
+      protocolFormat: protocolData.protocolFormat,
+      pagecode: protocolData.pagecode,
+      title: protocolData.title,
+      viewRuleMap: protocolData.viewRuleMap,
       ctrlCodeMap: new Map(),
       ctrlNameCodeMap: new Map(),
       eventManager: null,
+      loading: false,
+      loadingCount: 0
     }
   },
   created: function () {
     console.log(this.protocol)
     console.log(this.protocolFormat)
-    this.pagecode = get(this.protocolFormat, 'pageinfo.code', '')
-    this.title = get(this.protocolFormat, 'pageinfo.title', '')
+    console.log(this.viewRuleMap)
     this.eventManager = new EventManager({
       engine: this
     })
@@ -63,6 +64,8 @@ export default {
   render: function (h) {
     const body = get(this.protocolFormat, 'view.body')
     const subviews = get(this.protocolFormat, 'view.subviews', [])
+    // console.log(body.content[0])
+    // debugger
     return h(
       'div',
       {

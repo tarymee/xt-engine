@@ -28,6 +28,9 @@ const dealOldView = (ctrlViewRule) => {
   // if (!ctrlViewRule.type) {
   //   ctrlViewRule.type = 'button'
   // }
+  // if (ctrlViewRule.type === 'dropdownbox') {
+  //   debugger
+  // }
 
   dealPropMap(ctrlViewRule, 'type', 'type', {
     dropdownbox: 'select',
@@ -147,7 +150,6 @@ const viewRuleAddProps = (ctrlViewRule) => {
     let operations = get(ctrlViewRule, 'operations', [])
     operations.forEach((item) => {
       item.type = 'button'
-      item.notCreateVMInEngineMp = '1'
       item.style = {
         marginLeft: '8px',
         marginBottom: '8px'
@@ -158,11 +160,27 @@ const viewRuleAddProps = (ctrlViewRule) => {
     rowoperations.forEach((item) => {
       item.type = 'button'
       item.displaytype = 'text'
-      item.notCreateVMInEngineMp = '1'
       item.style = {
         marginRight: '8px'
       }
     })
+  } else if (ctrlViewRule.type === 'list') {
+    // ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
+
+    let content = get(ctrlViewRule, 'rows.content', [])
+    content.forEach((item) => {
+      item.notCreateVMInEngineMp = '1'
+    })
+
+    // let operations = get(ctrlViewRule, 'operations', [])
+    // operations.forEach((item) => {
+    //   item.type = 'button'
+    // })
+
+    // let rowoperations = get(ctrlViewRule, 'rowoperations', [])
+    // rowoperations.forEach((item) => {
+    //   item.type = 'button'
+    // })
   } else if (ctrlViewRule.type === 'popview') {
     ctrlViewRule.hidden = '1'
     ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
@@ -171,7 +189,6 @@ const viewRuleAddProps = (ctrlViewRule) => {
     operations.forEach((item, i) => {
       item.displaytype = (i === 0 ? 'primary' : '')
       item.type = 'button'
-      item.notCreateVMInEngineMp = '1'
       item.style = {
         marginLeft: '8px'
       }
@@ -185,6 +202,9 @@ const viewRuleAddProps = (ctrlViewRule) => {
     ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'row'
     ctrlViewRule.style.flexWrap = ctrlViewRule.style.flexWrap || ctrlViewRule.flexWrap || 'wrap'
     ctrlViewRule.style.paddingTop = ctrlViewRule.style.paddingTop || ctrlViewRule.paddingTop || '8px'
+
+    // ctrlViewRule.searchcondition.type = 'searchcondition'
+    ctrlViewRule.searchcondition.type = 'layout'
 
     let basic = get(ctrlViewRule, 'searchcondition.basic', [])
     basic.forEach((item) => {
@@ -211,6 +231,23 @@ const viewRuleAddProps = (ctrlViewRule) => {
   }
 }
 
+
+const createViewRuleMap = (ctrlViewRule, viewRuleMap) => {
+  viewRuleMap.set(ctrlViewRule.code, ctrlViewRule)
+  for (const x in ctrlViewRule) {
+    let item = ctrlViewRule[x]
+    if (isObject(item) && item.type) {
+      createViewRuleMap(item, viewRuleMap)
+    } else if (Array.isArray(item)) {
+      item.forEach((item2) => {
+        if (isObject(item2) && item2.type) {
+          createViewRuleMap(item2, viewRuleMap)
+        }
+      })
+    }
+  }
+}
+
 export const dealProtocol = (protocol) => {
   const protocolFormat = cloneDeep(protocol)
   const body = get(protocolFormat, 'view.body')
@@ -229,5 +266,19 @@ export const dealProtocol = (protocol) => {
 
   dealPresenter(protocolFormat)
 
-  return protocolFormat
+  const viewRuleMap = new Map()
+  createViewRuleMap(body, viewRuleMap)
+  subviews.forEach((item) => {
+    createViewRuleMap(item, viewRuleMap)
+  })
+
+  return {
+    pagecode: get(protocolFormat, 'pageinfo.code', ''),
+    title: get(protocolFormat, 'pageinfo.title', ''),
+    protocolFormat,
+    viewRuleMap
+  }
 }
+
+
+

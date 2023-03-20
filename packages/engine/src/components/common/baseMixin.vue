@@ -34,10 +34,10 @@ export default {
       eventlist: [],
       readonly: false,
       hidden: false,
-      intable: this.dealInnerProps('intable', this.parentViewRule),
-      infilter: this.dealInnerProps('infilter', this.parentViewRule),
-      inpopview: this.dealInnerProps('inpopview', this.parentViewRule),
-      intabboard: this.dealInnerProps('intabboard', this.parentViewRule),
+      intable: this.dealInnerProps('intable', this.viewRule.parentcode),
+      infilter: this.dealInnerProps('infilter', this.viewRule.parentcode),
+      inpopview: this.dealInnerProps('inpopview', this.viewRule.parentcode),
+      intabboard: this.dealInnerProps('intabboard', this.viewRule.parentcode),
       notCreateVMInEngineMp: false
     }
   },
@@ -52,10 +52,7 @@ export default {
   },
   created () {
     this.dealViewRuleProp('type', 'string')
-
     this.dealViewRuleProp('code', 'string')
-    this.code = this.code || `${this.type}-${uuidv4()}`
-
     this.dealViewRuleProp('title', 'string')
     this.dealViewRuleProp('name', 'string')
     this.dealViewRuleProp('value', 'string')
@@ -102,39 +99,43 @@ export default {
     }
   },
   methods: {
-    dealInnerProps (innerProp, parentViewRule) {
+    dealInnerProps (innerProp, parentcode) {
+      if (!parentcode) return false
+
+      const parentViewRule = this.engine.viewRuleMap.get(parentcode)
       if (!parentViewRule) return false
 
-      const parentType = get(parentViewRule, 'type')
+      const parentViewRuleType = parentViewRule.type
+
       if (innerProp === 'intable') {
-        if (parentType === 'table') {
+        if (parentViewRuleType === 'table') {
           return true
-        } else if (parentType !== 'table' && parentViewRule.parent) {
-          return this.dealInnerProps(innerProp, parentViewRule.parent)
+        } else if (parentViewRuleType !== 'table' && parentViewRule.parentcode) {
+          return this.dealInnerProps(innerProp, parentViewRule.parentcode)
         } else {
           return false
         }
       } else if (innerProp === 'infilter') {
-        if (parentType === 'filter') {
+        if (parentViewRuleType === 'filter') {
           return true
-        } else if (parentType !== 'filter' && parentViewRule.parent) {
-          return this.dealInnerProps(innerProp, parentViewRule.parent)
+        } else if (parentViewRuleType !== 'filter' && parentViewRule.parentcode) {
+          return this.dealInnerProps(innerProp, parentViewRule.parentcode)
         } else {
           return false
         }
-      } else if (innerProp === '$$popview') {
-        if (parentType === 'popview') {
+      } else if (innerProp === 'inpopview') {
+        if (parentViewRuleType === 'popview') {
           return true
-        } else if (parentType !== 'popview' && parentViewRule.parent) {
-          return this.dealInnerProps(innerProp, parentViewRule.parent)
+        } else if (parentViewRuleType !== 'popview' && parentViewRule.parentcode) {
+          return this.dealInnerProps(innerProp, parentViewRule.parentcode)
         } else {
           return false
         }
-      } else if (innerProp === '$$tabboard') {
-        if (parentType === 'tabboard') {
+      } else if (innerProp === 'intabboard') {
+        if (parentViewRuleType === 'tabboard') {
           return true
-        } else if (parentType !== 'tabboard' && parentViewRule.parent) {
-          return this.dealInnerProps(innerProp, parentViewRule.parent)
+        } else if (parentViewRuleType !== 'tabboard' && parentViewRule.parentcode) {
+          return this.dealInnerProps(innerProp, parentViewRule.parentcode)
         } else {
           return false
         }
