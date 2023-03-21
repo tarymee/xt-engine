@@ -98,18 +98,18 @@ export default {
           "type": "list",
           "title": "列表",
           "name": "列表",
-          "checkable": "1",
-          "pageable": "0",
+          "checkable": "0",
+          "pageable": "1",
           "pagesize": "20",
-          // "flex": "1",
+          "flex": "1",
           "style": {
-            "height": "500px",
-            "width": "500px"
+            // "height": "500px",
+            // "width": "500px"
           },
           "rows": {
             "type": "layout",
             "flexdirection": "vertical",
-            "rowswidth": "100%",
+            "rowswidth": "300px",
             "rowsstyle": "card",
             // "style": {},
             "content": [
@@ -121,9 +121,20 @@ export default {
                   // "border": "1px solid #ccc",
                   // "borderRadius": "3px",
                   // "box-shadow": "0px 0px 5px #ddd",
-                  "padding": "12px"
+                  "padding": "16px"
                 },
                 "content": [
+                  {
+                    "type": "image",
+                    "title": "图片",
+                    "name": "img",
+                    "value": "",
+                    "style": {
+                      "width": "100%",
+                      "height": "200px"
+                    },
+                    "eventlist": []
+                  },
                   {
                     "type": "text",
                     "title": "名称",
@@ -131,7 +142,9 @@ export default {
                     "value": "名称",
                     "style": {
                       "fontWeight": "bold",
-                      "fontSize": "16px"
+                      "fontSize": "16px",
+                      "margin-top": "8px",
+                      "margin-bottom": "4px"
                     },
                     "eventlist": []
                   },
@@ -141,19 +154,24 @@ export default {
                     "name": "des",
                     "value": "描述",
                     "style": {
+                      "overflow": "hidden",
+                      "text-overflow": "ellipsis",
+                      "display": "-webkit-box",
+                      "-webkit-line-clamp": 2,
+                      "-webkit-box-orient": "vertical",
                       "color": "#777",
                       "fontSize": "12px"
                     },
                     "eventlist": []
                   },
-                  {
-                    "type": "textinput",
-                    "title": "数量",
-                    "name": "number",
-                    "value": "",
-                    "style": {},
-                    "eventlist": []
-                  }
+                  // {
+                  //   "type": "textinput",
+                  //   "title": "数量",
+                  //   "name": "number",
+                  //   "value": "",
+                  //   "style": {},
+                  //   "eventlist": []
+                  // }
                 ]
               }
             ]
@@ -275,55 +293,68 @@ export default {
               page.getCtrl('列表').value = [
                 {
                   name: '',
-                  des: ''
+                  des: '',
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
                 },
                 {
                   name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: 'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
                 },
                 {
                   name: '电子协议SPU',
-                  // des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  // des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
                 },
                 {
                   name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: ''
                 },
                 {
                   name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
                 },
                 {
                   name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
                 },
                 {
                   name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
                 },
                 {
                   name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
                 },
                 {
                   name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
                 },
                 {
                   name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
                 },
                 {
                   name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
                 },
                 {
                   name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
                 },
                 {
                   name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
                 }
               ]
             `

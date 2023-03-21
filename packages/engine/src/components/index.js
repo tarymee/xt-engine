@@ -28,6 +28,7 @@ export default {
   cascade: require('./cascade').default,
   tabboard: require('./tabboard').default,
   list: require('./list').default,
+  image: require('./image').default,
   baseMixin: require('./common/baseMixin').default,
   baseInputMixin: require('./common/baseInputMixin').default
 }

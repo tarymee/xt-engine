@@ -209,7 +209,7 @@ export default {
                   },
                   style: {
                     ...rows.style,
-                    width: `calc(${rows.rowswidth || '100%'} - 20px)`
+                    width: `calc(${rows.rowswidth || '100%'} - 24px)`
                   }
                 },
                 [
@@ -226,12 +226,14 @@ export default {
                   },
                   style: {
                     ...item.__$$viewRule.style,
-                    width: `calc(${item.__$$viewRule.rowswidth || '100%'} - 20px)`
+                    width: `calc(${item.__$$viewRule.rowswidth || '100%'} - 24px)`
                   },
                   on: {
                     'click': (e) => {
                       // console.log('xt-list-item click')
-                      item.__$$checked = !item.__$$checked
+                      if (this.checkable) {
+                        item.__$$checked = !item.__$$checked
+                      }
                       item.__$$focused = true
                       setTimeout(() => {
                         item.__$$focused = false
@@ -244,7 +246,7 @@ export default {
                   (item.__$$viewRule.content || []).map((item2, i) => {
                     return renderComponent(h, item2)
                   }),
-                  h('div', {
+                  this.checkable ? h('div', {
                     attrs: {
                       class: `xt-list-item-check`
                     },
@@ -272,7 +274,7 @@ export default {
                         }
                       }
                     )
-                  ])
+                  ]) : null
                 ]
               )
             }),
@@ -283,7 +285,7 @@ export default {
               },
               style: {
                 ...rows.style,
-                width: `calc(${rows.rowswidth || '100%'} - 20px)`
+                width: `calc(${rows.rowswidth || '100%'} - 24px)`
               }
             }, [
               h('div', {
@@ -351,8 +353,8 @@ export default {
 }
 .xt-list-item {
   display: flex;
-  margin: 10px;
-  width: calc(100% - 20px);
+  margin: 12px;
+  width: calc(100% - 24px);
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
