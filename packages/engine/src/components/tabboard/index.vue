@@ -107,13 +107,7 @@ export default {
                   key: item.title
                 },
                 [
-                  renderComponent(h, item, {
-                    ...cards,
-                    parent: {
-                      ...this.viewRule,
-                      parent: this.parentViewRule
-                    }
-                  })
+                  renderComponent(h, item)
                 ]
               )
             })

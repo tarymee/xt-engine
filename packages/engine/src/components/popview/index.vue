@@ -89,10 +89,7 @@ export default {
           },
           [
             content.map((item, i) => {
-              return renderComponent(h, item, {
-                ...this.viewRule,
-                parent: this.parentViewRule
-              })
+              return renderComponent(h, item)
             })
           ]
         ),
@@ -105,10 +102,7 @@ export default {
             },
           },
           operations.map((item, i) => {
-            return renderComponent(h, item, {
-              ...this.viewRule,
-              parent: this.parentViewRule
-            })
+            return renderComponent(h, item)
           })
         ) : null,
         // h(

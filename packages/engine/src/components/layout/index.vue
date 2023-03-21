@@ -19,13 +19,15 @@ export default {
           class: 'xt-layout'
         },
         style: this.viewStyle,
+        on: {
+          'click': () => {
+            this.handleClick()
+          }
+        }
       },
       [
         content.map((item, i) => {
-          return renderComponent(h, item, {
-            ...this.viewRule,
-            parent: this.parentViewRule
-          })
+          return renderComponent(h, item)
         })
       ]
     )

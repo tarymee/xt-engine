@@ -35,9 +35,9 @@ export default {
     }
   },
   created: function () {
-    console.log(this.protocol)
-    console.log(this.protocolFormat)
-    console.log(this.viewRuleMap)
+    // console.log(this.protocol)
+    // console.log(this.protocolFormat)
+    // console.log(this.viewRuleMap)
     this.eventManager = new EventManager({
       engine: this
     })
@@ -64,8 +64,6 @@ export default {
   render: function (h) {
     const body = get(this.protocolFormat, 'view.body')
     const subviews = get(this.protocolFormat, 'view.subviews', [])
-    // console.log(body.content[0])
-    // debugger
     return h(
       'div',
       {
@@ -86,9 +84,9 @@ export default {
         ]
       },
       [
-        renderComponent(h, body, null),
+        renderComponent(h, body),
         subviews.map((item) => {
-          return renderComponent(h, item, null)
+          return renderComponent(h, item)
         })
       ]
     )

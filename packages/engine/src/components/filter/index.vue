@@ -42,15 +42,7 @@ export default {
               }
             }
           }
-          return renderComponent(h, item, {
-            ...searchcondition,
-            parent: {
-              ...this.viewRule,
-              parent: {
-                ...this.parentViewRule
-              }
-            }
-          })
+          return renderComponent(h, item)
         })
       ] : null
     )

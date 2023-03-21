@@ -142,11 +142,6 @@ const viewRuleAddProps = (ctrlViewRule) => {
   if (ctrlViewRule.type === 'table') {
     ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
 
-    let columns = get(ctrlViewRule, 'columns', [])
-    columns.forEach((item) => {
-      item.notCreateVMInEngineMp = '1'
-    })
-
     let operations = get(ctrlViewRule, 'operations', [])
     operations.forEach((item) => {
       item.type = 'button'
@@ -165,12 +160,7 @@ const viewRuleAddProps = (ctrlViewRule) => {
       }
     })
   } else if (ctrlViewRule.type === 'list') {
-    // ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
-
-    let content = get(ctrlViewRule, 'rows.content', [])
-    content.forEach((item) => {
-      item.notCreateVMInEngineMp = '1'
-    })
+    ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
 
     // let operations = get(ctrlViewRule, 'operations', [])
     // operations.forEach((item) => {

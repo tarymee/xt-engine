@@ -16,12 +16,6 @@ export default {
       default: function () {
         return {}
       }
-    },
-    parentViewRule: {
-      type: Object,
-      default: function () {
-        return {}
-      }
     }
   },
   data () {
@@ -35,10 +29,11 @@ export default {
       readonly: false,
       hidden: false,
       intable: this.dealInnerProps('intable', this.viewRule.parentcode),
+      inlist: this.dealInnerProps('inlist', this.viewRule.parentcode),
       infilter: this.dealInnerProps('infilter', this.viewRule.parentcode),
       inpopview: this.dealInnerProps('inpopview', this.viewRule.parentcode),
       intabboard: this.dealInnerProps('intabboard', this.viewRule.parentcode),
-      notCreateVMInEngineMp: false
+      notCreateVMInEngine: false
     }
   },
   computed: {
@@ -61,7 +56,7 @@ export default {
     this.dealViewRuleProp('hidden', 'boolean')
     this.dealViewRuleProp('eventlist', 'array', [])
 
-    this.dealViewRuleProp('notCreateVMInEngineMp', 'boolean')
+    this.notCreateVMInEngine = this.intable || this.inlist
 
     // 暂时兼容 table operations 按钮的 readonly 关键字
     if (this.viewRule.readonly === 'tableCheckedNumberIsEqualToZero' || this.viewRule.readonly === 'tableCheckedNumberIsNotEqualToOne') {
@@ -72,7 +67,7 @@ export default {
     // }
 
     if (!this.notInEngine) {
-      if (!this.notCreateVMInEngineMp) {
+      if (!this.notCreateVMInEngine) {
         if (this.engine.ctrlCodeMap.get(this.code)) {
           console.error(`code为${this.code}的控件重复, 请修改。`)
         }
@@ -92,7 +87,7 @@ export default {
   },
   destroyed () {
     if (!this.notInEngine) {
-      if (!this.notCreateVMInEngineMp) {
+      if (!this.notCreateVMInEngine) {
         this.engine.ctrlCodeMap.delete(this.code)
         this.name && (this.engine.ctrlNameCodeMap.delete(this.name))
       }
@@ -111,6 +106,14 @@ export default {
         if (parentViewRuleType === 'table') {
           return true
         } else if (parentViewRuleType !== 'table' && parentViewRule.parentcode) {
+          return this.dealInnerProps(innerProp, parentViewRule.parentcode)
+        } else {
+          return false
+        }
+      } else if (innerProp === 'inlist') {
+        if (parentViewRuleType === 'list') {
+          return true
+        } else if (parentViewRuleType !== 'list' && parentViewRule.parentcode) {
           return this.dealInnerProps(innerProp, parentViewRule.parentcode)
         } else {
           return false
@@ -221,6 +224,18 @@ export default {
         styleObj.display = 'none'
       }
       return styleObj
+    },
+    handleClick () {
+      // console.log(this)
+      // console.log(this.engine)
+      // 如果是在数组控件中 则需要等 row-click 执行完毕之后再执行
+      if (this.intable || this.list) {
+        setTimeout(() => {
+          this.executeEvent('onclicked')
+        }, 0)
+      } else {
+        this.executeEvent('onclicked')
+      }
     },
     executeEvent (triggerType, option = {}) {
       for (const event of this.eventlist) {

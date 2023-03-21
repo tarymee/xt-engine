@@ -117,7 +117,7 @@ export default class Page {
       console.error(`${tipPrefix} 找不到 name 为【${name}】的控件实例，请检查。`)
       return
     }
-    if (instance.type === 'table') {
+    if (instance.type === 'table' || instance.type === 'list') {
       return new ArrayCtrl(instance)
     } else {
       return new Ctrl(instance)

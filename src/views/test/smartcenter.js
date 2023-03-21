@@ -101,128 +101,105 @@ export default {
           "checkable": "1",
           "pageable": "0",
           "pagesize": "20",
+          // "flex": "1",
+          "style": {
+            "height": "500px",
+            "width": "500px"
+          },
           "rows": {
             "type": "layout",
             "flexdirection": "vertical",
-            "flex": "1",
+            "rowswidth": "100%",
+            "rowsstyle": "card",
+            // "style": {},
             "content": [
               {
-                "type": "link",
-                "title": "产品",
-                "name": "productname",
-                "width": "150",
-                "eventlist": [
+                "type": "layout",
+                "flexdirection": "vertical",
+                "flex": "1",
+                "style": {
+                  // "border": "1px solid #ccc",
+                  // "borderRadius": "3px",
+                  // "box-shadow": "0px 0px 5px #ddd",
+                  "padding": "12px"
+                },
+                "content": [
                   {
-                    "trigger": "onclicked",
-                    "handler": "handle-edit"
+                    "type": "text",
+                    "title": "名称",
+                    "name": "name",
+                    "value": "名称",
+                    "style": {
+                      "fontWeight": "bold",
+                      "fontSize": "16px"
+                    },
+                    "eventlist": []
+                  },
+                  {
+                    "type": "text",
+                    "title": "描述",
+                    "name": "des",
+                    "value": "描述",
+                    "style": {
+                      "color": "#777",
+                      "fontSize": "12px"
+                    },
+                    "eventlist": []
+                  },
+                  {
+                    "type": "textinput",
+                    "title": "数量",
+                    "name": "number",
+                    "value": "",
+                    "style": {},
+                    "eventlist": []
                   }
                 ]
-              },
-              {
-                "type": "text",
-                "title": "产品编码",
-                "name": "productcode",
-                "width": "150",
-                "eventlist": []
-              },
-              {
-                "type": "tags",
-                "title": "状态",
-                "name": "status",
-                "width": "80",
-                "options": [
-                  {
-                    "key": "1",
-                    "text": "启用"
-                  },
-                  {
-                    "key": "0",
-                    "text": "停用"
-                  }
-                ],
-                "eventlist": []
-              },
-              {
-                "type": "select",
-                "title": "单位",
-                "name": "unit",
-                "placeholder": "选择单位",
-                "required": "1",
-                "width": "120",
-                "hiddenclearbtn": "1",
-                "options": [
-                  {
-                    "key": "bottle",
-                    "text": "瓶"
-                  },
-                  {
-                    "key": "box",
-                    "text": "箱"
-                  }
-                ],
-                "eventlist": []
               }
             ]
           },
           "operations": [
             {
-              "text": "新增(append)",
-              "eventlist": [
+              "type": "layout",
+              "flex": "1",
+              "style": {
+                "backgroundColor": "",
+                "justify-content": "center",
+                "align-items": "center",
+                "flex-direction": "column",
+                "min-height": "160px"
+              },
+              "content": [
                 {
-                  "trigger": "onclicked",
-                  "handler": "handle-new"
+                  "type": "text",
+                  "title": "",
+                  "name": "",
+                  "value": "✚",
+                  "hidden": "",
+                  "style": {
+                    "font-size": "50px",
+                    "color": "#f60"
+                  }
                 }
-              ]
-            },
-            {
-              "text": "更新第一行数据(update)",
+              ],
               "eventlist": [
                 {
                   "trigger": "onclicked",
                   "handler": "handle-update"
                 }
               ]
-            },
-            {
-              "text": "勾选第一行(setCheck)",
-              "eventlist": [
-                {
-                  "trigger": "onclicked",
-                  "handler": "handle-setCheck"
-                }
-              ]
-            },
-            {
-              "text": "获取第一行控件(getRow)",
-              "eventlist": [
-                {
-                  "trigger": "onclicked",
-                  "handler": "handle-getRow"
-                }
-              ]
-            },
-            {
-              "text": "删除(deleteInScope)",
-              "readonly": "tableCheckedNumberIsEqualToZero",
-              "eventlist": [
-                {
-                  "trigger": "onclicked",
-                  "handler": "handle-del"
-                }
-              ]
-            },
-            {
-              "text": "打印勾选行数据(checkedIndex)",
-              "readonly": "tableCheckedNumberIsNotEqualToOne",
-              "eventlist": [
-                {
-                  "trigger": "onclicked",
-                  "handler": "handle-print"
-                }
-              ]
             }
           ],
-          "eventlist": []
+          "eventlist": [
+            {
+              "trigger": "onload",
+              "handler": "handle-onload"
+            },
+            {
+              "trigger": "onchecked",
+              "handler": "handle-onchecked"
+            }
+          ]
         }
       ],
       "eventlist": []
@@ -272,13 +249,15 @@ export default {
             "condition": "",
             "script": `
               const value = page.getCtrl('列表').value
-              console.log(value)
+              const checkedValue = page.getCtrl('列表').checkedValue
+              console.log('all', value)
+              console.log('checked', checkedValue)
             `
           }
         ]
       },
       {
-        "code": "handle-set",
+        "code": "handle-onload",
         "desc": "",
         "name": "",
         "successhint": "",
@@ -295,16 +274,56 @@ export default {
             "script": `
               page.getCtrl('列表').value = [
                 {
-                  productname: '可口可乐',
-                  productcode: '001',
-                  status: '1',
-                  unit: 'box'
+                  name: '',
+                  des: ''
                 },
                 {
-                  productname: '百事可乐',
-                  productcode: '002',
-                  status: '1',
-                  unit: 'bottle'
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                },
+                {
+                  name: '电子协议SPU',
+                  // des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                },
+                {
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                },
+                {
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                },
+                {
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                },
+                {
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                },
+                {
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                },
+                {
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                },
+                {
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                },
+                {
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                },
+                {
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
+                },
+                {
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述'
                 }
               ]
             `

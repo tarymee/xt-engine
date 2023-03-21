@@ -135,14 +135,17 @@ class ArrayCtrl extends Ctrl {
   }
 
   get index () {
+    if (!this.instance.getIndex) throw Error('暂不支持该方法。')
     return this.instance.getIndex('all')
   }
 
   get focusedIndex () {
+    if (!this.instance.getIndex) throw Error('暂不支持该方法。')
     return this.instance.getIndex('focused')
   }
 
   get checkedIndex () {
+    if (!this.instance.getIndex) throw Error('暂不支持该方法。')
     return this.instance.getIndex('checked')
   }
 
@@ -155,18 +158,22 @@ class ArrayCtrl extends Ctrl {
   }
 
   get pageInfo () {
+    if (!this.instance.getPageInfo) throw Error('暂不支持该方法。')
     return this.instance.getPageInfo()
   }
 
   set pageInfo (pageInfo) {
+    if (!this.instance.setPageInfo) throw Error('暂不支持该方法。')
     return this.instance.setPageInfo(pageInfo)
   }
 
   deleteInScope (scope = 'all') {
+    if (!this.instance.deleteInScope) throw Error('暂不支持该方法。')
     return this.instance.deleteInScope(scope)
   }
 
   append (data, type = 'tail') {
+    if (!this.instance.append) throw Error('暂不支持该方法。')
     if (Array.isArray(data)) {
       this.instance.append(data, type)
     } else if (Object.prototype.toString.call(data) === '[object Object]') {
@@ -177,6 +184,7 @@ class ArrayCtrl extends Ctrl {
   }
 
   update (data = [], index = []) {
+    if (!this.instance.update) throw Error('暂不支持该方法。')
     if (Array.isArray(data) && Array.isArray(index)) {
       this.instance.update(data, index)
     } else if (Object.prototype.toString.call(data) === '[object Object]' && typeof index === 'number') {
@@ -203,6 +211,7 @@ class ArrayCtrl extends Ctrl {
   }
 
   getRow (index) {
+    if (!this.instance.getRowsCtrlMap) throw Error('暂不支持该方法。')
     if (Array.isArray(index)) {
       const maps = this.instance.getRowsCtrlMap(index)
       // console.log(maps)
@@ -219,6 +228,7 @@ class ArrayCtrl extends Ctrl {
   }
 
   setCheck (value, index) {
+    if (!this.instance.setCheck) throw Error('暂不支持该方法。')
     this.instance.setCheck(value, index)
   }
 }
