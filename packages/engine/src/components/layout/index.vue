@@ -12,13 +12,17 @@ export default {
   methods: {},
   render: function (h) {
     const content = get(this.viewRule, 'content', [])
+    const hasOnclickedEvent = this.eventlist.some((item) => item.trigger === 'onclicked' && item.handler)
     return h(
       'div',
       {
         attrs: {
           class: 'xt-layout'
         },
-        style: this.viewStyle,
+        style: hasOnclickedEvent ? {
+          ...this.viewStyle,
+          cursor: 'pointer'
+        } : this.viewStyle,
         on: {
           'click': () => {
             this.handleClick()

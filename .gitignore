@@ -24,4 +24,4 @@ lerna-debug.log*
 *.sw?
 
 # other
-package-lock.json
+# package-lock.json

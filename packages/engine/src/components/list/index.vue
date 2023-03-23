@@ -82,6 +82,7 @@ export default {
       // todo 这里用js滚动到顶部
       // if (setter) {}
       this.value = []
+      // todo 不要延时 100 添加key试试
       setTimeout(() => {
         this.value = cloneDeep(data.map((item, i) => {
           const rows = cloneDeep(get(this.viewRule, 'rows', {}))
@@ -95,9 +96,9 @@ export default {
             ...item
           }
         }))
-        console.log(this.value)
+        // console.log(this.value)
         // this.executeEvent('onchecked')
-      }, 0)
+      }, 100)
     },
     // 删除内部属性
     delInsidePropery (data) {
@@ -182,7 +183,7 @@ export default {
   },
   render: function (h) {
     const rows = get(this.viewRule, 'rows', {})
-    const operations = get(this.viewRule, 'operations', [])
+    const frontoperations = get(this.viewRule, 'frontoperations', [])
     return h(
       'div',
       {
@@ -200,7 +201,7 @@ export default {
             }
           },
           [
-            (operations || []).map((item, i) => {
+            (frontoperations || []).map((item, i) => {
               return h(
                 'div',
                 {
@@ -234,6 +235,7 @@ export default {
                       if (this.checkable) {
                         item.__$$checked = !item.__$$checked
                       }
+                      // debugger
                       item.__$$focused = true
                       setTimeout(() => {
                         item.__$$focused = false
@@ -280,26 +282,15 @@ export default {
             }),
             !this.value.length ? h('div', {
               attrs: {
-                // class: `xt-list-item xt-list-item-${rows.rowsstyle}`
-                class: `xt-list-item`
-              },
-              style: {
-                ...rows.style,
-                width: `calc(${rows.rowswidth || '100%'} - 24px)`
+                class: `xt-list-none`
               }
             }, [
-              h('div', {
-                attrs: {
-                  class: `xt-list-item-none`
+              h(
+                'xt-widget-none',
+                {
+                  slot: 'empty'
                 }
-              }, [
-                h(
-                  'xt-widget-none',
-                  {
-                    slot: 'empty'
-                  }
-                )
-              ])
+              )
             ]) : null
           ]
         ),
@@ -342,6 +333,8 @@ export default {
   display: flex;
 }
 .xt-list-con {
+  border: 1px solid #EBEEF5;
+  background-color: #FFF;
   display: flex;
   flex: auto;
   flex-wrap: wrap;
@@ -360,11 +353,12 @@ export default {
   position: relative;
 }
 .xt-list-item-card {
-  border: 1px solid #ddd;
+  border: 1px solid #EBEEF5;
   border-radius: 3px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .xt-list-item-card:hover {
+  border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 }
 .xt-list-item-check {
@@ -372,8 +366,10 @@ export default {
   right: 8px;
   top: 4px;
 }
-.xt-list-item-none {
-  flex: 1;
+.xt-list-none {
+  width: 100%;
+  padding: 50px 0;
+  /* flex: 1; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -381,11 +377,11 @@ export default {
 .xt-list-page {
   flex: none;
   height: 40px;
-  border: 1px solid #dfe6ec;
+  border: 1px solid #ebeef5;
   border-top: none;
   padding-top: 6px;
   text-align: center;
-  background-color: #f5f7fa;
+  background-color: #fafafa;
   box-sizing: border-box;
 }
 </style>

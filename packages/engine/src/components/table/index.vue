@@ -377,7 +377,7 @@ export default {
 .xt-table-page {
   flex: none;
   height: 40px;
-  border: 1px solid #dfe6ec;
+  border: 1px solid #ebeef5;
   border-top: none;
   padding-top: 6px;
   text-align: center;

@@ -229,7 +229,8 @@ export default {
       // console.log(this)
       // console.log(this.engine)
       // 如果是在数组控件中 则需要等 row-click 执行完毕之后再执行
-      if (this.intable || this.list) {
+      // debugger
+      if (this.intable || this.inlist) {
         setTimeout(() => {
           this.executeEvent('onclicked')
         }, 0)

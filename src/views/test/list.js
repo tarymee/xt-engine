@@ -109,7 +109,7 @@ export default {
           "rows": {
             "type": "layout",
             "flexdirection": "vertical",
-            "rowswidth": "300px",
+            "rowswidth": "25%",
             "rowsstyle": "card",
             // "style": {},
             "content": [
@@ -176,7 +176,7 @@ export default {
               }
             ]
           },
-          "operations": [
+          "frontoperations": [
             {
               "type": "layout",
               "flex": "1",
@@ -208,6 +208,8 @@ export default {
               ]
             }
           ],
+          "operations": [],
+          "rowoperations": [],
           "eventlist": [
             {
               "trigger": "onload",
@@ -290,6 +292,7 @@ export default {
             "desc": "flycode",
             "condition": "",
             "script": `
+              // return false
               page.getCtrl('列表').value = [
                 {
                   name: '',

@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/tarymee/xt-engine/issues"
   },
-  "peerDependencies": {
+  "dependencies": {
     "axios": "^0.24.0",
     "element-ui": "^2.15.5",
     "lodash-es": "^4.17.21",

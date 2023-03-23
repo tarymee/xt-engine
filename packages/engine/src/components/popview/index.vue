@@ -33,19 +33,40 @@ export default {
     this.dealViewRuleProp('value', 'other', null)
   },
   methods: {
-    // todo 这里有bug 两个popview同时打开的话 校验会出错
+    findAllChildrenCtrlCode (ctrlViewRule, codes = []) {
+      if (ctrlViewRule.code !== this.code) {
+        codes.push(ctrlViewRule.code)
+      }
+      for (const x in ctrlViewRule) {
+        let item = ctrlViewRule[x]
+        if (Object.prototype.toString.call(item) === '[object Object]' && item.type) {
+          this.findAllChildrenCtrlCode(item, codes)
+        } else if (Array.isArray(item)) {
+          item.forEach((item2) => {
+            if (Object.prototype.toString.call(item2) === '[object Object]' && item2.type) {
+              this.findAllChildrenCtrlCode(item2, codes)
+            }
+          })
+        }
+      }
+      return codes
+    },
     validata () {
       // console.log(this.engine.ctrlCodeMap)
+      // console.log(this.engine)
+      // console.log(this)
+      const allChildrenCtrlCode = this.findAllChildrenCtrlCode(this.viewRule)
+      // console.log(allChildrenCtrlCode)
       // debugger
       let res = true
       for (var [key, item] of this.engine.ctrlCodeMap) {
-        if (item.inpopview) {
-          // todo 可以去掉 item.isInputCtrl || item.type === 'table' 判断
-          if (item.isInputCtrl || item.type === 'table') {
-            res = item.validata()
-          }
+        // console.log(key, item)
+        const inThisPopview = allChildrenCtrlCode.some((item) => item === key)
+        if ((item.inpopview && inThisPopview) && (item.isInputCtrl || item.type === 'table')) {
+          res = item.validata()
         }
         if (!res) {
+          // debugger
           break
         }
       }

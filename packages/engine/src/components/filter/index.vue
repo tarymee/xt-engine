@@ -54,7 +54,7 @@ export default {
 .xt-filter {
   flex: none;
   display: flex;
-  background-color: #eee;
+  background-color: #fafafa;
   box-sizing: border-box;
   border: 1px solid #EBEEF5;
   border-bottom: none;

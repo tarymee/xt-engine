@@ -1,5 +1,6 @@
 <template>
   <xt-page
+    v-if="protocol"
     :protocol="protocol"
   />
 </template>
@@ -9,7 +10,7 @@ import { components } from '@smart100/web-engine'
 
 import radio from './radio.js'
 import table from './table.js'
-import smartcenter from './smartcenter.js'
+import list from './list.js'
 import attachment from './attachment.js'
 import tabboard from './tabboard.js'
 
@@ -25,12 +26,15 @@ export default {
   created () {
     const protocol = this.$route.query.protocol
     // console.log(protocol)
+    if (!protocol) {
+      console.error('请在链接添加 ?protocol=table')
+    }
     if (protocol === 'table') {
       this.protocol = table
     } else if (protocol === 'radio') {
       this.protocol = radio
-    } else if (protocol === 'smartcenter') {
-      this.protocol = smartcenter
+    } else if (protocol === 'list') {
+      this.protocol = list
     } else if (protocol === 'attachment') {
       this.protocol = attachment
     } else if (protocol === 'tabboard') {
