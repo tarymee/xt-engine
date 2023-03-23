@@ -115,17 +115,22 @@ const dealPresenter = (presenter) => {
   })
 }
 
-const viewRuleAddParentcode = (ctrlViewRule, parentcode = null) => {
+const viewRuleAddParentcode = (ctrlViewRule, parentcode = null, parentcodepath = []) => {
   if (isObject(ctrlViewRule)) {
     ctrlViewRule.parentcode = parentcode
+
+    ctrlViewRule.codepath = cloneDeep(parentcodepath)
+    if (ctrlViewRule.code) {
+      ctrlViewRule.codepath.push(ctrlViewRule.code)
+    }
     for (const x in ctrlViewRule) {
       let item = ctrlViewRule[x]
       if (isObject(item) && item.type) {
-        viewRuleAddParentcode(item, ctrlViewRule.code)
+        viewRuleAddParentcode(item, ctrlViewRule.code, ctrlViewRule.codepath)
       } else if (Array.isArray(item)) {
         item.forEach((item2) => {
           if (isObject(item2) && item2.type) {
-            viewRuleAddParentcode(item2, ctrlViewRule.code)
+            viewRuleAddParentcode(item2, ctrlViewRule.code, ctrlViewRule.codepath)
           }
         })
       }
@@ -167,10 +172,12 @@ const viewRuleAddProps = (ctrlViewRule) => {
     //   item.type = 'button'
     // })
 
-    // let rowoperations = get(ctrlViewRule, 'rowoperations', [])
-    // rowoperations.forEach((item) => {
-    //   item.type = 'button'
-    // })
+    let rowoperations = get(ctrlViewRule, 'rowoperations', [])
+    rowoperations.forEach((item) => {
+      item.type = 'button'
+      item.displaytype = 'text'
+      item.style = {}
+    })
   } else if (ctrlViewRule.type === 'popview') {
     ctrlViewRule.hidden = '1'
     ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
@@ -194,7 +201,7 @@ const viewRuleAddProps = (ctrlViewRule) => {
     ctrlViewRule.style.paddingTop = ctrlViewRule.style.paddingTop || ctrlViewRule.paddingTop || '8px'
 
     // ctrlViewRule.searchcondition.type = 'searchcondition'
-    ctrlViewRule.searchcondition.type = 'layout'
+    ctrlViewRule.searchcondition.type = 'searchcondition'
 
     let basic = get(ctrlViewRule, 'searchcondition.basic', [])
     basic.forEach((item) => {
@@ -223,7 +230,9 @@ const viewRuleAddProps = (ctrlViewRule) => {
 
 
 const createViewRuleMap = (ctrlViewRule, viewRuleMap) => {
-  viewRuleMap.set(ctrlViewRule.code, ctrlViewRule)
+  if (ctrlViewRule && ctrlViewRule.code) {
+    viewRuleMap.set(ctrlViewRule.code, ctrlViewRule)
+  }
   for (const x in ctrlViewRule) {
     let item = ctrlViewRule[x]
     if (isObject(item) && item.type) {
@@ -261,6 +270,10 @@ export const dealProtocol = (protocol) => {
   subviews.forEach((item) => {
     createViewRuleMap(item, viewRuleMap)
   })
+
+  console.log(viewRuleMap)
+  console.log(protocolFormat)
+  console.log(JSON.stringify(protocolFormat))
 
   return {
     pagecode: get(protocolFormat, 'pageinfo.code', ''),

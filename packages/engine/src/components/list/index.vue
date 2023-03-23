@@ -16,6 +16,8 @@ export default {
       pageable: false,
       checkable: false,
       pageInfo: null,
+      rowswidth: '100%',
+      rowsstyle: '',
       value: []
     }
   },
@@ -30,6 +32,8 @@ export default {
     this.dealViewRuleProp('value', 'array', [])
     this.dealViewRuleProp('pageable', 'boolean')
     this.dealViewRuleProp('checkable', 'boolean')
+    this.dealViewRuleProp('rowswidth', 'string', '100%')
+    this.dealViewRuleProp('rowsstyle', 'string', '')
     this.pageInfo = this.pageable ? {
       __pageindex: 1,
       __pagesize: Number(this.viewRule.pagesize || 20),
@@ -184,6 +188,7 @@ export default {
   render: function (h) {
     const rows = get(this.viewRule, 'rows', {})
     const frontoperations = get(this.viewRule, 'frontoperations', [])
+    const rowoperations = get(this.viewRule, 'rowoperations', [])
     return h(
       'div',
       {
@@ -197,7 +202,7 @@ export default {
           'div',
           {
             attrs: {
-              class: 'xt-list-con'
+              class: `xt-list-con xt-list-con-${this.rowsstyle}`
             }
           },
           [
@@ -206,15 +211,25 @@ export default {
                 'div',
                 {
                   attrs: {
-                    class: `xt-list-item xt-list-item-${rows.rowsstyle}`
+                    class: `xt-list-item`
                   },
                   style: {
-                    ...rows.style,
-                    width: `calc(${rows.rowswidth || '100%'} - 24px)`
+                    width: this.rowswidth
                   }
                 },
                 [
-                  renderComponent(h, item)
+                  h(
+                    'div',
+                    {
+                      attrs: {
+                        class: `xt-list-item-row xt-list-item-row-${this.rowsstyle}`
+                      },
+                      style: rows.style
+                    },
+                    [
+                      renderComponent(h, item)
+                    ]
+                  )
                 ]
               )
             }),
@@ -223,11 +238,10 @@ export default {
                 'div',
                 {
                   attrs: {
-                    class: `xt-list-item xt-list-item-${item.__$$viewRule.rowsstyle}`
+                    class: `xt-list-item`
                   },
                   style: {
-                    ...item.__$$viewRule.style,
-                    width: `calc(${item.__$$viewRule.rowswidth || '100%'} - 24px)`
+                    width: this.rowswidth
                   },
                   on: {
                     'click': (e) => {
@@ -245,38 +259,112 @@ export default {
                   }
                 },
                 [
-                  (item.__$$viewRule.content || []).map((item2, i) => {
-                    return renderComponent(h, item2)
-                  }),
-                  this.checkable ? h('div', {
-                    attrs: {
-                      class: `xt-list-item-check`
+                  h(
+                    'div',
+                    {
+                      attrs: {
+                        class: `xt-list-item-row xt-list-item-row-${this.rowsstyle}`
+                      },
+                      style: rows.style
                     },
-                    on: {
-                      'click': (e) => {
-                        // el-checkbox 会向上抛点击事件 这里阻止上抛
-                        // console.log('xt-list-item-check click')
-                        e.stopPropagation()
-                        // e.preventDefault()
-                      }
-                    }
-                  }, [
-                    h(
-                      'el-checkbox',
-                      {
-                        props: {
-                          size: 'medium',
-                          value: item.__$$checked
-                        },
-                        on: {
-                          'input': (value) => {
-                            // console.log('input', value)
-                            item.__$$checked = value
+                    [
+                      (item.__$$viewRule.content || []).map((item2, i) => {
+                        return renderComponent(h, item2)
+                      }),
+                      (this.checkable || rowoperations.length) ? h(
+                        'div',
+                        {
+                          attrs: {
+                            class: `xt-list-item-row-foot`
                           }
-                        }
-                      }
-                    )
-                  ]) : null
+                        },
+                        [
+                          this.checkable ? h(
+                            'div',
+                            {
+                              attrs: {
+                                class: `xt-list-item-row-check`
+                              },
+                              on: {
+                                'click': (e) => {
+                                  // el-checkbox 会向上抛点击事件 这里阻止上抛
+                                  // console.log('xt-list-item-row-check click')
+                                  e.stopPropagation()
+                                  // e.preventDefault()
+                                }
+                              }
+                            },
+                            [
+                              h(
+                                'el-checkbox',
+                                {
+                                  props: {
+                                    size: 'medium',
+                                    value: item.__$$checked
+                                  },
+                                  on: {
+                                    'input': (value) => {
+                                      // console.log('input', value)
+                                      item.__$$checked = value
+                                    }
+                                  }
+                                }
+                              )
+                            ]
+                          ) : null,
+                          // todo
+                          rowoperations.length ? h(
+                            'div',
+                            {
+                              attrs: {
+                                class: `xt-list-item-row-operation`
+                              },
+                              on: {
+                                'click': (e) => {
+                                  // el-checkbox 会向上抛点击事件 这里阻止上抛
+                                  // console.log('xt-list-item-row-check click')
+                                  e.stopPropagation()
+                                  // e.preventDefault()
+                                }
+                              }
+                            },
+                            [
+                              rowoperations.length === 1
+                                ?
+                                rowoperations.map((item3, i) => {
+                                  return renderComponent(h, item3)
+                                })
+                                :
+                                h(
+                                  'el-popover',
+                                  {
+                                    attrs: {
+                                      width: `100`,
+                                      placement: `left-end`,
+                                      trigger: `hover`
+                                    }
+                                  },
+                                  [
+                                    rowoperations.map((item3, i) => {
+                                      return renderComponent(h, item3)
+                                    }),
+                                    h(
+                                      'i',
+                                      {
+                                        attrs: {
+                                          class: `el-icon-menu`
+                                        },
+                                        slot: 'reference'
+                                      }
+                                    )
+                                  ]
+                                )
+                            ]
+                          ) : null
+                        ]
+                      ) : null
+                    ]
+                  )
                 ]
               )
             }),
@@ -340,31 +428,50 @@ export default {
   flex-wrap: wrap;
   overflow: auto;
   align-content: flex-start;
-  padding: 10px;
   box-sizing: border-box;
-  /* position: relative; */
+}
+.xt-list-con-card {
+  padding: 8px;
 }
 .xt-list-item {
   display: flex;
-  margin: 12px;
-  width: calc(100% - 24px);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.xt-list-item-row {
+  display: flex;
+  width: 100%;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
 }
-.xt-list-item-card {
+.xt-list-item-row-card {
+  margin: 8px;
+  box-sizing: border-box;
   border: 1px solid #EBEEF5;
   border-radius: 3px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.xt-list-item-card:hover {
+.xt-list-item-row-card:hover {
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 }
-.xt-list-item-check {
-  position: absolute;
+.xt-list-item-row-foot {
+  /* padding: 4px 0; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.xt-list-item-row-check {
+  /* position: absolute;
   right: 8px;
-  top: 4px;
+  top: 4px; */
+  /* float: left; */
+}
+.xt-list-item-row-operation {
+  display: flex;
+  flex-wrap: wrap;
 }
 .xt-list-none {
   width: 100%;

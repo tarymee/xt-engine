@@ -31,7 +31,6 @@ export default {
       intable: this.dealInnerProps('intable', this.viewRule.parentcode),
       inlist: this.dealInnerProps('inlist', this.viewRule.parentcode),
       infilter: this.dealInnerProps('infilter', this.viewRule.parentcode),
-      inpopview: this.dealInnerProps('inpopview', this.viewRule.parentcode),
       intabboard: this.dealInnerProps('intabboard', this.viewRule.parentcode),
       notCreateVMInEngine: false
     }
@@ -122,14 +121,6 @@ export default {
         if (parentViewRuleType === 'filter') {
           return true
         } else if (parentViewRuleType !== 'filter' && parentViewRule.parentcode) {
-          return this.dealInnerProps(innerProp, parentViewRule.parentcode)
-        } else {
-          return false
-        }
-      } else if (innerProp === 'inpopview') {
-        if (parentViewRuleType === 'popview') {
-          return true
-        } else if (parentViewRuleType !== 'popview' && parentViewRule.parentcode) {
           return this.dealInnerProps(innerProp, parentViewRule.parentcode)
         } else {
           return false

@@ -62,7 +62,7 @@ export default {
       for (var [key, item] of this.engine.ctrlCodeMap) {
         // console.log(key, item)
         const inThisPopview = allChildrenCtrlCode.some((item) => item === key)
-        if ((item.inpopview && inThisPopview) && (item.isInputCtrl || item.type === 'table')) {
+        if (inThisPopview && (item.isInputCtrl || item.type === 'table')) {
           res = item.validata()
         }
         if (!res) {
