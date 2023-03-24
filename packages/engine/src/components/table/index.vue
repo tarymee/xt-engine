@@ -33,13 +33,9 @@ export default {
   },
   mounted () {
     // https://blog.csdn.net/qq_36016136/article/details/107398528
-    // setTimeout(() => {
-      this.dealBtnsState()
-      this.executeEvent('onchecked')
-      setTimeout(() => {
-        this.dealInTabboardTableHeight()
-      }, 0)
-    // }, 0)
+    this.dealBtnsState()
+    this.executeEvent('onchecked')
+    this.dealInTabboardTableHeight()
   },
   methods: {
     getAllRowsCtrlMap () {
@@ -168,25 +164,27 @@ export default {
       })
     },
     dealInTabboardTableHeight () {
-      // console.log()
-      // console.log(this)
-      // debugger
-      if (this.intabboard) {
-        const intervalFn = setInterval(() => {
-          const table = this.$el
-          const tableCon = this.$el.getElementsByClassName('xt-table-con')[0]
-          const tablePage = this.$el.getElementsByClassName('xt-table-page')[0]
-          const tableOperations = this.$el.getElementsByClassName('xt-table-operations')[0]
-          const tableHeight = table.getBoundingClientRect().height
-          const tablePageHeight = tablePage ? tablePage.getBoundingClientRect().height : 0
-          const tableOperationsHeight = tableOperations ? tableOperations.getBoundingClientRect().height : 0
-          if (tableHeight) {
-            table.style.height = tableHeight + 'px'
-            tableCon.style.height = (tableHeight - tablePageHeight - tableOperationsHeight) + 'px'
-            clearInterval(intervalFn)
-          }
-        }, 500)
-      }
+      setTimeout(() => {
+        // console.log()
+        // console.log(this)
+        // debugger
+        if (this.intabboard) {
+          const intervalFn = setInterval(() => {
+            const table = this.$el
+            const tableCon = this.$el.getElementsByClassName('xt-table-con')[0]
+            const tablePage = this.$el.getElementsByClassName('xt-table-page')[0]
+            const tableOperations = this.$el.getElementsByClassName('xt-table-operations')[0]
+            const tableHeight = table.getBoundingClientRect().height
+            const tablePageHeight = tablePage ? tablePage.getBoundingClientRect().height : 0
+            const tableOperationsHeight = tableOperations ? tableOperations.getBoundingClientRect().height : 0
+            if (tableHeight) {
+              table.style.height = tableHeight + 'px'
+              tableCon.style.height = (tableHeight - tablePageHeight - tableOperationsHeight) + 'px'
+              clearInterval(intervalFn)
+            }
+          }, 500)
+        }
+      }, 0)
     },
     handleSelectionChange (selection) {
       // debugger

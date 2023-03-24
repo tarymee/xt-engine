@@ -43,17 +43,21 @@ export default {
   },
   methods: {
     dealHeight () {
-      setTimeout(() => {
-        const el = this.$el
-        const elCon = el.getElementsByClassName('xt-list-con')[0]
-        const elPage = el.getElementsByClassName('xt-list-page')[0]
-        const elHeight = el.getBoundingClientRect().height
-        const elPageHeight = elPage ? elPage.getBoundingClientRect().height : 0
-        if (elHeight) {
-          el.style.height = elHeight + 'px'
-          elCon.style.height = (elHeight - elPageHeight) + 'px'
-        }
-      }, 0)
+      // todo 考虑各种情况
+      // setTimeout(() => {
+        // const intervalFn = setInterval(() => {
+          const el = this.$el
+          const elCon = el.getElementsByClassName('xt-list-con')[0]
+          const elPage = el.getElementsByClassName('xt-list-page')[0]
+          const elHeight = el.getBoundingClientRect().height
+          const elPageHeight = elPage ? elPage.getBoundingClientRect().height : 0
+          if (elHeight) {
+            el.style.height = elHeight + 'px'
+            elCon.style.height = (elHeight - elPageHeight) + 'px'
+            // clearInterval(intervalFn)
+          }
+        // }, 500)
+      // }, 0)
     },
     validata () {
       let res = true
