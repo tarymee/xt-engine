@@ -19,13 +19,12 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      fit: ''
+      // 可通过fit确定图片如何适应到容器框，同原生 object-fit。
+      // ['fill', 'contain', 'cover', 'none', 'scale-down']
+      fit: this.returnViewRulePropValue('fit', 'string', 'cover')
     }
   },
   created () {
-    // 可通过fit确定图片如何适应到容器框，同原生 object-fit。
-    // ['fill', 'contain', 'cover', 'none', 'scale-down']
-    this.dealViewRuleProp('fit', 'string', 'cover')
   },
   methods: {
 

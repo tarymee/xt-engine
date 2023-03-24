@@ -44,15 +44,12 @@ export default {
   mixins: [baseInputMixin],
   data () {
     return {
-      displaytype: 'input', // password || textarea || input
-      minrow: 2,
-      maxrow: 6
+      displaytype: this.returnViewRulePropValue('displaytype', 'string', 'input'), // password || textarea || input
+      minrow: this.returnViewRulePropValue('minrow', 'number', 2),
+      maxrow: this.returnViewRulePropValue('maxrow', 'number', 6)
     }
   },
   created () {
-    this.dealViewRuleProp('displaytype', 'string', 'input')
-    this.dealViewRuleProp('minrow', 'number', 2)
-    this.dealViewRuleProp('maxrow', 'number', 6)
   },
   methods: {
     handleChange (e) {

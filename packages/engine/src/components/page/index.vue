@@ -102,9 +102,18 @@ export default {
   display: flex;
   flex-direction: column;
   font-size: 14px;
+  position: relative;
 }
-.xt-engine .el-loading-mask{
+</style>
+
+<style>
+/* 修改 loading 遮罩层颜色 改为透明 */
+.xt-engine .el-loading-mask {
   z-index: 99999;
   background-color: rgba(255,255,255,0);
+}
+/* 解决弹窗信息被 el-dialog 覆盖的问题 两者初始化 z-index 都是 2000 但不共享 z-index 导致 */
+.el-message {
+  z-index: 99999!important;
 }
 </style>

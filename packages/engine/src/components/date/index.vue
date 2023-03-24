@@ -34,14 +34,12 @@ export default {
   mixins: [baseInputMixin],
   data () {
     return {
-      format: '',
-      unit: '',
+      format: this.returnViewRulePropValue('format', 'string', 'yyyy-MM-dd'),
+      unit: this.returnViewRulePropValue('unit', 'string', 'date'),
     }
   },
   computed: {},
   created () {
-    this.dealViewRuleProp('format', 'string', 'yyyy-MM-dd')
-    this.dealViewRuleProp('unit', 'string', 'date')
     this.setValue(this.value)
   },
   methods: {

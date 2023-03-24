@@ -8,7 +8,7 @@ export default {
   mixins: [baseInputMixin],
   data () {
     return {
-      options: []
+      options: this.returnViewRulePropValue('options', 'array', [])
     }
   },
   watch: {
@@ -18,7 +18,6 @@ export default {
     }
   },
   created () {
-    this.dealViewRuleProp('options', 'array', [])
   },
   methods: {
 

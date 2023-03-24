@@ -14,18 +14,17 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      required: false,
-      pageable: false,
-      checkable: false,
+      // table 有 required 因此也是输入型控件
+      isInputCtrl: true,
+      isArrayCtrl: true,
+      required: this.returnViewRulePropValue('required', 'boolean', false),
+      pageable: this.returnViewRulePropValue('pageable', 'boolean', false),
+      checkable: this.returnViewRulePropValue('checkable', 'boolean', false),
       pageInfo: null,
-      value: []
+      value: this.returnViewRulePropValue('value', 'array', [])
     }
   },
   created () {
-    this.dealViewRuleProp('value', 'array', [])
-    this.dealViewRuleProp('pageable', 'boolean')
-    this.dealViewRuleProp('checkable', 'boolean')
-    this.dealViewRuleProp('required', 'boolean')
     this.pageInfo = this.pageable ? {
       __pageindex: 1,
       __pagesize: Number(this.viewRule.pagesize || 20),

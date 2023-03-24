@@ -117,7 +117,7 @@ export default class Page {
       console.error(`${tipPrefix} 找不到 name 为【${name}】的控件实例，请检查。`)
       return
     }
-    if (instance.type === 'table' || instance.type === 'list') {
+    if (instance.isArrayCtrl) {
       return new ArrayCtrl(instance)
     } else {
       return new Ctrl(instance)
@@ -154,8 +154,7 @@ export default class Page {
   validata () {
     let res = true
     for (var [key, item] of this.eventManager.ctrlCodeMap) {
-      // todo 可以去掉 item.isInputCtrl || item.type === 'table' 判断
-      if (item.isInputCtrl || item.type === 'table') {
+      if (item.isInputCtrl) {
         res = item.validata()
       }
       if (!res) {

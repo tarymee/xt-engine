@@ -22,11 +22,10 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      displaytype: ''
+      displaytype: this.returnViewRulePropValue('displaytype', 'string')
     }
   },
   created () {
-    this.dealViewRuleProp('displaytype', 'string')
   },
   methods: {
 

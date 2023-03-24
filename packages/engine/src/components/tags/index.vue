@@ -29,7 +29,7 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      options: []
+      options: this.returnViewRulePropValue('options', 'array', [])
     }
   },
   computed: {
@@ -81,7 +81,6 @@ export default {
     }
   },
   created () {
-    this.dealViewRuleProp('options', 'array', [])
   },
   methods: {}
 }

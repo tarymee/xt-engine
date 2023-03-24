@@ -9,8 +9,10 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      width: fixLength(this.viewRule.width),
-      value: null,
+      width: this.returnViewRulePropValue('width', 'unit', '50%'),
+      wrapwidth: this.returnViewRulePropValue('wrapwidth', 'unit'),
+      value: this.returnViewRulePropValue('value', 'other', null),
+      fullscreen: this.returnViewRulePropValue('fullscreen', 'boolean', false)
     }
   },
   computed: {
@@ -30,7 +32,8 @@ export default {
     }
   },
   created () {
-    this.dealViewRuleProp('value', 'other', null)
+    // 兼容 width wrapwidth
+    this.wrapwidth = this.wrapwidth || this.width
   },
   methods: {
     findAllChildrenCtrlCode (ctrlViewRule, codes = []) {
@@ -62,7 +65,7 @@ export default {
       for (var [key, item] of this.engine.ctrlCodeMap) {
         // console.log(key, item)
         const inThisPopview = allChildrenCtrlCode.some((item) => item === key)
-        if (inThisPopview && (item.isInputCtrl || item.type === 'table')) {
+        if (inThisPopview && item.isInputCtrl) {
           res = item.validata()
         }
         if (!res) {
@@ -82,10 +85,12 @@ export default {
         props: {
           visible: !this.hidden,
           title: this.title,
-          width: this.width,
+          width: this.wrapwidth,
+          fullscreen: this.fullscreen,
           closeOnClickModal: false,
           closeOnPressEscape: false,
           destroyOnClose: true,
+          customClass: 'xt-popview-wrap'
         },
         on: {
           'update:visible': (val) => {
@@ -152,3 +157,9 @@ export default {
 }
 </style>
 
+<style>
+.xt-popview-wrap .el-dialog__body{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+</style>

@@ -20,15 +20,20 @@ export default {
   },
   data () {
     return {
-      value: '',
-      code: '',
-      title: '',
-      name: '',
-      type: '',
-      eventlist: [],
-      readonly: false,
-      hidden: false,
+      value: this.returnViewRulePropValue('value', 'string'),
+      code: this.returnViewRulePropValue('code', 'string'),
+      title: this.returnViewRulePropValue('title', 'string'),
+      name: this.returnViewRulePropValue('name', 'string'),
+      type: this.returnViewRulePropValue('type', 'string'),
+      eventlist: this.returnViewRulePropValue('eventlist', 'array', []),
+      readonly: this.returnViewRulePropValue('readonly', 'boolean', false),
+      hidden: this.returnViewRulePropValue('hidden', 'boolean', false),
+      // $$intable $$inlist $$infilter $$ intabboard 去掉前面 $$
+      // 详见 https://v2.vuejs.org/v2/api/#data
+      // Properties that start with _ or $ will not be proxied on the Vue instance because they may conflict with Vue’s internal properties and API methods.You will have to access them as vm.$data._property.
       intable: this.dealInnerProps('intable', this.viewRule.parentcode),
+      // 兼容之前写法 产品运营中心 openstatusname 注册的二开控件 有用到 $$intable
+      $$intable: this.dealInnerProps('intable', this.viewRule.parentcode),
       inlist: this.dealInnerProps('inlist', this.viewRule.parentcode),
       infilter: this.dealInnerProps('infilter', this.viewRule.parentcode),
       intabboard: this.dealInnerProps('intabboard', this.viewRule.parentcode),
@@ -45,16 +50,7 @@ export default {
     }
   },
   created () {
-    this.dealViewRuleProp('type', 'string')
-    this.dealViewRuleProp('code', 'string')
-    this.dealViewRuleProp('title', 'string')
-    this.dealViewRuleProp('name', 'string')
-    this.dealViewRuleProp('value', 'string')
-
-    this.dealViewRuleProp('readonly', 'boolean')
-    this.dealViewRuleProp('hidden', 'boolean')
-    this.dealViewRuleProp('eventlist', 'array', [])
-
+    // 在 数组型控件里面的 控件 因为数组会重复渲染控件 因此不在 engine 上挂载
     this.notCreateVMInEngine = this.intable || this.inlist
 
     // 暂时兼容 table operations 按钮的 readonly 关键字
@@ -87,6 +83,7 @@ export default {
   destroyed () {
     if (!this.notInEngine) {
       if (!this.notCreateVMInEngine) {
+        console.error('destroyed')
         this.engine.ctrlCodeMap.delete(this.code)
         this.name && (this.engine.ctrlNameCodeMap.delete(this.name))
       }
@@ -135,43 +132,52 @@ export default {
         }
       }
     },
+    // dealViewRuleProp 替换成 returnViewRulePropValue 更加通用
+    // 兼容保留 dealViewRuleProp 方法 二开控件有用到
+    dealViewRuleProp (propName, type, defaultValue) {
+      this[propName] = this.returnViewRulePropValue(propName, type, defaultValue)
+    },
     // 处理控件属性值
     // 如果带有 fly 前缀 则使用 flycode 执行结果
     // 依据各属性值所属变量类型处理
     // 以 readonly 为例 它的值为 'fly: return true' | '' | '1' | '0' 映射到 vm 上的为 true | false
-    dealViewRuleProp (propName, type, defaultValue) {
+    returnViewRulePropValue (propName, type, defaultValue) {
       // if (this.type === 'checkbox') {
       //   debugger
       // }
       const originValue = this.viewRule[propName]
       if (originValue && typeof originValue === 'string' && originValue.indexOf('fly:') === 0) {
         // todo flycode
-        this[propName] = this.executeFlycode(originValue, {
+        return this.executeFlycode(originValue, {
           eventTarget: this
         })
       } else {
         if (type === 'boolean') {
-          this[propName] = originValue === '1'
+          return originValue === '1'
         } else if (type === 'string') {
           defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : ''
-          this[propName] = originValue || defaultValue
+          return originValue || defaultValue
         } else if (type === 'number') {
           defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : 0
           if (typeof originValue === 'number') {
-            this[propName] = originValue
+            return originValue
           } else if (typeof originValue === 'string' && originValue) {
-            this[propName] = Number(originValue)
+            return Number(originValue)
           } else {
-            this[propName] = defaultValue
+            return defaultValue
           }
         } else if (type === 'array') {
           // options eventlist
           defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : []
-          this[propName] = Array.isArray(originValue) ? cloneDeep(originValue) : defaultValue
+          return Array.isArray(originValue) ? cloneDeep(originValue) : defaultValue
+        } else if (type === 'unit') {
+          // 单位 titlewidth ...
+          defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : ''
+          return fixLength(originValue || defaultValue)
         } else {
           // 有可能是其他任意类型值
           defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : null
-          this[propName] = (typeof originValue !== 'undefined') ? cloneDeep(originValue) : defaultValue
+          return (typeof originValue !== 'undefined') ? cloneDeep(originValue) : defaultValue
         }
       }
     },

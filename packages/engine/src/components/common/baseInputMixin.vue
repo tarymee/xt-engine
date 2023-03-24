@@ -9,18 +9,13 @@ export default {
   data () {
     return {
       isInputCtrl: true,
-      required: false,
-      placeholder: '',
-      hiddenclearbtn: false,
-      titlewidth: '30%',
+      required: this.returnViewRulePropValue('required', 'boolean', false),
+      placeholder: this.returnViewRulePropValue('placeholder', 'string'),
+      hiddenclearbtn: this.returnViewRulePropValue('hiddenclearbtn', 'boolean', false),
+      titlewidth: this.returnViewRulePropValue('titlewidth', 'unit', '30%'),
     }
   },
   created () {
-    this.dealViewRuleProp('required', 'boolean')
-    this.dealViewRuleProp('hiddenclearbtn', 'boolean')
-    this.dealViewRuleProp('placeholder', 'string')
-    this.dealViewRuleProp('titlewidth', 'string')
-    this.titlewidth = fixLength(this.titlewidth) || '30%'
   },
   methods: {
     requiredValidata () {

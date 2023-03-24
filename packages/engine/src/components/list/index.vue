@@ -13,12 +13,13 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      pageable: false,
-      checkable: false,
+      isArrayCtrl: true,
+      pageable: this.returnViewRulePropValue('pageable', 'boolean', false),
+      checkable: this.returnViewRulePropValue('checkable', 'boolean', false),
       pageInfo: null,
-      rowswidth: '100%',
-      rowsstyle: '',
-      value: []
+      rowswidth: this.returnViewRulePropValue('rowswidth', 'string', '100%'),
+      rowsstyle: this.returnViewRulePropValue('rowsstyle', 'string', ''), // 'card' | ''
+      value: this.returnViewRulePropValue('value', 'array', [])
     }
   },
   watch: {
@@ -29,11 +30,6 @@ export default {
     }
   },
   created () {
-    this.dealViewRuleProp('value', 'array', [])
-    this.dealViewRuleProp('pageable', 'boolean')
-    this.dealViewRuleProp('checkable', 'boolean')
-    this.dealViewRuleProp('rowswidth', 'string', '100%')
-    this.dealViewRuleProp('rowsstyle', 'string', '')
     this.pageInfo = this.pageable ? {
       __pageindex: 1,
       __pagesize: Number(this.viewRule.pagesize || 20),
@@ -464,10 +460,7 @@ export default {
   align-items: center;
 }
 .xt-list-item-row-check {
-  /* position: absolute;
-  right: 8px;
-  top: 4px; */
-  /* float: left; */
+  /* padding: 4px 0; */
 }
 .xt-list-item-row-operation {
   display: flex;

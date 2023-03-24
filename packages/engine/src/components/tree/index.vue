@@ -109,17 +109,17 @@ export default {
       // 单选时
       // individual (父子无关联 各自独立取值 默认)
       // disable (不能选非叶子节点 取值叶子节点) 暂不实现
-      intermediateselectmode: '',
-      displaytype: 'custom', // navigation | custom
+      intermediateselectmode: this.returnViewRulePropValue('intermediateselectmode', 'string', ''),
+      displaytype: this.returnViewRulePropValue('displaytype', 'string', 'custom'), // navigation | custom
       // noexpand allexpand rootexpand
-      expandmodel: 'rootexpand',
+      expandmodel: this.returnViewRulePropValue('expandmodel', 'string', 'rootexpand'),
       valueText: '',
       valueTextArr: [],
       highlightCurrent: true,
       expandOnClickNode: false,
-      options: [],
+      options: this.returnViewRulePropValue('options', 'array', []),
       // treeData: [],
-      multiselectable: false,
+      multiselectable: this.returnViewRulePropValue('multiselectable', 'boolean', false),
       defaultProps: {
         children: 'children',
         label: 'name',
@@ -165,11 +165,6 @@ export default {
   },
   created () {
     // todo autofillvalue
-    this.dealViewRuleProp('options', 'array', [])
-    this.dealViewRuleProp('multiselectable', 'boolean')
-    this.dealViewRuleProp('expandmodel', 'string', 'rootexpand')
-    this.dealViewRuleProp('displaytype', 'string', 'custom')
-    this.dealViewRuleProp('intermediateselectmode', 'string', '')
     if (this.intermediateselectmode === '') {
       if (this.multiselectable) {
         this.intermediateselectmode = 'gather'

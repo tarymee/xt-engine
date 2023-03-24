@@ -39,8 +39,8 @@ export default {
   mixins: [baseInputMixin],
   data () {
     return {
-      options: [],
-      displaytype: '' // auto / number
+      options: this.returnViewRulePropValue('options', 'array', []),
+      displaytype: this.returnViewRulePropValue('displaytype', 'string', 'auto') // auto / number
     }
   },
   computed: {
@@ -55,8 +55,6 @@ export default {
     }
   },
   created () {
-    this.dealViewRuleProp('options', 'array', [])
-    this.dealViewRuleProp('displaytype', 'string', 'auto')
   },
   methods: {
     handleChange (e) {

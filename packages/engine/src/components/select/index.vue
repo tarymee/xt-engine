@@ -44,16 +44,13 @@ export default {
   mixins: [baseInputMixin],
   data () {
     return {
-      options: [],
-      multiselectable: false,
-      remotesearch: false,
+      options: this.returnViewRulePropValue('options', 'array', []),
+      multiselectable: this.returnViewRulePropValue('multiselectable', 'boolean', false),
+      remotesearch: this.returnViewRulePropValue('remotesearch', 'boolean', false),
       remotesearchText: ''
     }
   },
   created () {
-    this.dealViewRuleProp('options', 'array', [])
-    this.dealViewRuleProp('multiselectable', 'boolean')
-    this.dealViewRuleProp('remotesearch', 'boolean')
     this.setValue(this.value)
   },
   methods: {
