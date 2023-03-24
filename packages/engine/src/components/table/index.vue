@@ -17,9 +17,9 @@ export default {
       // table 有 required 因此也是输入型控件
       isInputCtrl: true,
       isArrayCtrl: true,
-      required: this.returnViewRulePropValue('required', 'boolean', false),
-      pageable: this.returnViewRulePropValue('pageable', 'boolean', false),
-      checkable: this.returnViewRulePropValue('checkable', 'boolean', false),
+      required: this.returnViewRulePropValue('required', 'boolean'),
+      pageable: this.returnViewRulePropValue('pageable', 'boolean'),
+      checkable: this.returnViewRulePropValue('checkable', 'boolean'),
       pageInfo: null,
       value: this.returnViewRulePropValue('value', 'array', [])
     }

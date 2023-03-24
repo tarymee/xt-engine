@@ -14,8 +14,8 @@ export default {
   data () {
     return {
       isArrayCtrl: true,
-      pageable: this.returnViewRulePropValue('pageable', 'boolean', false),
-      checkable: this.returnViewRulePropValue('checkable', 'boolean', false),
+      pageable: this.returnViewRulePropValue('pageable', 'boolean'),
+      checkable: this.returnViewRulePropValue('checkable', 'boolean'),
       pageInfo: null,
       rowswidth: this.returnViewRulePropValue('rowswidth', 'string', '100%'),
       rowsstyle: this.returnViewRulePropValue('rowsstyle', 'string', ''), // 'card' | ''

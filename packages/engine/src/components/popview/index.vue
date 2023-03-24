@@ -12,10 +12,14 @@ export default {
       width: this.returnViewRulePropValue('width', 'unit', '50%'),
       wrapwidth: this.returnViewRulePropValue('wrapwidth', 'unit'),
       value: this.returnViewRulePropValue('value', 'other', null),
-      fullscreen: this.returnViewRulePropValue('fullscreen', 'boolean', false)
+      fullscreen: this.returnViewRulePropValue('fullscreen', 'boolean')
     }
   },
   computed: {
+    // 兼容 width wrapwidth
+    popviewWidth () {
+      return this.wrapwidth || this.width
+    },
     viewStyle () {
       // popview 的 width 和 hidden 应用于 el-dialog 组件
       const style = this.createBaseStyle()
@@ -30,10 +34,6 @@ export default {
         this.setValue(null)
       }
     }
-  },
-  created () {
-    // 兼容 width wrapwidth
-    this.wrapwidth = this.wrapwidth || this.width
   },
   methods: {
     findAllChildrenCtrlCode (ctrlViewRule, codes = []) {
@@ -85,7 +85,7 @@ export default {
         props: {
           visible: !this.hidden,
           title: this.title,
-          width: this.wrapwidth,
+          width: this.popviewWidth,
           fullscreen: this.fullscreen,
           closeOnClickModal: false,
           closeOnPressEscape: false,
@@ -130,17 +130,7 @@ export default {
           operations.map((item, i) => {
             return renderComponent(h, item)
           })
-        ) : null,
-        // h(
-        //   'div',
-        //   {
-        //     slot: 'title',
-        //     attrs: {
-        //       class: 'dialog-title'
-        //     },
-        //   },
-        //   this.title
-        // )
+        ) : null
       ] : null
     )
   }

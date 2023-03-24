@@ -119,7 +119,7 @@ export default {
       expandOnClickNode: false,
       options: this.returnViewRulePropValue('options', 'array', []),
       // treeData: [],
-      multiselectable: this.returnViewRulePropValue('multiselectable', 'boolean', false),
+      multiselectable: this.returnViewRulePropValue('multiselectable', 'boolean'),
       defaultProps: {
         children: 'children',
         label: 'name',

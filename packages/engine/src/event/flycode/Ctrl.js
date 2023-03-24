@@ -1,8 +1,3 @@
-/**
- * Ctrl
- * @author tarymee
- * @todo hidden readonly 等属性兼容 0 1 false true
- */
 class Ctrl {
   instance
 
@@ -15,7 +10,7 @@ class Ctrl {
   // }
 
   // set code (value) {
-  //   console.error('code 属性为只读属性，不可设置。')
+  //   console.error('code 属性为只读属性，不可设置')
   // }
 
   get value () {
@@ -32,7 +27,7 @@ class Ctrl {
   // }
 
   // set floatValue (value) {
-  //   console.error('floatValue 属性为只读属性，不可设置。')
+  //   console.error('floatValue 属性为只读属性，不可设置')
   // }
 
   get hidden () {
@@ -135,17 +130,17 @@ class ArrayCtrl extends Ctrl {
   }
 
   get index () {
-    if (!this.instance.getIndex) throw Error('暂不支持该方法。')
+    if (!this.instance.getIndex) throw Error('暂不支持该方法')
     return this.instance.getIndex('all')
   }
 
   get focusedIndex () {
-    if (!this.instance.getIndex) throw Error('暂不支持该方法。')
+    if (!this.instance.getIndex) throw Error('暂不支持该方法')
     return this.instance.getIndex('focused')
   }
 
   get checkedIndex () {
-    if (!this.instance.getIndex) throw Error('暂不支持该方法。')
+    if (!this.instance.getIndex) throw Error('暂不支持该方法')
     return this.instance.getIndex('checked')
   }
 
@@ -158,39 +153,40 @@ class ArrayCtrl extends Ctrl {
   }
 
   get pageInfo () {
-    if (!this.instance.getPageInfo) throw Error('暂不支持该方法。')
+    if (!this.instance.getPageInfo) throw Error('暂不支持该方法')
     return this.instance.getPageInfo()
   }
 
   set pageInfo (pageInfo) {
-    if (!this.instance.setPageInfo) throw Error('暂不支持该方法。')
+    if (!this.pageable) throw Error('pageable = false 不支持设置分页')
+    if (!this.instance.setPageInfo) throw Error('暂不支持该方法')
     return this.instance.setPageInfo(pageInfo)
   }
 
   deleteInScope (scope = 'all') {
-    if (!this.instance.deleteInScope) throw Error('暂不支持该方法。')
+    if (!this.instance.deleteInScope) throw Error('暂不支持该方法')
     return this.instance.deleteInScope(scope)
   }
 
   append (data, type = 'tail') {
-    if (!this.instance.append) throw Error('暂不支持该方法。')
+    if (!this.instance.append) throw Error('暂不支持该方法')
     if (Array.isArray(data)) {
       this.instance.append(data, type)
     } else if (Object.prototype.toString.call(data) === '[object Object]') {
       this.instance.append([data], type)
     } else {
-      console.error('传入 data 类型错误。')
+      console.error('传入 data 类型错误')
     }
   }
 
   update (data = [], index = []) {
-    if (!this.instance.update) throw Error('暂不支持该方法。')
+    if (!this.instance.update) throw Error('暂不支持该方法')
     if (Array.isArray(data) && Array.isArray(index)) {
       this.instance.update(data, index)
     } else if (Object.prototype.toString.call(data) === '[object Object]' && typeof index === 'number') {
       this.instance.update([data], [index])
     } else {
-      console.error('传入 data index 类型错误。')
+      console.error('传入 data index 类型错误')
     }
   }
 
@@ -211,7 +207,7 @@ class ArrayCtrl extends Ctrl {
   }
 
   getRow (index) {
-    if (!this.instance.getRowsCtrlMap) throw Error('暂不支持该方法。')
+    if (!this.instance.getRowsCtrlMap) throw Error('暂不支持该方法')
     if (Array.isArray(index)) {
       const maps = this.instance.getRowsCtrlMap(index)
       // console.log(maps)
@@ -222,13 +218,13 @@ class ArrayCtrl extends Ctrl {
       const map = this.instance.getRowsCtrlMap([index])[0]
       return map ? new Row(map, index) : null
     } else {
-      console.error('传入 index 类型错误。')
+      console.error('传入 index 类型错误')
       return null
     }
   }
 
   setCheck (value, index) {
-    if (!this.instance.setCheck) throw Error('暂不支持该方法。')
+    if (!this.instance.setCheck) throw Error('暂不支持该方法')
     this.instance.setCheck(value, index)
   }
 }
@@ -250,12 +246,12 @@ class Row {
   getCtrl (name) {
     const tipPrefix = '[Page.getCtrl()]'
     if (!name) {
-      console.error(`${tipPrefix} 请传入控件 name 值。`)
+      console.error(`${tipPrefix} 请传入控件 name 值`)
       return
     }
     const instance = this.rowsCtrlMap[name]
     if (!instance) {
-      console.error(`${tipPrefix} 找不到 name 为【${name}】的控件实例，请检查。`)
+      console.error(`${tipPrefix} 找不到 name 为【${name}】的控件实例，请检查`)
       return
     }
     return new Ctrl(instance)

@@ -9,9 +9,9 @@ export default {
   data () {
     return {
       isInputCtrl: true,
-      required: this.returnViewRulePropValue('required', 'boolean', false),
+      required: this.returnViewRulePropValue('required', 'boolean'),
       placeholder: this.returnViewRulePropValue('placeholder', 'string'),
-      hiddenclearbtn: this.returnViewRulePropValue('hiddenclearbtn', 'boolean', false),
+      hiddenclearbtn: this.returnViewRulePropValue('hiddenclearbtn', 'boolean'),
       titlewidth: this.returnViewRulePropValue('titlewidth', 'unit', '30%'),
     }
   },

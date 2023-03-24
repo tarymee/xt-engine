@@ -10,7 +10,7 @@
       :icon="viewRule.icon"
       @click="handleClick"
     >
-      {{ value }}
+      {{ buttonText }}
     </el-button>
   </div>
 </template>
@@ -22,13 +22,16 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      displaytype: this.returnViewRulePropValue('displaytype', 'string')
+      // displaytype https://element.eleme.cn/2.15/#/zh-CN/component/button
+      displaytype: this.returnViewRulePropValue('displaytype', 'string'),
+      text: this.returnViewRulePropValue('text', 'string')
     }
   },
-  created () {
-  },
-  methods: {
-
+  computed: {
+    // 兼容 text value
+    buttonText () {
+      return this.value || this.text
+    }
   }
 }
 </script>

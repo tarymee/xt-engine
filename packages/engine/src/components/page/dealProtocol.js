@@ -66,10 +66,6 @@ const dealOldView = (ctrlViewRule) => {
     delete ctrlViewRule.guidecols
   }
 
-  if (ctrlViewRule.type === 'button') {
-    dealPropMap(ctrlViewRule, 'text', 'value')
-  }
-
   dealPropMap(ctrlViewRule, 'flexdirection', 'flexDirection', {
     horizontal: 'row',
     vertical: 'column',
@@ -94,9 +90,12 @@ const dealHandler = (handler) => {
   delete handler.successhint
   delete handler.notice
   delete handler.remark
+  if (!handler.code) handler.code = `handler-${uuidv4()}`
   dealPropMap(handler, 'desc', 'title')
+
   Array.isArray(handler.actions) && handler.actions.forEach((item) => {
-    delete handler.remark
+    delete item.remark
+    if (!item.code) item.code = `action-${uuidv4()}`
     dealPropMap(item, 'desc', 'title')
   })
 }
@@ -116,20 +115,21 @@ const dealPresenter = (presenter) => {
 }
 
 const viewRuleAddParentcode = (ctrlViewRule, parentcode = null, parentcodepath = []) => {
-  if (isObject(ctrlViewRule)) {
+  if (isObject(ctrlViewRule) && ctrlViewRule.type) {
     ctrlViewRule.parentcode = parentcode
 
     ctrlViewRule.codepath = cloneDeep(parentcodepath)
     if (ctrlViewRule.code) {
       ctrlViewRule.codepath.push(ctrlViewRule.code)
     }
+
     for (const x in ctrlViewRule) {
       let item = ctrlViewRule[x]
-      if (isObject(item) && item.type) {
+      if (isObject(item)) {
         viewRuleAddParentcode(item, ctrlViewRule.code, ctrlViewRule.codepath)
       } else if (Array.isArray(item)) {
         item.forEach((item2) => {
-          if (isObject(item2) && item2.type) {
+          if (isObject(item2)) {
             viewRuleAddParentcode(item2, ctrlViewRule.code, ctrlViewRule.codepath)
           }
         })
@@ -142,7 +142,10 @@ const viewRuleAddProps = (ctrlViewRule) => {
   dealOldView(ctrlViewRule)
 
   ctrlViewRule.style = ctrlViewRule.style || {}
-  ctrlViewRule.code = ctrlViewRule.code || `${ctrlViewRule.type}-${uuidv4()}`
+
+  if (ctrlViewRule.type) {
+    ctrlViewRule.code = ctrlViewRule.code || `${ctrlViewRule.type}-${uuidv4()}`
+  }
 
   if (ctrlViewRule.type === 'table') {
     ctrlViewRule.style.flexDirection = ctrlViewRule.style.flexDirection || ctrlViewRule.flexDirection || 'column'
@@ -230,16 +233,16 @@ const viewRuleAddProps = (ctrlViewRule) => {
 
 
 const createViewRuleMap = (ctrlViewRule, viewRuleMap) => {
-  if (ctrlViewRule && ctrlViewRule.code) {
+  if (ctrlViewRule && ctrlViewRule.code && ctrlViewRule.type) {
     viewRuleMap.set(ctrlViewRule.code, ctrlViewRule)
   }
   for (const x in ctrlViewRule) {
     let item = ctrlViewRule[x]
-    if (isObject(item) && item.type) {
+    if (isObject(item)) {
       createViewRuleMap(item, viewRuleMap)
     } else if (Array.isArray(item)) {
       item.forEach((item2) => {
-        if (isObject(item2) && item2.type) {
+        if (isObject(item2)) {
           createViewRuleMap(item2, viewRuleMap)
         }
       })
@@ -249,6 +252,7 @@ const createViewRuleMap = (ctrlViewRule, viewRuleMap) => {
 
 export const dealProtocol = (protocol) => {
   const protocolFormat = cloneDeep(protocol)
+  // todo view body subviews 空值检测
   const body = get(protocolFormat, 'view.body')
   const subviews = get(protocolFormat, 'view.subviews', [])
 
@@ -263,7 +267,7 @@ export const dealProtocol = (protocol) => {
     viewRuleAddParentcode(item)
   })
 
-  dealPresenter(protocolFormat)
+  dealPresenter(protocolFormat.presenter)
 
   const viewRuleMap = new Map()
   createViewRuleMap(body, viewRuleMap)
@@ -273,7 +277,7 @@ export const dealProtocol = (protocol) => {
 
   console.log(viewRuleMap)
   console.log(protocolFormat)
-  console.log(JSON.stringify(protocolFormat))
+  // console.log(JSON.stringify(protocolFormat))
 
   return {
     pagecode: get(protocolFormat, 'pageinfo.code', ''),

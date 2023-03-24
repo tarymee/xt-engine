@@ -45,8 +45,8 @@ export default {
   data () {
     return {
       options: this.returnViewRulePropValue('options', 'array', []),
-      multiselectable: this.returnViewRulePropValue('multiselectable', 'boolean', false),
-      remotesearch: this.returnViewRulePropValue('remotesearch', 'boolean', false),
+      multiselectable: this.returnViewRulePropValue('multiselectable', 'boolean'),
+      remotesearch: this.returnViewRulePropValue('remotesearch', 'boolean'),
       remotesearchText: ''
     }
   },

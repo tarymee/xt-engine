@@ -26,8 +26,8 @@ export default {
       name: this.returnViewRulePropValue('name', 'string'),
       type: this.returnViewRulePropValue('type', 'string'),
       eventlist: this.returnViewRulePropValue('eventlist', 'array', []),
-      readonly: this.returnViewRulePropValue('readonly', 'boolean', false),
-      hidden: this.returnViewRulePropValue('hidden', 'boolean', false),
+      readonly: this.returnViewRulePropValue('readonly', 'boolean'),
+      hidden: this.returnViewRulePropValue('hidden', 'boolean'),
       // $$intable $$inlist $$infilter $$ intabboard 去掉前面 $$
       // 详见 https://v2.vuejs.org/v2/api/#data
       // Properties that start with _ or $ will not be proxied on the Vue instance because they may conflict with Vue’s internal properties and API methods.You will have to access them as vm.$data._property.
@@ -83,7 +83,7 @@ export default {
   destroyed () {
     if (!this.notInEngine) {
       if (!this.notCreateVMInEngine) {
-        console.error('destroyed')
+        console.error('destroyed', this.code)
         this.engine.ctrlCodeMap.delete(this.code)
         this.name && (this.engine.ctrlNameCodeMap.delete(this.name))
       }
