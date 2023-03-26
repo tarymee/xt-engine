@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
   "pageinfo": {
-    "code": "smartcenter",
-    "title": "smartcenter"
+    "code": "list",
+    "title": "list"
   },
   "view": {
     "body": {
@@ -113,10 +113,10 @@ export default {
             "type": "layout",
             "flexdirection": "vertical",
             "style": {
+              "padding": "16px"
               // "border": "1px solid #ccc",
               // "borderRadius": "3px",
               // "box-shadow": "0px 0px 5px #ddd",
-              // "padding": "16px",
               // "margin": "8px"
             },
             "content": [
@@ -261,19 +261,13 @@ export default {
     "initial": [
       {
         "code": "1454645626748",
-        "desc": "初始化",
+        "title": "初始化",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "code": "1402930156032626747",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
 
             `
@@ -285,20 +279,15 @@ export default {
     "handlers": [
       {
         "code": "handle-get",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
+              debugger
               const value = page.getCtrl('列表').value
               const checkedValue = page.getCtrl('列表').checkedValue
               console.log('all', value)
@@ -309,19 +298,13 @@ export default {
       },
       {
         "code": "handle-onload",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               // return false
               page.getCtrl('列表').value = [
@@ -397,19 +380,13 @@ export default {
       },
       {
         "code": "handle-new",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               page.getCtrl('列表').append({
                 productname: '果粒橙',
@@ -423,19 +400,13 @@ export default {
       },
       {
         "code": "handle-update",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               page.getCtrl('列表').update({
                 productname: '娃哈哈',
@@ -449,19 +420,13 @@ export default {
       },
       {
         "code": "handle-setCheck",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               page.getCtrl('列表').setCheck(true, 0)
             `
@@ -470,19 +435,13 @@ export default {
       },
       {
         "code": "handle-del",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               page.getCtrl('列表').deleteInScope('checked')
             `
@@ -491,19 +450,13 @@ export default {
       },
       {
         "code": "handle-print",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               const checkedValue = page.getCtrl('列表').checkedValue
               console.log(checkedValue)
@@ -513,19 +466,13 @@ export default {
       },
       {
         "code": "handle-getRow",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               const firstRow = page.getCtrl('列表').row[0]
               // const firstRow = page.getCtrl('列表').getRow(0)
@@ -544,19 +491,13 @@ export default {
       },
       {
         "code": "handle-validata",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               const result = page.validata()
               console.log(result)

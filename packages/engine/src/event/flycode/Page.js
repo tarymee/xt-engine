@@ -1,6 +1,6 @@
 import { eventEmitter } from '../common/EventEmitter'
 import { Ctrl, ArrayCtrl } from './Ctrl'
-import { Message } from 'element-ui'
+import { Message, MessageBox } from 'element-ui'
 
 export default class Page {
   eventManager
@@ -14,7 +14,7 @@ export default class Page {
   }
 
   get confirm () {
-    return this.eventManager.engine.$confirm
+    return MessageBox.confirm
   }
 
   // get IN () {
@@ -179,6 +179,11 @@ export default class Page {
   closeLoading () {
     this.eventManager.engine.closeLoading()
   }
+
+  // 为 page 提供函数
+  // provide (name, value) {
+  //   this[name] = value
+  // }
 
   // 显示进度框
   // openProgress () {}

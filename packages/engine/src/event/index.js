@@ -72,6 +72,8 @@ export default class EventManager {
     //   console.log(option)
     //   debugger
     // }
+    // console.log(this.flycode)
+    // debugger
     return this.flycode.run(value, option)
   }
 

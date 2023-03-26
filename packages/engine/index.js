@@ -1,8 +1,7 @@
 import components from './src/components'
 import flycodeVariable from './src/event/flycode/flycodeVariable'
+import Flycode from './src/event/flycode'
 import axios from 'axios'
-const xtComponents = components
-
 
 const xtEngine = {
   // 导出全局的axios以便用户修改配置以及注册拦截器
@@ -10,31 +9,25 @@ const xtEngine = {
   axios,
   // use: function () {
   // },
-  // 为flycode注入变量 与Page一样的用法
-  registerFlycode (name, data) {
+  // 为 flycode 提供变量/函数 在 flycode 中通过 inject[name] 获取
+  provideFlycode (name, data) {
     flycodeVariable[name] = data
+    if (Flycode.inject[name]) {
+      console.error(`您已注入 flycode： ${name}，不可重复注入。`)
+    } else {
+      Flycode.inject[name] = data
+    }
   },
   registerComponent (name, vm) {
-    components[name] = vm
-  },
-  registerIcon (name, vm) {
-    components[name] = vm
-  },
-  registerImage (name, imgurl) {
-    components[name] = imgurl
+    if (components[name]) {
+      console.error(`引擎已存在 ${name} 组件，请更换组件 name 值。`)
+    } else {
+      components[name] = vm
+    }
   }
-}
-
-
-
-export default {
-  xtEngine,
-  components,
-  xtComponents
 }
 
 export {
   xtEngine,
-  components,
-  xtComponents
+  components
 }

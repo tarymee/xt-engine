@@ -1,7 +1,9 @@
 import Page from './Page'
 import System from './System'
 import flycodeVariable from './flycodeVariable'
+import service from './service'
 import axios from 'axios'
+
 export default class Flycode {
 
   eventManager
@@ -12,8 +14,11 @@ export default class Flycode {
 
     // 这里预先收集固定不变的依赖
     // page 应小写 因为是页面实例
-    this.dependenceMap.set('page', new Page(this.eventManager))
-    this.dependenceMap.set('system', new System(this.eventManager))
+    const page = new Page(this.eventManager)
+    // page.xxx = 'xxx' // 用户在页面协议注册方法 变量
+    this.dependenceMap.set('page', page)
+    // this.dependenceMap.set('system', new System(this.eventManager))
+
 
     // 每个表单创建一个axios实例 自动添加loading
     const axiosInstance = axios.create()
@@ -32,9 +37,16 @@ export default class Flycode {
     })
     this.dependenceMap.set('axios', axiosInstance)
 
-    this.dependenceMap.set('day', function (number) {
-      return number
-    })
+    // this.dependenceMap.set('day', function (number) {
+    //   return number
+    // })
+
+    // 引擎提供的flycode服务
+    // service.axios = axiosInstance
+    this.dependenceMap.set('service', service)
+
+    // 用户注册的flycode
+    this.dependenceMap.set('inject', Flycode.inject)
   }
 
   run (value = '', option = {}) {
@@ -76,16 +88,8 @@ export default class Flycode {
       keyArray.push(key)
       valueArray.push(value)
     })
-    // todo 放到page里面
     keyArray.push('eventTarget')
     valueArray.push(option.eventTarget || null)
-
-    // 用户注册的变量
-    // todo 检测用户变量是否系统私有
-    for (const x in flycodeVariable) {
-      keyArray.push(x)
-      valueArray.push(flycodeVariable[x])
-    }
 
     // todo 传入table上下文变量以便做针对table按钮的只读操作
 
@@ -122,4 +126,10 @@ export default class Flycode {
   }
 }
 
-// const flycode = new Flycode()
+
+
+// 用户注册的flycode 挂到静态对象上 需要时注入
+Flycode.inject = {
+  aaaa: 'sssss'
+}
+// console.log(Flycode.inject)
