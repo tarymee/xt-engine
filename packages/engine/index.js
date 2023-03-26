@@ -2,10 +2,10 @@ import components from './src/components'
 import flycodeVariable from './src/event/flycode/flycodeVariable'
 import Flycode from './src/event/flycode'
 import axios from 'axios'
+// import axios from './src/service/axios.js'
 
 const xtEngine = {
-  // 导出全局的axios以便用户修改配置以及注册拦截器
-  // todo: 不要导出全局 有可能容器应用本身就用了全局的 axios
+  // 导出引擎的axios实例以便用户修改配置以及注册拦截器
   axios,
   // use: function () {
   // },

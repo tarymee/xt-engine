@@ -83,7 +83,7 @@ export default {
   destroyed () {
     if (!this.notInEngine) {
       if (!this.notCreateVMInEngine) {
-        console.error('destroyed', this.code)
+        // console.error('destroyed', this.code)
         this.engine.ctrlCodeMap.delete(this.code)
         this.name && (this.engine.ctrlNameCodeMap.delete(this.name))
       }

@@ -2,6 +2,8 @@ import Page from './Page'
 import System from './System'
 import flycodeVariable from './flycodeVariable'
 import service from './service'
+// todo 改成实例 实例处理loading
+// import axiosInstance from '../../service/axios'
 import axios from 'axios'
 
 export default class Flycode {
