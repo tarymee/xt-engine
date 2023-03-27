@@ -1,6 +1,7 @@
 <script>
 import { get } from 'lodash-es'
 import { dealProtocol } from './dealProtocol'
+// import engineMap from './engineMap'
 import EventManager from '../../event'
 import renderComponent from '../common/renderComponent'
 // import { v4 as uuidv4 } from 'uuid'
@@ -41,10 +42,15 @@ export default {
     this.eventManager = new EventManager({
       engine: this
     })
+    // engineMap.set(this.pagecode, this)
   },
   mounted () {
     this.eventManager.init()
   },
+  // destroyed () {
+  //   console.error('destroyed')
+  //   this.eventManager = null
+  // },
   methods: {
     openLoading () {
       this.loadingCount++
