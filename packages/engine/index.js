@@ -1,5 +1,4 @@
 import components from './src/components'
-import flycodeVariable from './src/event/flycode/flycodeVariable'
 import Flycode from './src/event/flycode'
 import axios from 'axios'
 // import axios from './src/service/axios.js'
@@ -11,12 +10,11 @@ const xtEngine = {
   // },
   // 为 flycode 提供变量/函数 在 flycode 中通过 inject[name] 获取
   provideFlycode (name, data) {
-    flycodeVariable[name] = data
+    // 有可能传入的是字符串 后期可能会改 所以要支持可变动
     if (Flycode.inject[name]) {
-      console.error(`您已注入 flycode： ${name}，不可重复注入。`)
-    } else {
-      Flycode.inject[name] = data
+      console.warn(`您已注入 flycode： ${name}，重复注入会覆盖上一次的值。`)
     }
+    Flycode.inject[name] = data
   },
   registerComponent (name, vm) {
     if (components[name]) {
