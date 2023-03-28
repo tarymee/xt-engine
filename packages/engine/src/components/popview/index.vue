@@ -1,6 +1,5 @@
 <script>
 import { get, cloneDeep } from 'lodash-es'
-import { fixLength } from '../../utils'
 import baseMixin from '../common/baseMixin'
 import renderComponent from '../common/renderComponent'
 
@@ -87,6 +86,8 @@ export default {
           title: this.title,
           width: this.popviewWidth,
           fullscreen: this.fullscreen,
+          // modalAppendToBody: false,
+          // appendToBody: true,
           closeOnClickModal: false,
           closeOnPressEscape: false,
           destroyOnClose: true,

@@ -78,6 +78,8 @@ export default {
     }
   },
   mounted () {
+    // debugger
+    // todo 每个控件自己实现
     this.executeEvent('onload')
   },
   destroyed () {
@@ -236,6 +238,9 @@ export default {
       }
     },
     executeEvent (triggerType, option = {}) {
+      // if (this.type === 'list') {
+      //   debugger
+      // }
       for (const event of this.eventlist) {
         if (event.trigger === triggerType && event.handler) {
           // console.log(triggerType)

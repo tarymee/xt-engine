@@ -25,8 +25,8 @@ export default class Flycode {
 
     // 每个表单创建一个axios实例 自动添加loading
     const axiosInstance = axios.create()
-    console.log(axios.interceptors)
-    console.log(axiosInstance.interceptors)
+    // console.log(axios.interceptors)
+    // console.log(axiosInstance.interceptors)
     // debugger
     // axiosInstance.interceptors.request = cloneDeep(axios.interceptors.request)
     // axiosInstance.interceptors.response = cloneDeep(axios.interceptors.response)
@@ -39,7 +39,7 @@ export default class Flycode {
     })
 
     axiosInstance.interceptors.request.use(config => {
-      console.log('interceptors', this.eventManager.engine.pagecode)
+      // console.log('interceptors', this.eventManager.engine.pagecode)
       // debugger
       // console.log('interceptors', engineMap)
       this.eventManager.engine.openLoading()
@@ -148,7 +148,5 @@ export default class Flycode {
 
 
 // 用户注册的flycode 挂到静态对象上 需要时注入
-Flycode.inject = {
-  aaaa: 'sssss'
-}
+Flycode.inject = {}
 // console.log(Flycode.inject)

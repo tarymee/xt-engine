@@ -38,7 +38,6 @@ export default {
   },
   mounted () {
     // this.dealBtnsState()
-    this.executeEvent('onload')
     this.dealHeight()
   },
   methods: {
