@@ -13,6 +13,7 @@ import table from './table.js'
 import list from './list.js'
 import attachment from './attachment.js'
 import tabboard from './tabboard.js'
+import foreach from './foreach.js'
 
 export default {
   components: {
@@ -39,6 +40,8 @@ export default {
       this.protocol = attachment
     } else if (protocol === 'tabboard') {
       this.protocol = tabboard
+    } else if (protocol === 'foreach') {
+      this.protocol = foreach
     }
   }
 }
