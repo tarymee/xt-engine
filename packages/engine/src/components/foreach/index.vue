@@ -6,7 +6,7 @@ import baseMixin from '../common/baseMixin'
 import renderComponent from '../common/renderComponent'
 
 export default {
-  name: 'xt-list',
+  name: 'xt-foreach',
   components: {
     'xt-widget-none': () => import('../../widget/none')
   },

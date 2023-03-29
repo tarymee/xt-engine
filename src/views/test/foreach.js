@@ -96,28 +96,18 @@ export default {
         },
         {
           "type": "foreach",
-          "title": "列表",
-          "name": "列表",
-          "checkable": "1",
-          "pageable": "1",
-          "pagesize": "20",
+          "title": "循环控件",
+          "name": "循环控件",
           "flex": "1",
           "style": {
             // "height": "500px",
             // "width": "500px"
           },
-          "rowswidth": "25%",
-          "rowsstyle": "card",
-          // "rowsstyle": "",
           "rows": {
             "type": "layout",
             "flexdirection": "vertical",
             "style": {
               "padding": "16px"
-              // "border": "1px solid #ccc",
-              // "borderRadius": "3px",
-              // "box-shadow": "0px 0px 5px #ddd",
-              // "margin": "8px"
             },
             "content": [
               {
@@ -160,95 +150,20 @@ export default {
                 },
                 "eventlist": []
               },
-              // {
-              //   "type": "textinput",
-              //   "title": "数量",
-              //   "name": "number",
-              //   "value": "",
-              //   "style": {},
-              //   "eventlist": []
-              // }
+              {
+                "type": "textinput",
+                "title": "数量",
+                "name": "number",
+                "value": "",
+                "style": {},
+                "eventlist": []
+              }
             ]
           },
-          "frontoperations": [
-            {
-              "type": "layout",
-              "flex": "1",
-              "style": {
-                "backgroundColor": "",
-                "justify-content": "center",
-                "align-items": "center",
-                "flex-direction": "column",
-                "min-height": "160px"
-              },
-              "content": [
-                {
-                  "type": "text",
-                  "title": "",
-                  "name": "",
-                  "value": "✚",
-                  "hidden": "",
-                  "style": {
-                    "font-size": "50px",
-                    "color": "#f60"
-                  }
-                }
-              ],
-              "eventlist": [
-                {
-                  "trigger": "onclicked",
-                  "handler": "handle-update"
-                }
-              ]
-            }
-          ],
-          "operations": [],
-          "rowoperations": [
-            {
-              "text": "编辑",
-              "eventlist": [
-                {
-                  "trigger": "onclicked",
-                  "handler": "handle-edit"
-                }
-              ]
-            },
-            // {
-            //   "text": "新增",
-            //   "eventlist": [
-            //     {
-            //       "trigger": "onclicked",
-            //       "handler": "handle-edit"
-            //     }
-            //   ]
-            // },
-            // {
-            //   "text": "启用",
-            //   "eventlist": [
-            //     {
-            //       "trigger": "onclicked",
-            //       "handler": "handle-edit"
-            //     }
-            //   ]
-            // },
-            // {
-            //   "text": "停用",
-            //   "eventlist": [
-            //     {
-            //       "trigger": "onclicked",
-            //       "handler": "handle-edit"
-            //     }
-            //   ]
-            // }
-          ],
           "eventlist": [
             {
               "trigger": "onload",
               "handler": "handle-onload"
-            },
-            {
-              "trigger": "onchecked",
-              "handler": "handle-onchecked"
             }
           ]
         }
@@ -288,8 +203,8 @@ export default {
             "title": "flycode",
             "script": `
               debugger
-              const value = page.getCtrl('列表').value
-              const checkedValue = page.getCtrl('列表').checkedValue
+              const value = page.getCtrl('循环控件').value
+              const checkedValue = page.getCtrl('循环控件').checkedValue
               console.log('all', value)
               console.log('checked', checkedValue)
             `
@@ -307,7 +222,7 @@ export default {
             "title": "flycode",
             "script": `
               // return false
-              page.getCtrl('列表').value = [
+              page.getCtrl('循环控件').value = [
                 {
                   name: '',
                   des: '',
@@ -388,7 +303,7 @@ export default {
             "type": "flycode",
             "title": "flycode",
             "script": `
-              page.getCtrl('列表').append({
+              page.getCtrl('循环控件').append({
                 productname: '果粒橙',
                 productcode: '003',
                 status: '1',
@@ -408,7 +323,7 @@ export default {
             "type": "flycode",
             "title": "flycode",
             "script": `
-              page.getCtrl('列表').update({
+              page.getCtrl('循环控件').update({
                 productname: '娃哈哈',
                 productcode: '004',
                 status: '0',
@@ -428,7 +343,7 @@ export default {
             "type": "flycode",
             "title": "flycode",
             "script": `
-              page.getCtrl('列表').setCheck(true, 0)
+              page.getCtrl('循环控件').setCheck(true, 0)
             `
           }
         ]
@@ -443,7 +358,7 @@ export default {
             "type": "flycode",
             "title": "flycode",
             "script": `
-              page.getCtrl('列表').deleteInScope('checked')
+              page.getCtrl('循环控件').deleteInScope('checked')
             `
           }
         ]
@@ -458,7 +373,7 @@ export default {
             "type": "flycode",
             "title": "flycode",
             "script": `
-              const checkedValue = page.getCtrl('列表').checkedValue
+              const checkedValue = page.getCtrl('循环控件').checkedValue
               console.log(checkedValue)
             `
           }
@@ -474,8 +389,8 @@ export default {
             "type": "flycode",
             "title": "flycode",
             "script": `
-              const firstRow = page.getCtrl('列表').row[0]
-              // const firstRow = page.getCtrl('列表').getRow(0)
+              const firstRow = page.getCtrl('循环控件').row[0]
+              // const firstRow = page.getCtrl('循环控件').getRow(0)
               console.log(firstRow)
               firstRow.getCtrl('productname').value = 'xxxx'
               firstRow.getCtrl('unit').value = ''
