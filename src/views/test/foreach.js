@@ -98,66 +98,73 @@ export default {
           "type": "foreach",
           "title": "循环控件",
           "name": "循环控件",
-          "flex": "1",
+          "flex": "",
+          // "flexdirection": "vertical",
           "style": {
             // "height": "500px",
             // "width": "500px"
           },
           "rows": {
             "type": "layout",
-            "flexdirection": "vertical",
             "style": {
-              "padding": "16px"
+              "margin": "8px 0 0 8px"
             },
             "content": [
               {
-                "type": "image",
-                "title": "图片",
-                "name": "img",
-                "value": "",
-                "style": {
-                  "width": "100%",
-                  "height": "200px"
-                },
-                "eventlist": []
-              },
-              {
-                "type": "text",
-                "title": "名称",
-                "name": "name",
-                "value": "名称",
-                "style": {
-                  "fontWeight": "bold",
-                  "fontSize": "16px",
-                  "margin-top": "8px",
-                  "margin-bottom": "4px"
-                },
-                "eventlist": []
-              },
-              {
-                "type": "text",
-                "title": "描述",
-                "name": "des",
-                "value": "描述",
-                "style": {
-                  "overflow": "hidden",
-                  "text-overflow": "ellipsis",
-                  "display": "-webkit-box",
-                  "-webkit-line-clamp": 2,
-                  "-webkit-box-orient": "vertical",
-                  "color": "#777",
-                  "fontSize": "12px"
-                },
-                "eventlist": []
-              },
-              {
-                "type": "textinput",
-                "title": "数量",
-                "name": "number",
-                "value": "",
+                "type": "button",
+                "value": "按钮",
+                "name": "",
                 "style": {},
                 "eventlist": []
               }
+              // {
+              //   "type": "image",
+              //   "title": "图片",
+              //   "name": "img",
+              //   "value": "",
+              //   "style": {
+              //     "width": "100%",
+              //     "height": "200px"
+              //   },
+              //   "eventlist": []
+              // },
+              // {
+              //   "type": "text",
+              //   "title": "名称",
+              //   "name": "name",
+              //   "value": "名称",
+              //   "style": {
+              //     "fontWeight": "bold",
+              //     "fontSize": "16px",
+              //     "margin-top": "8px",
+              //     "margin-bottom": "4px"
+              //   },
+              //   "eventlist": []
+              // },
+              // {
+              //   "type": "text",
+              //   "title": "描述",
+              //   "name": "des",
+              //   "value": "描述",
+              //   "style": {
+              //     "overflow": "hidden",
+              //     "text-overflow": "ellipsis",
+              //     "display": "-webkit-box",
+              //     "-webkit-line-clamp": 2,
+              //     "-webkit-box-orient": "vertical",
+              //     "color": "#777",
+              //     "fontSize": "12px"
+              //   },
+              //   "eventlist": []
+              // },
+              // {
+              //   "type": "textinput",
+              //   "title": "数量",
+              //   "name": "number",
+              //   "value": "",
+              //   "style": {},
+              //   "eventlist": []
+              // }
             ]
           },
           "eventlist": [

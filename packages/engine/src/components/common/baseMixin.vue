@@ -35,6 +35,7 @@ export default {
       // 兼容之前写法 产品运营中心 openstatusname 注册的二开控件 有用到 $$intable
       $$intable: this.dealInnerProps('intable', this.viewRule.parentcode),
       inlist: this.dealInnerProps('inlist', this.viewRule.parentcode),
+      inforeach: this.dealInnerProps('inforeach', this.viewRule.parentcode),
       infilter: this.dealInnerProps('infilter', this.viewRule.parentcode),
       intabboard: this.dealInnerProps('intabboard', this.viewRule.parentcode),
       notCreateVMInEngine: false
@@ -51,7 +52,7 @@ export default {
   },
   created () {
     // 在 数组型控件里面的 控件 因为数组会重复渲染控件 因此不在 engine 上挂载
-    this.notCreateVMInEngine = this.intable || this.inlist
+    this.notCreateVMInEngine = this.intable || this.inlist || this.inforeach
 
     // 暂时兼容 table operations 按钮的 readonly 关键字
     if (this.viewRule.readonly === 'tableCheckedNumberIsEqualToZero' || this.viewRule.readonly === 'tableCheckedNumberIsNotEqualToOne') {
@@ -112,6 +113,14 @@ export default {
         if (parentViewRuleType === 'list') {
           return true
         } else if (parentViewRuleType !== 'list' && parentViewRule.parentcode) {
+          return this.dealInnerProps(innerProp, parentViewRule.parentcode)
+        } else {
+          return false
+        }
+      } else if (innerProp === 'inforeach') {
+        if (parentViewRuleType === 'foreach') {
+          return true
+        } else if (parentViewRuleType !== 'foreach' && parentViewRule.parentcode) {
           return this.dealInnerProps(innerProp, parentViewRule.parentcode)
         } else {
           return false
