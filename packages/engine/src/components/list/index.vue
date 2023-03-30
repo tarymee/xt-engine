@@ -1,7 +1,6 @@
 <script>
 import { get, cloneDeep } from 'lodash-es'
 import { v4 as uuidv4 } from 'uuid'
-import { fixLength } from '../../utils'
 import baseMixin from '../common/baseMixin'
 import renderComponent from '../common/renderComponent'
 
@@ -22,14 +21,8 @@ export default {
       value: this.returnViewRulePropValue('value', 'array', [])
     }
   },
-  watch: {
-    hidden (newValue, oldValue) {
-      if (newValue) {
-        this.setValue(null)
-      }
-    }
-  },
   created () {
+    this.setValue(this.value)
     this.pageInfo = this.pageable ? {
       __pageindex: 1,
       __pagesize: Number(this.viewRule.pagesize || 20),
@@ -418,10 +411,10 @@ export default {
   /* flex: auto; */
   width: 100%;
   display: flex;
+  background-color: #FFF;
 }
 .xt-list-con {
   border: 1px solid #EBEEF5;
-  background-color: #FFF;
   display: flex;
   flex: auto;
   flex-wrap: wrap;

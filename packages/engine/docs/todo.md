@@ -11,3 +11,8 @@
 + popview 支持抽屉 支持show-close 优化校验代码
 + 输入型控件readonly文字加深
 + 考虑怎么接入 vue-route
++ tags 控件优化样式
++ 控制 frontoperations 显隐
++ StorageProxy 所有项目检查 clear 方法有误
++ 研究 StorageProxy 用 代理写
++ 抽取baseinput slot

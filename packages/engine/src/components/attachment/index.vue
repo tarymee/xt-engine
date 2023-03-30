@@ -1,14 +1,6 @@
 <template>
-  <div
-    class="xt-input xt-attachment"
-    :class="{ 'xt-input-intable': intable }"
-    :style="[viewStyle]"
-  >
-    <div
-      v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'"
-      class="xt-input-label"
-      :style="{ width: titlewidth }"
-    >
+  <div class="xt-input xt-attachment" :class="{ 'xt-input-intable': intable }" :style="[viewStyle]">
+    <div v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'" class="xt-input-label" :style="{ width: titlewidth }">
       <span v-if="required">*</span>{{ title }}
     </div>
     <div class="xt-input-content">
@@ -21,52 +13,23 @@
       <!-- :on-progress="handleOnProgress" -->
 
       <div v-for="(item, index) in value" :key="index" class="xt-attachment-item">
-        <a class="xt-attachment-item-file" :href="item.url" target="_blank"><i class="el-icon-document"></i>{{ item.filename }}</a>
+        <a class="xt-attachment-item-file" :href="item.url" target="_blank">
+          <i class="el-icon-document"></i>
+          {{ item.filename }}
+        </a>
         <i v-if="item.status === 'uploadding'" class="xt-attachment-item-icon el-icon-loading"></i>
         <i v-if="item.status !== 'uploadding'" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
         <i v-if="item.status !== 'uploadding'" class="xt-attachment-item-icon el-icon-success"></i>
       </div>
       <!-- :file-list="value" -->
-      <el-upload
-        v-show="value.length < maxnumber"
-        ref="attachment"
-        class="xt-attachment-upload"
-        action="javascript:;"
-        :disabled="readonly"
-        :before-upload="handlerBeforeUpload"
-        :http-request="handleHttpRequest"
-        :show-file-list="false"
-        :multiple="true"
-      >
+      <el-upload v-show="value.length < maxnumber" ref="attachment" class="xt-attachment-upload" action="javascript:;" :disabled="readonly" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
         <el-button size="small" :disabled="readonly" icon="el-icon-plus" class="xt-attachment-btn">点击上传</el-button>
       </el-upload>
-
-      <!-- <el-input
-        v-model="value"
-        size="small"
-        :type="displaytype === 'textarea' ? 'textarea' : ''"
-        :autosize="{ minRows: 2, maxRows: 4}"
-        :disabled="readonly"
-        :placeholder="placeholder"
-        :show-password="displaytype === 'password'"
-        @change="handleChange"
-      >
-        <template
-          v-if="infilter"
-          #suffix
-        >
-          <i
-            class="el-input__icon el-icon-search"
-            style="cursor: pointer;"
-            @click="handleChange"
-          />
-        </template>
-      </el-input> -->
     </div>
   </div>
 </template>
 <script>
-import { get, cloneDeep } from 'lodash-es'
+// import { get, cloneDeep } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 import { Message } from 'element-ui'
 
@@ -76,12 +39,23 @@ export default {
   data () {
     return {
       selectFile: null,
+      // todo 支持不限制
       maxnumber: this.returnViewRulePropValue('maxnumber', 'number', 5),
-      maxsize: this.returnViewRulePropValue('maxsize', 'number', 10240), // maxsize 单位 kb 默认 10m
+      maxsize: this.returnViewRulePropValue('maxsize', 'number', 1024 * 1024 * 10), // maxsize 单位 KB 默认 10M
+      // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file
+      // demo：
+      // video/*
+      // audio/*
+      // image/*
+      // image/png
+      // image/*,.pdf
+      // .jpg, .jpeg, .png
       accept: this.returnViewRulePropValue('accept', 'string')
     }
   },
   created () {
+    // console.log(this.maxsize)
+    // debugger
     this.setValue(this.value)
     // this.setValue([{
     //   name: 'kjshkj客家话客家话看喀什法国航空结果很快就会可结合公司会计和高科技规划算法v控件',
@@ -118,8 +92,8 @@ export default {
       }
     },
     handleSuccess (response) {
-      console.log('handleSuccess')
-      console.log(response)
+      // console.log('handleSuccess')
+      // console.log(response)
       // 有 selectFile 表示正在上传中
       this.selectFile = null
       this.value.shift()
@@ -127,7 +101,7 @@ export default {
       this.executeEvent('onvaluechange')
     },
     handleFail () {
-      console.log('handleError')
+      // console.log('handleError')
       this.value.shift()
     },
     handleRemove (index) {
@@ -141,7 +115,15 @@ export default {
     //   console.log(file)
     // },
     handlerBeforeUpload (file) {
-      if (this.value.length >= this.maxnumber) {
+      console.log(file)
+      // debugger
+      if (file.size > this.maxsize) {
+        Message({
+          message: `${this.title}大小不能超过${this.maxsize}KB`,
+          type: 'error'
+        })
+        return false
+      } else if (this.value.length >= this.maxnumber) {
         Message({
           message: `${this.title}最多支持上传${this.maxnumber}个`,
           type: 'error'
@@ -150,7 +132,7 @@ export default {
       }
     },
     handleHttpRequest (attachment) {
-      console.log('handleHttpRequest')
+      // console.log('handleHttpRequest')
       // console.log(attachment)
       attachment.file.status = 'uploadding'
       attachment.file.filename = attachment.file.name
@@ -175,39 +157,49 @@ export default {
   padding: 0 4px;
   color: #606266;
 }
+
 .xt-attachment-item-file {
   width: 90%;
   display: block;
   cursor: pointer;
   color: #606266;
 }
+
 .xt-attachment-item-icon {
-  line-height: 24px!important;
+  line-height: 24px !important;
 }
+
 .xt-attachment-item .el-icon-error {
-  display: none!important;
-  color: red!important;
+  display: none !important;
+  color: red !important;
   cursor: pointer;
 }
+
 .xt-attachment-item .el-icon-success {
-  display: block!important;
-  color: #67c23a!important;
+  display: block !important;
+  color: #67c23a !important;
 }
+
 .xt-attachment-item:hover {
   background-color: #f5f7fa;
 }
+
 .xt-attachment-item:hover .xt-attachment-item-file {
   color: #409eff;
 }
-.xt-attachment-item:hover .el-icon-success{
-  display: none!important;
+
+.xt-attachment-item:hover .el-icon-success {
+  display: none !important;
 }
-.xt-attachment-item:hover .el-icon-error{
-  display: block!important;
+
+.xt-attachment-item:hover .el-icon-error {
+  display: block !important;
 }
+
 .xt-attachment-upload .el-upload {
   width: 100%;
 }
+
 .xt-attachment-btn {
   display: block;
   width: 100%;

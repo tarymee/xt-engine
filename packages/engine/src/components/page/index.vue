@@ -45,12 +45,14 @@ export default {
     // engineMap.set(this.pagecode, this)
   },
   mounted () {
+    // 如果这段代码放在 created 里 切换页面时先执行 destroy 先移除类 再 created 添加类 添加不上
+    document.body.classList.add('xt-engine-wrapper')
+
     this.eventManager.init()
   },
-  // destroyed () {
-  //   console.error('destroyed')
-  //   this.eventManager = null
-  // },
+  destroy () {
+    document.body.classList.remove('xt-engine-wrapper')
+  },
   methods: {
     openLoading () {
       this.loadingCount++
@@ -113,13 +115,21 @@ export default {
 </style>
 
 <style>
+.xt-engine-wrapper {}
 /* 修改 loading 遮罩层颜色 改为透明 */
 .xt-engine .el-loading-mask {
   z-index: 99999;
-  background-color: rgba(255,255,255,0);
+  background-color: rgba(255, 255, 255, 0);
 }
 /* 解决弹窗信息被 el-dialog 覆盖的问题 两者初始化 z-index 都是 2000 但不共享 z-index 导致 */
-.el-message {
+.xt-engine-wrapper .el-message {
   z-index: 99999!important;
 }
+.xt-engine-wrapper .el-message-box__wrapper {
+  z-index: 9999!important;
+  background-color: rgba(000, 000, 000, 0.5);
+}
+/* .xt-engine-wrapper .el-message-box__wrapper + .v-modal {
+  z-index: 9998!important;
+} */
 </style>

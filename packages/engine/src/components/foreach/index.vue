@@ -13,14 +13,10 @@ export default {
       value: this.returnViewRulePropValue('value', 'array', [])
     }
   },
-  watch: {
-    hidden (newValue, oldValue) {
-      if (newValue) {
-        this.setValue(null)
-      }
-    }
-  },
   created () {
+    // console.log(this.viewRule)
+    this.setValue(this.value)
+    // debugger
   },
   mounted () {
     // this.dealBtnsState()
