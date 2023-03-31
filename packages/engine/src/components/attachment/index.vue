@@ -10,17 +10,17 @@
           {{ item.filename }}
         </a>
         <i v-if="item.__$$status === 'uploadding'" class="xt-attachment-item-icon el-icon-loading"></i>
-        <i v-if="item.__$$status !== 'uploadding'" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
-        <i v-if="item.__$$status !== 'uploadding'" class="xt-attachment-item-icon el-icon-success"></i>
+        <i v-if="item.__$$status === 'done'" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
+        <i v-if="item.__$$status === 'done'" class="xt-attachment-item-icon el-icon-success"></i>
       </div>
-      <el-upload v-show="maxnumber === '' || value.length < Number(maxnumber)" ref="attachment" class="xt-attachment-upload" action="javascript:;" :disabled="readonly" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
-        <el-button size="small" :disabled="readonly" icon="el-icon-plus" class="xt-attachment-btn">点击上传</el-button>
+      <el-upload v-show="(maxnumber === '' || value.length < Number(maxnumber)) && !readonly" class="xt-attachment-upload" action="javascript:;" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
+        <el-button size="small" icon="el-icon-plus" class="xt-attachment-btn">点击上传</el-button>
       </el-upload>
     </div>
   </div>
 </template>
 <script>
-// import { get, cloneDeep } from 'lodash-es'
+import { get, cloneDeep } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 import { Message } from 'element-ui'
 
@@ -30,8 +30,6 @@ export default {
   data () {
     return {
       selectFile: null,
-      // todo 上传图片做在附件里？？？可能不太好
-      // displaytype: this.returnViewRulePropValue('displaytype', 'string', ''), // '' | image
       maxnumber: this.returnViewRulePropValue('maxnumber', 'number'),
       // maxsize 单位 KB 默认不限制
       // 10M = 1024 * 1024 * 10
@@ -52,28 +50,35 @@ export default {
     this.setValue(this.value)
     // this.setValue([{
     //   filename: 'kjshkj客家话客家话看喀什法国航空结果很快就会可结合公司会计和高科技规划算法v控件',
-    //   url: ''
+    //   url: 'http://xxxx.xxx'
     // }])
   },
   methods: {
     getValue (getter) {
-      return this.value.filter(item => item.__$$status !== 'uploadding').map((item) => {
-        return {
-          filename: item.filename,
-          url: item.url
-        }
+      const value = cloneDeep(this.value)
+      return value.filter(item => item.__$$status === 'done').map((item) => {
+        delete item.__$$status
+        return item
       })
+
     },
     setValue (value, setter) {
-      this.value = Array.isArray(value) ? value : []
+      this.value = Array.isArray(value) ? value.map((item) => {
+        return {
+          ...item,
+          __$$status: 'done'
+        }
+      }) : []
+    },
+    checkIsUploadding () {
+      return this.value.some(item => item.__$$status === 'uploadding')
     },
     validata () {
       const requiredRes = this.requiredValidata()
       if (requiredRes) {
         return requiredRes
       } else {
-        const isUploadding = this.value.some(item => item.__$$status === 'uploadding')
-        if (isUploadding) {
+        if (this.checkIsUploadding()) {
           Message({
             message: `${this.title}正在上传中...`,
             type: 'error'
@@ -88,9 +93,17 @@ export default {
       // console.log('handleSuccess')
       // console.log(response)
       // 有 selectFile 表示正在上传中
+
       this.selectFile = null
-      this.value.pop()
-      this.value.push(response)
+      let lastItem = this.value[this.value.length - 1]
+      this.value[this.value.length - 1] = {
+        ...lastItem,
+        ...response,
+        __$$status: 'done'
+      }
+      this.$forceUpdate()
+      // console.log(this.value)
+      // debugger
       this.executeEvent('onvaluechange')
     },
     handleFail (errMsg) {
@@ -109,15 +122,17 @@ export default {
       this.value.splice(index, 1)
       this.executeEvent('onvaluechange')
     },
-    // handlePreview (file) {
-    //   console.log('handlePreview')
-    //   console.log(file)
-    // },
     handlerBeforeUpload (file) {
-      console.log(file)
+      // console.log(file)
       // debugger
-      // todo 基于大小显示 K M
-      if (this.maxsize !== '' && file.size > Number(this.maxsize)) {
+      if (this.checkIsUploadding()) {
+        Message({
+          message: `${this.title}正在上传中，请稍后`,
+          type: 'error'
+        })
+        return false
+      } else if (this.maxsize !== '' && file.size > Number(this.maxsize)) {
+        // todo 基于大小显示 K M
         Message({
           message: `${this.title}大小不能超过${this.maxsize}KB`,
           type: 'error'
@@ -131,15 +146,19 @@ export default {
         return false
       }
     },
-    handleHttpRequest (attachment) {
+    handleHttpRequest (event) {
       // console.log('handleHttpRequest')
-      // console.log(attachment)
-      attachment.file.__$$status = 'uploadding'
-      attachment.file.filename = attachment.file.name
-      this.selectFile = attachment.file
-      this.value.push(this.selectFile)
-      // return Promise.resolve(attachment.file)
+      // console.log(event)
+      const file = event.file
+      file.filename = file.name
+      this.selectFile = file
+      this.value.push({
+        __$$status: 'uploadding',
+        filename: file.name,
+        url: ''
+      })
       this.executeEvent('onupload')
+
     }
   }
 }
@@ -149,22 +168,27 @@ export default {
 .xt-attachment-item {
   display: flex;
   justify-content: space-between;
-  line-height: 32px;
-  border-radius: 4px;
+  line-height: 30px;
   font-size: 12px;
-  padding: 0 4px;
-  color: #606266;
+  padding: 0 8px;
+  border: 1px solid #DCDFE6;
+  border-radius: 4px;
+  margin-bottom: 8px;
 }
-
+.xt-attachment-item:hover {
+  background-color: #f5f7fa;
+  border-color: #C0C4CC;
+}
 .xt-attachment-item-file {
   width: 90%;
   display: block;
   cursor: pointer;
   color: #606266;
+  text-decoration-line: none;
 }
 
 .xt-attachment-item-icon {
-  line-height: 32px !important;
+  line-height: 30px !important;
   font-size: 14px;
 }
 
@@ -177,10 +201,6 @@ export default {
 .xt-attachment-item .el-icon-success {
   display: block !important;
   color: #67c23a !important;
-}
-
-.xt-attachment-item:hover {
-  background-color: #f5f7fa;
 }
 
 .xt-attachment-item:hover .xt-attachment-item-file {

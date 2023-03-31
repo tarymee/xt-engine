@@ -7,12 +7,11 @@ export default {
   name: 'xt-filter',
   mixins: [baseMixin],
   data () {
-    return {}
+    return {
+      // 独立查询按钮
+      bindcallbtn: this.returnViewRulePropValue('bindcallbtn', 'boolean'),
+    }
   },
-  created () {
-
-  },
-  methods: {},
   render: function (h) {
     let searchcondition = get(this.viewRule, 'searchcondition')
     let basic = get(searchcondition, 'basic', [])
@@ -26,24 +25,41 @@ export default {
       },
       searchcondition ? [
         basic.map((item, i) => {
-          // 代理事件
-          let filterEventlist = this.viewRule.eventlist || []
-          if (filterEventlist.length) {
-            const filterHasOnvaluechange = filterEventlist.some((item) => {
-                return item.trigger === 'onvaluechange' && item.handler
+          if (!this.bindcallbtn) {
+            // 代理事件
+            const hasOnvaluechange = this.eventlist.some((item) => {
+              return item.trigger === 'onvaluechange' && item.handler
             })
-            if (filterHasOnvaluechange) {
+            if (hasOnvaluechange) {
               let eventlist = get(item, 'eventlist', [])
               const itemHasNoOnvaluechange = eventlist.every((item) => {
-                  return item.trigger !== 'onvaluechange' || !item.handler
+                return item.trigger !== 'onvaluechange' || !item.handler
               })
               if (itemHasNoOnvaluechange) {
-                item.eventlist = eventlist.concat(filterEventlist)
+                item.eventlist = eventlist.concat(this.eventlist)
               }
             }
           }
           return renderComponent(h, item)
-        })
+        }),
+        this.bindcallbtn ? h(
+          'el-button',
+          {
+            style: {
+              'margin-left': '8px',
+              'margin-bottom': '8px'
+            },
+            props: {
+              // plain: true,
+              // type: 'primary',
+              size: 'small'
+            },
+            on: {
+              'click': this.executeEvent('onvaluechange')
+            }
+          },
+          '查询'
+        ): null
       ] : null
     )
   }

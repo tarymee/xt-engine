@@ -18,3 +18,4 @@
 + 抽取baseinput slot
 + filter 支持显示查询按钮
 + 参考 photo 优化 attchment
++ xt-engine 上的loadding要用全局命令式

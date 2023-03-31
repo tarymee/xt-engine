@@ -9,7 +9,7 @@
           <el-image style="width: 80px; height: 80px" :src="item.__$$base64 || item.url" fit="cover" :preview-src-list="previewList"></el-image>
           <i v-if="item.__$$status === 'done' && !readonly" class="xt-photo-item-icon el-icon-error" @click="handleRemove(index)"></i>
         </div>
-        <el-upload v-show="(maxnumber === '' || value.length < Number(maxnumber)) && !readonly" class="xt-photo-upload" action="javascript:;" :disabled="readonly" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
+        <el-upload v-show="(maxnumber === '' || value.length < Number(maxnumber)) && !readonly" class="xt-photo-upload" action="javascript:;" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
           <div class="xt-photo-btn"><i class="xt-photo-btn-icon el-icon-plus"></i></div>
         </el-upload>
       </div>
@@ -74,6 +74,9 @@ export default {
         }
       }) : []
     },
+    checkIsUploadding () {
+      return this.value.some(item => item.__$$status === 'uploadding')
+    },
     validata () {
       const requiredRes = this.requiredValidata()
       if (requiredRes) {
@@ -89,9 +92,6 @@ export default {
           return true
         }
       }
-    },
-    checkIsUploadding () {
-      return this.value.some(item => item.__$$status === 'uploadding')
     },
     handleSuccess (response) {
       // console.log('handleSuccess')

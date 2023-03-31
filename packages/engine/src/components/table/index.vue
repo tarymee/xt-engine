@@ -363,6 +363,7 @@ export default {
   padding-top: 8px;
   flex: none;
   display: flex;
+  flex-wrap: wrap;
 }
 .xt-table-con {
   flex: auto;
