@@ -55,7 +55,9 @@ export default {
               size: 'small'
             },
             on: {
-              'click': this.executeEvent('onvaluechange')
+              'click': (e) => {
+                this.executeEvent('onvaluechange')
+              }
             }
           },
           '查询'
