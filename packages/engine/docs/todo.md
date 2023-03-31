@@ -16,3 +16,4 @@
 + StorageProxy 所有项目检查 clear 方法有误
 + 研究 StorageProxy 用 代理写
 + 抽取baseinput slot
++ filter 支持显示查询按钮
