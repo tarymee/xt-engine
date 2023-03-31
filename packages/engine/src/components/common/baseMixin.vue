@@ -168,7 +168,7 @@ export default {
           defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : ''
           return originValue || defaultValue
         } else if (type === 'number') {
-          defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : 0
+          defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : ''
           if (typeof originValue === 'number') {
             return originValue
           } else if (typeof originValue === 'string' && originValue) {

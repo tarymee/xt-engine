@@ -22,7 +22,7 @@ export default {
   select: require('./select').default,
   tree: require('./tree').default,
   attachment: require('./attachment').default,
-  // photo: require('./photo').default,
+  photo: require('./photo').default,
   radio: require('./radio').default,
   checkbox: require('./checkbox').default,
   cascade: require('./cascade').default,
