@@ -4,25 +4,16 @@
       <span v-if="required">*</span>{{ title }}
     </div>
     <div class="xt-input-content">
-      <!-- action="https://jsonplaceholder.typicode.com/posts/" -->
-      <!-- :on-preview="handlePreview" -->
-      <!-- :on-exceed="handleExceed" -->
-      <!-- :on-change="handleChange" -->
-      <!-- :on-success="handleSuccess" -->
-      <!-- :on-error="handleError" -->
-      <!-- :on-progress="handleOnProgress" -->
-
       <div v-for="(item, index) in value" :key="index" class="xt-attachment-item">
         <a class="xt-attachment-item-file" :href="item.url" target="_blank">
           <i class="el-icon-document"></i>
           {{ item.filename }}
         </a>
-        <i v-if="item.status === 'uploadding'" class="xt-attachment-item-icon el-icon-loading"></i>
-        <i v-if="item.status !== 'uploadding'" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
-        <i v-if="item.status !== 'uploadding'" class="xt-attachment-item-icon el-icon-success"></i>
+        <i v-if="item.__$$status === 'uploadding'" class="xt-attachment-item-icon el-icon-loading"></i>
+        <i v-if="item.__$$status !== 'uploadding'" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
+        <i v-if="item.__$$status !== 'uploadding'" class="xt-attachment-item-icon el-icon-success"></i>
       </div>
-      <!-- :file-list="value" -->
-      <el-upload v-show="value.length < maxnumber" ref="attachment" class="xt-attachment-upload" action="javascript:;" :disabled="readonly" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
+      <el-upload v-show="maxnumber === '' || value.length < Number(maxnumber)" ref="attachment" class="xt-attachment-upload" action="javascript:;" :disabled="readonly" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
         <el-button size="small" :disabled="readonly" icon="el-icon-plus" class="xt-attachment-btn">点击上传</el-button>
       </el-upload>
     </div>
@@ -39,9 +30,13 @@ export default {
   data () {
     return {
       selectFile: null,
-      // todo 支持不限制
-      maxnumber: this.returnViewRulePropValue('maxnumber', 'number', 5),
-      maxsize: this.returnViewRulePropValue('maxsize', 'number', 1024 * 1024 * 10), // maxsize 单位 KB 默认 10M
+      // todo 上传图片做在附件里？？？可能不太好
+      // displaytype: this.returnViewRulePropValue('displaytype', 'string', ''), // '' | image
+      maxnumber: this.returnViewRulePropValue('maxnumber', 'number'),
+      // maxsize 单位 KB 默认不限制
+      // 10M = 1024 * 1024 * 10
+      // 数字类型 空字符串表示不限制
+      maxsize: this.returnViewRulePropValue('maxsize', 'number'),
       // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file
       // demo：
       // video/*
@@ -54,17 +49,15 @@ export default {
     }
   },
   created () {
-    // console.log(this.maxsize)
-    // debugger
     this.setValue(this.value)
     // this.setValue([{
-    //   name: 'kjshkj客家话客家话看喀什法国航空结果很快就会可结合公司会计和高科技规划算法v控件',
+    //   filename: 'kjshkj客家话客家话看喀什法国航空结果很快就会可结合公司会计和高科技规划算法v控件',
     //   url: ''
     // }])
   },
   methods: {
     getValue (getter) {
-      return this.value.filter(item => item.status !== 'uploadding').map((item) => {
+      return this.value.filter(item => item.__$$status !== 'uploadding').map((item) => {
         return {
           filename: item.filename,
           url: item.url
@@ -79,7 +72,7 @@ export default {
       if (requiredRes) {
         return requiredRes
       } else {
-        const isUploadding = this.value.some(item => item.status === 'uploadding')
+        const isUploadding = this.value.some(item => item.__$$status === 'uploadding')
         if (isUploadding) {
           Message({
             message: `${this.title}正在上传中...`,
@@ -96,13 +89,19 @@ export default {
       // console.log(response)
       // 有 selectFile 表示正在上传中
       this.selectFile = null
-      this.value.shift()
-      this.value.unshift(response)
+      this.value.pop()
+      this.value.push(response)
       this.executeEvent('onvaluechange')
     },
-    handleFail () {
+    handleFail (errMsg) {
       // console.log('handleError')
-      this.value.shift()
+      if (errMsg) {
+        Message({
+          message: errMsg,
+          type: 'error'
+        })
+      }
+      this.value.pop()
     },
     handleRemove (index) {
       // console.log(index)
@@ -117,13 +116,14 @@ export default {
     handlerBeforeUpload (file) {
       console.log(file)
       // debugger
-      if (file.size > this.maxsize) {
+      // todo 基于大小显示 K M
+      if (this.maxsize !== '' && file.size > Number(this.maxsize)) {
         Message({
           message: `${this.title}大小不能超过${this.maxsize}KB`,
           type: 'error'
         })
         return false
-      } else if (this.value.length >= this.maxnumber) {
+      } else if (this.maxnumber !== '' && this.value.length >= Number(this.maxnumber)) {
         Message({
           message: `${this.title}最多支持上传${this.maxnumber}个`,
           type: 'error'
@@ -134,10 +134,10 @@ export default {
     handleHttpRequest (attachment) {
       // console.log('handleHttpRequest')
       // console.log(attachment)
-      attachment.file.status = 'uploadding'
+      attachment.file.__$$status = 'uploadding'
       attachment.file.filename = attachment.file.name
       this.selectFile = attachment.file
-      this.value.unshift(this.selectFile)
+      this.value.push(this.selectFile)
       // return Promise.resolve(attachment.file)
       this.executeEvent('onupload')
     }
@@ -149,9 +149,7 @@ export default {
 .xt-attachment-item {
   display: flex;
   justify-content: space-between;
-  /* height: 24px; */
-  line-height: 24px;
-  margin-bottom: 4px;
+  line-height: 32px;
   border-radius: 4px;
   font-size: 12px;
   padding: 0 4px;
@@ -166,7 +164,8 @@ export default {
 }
 
 .xt-attachment-item-icon {
-  line-height: 24px !important;
+  line-height: 32px !important;
+  font-size: 14px;
 }
 
 .xt-attachment-item .el-icon-error {
