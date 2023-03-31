@@ -10,8 +10,8 @@
   "type": "table",
   "title": "表格",
   "name": "表格",
-  "checkable": "1",
-  "pageable": "1",
+  "checkable": "0",
+  "pageable": "0",
   "pagesize": "20",
   "columns": [],
   "operations": [],
@@ -65,7 +65,7 @@
       "width": "150"
     },
     {
-      "type": "dropdownbox",
+      "type": "select",
       "title": "单位",
       "name": "unit",
       "placeholder": "选择单位",
