@@ -1,6 +1,6 @@
 <script>
 import { get, cloneDeep } from 'lodash-es'
-import { fixLength } from '../../utils'
+import { fixLength } from '../../service/utils'
 
 export default {
   inject: {

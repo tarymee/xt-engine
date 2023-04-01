@@ -16,5 +16,6 @@ const fixLength = function (str) {
 }
 
 export {
+  isNumber,
   fixLength
 }

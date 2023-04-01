@@ -30,9 +30,7 @@ export default {
       viewRuleMap: protocolData.viewRuleMap,
       ctrlCodeMap: new Map(),
       ctrlNameCodeMap: new Map(),
-      eventManager: null,
-      loading: false,
-      loadingCount: 0
+      eventManager: null
     }
   },
   created: function () {
@@ -53,22 +51,6 @@ export default {
   destroy () {
     document.body.classList.remove('xt-engine-wrapper')
   },
-  methods: {
-    openLoading () {
-      this.loadingCount++
-      this.loading = true
-      // console.log('openLoading')
-      // console.log(this.loadingCount)
-    },
-    closeLoading () {
-      // console.log('closeLoading')
-      this.loadingCount--
-      if (this.loadingCount <= 0) {
-        this.loadingCount = 0
-        this.loading = false
-      }
-    }
-  },
   render: function (h) {
     const body = get(this.protocolFormat, 'view.body')
     const subviews = get(this.protocolFormat, 'view.subviews', [])
@@ -77,18 +59,16 @@ export default {
       {
         attrs: {
           class: 'xt-engine xt-page',
-          // 'element-loading-spinner': 'el-icon-loading',
-          // 'element-loading-text': '加载中...'
         },
         directives: [
-          {
-            name: 'loading',
-            value: this.loading,
-            // modifiers: {
-            //   // fullscreen: true,
-            //   lock: true
-            // }
-          }
+          // {
+          //   name: 'loading',
+          //   value: this.loading,
+          //   // modifiers: {
+          //   //   // fullscreen: true,
+          //   //   lock: true
+          //   // }
+          // }
         ]
       },
       [
@@ -115,11 +95,9 @@ export default {
 </style>
 
 <style>
-.xt-engine-wrapper {}
-/* 修改 loading 遮罩层颜色 改为透明 */
-.xt-engine .el-loading-mask {
-  z-index: 99999;
-  background-color: rgba(255, 255, 255, 0);
+/* 修改 loading 遮罩层层级 以免被其他覆盖 */
+.xt-engine-wrapper .xt-engine-loading {
+  z-index: 999999;
 }
 /* 解决弹窗信息被 el-dialog 覆盖的问题 两者初始化 z-index 都是 2000 但不共享 z-index 导致 */
 .xt-engine-wrapper .el-message {

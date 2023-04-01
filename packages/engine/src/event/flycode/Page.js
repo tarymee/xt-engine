@@ -1,6 +1,7 @@
 import { eventEmitter } from '../common/EventEmitter'
 import { Ctrl, ArrayCtrl } from './Ctrl'
 import { Message, MessageBox } from 'element-ui'
+import loading from '../../service/loading'
 
 export default class Page {
   eventManager
@@ -172,24 +173,19 @@ export default class Page {
     this.getCtrl(name).hidden = true
   }
 
+  // 打开 loading 弹窗
   openLoading () {
-    this.eventManager.engine.openLoading()
+    loading.open()
   }
-
+  // 关闭 loading 弹窗
   closeLoading () {
-    this.eventManager.engine.closeLoading()
+    loading.close()
   }
 
   // 为 page 提供函数
   // provide (name, value) {
   //   this[name] = value
   // }
-
-  // 显示进度框
-  // openProgress () {}
-
-  // 关闭进度框
-  // closeProgress () {}
 
   // 设置表单数据加载状态
   // setLoadStatus() {}

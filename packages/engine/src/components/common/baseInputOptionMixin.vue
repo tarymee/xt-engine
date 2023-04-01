@@ -1,7 +1,6 @@
 <script>
 import { get } from 'lodash-es'
 import { Message } from 'element-ui'
-import { fixLength } from '../../utils'
 import baseInputMixin from './baseInputMixin'
 
 export default {

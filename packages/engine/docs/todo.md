@@ -16,6 +16,6 @@
 + StorageProxy 所有项目检查 clear 方法有误
 + 研究 StorageProxy 用 代理写
 + 抽取baseinput slot
-+ filter 支持显示查询按钮
-+ 参考 photo 优化 attchment
++ filter 支持显示查询按钮 done
++ 参考 photo 优化 attchment done
 + xt-engine 上的loadding要用全局命令式

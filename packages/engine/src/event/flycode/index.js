@@ -2,9 +2,8 @@ import Page from './Page'
 import System from './System'
 import service from './service'
 // import engineMap from '../../components/page/engineMap'
-// todo 改成实例 实例处理loading
 import engineAxiosInstance from '../../service/axios'
-import { cloneDeep } from 'lodash-es'
+// import { cloneDeep } from 'lodash-es'
 import axios from 'axios'
 
 export default class Flycode {
@@ -23,42 +22,35 @@ export default class Flycode {
     // this.dependenceMap.set('system', new System(this.eventManager))
 
 
-    // 每个表单创建一个axios实例 自动添加loading
+    // 每个表单创建一个axios实例 继承引擎与外部注入的拦截器
     const axiosInstance = axios.create()
     // console.log(axios.interceptors)
     // console.log(axiosInstance.interceptors)
     // debugger
-    // axiosInstance.interceptors.request = cloneDeep(axios.interceptors.request)
-    // axiosInstance.interceptors.response = cloneDeep(axios.interceptors.response)
     engineAxiosInstance.interceptors.request.handlers.forEach((item) => {
-      // debugger
       axiosInstance.interceptors.request.handlers.push(item)
     })
     engineAxiosInstance.interceptors.response.handlers.forEach((item) => {
       axiosInstance.interceptors.response.handlers.push(item)
     })
 
-    axiosInstance.interceptors.request.use(config => {
-      // console.log('interceptors', this.eventManager.engine.pagecode)
-      // debugger
-      // console.log('interceptors', engineMap)
-      this.eventManager.engine.openLoading()
-      return config
-    }, error => {
-      return Promise.reject(error)
-    })
-    axiosInstance.interceptors.response.use(response => {
-      this.eventManager.engine.closeLoading()
-      return response
-    }, error => {
-      this.eventManager.engine.closeLoading()
-      return Promise.reject(error)
-    })
-    this.dependenceMap.set('axios', axiosInstance)
-
-    // this.dependenceMap.set('day', function (number) {
-    //   return number
+    // axiosInstance.interceptors.request.use(config => {
+    //   // console.log('interceptors', this.eventManager.engine.pagecode)
+    //   // debugger
+    //   // console.log('interceptors', engineMap)
+    //   this.eventManager.engine.openLoading()
+    //   return config
+    // }, error => {
+    //   return Promise.reject(error)
     // })
+    // axiosInstance.interceptors.response.use(response => {
+    //   this.eventManager.engine.closeLoading()
+    //   return response
+    // }, error => {
+    //   this.eventManager.engine.closeLoading()
+    //   return Promise.reject(error)
+    // })
+    this.dependenceMap.set('axios', axiosInstance)
 
     // 引擎提供的flycode服务
     // service.axios = axiosInstance
