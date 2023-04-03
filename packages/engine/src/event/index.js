@@ -97,13 +97,11 @@ export default class EventManager {
    * @author tarymee
    */
   createActionQueue (eventjson, option = {}) {
-    // TODO 判断 condition
     const actionsjson = get(eventjson, 'actions', [])
     const actionQueue = actionsjson.map((json) => {
       const ActionController = (actionMap)[json.type] ? (actionMap)[json.type] : (actionMap).default
       return new ActionController(json, option, this).createActionFn()
     })
-    // TODO 成功提示 successhint
     return actionQueue
   }
 

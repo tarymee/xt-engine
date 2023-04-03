@@ -21,15 +21,6 @@ class Ctrl {
     this.instance.setValue(value)
   }
 
-  // // 用于获取数值型控件的数字值，便于直接用于计算或比较
-  // get floatValue () {
-  //   return Number(this.instance.getValue('value'))
-  // }
-
-  // set floatValue (value) {
-  //   console.error('floatValue 属性为只读属性，不可设置')
-  // }
-
   get hidden () {
     return this.getProp('hidden')
   }
@@ -61,23 +52,6 @@ class Ctrl {
   set options (value) {
     this.setProp('options', value)
   }
-
-  // get color () {
-  //   return this.getProp('color')
-  // }
-
-  // set color (value) {
-  //   this.setProp('color', value)
-  // }
-
-  // // todo: 样式属性遵循js中css的写法 backgroundColor
-  // get bgcolor () {
-  //   return this.getProp('bgcolor')
-  // }
-
-  // set bgcolor (value) {
-  //   this.setProp('bgcolor', value)
-  // }
 
   getProp (propName, getter) {
     return this.instance.getProp(propName, getter)

@@ -91,7 +91,9 @@ export default {
           closeOnClickModal: false,
           closeOnPressEscape: false,
           destroyOnClose: true,
-          customClass: 'xt-popview-wrap'
+          // showClose: !this.fullscreen,
+          modal: !this.fullscreen,
+          customClass: 'xt-popview-wrap' + (this.fullscreen ? ' xt-popview-fullscreen-wrap' : '') + (operations.length ? ' xt-popview-fullscreen-operations-wrap' : '')
         },
         on: {
           'update:visible': (val) => {
@@ -152,5 +154,33 @@ export default {
 .xt-popview-wrap .el-dialog__body{
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+/* 全屏 */
+.el-dialog__wrapper:has(> .xt-popview-fullscreen-wrap) {
+  position: absolute;
+}
+.xt-popview-fullscreen-wrap .el-dialog__body {
+  overflow: auto;
+  height: calc(100% - 54px - 40px);
+}
+.xt-popview-fullscreen-operations-wrap .el-dialog__body {
+  height: calc(100% - 54px - 40px - 62px)!important;
+}
+.xt-popview-fullscreen-wrap .el-dialog__header {
+  background-color: #fafafa;
+  /* border: 1px solid #EBEEF5; */
+  position: relative;
+}
+.xt-popview-fullscreen-wrap .el-dialog__header:after {
+  content: "";
+  display: block;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #EBEEF5;
 }
 </style>

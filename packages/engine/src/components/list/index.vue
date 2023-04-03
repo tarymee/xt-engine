@@ -59,7 +59,6 @@ export default {
       // debugger
       const scope = get(getter, 'ctrl.scope', 'all')
       // const datatype = get(getter, 'datatype', '1')
-      // todo
       const realtimeValue = this.getRealtimeValue()
       let result
       // debugger
@@ -304,7 +303,6 @@ export default {
                               )
                             ]
                           ) : null,
-                          // todo
                           rowoperations.length ? h(
                             'div',
                             {

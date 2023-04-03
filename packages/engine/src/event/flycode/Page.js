@@ -8,6 +8,11 @@ export default class Page {
 
   constructor (eventManager) {
     this.eventManager = eventManager
+    // debugger
+  }
+
+  get engine () {
+    return this.eventManager.engine
   }
 
   get message () {

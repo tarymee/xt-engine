@@ -49,7 +49,7 @@ export default {
         }
       })
     },
-    // todo
+    // todo 校验tabboard内的控件 校验不通过切换到该tab？
     validata () {
       return true
     }
