@@ -29,6 +29,9 @@ export default {
     dealHeight () {
       if (this.viewStyle.height) {
         this.$el.querySelector('.el-tabs__content').style = `height: calc(100% - 55px);overflow: auto;`
+        // this.$el.querySelectorAll('.el-tab-pane').forEach(element => {
+        //   element.style = `height: 100%;overflow: auto;`
+        // })
       }
     },
     dealTabHidden () {
@@ -125,6 +128,10 @@ export default {
 }
 .xt-tabboard .el-tabs {
   height: 100%;
+}
+.xt-tabboard .el-tab-pane {
+  height: 100%;
+  overflow: auto;
 }
 </style>
 

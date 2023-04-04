@@ -32,24 +32,40 @@ export default {
   mounted () {
     // this.dealBtnsState()
     this.dealHeight()
+    this.dealHeightInTabboard()
   },
   methods: {
-    dealHeight () {
-      // todo 考虑各种情况
-      // setTimeout(() => {
-        // const intervalFn = setInterval(() => {
-          const el = this.$el
-          const elCon = el.getElementsByClassName('xt-list-con')[0]
-          const elPage = el.getElementsByClassName('xt-list-page')[0]
+    dealHeightInTabboard () {
+      if (this.intabboard && this.viewStyle.flex === '1' && !this.viewStyle.height) {
+        // debugger
+        const el = this.$el
+        const elCon = el.getElementsByClassName('xt-list-con')[0]
+        const elPage = el.getElementsByClassName('xt-list-page')[0]
+        const intervalFn = setInterval(() => {
           const elHeight = el.getBoundingClientRect().height
           const elPageHeight = elPage ? elPage.getBoundingClientRect().height : 0
+          // console.log('dealHeight')
+          // console.log(elHeight)
           if (elHeight) {
             el.style.height = elHeight + 'px'
             elCon.style.height = (elHeight - elPageHeight) + 'px'
-            // clearInterval(intervalFn)
+            clearInterval(intervalFn)
           }
-        // }, 500)
-      // }, 0)
+        }, 100)
+      }
+    },
+    dealHeight () {
+      if (this.viewStyle.flex === '1' && !this.viewStyle.height) {
+        const el = this.$el
+        const elCon = el.getElementsByClassName('xt-list-con')[0]
+        const elPage = el.getElementsByClassName('xt-list-page')[0]
+        const elHeight = el.getBoundingClientRect().height
+        const elPageHeight = elPage ? elPage.getBoundingClientRect().height : 0
+        if (elHeight) {
+          el.style.height = elHeight + 'px'
+          elCon.style.height = (elHeight - elPageHeight) + 'px'
+        }
+      }
     },
     validata () {
       let res = true
@@ -410,6 +426,7 @@ export default {
   width: 100%;
   display: flex;
   background-color: #FFF;
+  flex-direction: column;
 }
 .xt-list-con {
   border: 1px solid #EBEEF5;
