@@ -14,7 +14,7 @@ class Loading {
       lock: true,
       // text: '加载中...',
       // spinner: 'el-icon-loading',
-      background: 'rgba(255, 255, 255, 0.5)'
+      background: 'rgba(255, 255, 255, 0)'
     })
   }
 
