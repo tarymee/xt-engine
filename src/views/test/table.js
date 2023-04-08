@@ -193,19 +193,12 @@ export default {
     "initial": [
       {
         "code": "1454645626748",
-        "desc": "初始化",
+        "title": "初始化",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626747",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
 
             `
@@ -217,19 +210,12 @@ export default {
     "handlers": [
       {
         "code": "handle-get",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               const value = page.getCtrl('表格').value
               console.log(value)
@@ -239,19 +225,12 @@ export default {
       },
       {
         "code": "handle-set",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               page.getCtrl('表格').value = [
                 {
@@ -273,19 +252,12 @@ export default {
       },
       {
         "code": "handle-new",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               page.getCtrl('表格').append({
                 productname: '果粒橙',
@@ -299,19 +271,12 @@ export default {
       },
       {
         "code": "handle-update",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               page.getCtrl('表格').update({
                 productname: '娃哈哈',
@@ -325,19 +290,12 @@ export default {
       },
       {
         "code": "handle-setCheck",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               page.getCtrl('表格').setCheck(true, 0)
             `
@@ -346,19 +304,12 @@ export default {
       },
       {
         "code": "handle-del",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               page.getCtrl('表格').deleteInScope('checked')
             `
@@ -367,19 +318,12 @@ export default {
       },
       {
         "code": "handle-print",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               const checkedValue = page.getCtrl('表格').checkedValue
               console.log(checkedValue)
@@ -389,19 +333,12 @@ export default {
       },
       {
         "code": "handle-getRow",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               const firstRow = page.getCtrl('表格').row[0]
               // const firstRow = page.getCtrl('表格').getRow(0)
@@ -420,19 +357,12 @@ export default {
       },
       {
         "code": "handle-validata",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               const result = page.validata()
               console.log(result)

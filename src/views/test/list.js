@@ -17,7 +17,7 @@ export default {
           "searchcondition": {
             "basic": [
               {
-                "type": "dropdownbox",
+                "type": "select",
                 "title": "查询-租户类型",
                 "name": "查询-租户类型",
                 "placeholder": "租户类型",
@@ -27,13 +27,11 @@ export default {
                 "options": [
                   {
                     "key": "1",
-                    "text": "企业",
-                    "isselected": "0"
+                    "text": "企业"
                   },
                   {
                     "key": "0",
-                    "text": "产品开发",
-                    "isselected": "0"
+                    "text": "产品开发"
                   }
                 ],
                 "hiddenclearbtn": "1",
@@ -265,7 +263,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626747",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -283,7 +280,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -302,7 +298,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -384,7 +379,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -404,7 +398,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -424,7 +417,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -439,7 +431,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -454,7 +445,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -470,7 +460,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -495,7 +484,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `

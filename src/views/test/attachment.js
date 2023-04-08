@@ -2,8 +2,7 @@
 export default {
   "pageinfo": {
     "code": "test",
-    "title": "test",
-    "pagedescr": "test"
+    "title": "test"
   },
   "view": {
     "body": {
@@ -103,19 +102,12 @@ export default {
     "initial": [
       {
         "code": "1454645626748",
-        "desc": "初始化",
+        "title": "初始化",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626747",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               // 为本页面axios注册拦截器
               axios.interceptors.response.use(response => {
@@ -141,18 +133,12 @@ export default {
     "handlers": [
       {
         "code": "handle-test",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               console.log(eventTarget)
               let ctrl = page.getCtrl('文件')
@@ -166,18 +152,12 @@ export default {
       },
       {
         "code": "handle-valuechange",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               console.log(eventTarget)
             `
@@ -186,19 +166,12 @@ export default {
       },
       {
         "code": "handle-onupload",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               console.log(eventTarget)
 
@@ -223,18 +196,12 @@ export default {
       },
       {
         "code": "handle-save",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               if (!page.validata()) {
                 throw Error('validata')
