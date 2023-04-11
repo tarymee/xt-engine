@@ -210,7 +210,8 @@ export const viewRuleAddProps = (ctrlViewRule) => {
     basic.forEach((item) => {
       item.style = {
         paddingRight: '0',
-        width: '200px'
+        width: '200px',
+        ...item.style
       }
     })
   } else if (ctrlViewRule.type === 'layout') {
