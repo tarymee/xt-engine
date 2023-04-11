@@ -42,6 +42,8 @@ export default {
       this.protocol = tabboard
     } else if (protocol === 'foreach') {
       this.protocol = foreach
+    } else {
+      this.protocol = table
     }
   }
 }

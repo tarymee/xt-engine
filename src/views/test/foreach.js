@@ -17,7 +17,7 @@ export default {
           "searchcondition": {
             "basic": [
               {
-                "type": "dropdownbox",
+                "type": "select",
                 "title": "查询-租户类型",
                 "name": "查询-租户类型",
                 "placeholder": "租户类型",
@@ -187,7 +187,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626747",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -205,7 +204,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -224,7 +222,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -306,7 +303,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -326,7 +322,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -346,7 +341,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -361,7 +355,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -376,7 +369,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -392,7 +384,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `
@@ -417,7 +408,6 @@ export default {
         "name": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
             "title": "flycode",
             "script": `

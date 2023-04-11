@@ -2,13 +2,12 @@
 export default {
   "pageinfo": {
     "code": "radio",
-    "title": "radio",
-    "pagedescr": "radio"
+    "title": "radio"
   },
   "view": {
     "body": {
       "type": "layout",
-      "code": "layout-8161770481264333",
+    
       "flexdirection": "vertical",
       "flex": "1",
       "hidden": "",
@@ -144,7 +143,6 @@ export default {
         },
         {
           "type": "layout",
-          "code": "layout-8166354650481264333",
           "flexdirection": "horizontal",
           "justifyContent": "center",
           "flex": "1",
@@ -186,19 +184,12 @@ export default {
     "initial": [
       {
         "code": "1454645626748",
-        "desc": "初始化",
+        "title": "初始化",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626747",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
 
             `
@@ -210,19 +201,12 @@ export default {
     "handlers": [
       {
         "code": "handle-valuechange",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               console.log(eventTarget)
               console.log('onvaluechange')
@@ -234,19 +218,12 @@ export default {
       },
       {
         "code": "handle-onload",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               // const file = page.getCtrl('文件')
               // console.log(file)
@@ -258,19 +235,12 @@ export default {
       },
       {
         "code": "handle-get",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               if (!page.validata()) {
                 throw Error('validata')
@@ -283,19 +253,12 @@ export default {
       },
       {
         "code": "handle-set",
-        "desc": "",
+        "title": "",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               page.getCtrl('单选').value = '0'
               page.getCtrl('多选').value = ['1']
@@ -304,6 +267,5 @@ export default {
         ]
       }
     ]
-  },
-  "businessmodel": []
+  }
 }

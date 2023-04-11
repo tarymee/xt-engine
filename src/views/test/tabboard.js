@@ -2,13 +2,11 @@
 export default {
   "pageinfo": {
     "code": "tabboard",
-    "title": "tabboard",
-    "pagedescr": "tabboard"
+    "title": "tabboard"
   },
   "view": {
     "body": {
       "type": "layout",
-      "code": "layout-8161770481264333",
       "flexdirection": "vertical",
       "flex": "1",
       "hidden": "",
@@ -19,7 +17,7 @@ export default {
       "content": [
         {
           "type": "tabboard",
-          "code": "tabboard-8115001595939472",
+        
           "name": "tabboard框架",
           "flexdirection": "vertical",
           "title": "基本信息",
@@ -35,7 +33,6 @@ export default {
               "content": [
                 {
                   "type": "textinput",
-                  "code": "14049334561561",
                   "titlewidth": "70",
                   "title": "旧密码",
                   "placeholder": "6-20个字符，区分大小写",
@@ -47,7 +44,6 @@ export default {
                 },
                 {
                   "type": "textinput",
-                  "code": "140493345621561",
                   "titlewidth": "70",
                   "title": "新密码",
                   "placeholder": "6-20个字符，区分大小写",
@@ -136,7 +132,6 @@ export default {
                 },
                 {
                   "type": "layout",
-                  "code": "layout-8166354650481264333",
                   "flexdirection": "horizontal",
                   "justifyContent": "center",
                   "flex": "1",
@@ -145,7 +140,6 @@ export default {
                   "content": [
                     {
                       "type": "button",
-                      "code": "1404564654561561",
                       "title": "测试",
                       "value": "测试",
                       "displaytype": "primary",
@@ -167,7 +161,6 @@ export default {
               "content": [
                 {
                   "type": "textinput",
-                  "code": "140493345461561",
                   "titlewidth": "70",
                   "title": "确认密码",
                   "placeholder": "6-20个字符，区分大小写",
@@ -179,7 +172,6 @@ export default {
                 },
                 {
                   "type": "button",
-                  "code": "1404933544224561561",
                   "title": "确认",
                   "value": "确认",
                   "displaytype": "primary",
@@ -206,19 +198,12 @@ export default {
     "handlers": [
       {
         "code": "handle-test",
-        "desc": "测试",
+        "title": "测试",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               page.getCtrl('确认密码').value = '1'
               // page.getCtrl('tabboard框架').hidden = true
@@ -228,19 +213,12 @@ export default {
       },
       {
         "code": "handle-save",
-        "desc": "修改密码",
+        "title": "修改密码",
         "name": "",
-        "successhint": "",
-        "notice": "",
-        "key": "",
-        "condition": "",
-        "remark": "",
         "actions": [
           {
-            "code": "1402930156032626777",
             "type": "flycode",
-            "desc": "flycode",
-            "condition": "",
+            "title": "flycode",
             "script": `
               console.log(page)
               // page.getCtrl('新密码').value = '1'
@@ -249,6 +227,5 @@ export default {
         ]
       }
     ]
-  },
-  "businessmodel": []
+  }
 }
