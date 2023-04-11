@@ -2,20 +2,46 @@
 import { get, cloneDeep } from 'lodash-es'
 import baseMixin from '../common/baseMixin'
 import renderComponent from '../common/renderComponent'
+import { viewRuleAddProps, viewRuleAddParentcode, createViewRuleMap, delViewRuleMap } from '../page/dealProtocol'
 
 export default {
   name: 'xt-layout',
   mixins: [baseMixin],
   data () {
-    return {}
+    return {
+      content: this.returnViewRulePropValue('content', 'array', []),
+    }
   },
-  methods: {},
+  methods: {
+    setPropContent (value) {
+      // todo
+      this.content.forEach((item) => {
+        delViewRuleMap(item, this.engine.viewRuleMap)
+      })
+      this.content = []
+      setTimeout(() => {
+        const content = cloneDeep(value)
+        content.forEach((item) => {
+          viewRuleAddProps(item)
+        })
+        content.forEach((item) => {
+          viewRuleAddParentcode(item, this.code, this.codepath)
+        })
+        content.forEach((item) => {
+          createViewRuleMap(item, this.engine.viewRuleMap)
+        })
+        this.content = content
+      }, 0)
+    }
+  },
   render: function (h) {
-    const content = get(this.viewRule, 'content', [])
     const hasOnclickedEvent = this.eventlist.some((item) => item.trigger === 'onclicked' && item.handler)
     return h(
       'div',
       {
+        // props: {
+        //   key: this.code
+        // },
         attrs: {
           class: 'xt-layout'
         },
@@ -30,7 +56,7 @@ export default {
         }
       },
       [
-        content.map((item, i) => {
+        this.content.map((item, i) => {
           return renderComponent(h, item)
         })
       ]

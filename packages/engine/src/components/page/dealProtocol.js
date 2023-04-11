@@ -114,7 +114,7 @@ const dealPresenter = (presenter) => {
   })
 }
 
-const viewRuleAddParentcode = (ctrlViewRule, parentcode = null, parentcodepath = []) => {
+export const viewRuleAddParentcode = (ctrlViewRule, parentcode = null, parentcodepath = []) => {
   if (isObject(ctrlViewRule) && ctrlViewRule.type) {
     ctrlViewRule.parentcode = parentcode
 
@@ -138,7 +138,7 @@ const viewRuleAddParentcode = (ctrlViewRule, parentcode = null, parentcodepath =
   }
 }
 
-const viewRuleAddProps = (ctrlViewRule) => {
+export const viewRuleAddProps = (ctrlViewRule) => {
   dealOldView(ctrlViewRule)
 
   ctrlViewRule.style = ctrlViewRule.style || {}
@@ -232,7 +232,7 @@ const viewRuleAddProps = (ctrlViewRule) => {
 }
 
 
-const createViewRuleMap = (ctrlViewRule, viewRuleMap) => {
+export const createViewRuleMap = (ctrlViewRule, viewRuleMap) => {
   if (ctrlViewRule && ctrlViewRule.code && ctrlViewRule.type) {
     viewRuleMap.set(ctrlViewRule.code, ctrlViewRule)
   }
@@ -244,6 +244,24 @@ const createViewRuleMap = (ctrlViewRule, viewRuleMap) => {
       item.forEach((item2) => {
         if (isObject(item2)) {
           createViewRuleMap(item2, viewRuleMap)
+        }
+      })
+    }
+  }
+}
+
+export const delViewRuleMap = (ctrlViewRule, viewRuleMap) => {
+  if (ctrlViewRule && ctrlViewRule.code && ctrlViewRule.type) {
+    viewRuleMap.delete(ctrlViewRule.code)
+  }
+  for (const x in ctrlViewRule) {
+    let item = ctrlViewRule[x]
+    if (isObject(item)) {
+      delViewRuleMap(item, viewRuleMap)
+    } else if (Array.isArray(item)) {
+      item.forEach((item2) => {
+        if (isObject(item2)) {
+          delViewRuleMap(item2, viewRuleMap)
         }
       })
     }

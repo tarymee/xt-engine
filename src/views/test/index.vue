@@ -14,6 +14,7 @@ import list from './list.js'
 import attachment from './attachment.js'
 import tabboard from './tabboard.js'
 import foreach from './foreach.js'
+import layout from './layout.js'
 
 export default {
   components: {
@@ -42,6 +43,8 @@ export default {
       this.protocol = tabboard
     } else if (protocol === 'foreach') {
       this.protocol = foreach
+    } else if (protocol === 'layout') {
+      this.protocol = layout
     } else {
       this.protocol = table
     }

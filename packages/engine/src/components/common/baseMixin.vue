@@ -21,6 +21,7 @@ export default {
     return {
       value: this.returnViewRulePropValue('value', 'string'),
       code: this.returnViewRulePropValue('code', 'string'),
+      codepath: this.returnViewRulePropValue('codepath', 'array', []),
       title: this.returnViewRulePropValue('title', 'string'),
       name: this.returnViewRulePropValue('name', 'string'),
       type: this.returnViewRulePropValue('type', 'string'),
@@ -298,7 +299,15 @@ export default {
     },
     setProp (type, value, setter) {
       // debugger
-      type === 'value' ? this.setValue(value, setter) : this[type] = cloneDeep(value)
+      // type === 'value' ? this.setValue(value, setter) : this[type] = cloneDeep(value)
+      if (type === 'value') {
+        this.setValue(value, setter)
+      } else if (typeof this.setPropContent === 'function') {
+        // todo
+        this.setPropContent(value)
+      } else {
+        this[type] = cloneDeep(value)
+      }
     },
     validata () {
       return true
