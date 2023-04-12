@@ -55,7 +55,7 @@ export default {
     //   return codes
     // },
     validata () {
-      console.log(this.engine.ctrlCodeMap)
+      // console.log(this.engine.ctrlCodeMap)
       // console.log(this.engine)
       // console.log(this)
       // const childrenCtrlCode = this.findChildrenCtrlCode(this.viewRule)
@@ -68,7 +68,7 @@ export default {
           childrenCtrlCode.push(item.code)
         }
       })
-      console.log(childrenCtrlCode)
+      // console.log(childrenCtrlCode)
 
       // debugger
       let res = true
