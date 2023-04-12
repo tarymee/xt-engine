@@ -35,35 +35,46 @@ export default {
     }
   },
   methods: {
-    findAllChildrenCtrlCode (ctrlViewRule, codes = []) {
-      if (ctrlViewRule.code !== this.code) {
-        codes.push(ctrlViewRule.code)
-      }
-      for (const x in ctrlViewRule) {
-        let item = ctrlViewRule[x]
-        if (Object.prototype.toString.call(item) === '[object Object]' && item.type) {
-          this.findAllChildrenCtrlCode(item, codes)
-        } else if (Array.isArray(item)) {
-          item.forEach((item2) => {
-            if (Object.prototype.toString.call(item2) === '[object Object]' && item2.type) {
-              this.findAllChildrenCtrlCode(item2, codes)
-            }
-          })
-        }
-      }
-      return codes
-    },
+    // 如果是layout动态插入的内容则找不到
+    // findChildrenCtrlCode (ctrlViewRule, codes = []) {
+    //   if (ctrlViewRule.code !== this.code) {
+    //     codes.push(ctrlViewRule.code)
+    //   }
+    //   for (const x in ctrlViewRule) {
+    //     let item = ctrlViewRule[x]
+    //     if (Object.prototype.toString.call(item) === '[object Object]' && item.type) {
+    //       this.findChildrenCtrlCode(item, codes)
+    //     } else if (Array.isArray(item)) {
+    //       item.forEach((item2) => {
+    //         if (Object.prototype.toString.call(item2) === '[object Object]' && item2.type) {
+    //           this.findChildrenCtrlCode(item2, codes)
+    //         }
+    //       })
+    //     }
+    //   }
+    //   return codes
+    // },
     validata () {
-      // console.log(this.engine.ctrlCodeMap)
+      console.log(this.engine.ctrlCodeMap)
       // console.log(this.engine)
       // console.log(this)
-      const allChildrenCtrlCode = this.findAllChildrenCtrlCode(this.viewRule)
-      // console.log(allChildrenCtrlCode)
+      // const childrenCtrlCode = this.findChildrenCtrlCode(this.viewRule)
+      // console.log(childrenCtrlCode)
+
+      let childrenCtrlCode = []
+      this.engine.ctrlCodeMap.forEach((item, key) => {
+        console.log(item, key)
+        if (item.codepath && item.codepath[0] === this.code && item.codepath.length > 1) {
+          childrenCtrlCode.push(item.code)
+        }
+      })
+      console.log(childrenCtrlCode)
+
       // debugger
       let res = true
       for (var [key, item] of this.engine.ctrlCodeMap) {
         // console.log(key, item)
-        const inThisPopview = allChildrenCtrlCode.some((item) => item === key)
+        const inThisPopview = childrenCtrlCode.some((item) => item === key)
         if (inThisPopview && item.isInputCtrl) {
           res = item.validata()
         }
