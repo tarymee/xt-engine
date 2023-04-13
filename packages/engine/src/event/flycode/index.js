@@ -21,7 +21,6 @@ export default class Flycode {
     this.dependenceMap.set('page', page)
     // this.dependenceMap.set('system', new System(this.eventManager))
 
-
     // 每个表单创建一个axios实例 继承引擎与外部注入的拦截器
     const axiosInstance = axios.create()
     // console.log(axios.interceptors)
@@ -101,6 +100,16 @@ export default class Flycode {
     })
     keyArray.push('eventTarget')
     valueArray.push(option.eventTarget || null)
+
+    // 是否有使用vue-router 有的话注入到 flycode
+    const $router = this.eventManager.engine.$router
+    const $route = this.eventManager.engine.$route
+    if ($router && $route) {
+      keyArray.push('$router')
+      valueArray.push($router)
+      keyArray.push('$route')
+      valueArray.push($route)
+    }
 
     // todo 传入table上下文变量以便做针对table按钮的只读操作
 
