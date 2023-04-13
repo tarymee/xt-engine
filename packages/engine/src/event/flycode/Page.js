@@ -61,8 +61,9 @@ export default class Page {
     if (result !== undefined) {
       return result
     } else {
-      const __linkparam = this.getLinkParams()
-      return __linkparam && __linkparam[key]
+      return null
+      // const __linkparam = this.getLinkParams()
+      // return __linkparam && __linkparam[key]
     }
   }
 
