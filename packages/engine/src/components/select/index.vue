@@ -1,7 +1,7 @@
 <template>
   <div
     class="xt-input xt-select"
-    :class="{ 'xt-input-intable': intable }"
+    :class="[customClass, { 'xt-input-intable': intable }]"
     :style="[viewStyle]"
   >
     <div
@@ -90,7 +90,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 /* .xt-text {
 
 } */

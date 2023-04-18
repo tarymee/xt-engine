@@ -19,7 +19,7 @@ export default {
       'div',
       {
         attrs: {
-          class: 'xt-filter'
+          class: `xt-filter ${this.customClass}`
         },
         style: this.viewStyle,
       },

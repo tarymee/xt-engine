@@ -1,6 +1,7 @@
 <template>
   <div
     class="xt-default"
+    :class="[customClass]"
     :style="[viewStyle]"
   >
     {{ type }} 控件暂未实现
@@ -19,7 +20,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 /* .xt-default {
 
 } */

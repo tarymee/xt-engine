@@ -1,5 +1,5 @@
 <template>
-  <div class="xt-input xt-photo" :class="{ 'xt-input-intable': intable }" :style="[viewStyle]">
+  <div class="xt-input xt-photo" :class="[customClass, { 'xt-input-intable': intable }]" :style="[viewStyle]">
     <div v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'" class="xt-input-label" :style="{ width: titlewidth }">
       <span v-if="required">*</span>{{ title }}
     </div>
@@ -79,18 +79,15 @@ export default {
     },
     validata () {
       const requiredRes = this.requiredValidata()
-      if (requiredRes) {
-        return requiredRes
+      if (!requiredRes) return requiredRes
+      if (this.checkIsUploadding()) {
+        Message({
+          message: `${this.title}正在上传中...`,
+          type: 'error'
+        })
+        return false
       } else {
-        if (this.checkIsUploadding()) {
-          Message({
-            message: `${this.title}正在上传中...`,
-            type: 'error'
-          })
-          return false
-        } else {
-          return true
-        }
+        return true
       }
     },
     handleSuccess (response) {
@@ -185,7 +182,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .xt-photo-content {
   display: flex;
   flex-wrap: wrap;

@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style>
 .xt-input {
   display: flex;
   padding: 0 8px 8px;

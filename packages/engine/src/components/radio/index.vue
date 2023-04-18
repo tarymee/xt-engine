@@ -1,7 +1,7 @@
 <template>
   <div
     class="xt-input xt-radio"
-    :class="{ 'xt-input-intable': intable }"
+    :class="[customClass, { 'xt-input-intable': intable }]"
     :style="[viewStyle]"
   >
     <div
@@ -64,7 +64,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 /* .xt-radio {
 
 } */

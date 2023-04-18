@@ -1,7 +1,9 @@
 <template>
   <div
     class="xt-text"
+    :class="[customClass]"
     :style="[viewStyle]"
+    :title="value"
   >
     {{ value }}
   </div>
@@ -18,7 +20,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 /* todo 做垂直居中 */
 .xt-text {
 

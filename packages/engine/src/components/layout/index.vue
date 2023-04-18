@@ -43,7 +43,7 @@ export default {
         //   key: this.code
         // },
         attrs: {
-          class: 'xt-layout'
+          class: `xt-layout ${this.customClass}`
         },
         style: hasOnclickedEvent ? {
           ...this.viewStyle,

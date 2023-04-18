@@ -1,6 +1,7 @@
 <template>
   <div
     class="xt-tags"
+    :class="[customClass]"
     :style="[viewStyle]"
   >
     <div
@@ -79,14 +80,11 @@ export default {
       }
       return texts
     }
-  },
-  created () {
-  },
-  methods: {}
+  }
 }
 </script>
 
-<style scope>
+<style scoped>
 /* .xt-text {
 
 } */

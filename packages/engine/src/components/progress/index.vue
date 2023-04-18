@@ -1,6 +1,7 @@
 <template>
   <div
     class="xt-progress"
+    :class="[customClass]"
     :style="[viewStyle]"
   >
     <div class="xt-progress-con">
@@ -51,7 +52,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .xt-progress {
   font-size: 13px;
   height: 32px;

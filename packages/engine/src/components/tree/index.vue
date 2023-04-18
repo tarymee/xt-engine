@@ -1,7 +1,7 @@
 <template>
   <div
     class="xt-input xt-tree"
-    :class="{ 'xt-tree-navigation': displaytype === 'navigation' }"
+    :class="[customClass, { 'xt-tree-navigation': displaytype === 'navigation' }]"
     :style="[viewStyle]"
   >
     <div
@@ -387,7 +387,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .xt-tree .el-input.is-disabled .el-input__inner {
   background-color: #FFF;
   border-color: #DCDFE6;

@@ -1,7 +1,7 @@
 <template>
   <div
     class="xt-input xt-textinput"
-    :class="{ 'xt-input-intable': intable }"
+    :class="[customClass, { 'xt-input-intable': intable }]"
     :style="[viewStyle]"
   >
     <div
@@ -38,6 +38,7 @@
 </template>
 <script>
 import baseInputMixin from '../common/baseInputMixin'
+import { Message } from 'element-ui'
 
 export default {
   name: 'xt-textinput',
@@ -45,6 +46,7 @@ export default {
   data () {
     return {
       displaytype: this.returnViewRulePropValue('displaytype', 'string', 'input'), // password || textarea || input
+      maxlength: this.returnViewRulePropValue('maxlength', 'number'),
       minrow: this.returnViewRulePropValue('minrow', 'number', 2),
       maxrow: this.returnViewRulePropValue('maxrow', 'number', 6)
     }
@@ -54,12 +56,25 @@ export default {
   methods: {
     handleChange (e) {
       this.executeEvent('onvaluechange')
+    },
+    validata () {
+      const requiredRes = this.requiredValidata()
+      if (!requiredRes) return requiredRes
+      if (this.maxlength !== '' && this.value.length > Number(this.maxlength)) {
+        Message({
+          message: `${this.title}最多支持输入${this.maxlength}个字`,
+          type: 'error'
+        })
+        return false
+      } else {
+        return true
+      }
     }
   }
 }
 </script>
 
-<style scope>
+<style scoped>
 /* .xt-textinput {
 
 } */

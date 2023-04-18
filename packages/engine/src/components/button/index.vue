@@ -1,6 +1,7 @@
 <template>
   <div
     class="xt-button"
+    :class="[customClass]"
     :style="[viewStyle]"
   >
     <el-button
@@ -8,6 +9,7 @@
       :size="eleButtonSize"
       :type="displaytype"
       :icon="icon"
+      :plain="plain"
       @click="handleClick"
     >
       {{ buttonText }}
@@ -24,6 +26,7 @@ export default {
     return {
       // displaytype https://element.eleme.cn/2.15/#/zh-CN/component/button
       displaytype: this.returnViewRulePropValue('displaytype', 'string'),
+      plain: this.returnViewRulePropValue('plain', 'boolean', false),
       text: this.returnViewRulePropValue('text', 'string'),
       icon: this.returnViewRulePropValue('icon', 'string'),
       size: this.returnViewRulePropValue('size', 'string', 'small') // big middle small mini
@@ -47,8 +50,11 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .xt-button .el-button {
   width: 100%;
 }
+/* .xt-button:hover {
+  color: #FFF;
+} */
 </style>

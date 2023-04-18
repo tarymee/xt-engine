@@ -1,6 +1,7 @@
 <template>
   <div
     class="xt-input xt-cascade"
+    :class="[customClass]"
     :style="[viewStyle]"
   >
     <div
@@ -106,6 +107,6 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 
 </style>

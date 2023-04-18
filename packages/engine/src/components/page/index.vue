@@ -83,7 +83,7 @@ export default {
 
 </script>
 
-<style scope>
+<style scoped>
 .xt-engine {
   flex: 1;
   height: 100%;

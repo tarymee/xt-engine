@@ -29,16 +29,6 @@ const routes = [
   {
     path: '/test',
     component: () => import('@/views/test')
-  },
-  {
-    path: '/management',
-    component: () => import('@/views/management'),
-    children: [
-      {
-        path: 'enterprise',
-        component: () => import('@/views/enterprise')
-      }
-    ]
   }
 ]
 

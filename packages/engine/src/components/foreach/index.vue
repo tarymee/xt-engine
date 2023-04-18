@@ -130,7 +130,7 @@ export default {
       'div',
       {
         attrs: {
-          class: 'xt-foreach'
+          class: `xt-foreach ${this.customClass}`
         },
         style: this.viewStyle,
       },

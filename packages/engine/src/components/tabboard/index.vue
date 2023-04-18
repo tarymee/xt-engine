@@ -63,8 +63,8 @@ export default {
     return h(
       'div',
       {
-        class: {
-          'xt-tabboard': true
+        attrs: {
+          class: `xt-tabboard ${this.customClass}`
         },
         style: this.viewStyle
       },

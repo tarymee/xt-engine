@@ -1,6 +1,7 @@
 <template>
   <div
     class="xt-image"
+    :class="[customClass]"
     :style="[viewStyle]"
   >
     <el-image
@@ -32,6 +33,6 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 
 </style>

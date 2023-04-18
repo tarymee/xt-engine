@@ -200,7 +200,7 @@ export default {
       'div',
       {
         attrs: {
-          class: 'xt-list'
+          class: `xt-list ${this.customClass}`
         },
         style: this.viewStyle,
       },

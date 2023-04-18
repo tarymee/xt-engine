@@ -351,7 +351,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .xt-table {
   flex: auto;
   width: 100%;

@@ -1,6 +1,7 @@
 <template>
   <div
     class="xt-link"
+    :class="[customClass]"
     :style="[viewStyle, viewStyleB]"
     @click="handleClick"
   >
@@ -29,7 +30,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 /* .xt-link {
 
 } */

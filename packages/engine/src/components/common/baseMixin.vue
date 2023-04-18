@@ -38,10 +38,15 @@ export default {
       inforeach: this.dealInnerProps('inforeach', this.viewRule.parentcode),
       infilter: this.dealInnerProps('infilter', this.viewRule.parentcode),
       intabboard: this.dealInnerProps('intabboard', this.viewRule.parentcode),
-      notCreateVMInEngine: false
+      notCreateVMInEngine: false,
+      css: this.returnViewRulePropValue('css', 'string'),
+      class: this.returnViewRulePropValue('class', 'string'),
     }
   },
   computed: {
+    customClass () {
+      return this.class
+    },
     viewStyle () {
       const style = this.createBaseStyle()
       return style
@@ -61,6 +66,8 @@ export default {
     // if (this.code === '14049334561561') {
     //   debugger
     // }
+
+    this.css && this.addCSS()
 
     if (!this.notInEngine) {
       if (!this.notCreateVMInEngine) {
@@ -91,6 +98,7 @@ export default {
         this.name && (this.engine.ctrlNameCodeMap.delete(this.name))
       }
     }
+    this.css && this.delCSS()
   },
   methods: {
     dealInnerProps (innerProp, parentcode) {
@@ -311,11 +319,19 @@ export default {
     },
     validata () {
       return true
+    },
+    addCSS () {
+      const styleEle = document.createElement('style')
+      styleEle.type = 'text/css'
+      styleEle.id = `${this.code}-css`
+      styleEle.appendChild(document.createTextNode(this.css))
+      document.getElementsByTagName('head')[0].appendChild(styleEle)
+    },
+    delCSS () {
+      const styleEle = document.getElementById(`${this.code}-css`)
+      styleEle && styleEle.remove()
+      // document.getElementsByTagName('head')[0].removeChild(styleEle)
     }
   }
 }
 </script>
-
-<style scope>
-
-</style>

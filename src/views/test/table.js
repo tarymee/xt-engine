@@ -22,6 +22,13 @@ export default {
               "type": "button",
               "value": "取值",
               "displaytype": "primary",
+              "plain": "1",
+              "class": "xxx ssss",
+              "css": `
+                .xxx.xt-button {
+                  width: 100%
+                }
+              `,
               "eventlist": [
                 {
                   "trigger": "onclicked",
