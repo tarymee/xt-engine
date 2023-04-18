@@ -20,3 +20,11 @@
 + 参考 photo 优化 attchment done
 + xt-engine 上的loadding要用全局命令式
 + 大面积控制readonly
++ 
+
+
+
++ scoped 样式 或者而外 class
++ 接入图片
++ table update字数太多 操作栏错乱
++ 
