@@ -8,6 +8,7 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
+      isContainerCtrl: true,
       width: this.returnViewRulePropValue('width', 'unit', '50%'),
       wrapwidth: this.returnViewRulePropValue('wrapwidth', 'unit'),
       value: this.returnViewRulePropValue('value', 'other', null),
@@ -35,6 +36,16 @@ export default {
     }
   },
   methods: {
+    setPropReadonly (value) {
+      // debugger
+      // console.log(value)
+      const childrenInstace = this.getChildrenInstace()
+      childrenInstace.forEach((item) => {
+        if (!item.isContainerCtrl) {
+          item.setProp('readonly', value)
+        }
+      })
+    },
     // 如果是layout动态插入的内容则找不到
     // findChildrenCtrlCode (ctrlViewRule, codes = []) {
     //   if (ctrlViewRule.code !== this.code) {
@@ -54,32 +65,35 @@ export default {
     //   }
     //   return codes
     // },
-    validata () {
-      // console.log(this.engine.ctrlCodeMap)
-      // console.log(this.engine)
-      // console.log(this)
-      // const childrenCtrlCode = this.findChildrenCtrlCode(this.viewRule)
-      // console.log(childrenCtrlCode)
-
+    getChildrenInstace () {
       let childrenCtrlCode = []
       this.engine.ctrlCodeMap.forEach((item, key) => {
-        console.log(item, key)
+        // console.log(item, key)
         if (item.codepath && item.codepath[0] === this.code && item.codepath.length > 1) {
           childrenCtrlCode.push(item.code)
         }
       })
       // console.log(childrenCtrlCode)
-
-      // debugger
-      let res = true
+      const arr = []
       for (var [key, item] of this.engine.ctrlCodeMap) {
         // console.log(key, item)
-        const inThisPopview = childrenCtrlCode.some((item) => item === key)
-        if (inThisPopview && item.isInputCtrl) {
+        const inCtrlCodeMap = childrenCtrlCode.some((item) => item === key)
+        if (inCtrlCodeMap) {
+          arr.push(item)
+        }
+      }
+      // console.log(arr)
+      return arr
+    },
+    validata () {
+      let res = true
+      const childrenInstace = this.getChildrenInstace()
+      for (let i = 0, len = childrenInstace.length; i < len; i++) {
+        const item = childrenInstace[i]
+        if (!item.isContainerCtrl) {
           res = item.validata()
         }
         if (!res) {
-          // debugger
           break
         }
       }

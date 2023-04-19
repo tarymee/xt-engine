@@ -8,8 +8,8 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
-      // 独立查询按钮
-      bindcallbtn: this.returnViewRulePropValue('bindcallbtn', 'boolean'),
+      isContainerCtrl: true,
+      bindcallbtn: this.returnViewRulePropValue('bindcallbtn', 'boolean'), // 独立查询按钮
     }
   },
   render: function (h) {

@@ -161,7 +161,7 @@ export default class Page {
   validata () {
     let res = true
     for (var [key, item] of this.eventManager.ctrlCodeMap) {
-      if (item.isInputCtrl) {
+      if (!item.isContainerCtrl) {
         res = item.validata()
       }
       if (!res) {

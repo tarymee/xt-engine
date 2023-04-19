@@ -19,6 +19,9 @@ export default {
   },
   data () {
     return {
+      isInputCtrl: false,
+      isContainerCtrl: false,
+      isArrayCtrl: false,
       value: this.returnViewRulePropValue('value', 'string'),
       code: this.returnViewRulePropValue('code', 'string'),
       codepath: this.returnViewRulePropValue('codepath', 'array', []),
@@ -310,9 +313,13 @@ export default {
       // type === 'value' ? this.setValue(value, setter) : this[type] = cloneDeep(value)
       if (type === 'value') {
         this.setValue(value, setter)
-      } else if (typeof this.setPropContent === 'function') {
+      } else if (type === 'content' && typeof this.setPropContent === 'function') {
         // todo
         this.setPropContent(value)
+      } else if (type === 'readonly' && typeof this.setPropReadonly === 'function') {
+        this.setPropReadonly(value)
+      } else if (type === 'hidden' && typeof this.setPropHidden === 'function') {
+        this.setPropHidden(value)
       } else {
         this[type] = cloneDeep(value)
       }

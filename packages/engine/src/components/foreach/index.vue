@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     validata () {
+      // todo
       let res = true
       return res
     },

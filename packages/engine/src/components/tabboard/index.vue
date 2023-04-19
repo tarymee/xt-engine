@@ -8,6 +8,7 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
+      isContainerCtrl: true,
       index: 0,
       currentTitle: ''
     }

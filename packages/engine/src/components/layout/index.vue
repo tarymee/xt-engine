@@ -9,6 +9,7 @@ export default {
   mixins: [baseMixin],
   data () {
     return {
+      isContainerCtrl: true,
       content: this.returnViewRulePropValue('content', 'array', []),
     }
   },

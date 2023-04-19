@@ -19,7 +19,7 @@
 + filter 支持显示查询按钮 done
 + 参考 photo 优化 attchment done
 + xt-engine 上的loadding要用全局命令式
-+ 大面积控制readonly
++ 容器控件或数组控件设置readonly应连带子控件
 + 
 
 
