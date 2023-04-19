@@ -30,7 +30,7 @@
           <i class="el-input__icon el-icon-arrow-down" />
         </template>
       </el-input>
-      <div v-else v-popover:popover class="xt-tree-input">
+      <div v-else v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">
         <div class="xt-tree-input-icon">
           <i class="el-icon-arrow-down" />
         </div>
@@ -423,6 +423,11 @@ export default {
   border-radius: 4px;
   position: relative;
   cursor: pointer;
+}
+.xt-tree-input.xt-tree-input-readonly {
+  background-color: #F5F7FA;
+  border-color: #E4E7ED;
+  cursor: not-allowed;
 }
 .xt-tree-input-icon {
   height: 12px;

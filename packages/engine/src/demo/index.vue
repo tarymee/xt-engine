@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { components } from '@smart100/web-engine'
+import components from '../components/index.js'
 
 import radio from './radio.js'
 import table from './table.js'
@@ -15,6 +15,7 @@ import attachment from './attachment.js'
 import tabboard from './tabboard.js'
 import foreach from './foreach.js'
 import layout from './layout.js'
+import form from './form.js'
 
 export default {
   components: {
@@ -45,6 +46,8 @@ export default {
       this.protocol = foreach
     } else if (protocol === 'layout') {
       this.protocol = layout
+    } else if (protocol === 'form') {
+      this.protocol = form
     } else {
       this.protocol = table
     }

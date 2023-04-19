@@ -318,8 +318,6 @@ export default {
         this.setPropContent(value)
       } else if (type === 'readonly' && typeof this.setPropReadonly === 'function') {
         this.setPropReadonly(value)
-      } else if (type === 'hidden' && typeof this.setPropHidden === 'function') {
-        this.setPropHidden(value)
       } else {
         this[type] = cloneDeep(value)
       }
@@ -338,7 +336,28 @@ export default {
       const styleEle = document.getElementById(`${this.code}-css`)
       styleEle && styleEle.remove()
       // document.getElementsByTagName('head')[0].removeChild(styleEle)
-    }
+    },
+    getChildrenInstace () {
+      let childrenCtrlCode = []
+      this.engine.ctrlCodeMap.forEach((item, key) => {
+        // console.log(item, key)
+        if (item.codepath && item.codepath.some((item) => item === this.code) && item.codepath[item.codepath.length - 1] !== this.code) {
+          childrenCtrlCode.push(item.code)
+        }
+      })
+      // console.log(childrenCtrlCode)
+      // debugger
+      const arr = []
+      for (var [key, item] of this.engine.ctrlCodeMap) {
+        // console.log(key, item)
+        const inCtrlCodeMap = childrenCtrlCode.some((item) => item === key)
+        if (inCtrlCodeMap) {
+          arr.push(item)
+        }
+      }
+      // console.log(arr)
+      return arr
+    },
   }
 }
 </script>

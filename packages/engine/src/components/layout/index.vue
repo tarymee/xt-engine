@@ -33,6 +33,20 @@ export default {
         })
         this.content = content
       }, 0)
+    },
+    setPropReadonly (value) {
+      // debugger
+      // console.log(value)
+      this.readonly = value
+      const childrenInstace = this.getChildrenInstace()
+      // debugger
+      childrenInstace.forEach((item) => {
+        if (!item.isContainerCtrl) {
+          item.setProp('readonly', value)
+        } else {
+          item.readonly = value
+        }
+      })
     }
   },
   render: function (h) {

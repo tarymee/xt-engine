@@ -39,51 +39,15 @@ export default {
     setPropReadonly (value) {
       // debugger
       // console.log(value)
+      this.readonly = value
       const childrenInstace = this.getChildrenInstace()
       childrenInstace.forEach((item) => {
         if (!item.isContainerCtrl) {
           item.setProp('readonly', value)
+        } else {
+          item.readonly = value
         }
       })
-    },
-    // 如果是layout动态插入的内容则找不到
-    // findChildrenCtrlCode (ctrlViewRule, codes = []) {
-    //   if (ctrlViewRule.code !== this.code) {
-    //     codes.push(ctrlViewRule.code)
-    //   }
-    //   for (const x in ctrlViewRule) {
-    //     let item = ctrlViewRule[x]
-    //     if (Object.prototype.toString.call(item) === '[object Object]' && item.type) {
-    //       this.findChildrenCtrlCode(item, codes)
-    //     } else if (Array.isArray(item)) {
-    //       item.forEach((item2) => {
-    //         if (Object.prototype.toString.call(item2) === '[object Object]' && item2.type) {
-    //           this.findChildrenCtrlCode(item2, codes)
-    //         }
-    //       })
-    //     }
-    //   }
-    //   return codes
-    // },
-    getChildrenInstace () {
-      let childrenCtrlCode = []
-      this.engine.ctrlCodeMap.forEach((item, key) => {
-        // console.log(item, key)
-        if (item.codepath && item.codepath[0] === this.code && item.codepath.length > 1) {
-          childrenCtrlCode.push(item.code)
-        }
-      })
-      // console.log(childrenCtrlCode)
-      const arr = []
-      for (var [key, item] of this.engine.ctrlCodeMap) {
-        // console.log(key, item)
-        const inCtrlCodeMap = childrenCtrlCode.some((item) => item === key)
-        if (inCtrlCodeMap) {
-          arr.push(item)
-        }
-      }
-      // console.log(arr)
-      return arr
     },
     validata () {
       let res = true

@@ -82,6 +82,11 @@ export default {
 .xt-input .el-cascader {
   width: 100%!important;
 }
+.xt-input .el-input.is-disabled .el-input__inner,
+.xt-input .el-textarea.is-disabled .el-textarea__inner {
+  color: #777;
+}
+
 
 
 /* todo 垂直 简化等模式 */

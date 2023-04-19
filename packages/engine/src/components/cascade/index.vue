@@ -35,7 +35,7 @@ export default {
   mixins: [baseInputMixin],
   data () {
     return {
-      options: [],
+      options: this.returnViewRulePropValue('options', 'array', []),
       defaultProps: {
         expandTrigger: 'hover',
         value: 'key',
@@ -54,7 +54,6 @@ export default {
     }
   },
   created () {
-    this.options = get(this.viewRule, 'options', [])
     this.setValue(this.value)
   },
   methods: {

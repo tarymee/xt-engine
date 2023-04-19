@@ -20,7 +20,7 @@
 + 参考 photo 优化 attchment done
 + xt-engine 上的loadding要用全局命令式
 + 容器控件或数组控件设置readonly应连带子控件
-+ 
++ 兼容 tree option： id = key name = text parentid
 
 
 
