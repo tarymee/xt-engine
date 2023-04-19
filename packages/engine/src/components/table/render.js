@@ -135,7 +135,7 @@ const render = function (h, viewRule, context) {
     'div',
     {
       attrs: {
-        class: `xt-table ${this.customClass}`
+        class: `xt-table ${context.customClass}`
       },
       style: context.viewStyle,
       // directives: [

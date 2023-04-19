@@ -43,6 +43,7 @@ export default {
         //   key: this.code
         // },
         attrs: {
+          // todo 不要留空格
           class: `xt-layout ${this.customClass}`
         },
         style: hasOnclickedEvent ? {

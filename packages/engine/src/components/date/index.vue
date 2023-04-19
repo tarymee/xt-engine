@@ -26,7 +26,6 @@
   </div>
 </template>
 <script>
-import { get } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 
 export default {
@@ -38,7 +37,6 @@ export default {
       unit: this.returnViewRulePropValue('unit', 'string', 'date'),
     }
   },
-  computed: {},
   created () {
     this.setValue(this.value)
   },
@@ -53,7 +51,7 @@ export default {
     },
     setValue (value, setter) {
       value ? this.value = Number(value) : this.value = null
-    },
+    }
   }
 }
 </script>

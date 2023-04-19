@@ -123,7 +123,7 @@ export default {
           'div',
           {
             attrs: {
-              class: 'xt-popview'
+              class: `xt-popview ${this.customClass}`
             },
             style: this.viewStyle,
           },

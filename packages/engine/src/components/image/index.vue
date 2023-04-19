@@ -5,7 +5,7 @@
     :style="[viewStyle]"
   >
     <el-image
-      style="width: 100%; height: 100%"
+      :style="elImageStyle"
       :src="value"
       :fit="fit"
     >
@@ -23,6 +23,17 @@ export default {
       // 可通过fit确定图片如何适应到容器框，同原生 object-fit。
       // ['fill', 'contain', 'cover', 'none', 'scale-down']
       fit: this.returnViewRulePropValue('fit', 'string', 'cover')
+    }
+  },
+  computed: {
+    elImageStyle () {
+      const style = {
+        width: '100%'
+      }
+      if (this.viewStyle.height) {
+        style.height = '100%'
+      }
+      return style
     }
   },
   created () {

@@ -27,4 +27,5 @@
 + scoped 样式 或者而外 class
 + 接入图片
 + table update字数太多 操作栏错乱
-+ 
++ table只读 按钮操作栏只读
++ table columns 隐藏某一列

@@ -15,7 +15,23 @@ export default {
   name: 'xt-text',
   mixins: [baseMixin],
   data () {
-    return {}
+    return {
+      linenumber: this.returnViewRulePropValue('linenumber', 'number'),
+    }
+  },
+  computed: {
+    viewStyle () {
+      const style = this.createBaseStyle()
+      if (this.linenumber !== '') {
+        style['overflow'] = 'hidden'
+        style['text-overflow'] = 'ellipsis'
+        style['display'] = '-webkit-box'
+        style['-webkit-box-orient'] = 'vertical'
+        style['display'] = '-webkit-box'
+        style['-webkit-line-clamp'] = Number(this.linenumber)
+      }
+      return style
+    }
   }
 }
 </script>
