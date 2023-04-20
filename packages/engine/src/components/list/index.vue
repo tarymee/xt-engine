@@ -451,7 +451,7 @@ export default {
   display: flex;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
 }
 .xt-list-item-row-card {
