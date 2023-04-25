@@ -343,6 +343,23 @@ export default {
           }
         }
       }, 0)
+    },
+    // todo
+    setPropReadonly (value) {
+      // debugger
+      // console.log(value)
+      this.readonly = value
+      this.viewRule.operations.forEach((item, i) => {
+        const btnVm = this.$refs[`xt-table-operations-${i}`]
+        if (!btnVm) return
+        btnVm.setProp('readonly', value)
+      })
+      this.$el.querySelectorAll('.xt-table-rowoperations .xt-button').forEach((item) => {
+        if (item.__vue__) {
+          item.__vue__.setProp('readonly', value)
+        }
+      })
+      // debugger
     }
   },
   render: function (h) {
