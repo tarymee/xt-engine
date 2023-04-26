@@ -84,7 +84,7 @@ export default {
 }
 .xt-input .el-input.is-disabled .el-input__inner,
 .xt-input .el-textarea.is-disabled .el-textarea__inner {
-  color: #777;
+  color: #606266;
 }
 
 

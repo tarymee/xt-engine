@@ -11,25 +11,15 @@
     >
       <span v-if="required">*</span>{{ title }}
     </div>
-    <div
-      v-if="displaytype !== 'navigation'"
-      class="xt-input-content"
-    >
-      <!-- todo 处理readonly样式和逻辑 -->
-      <el-input
-        v-if="intermediateselectmode !== 'individual'"
-        v-model="valueText"
-        v-popover:popover
-        size="small"
-        :disabled="true"
-        :placeholder="placeholder"
-      >
-        <template
-          #suffix
-        >
-          <i class="el-input__icon el-icon-arrow-down" />
-        </template>
-      </el-input>
+    <div v-if="displaytype !== 'navigation'" class="xt-input-content">
+      <!-- todo 缺少 hiddenclearbtn 属性 -->
+      <div v-if="intermediateselectmode !== 'individual'" v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">
+        <div class="xt-tree-input-text">{{ valueText }}</div>
+        <div class="xt-tree-input-icon">
+          <i class="el-icon-arrow-down" />
+        </div>
+        <div v-if="!valueText" class="xt-tree-input-placeholder">{{ placeholder }}</div>
+      </div>
       <div v-else v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">
         <div class="xt-tree-input-icon">
           <i class="el-icon-arrow-down" />
@@ -414,6 +404,9 @@ export default {
   width: 100%;
   height: 100%;
 }
+.xt-tree-el-input {
+  cursor: not-allowed;
+}
 
 .xt-tree-input {
   overflow: hidden;
@@ -438,6 +431,18 @@ export default {
   top: 50%;
   right: 0;
   margin-top: -6px;
+  color: #C0C4CC;
+}
+.xt-tree-input-text {
+  padding: 0 15px;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  color: #606266;
+  font-size: 13px;
 }
 .xt-tree-input-placeholder {
   color: #ccc;
@@ -450,6 +455,7 @@ export default {
   font-size: 13px;
   background-color: #fafafa;
   border: 1px solid #e8e8e8;
+  color: #606266;
   padding: 0 5px;
   line-height: 20px;
   margin: 4px 0 4px 5px;
