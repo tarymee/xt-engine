@@ -13,6 +13,7 @@
   "checkable": "0",
   "pageable": "0",
   "pagesize": "20",
+  "fixednumber": "0",
   "columns": [],
   "operations": [],
   "rowoperations": [],
@@ -38,6 +39,9 @@
 | ---- | ---- |
 | 1 | 支持行勾选 |
 | 0 | 不支持行勾选 |
+
+### fixednumber
+冻结前几列，默认值为 `0`
 
 ### columns
 定义列，类型为数组，接收控件协议对象。
@@ -206,8 +210,10 @@
 | row | 获取所有行控件 |
 | focusedRow | 获取焦点行控件 |
 | checkedRow | 获取勾选行控件 |
-| getRow() | 传入行序号获取行控件 |
-| getColByName() | 传入列名获取列控件 暂未实现 |
+| getRowByIndex() | 传入行序号获取行控件 |
+| getColByName() | 传入列名获取列控件 |
+| getOperationCtrl() | 获取操作按钮控件 |
+| getRowoperationCtrl() | 获取行操作按钮控件 |
 
 
 ### value
@@ -454,7 +460,7 @@ page.getCtrl('表格').update({
 ```
 
 
-### row focusedRow checkedRow getRow()
+### row focusedRow checkedRow getRowByIndex()
 获取行控件。
 
 取得行控件后，可通过 getCtrl() 方法获取该行下某一单元格的控件实例，从而对单元格控件进行 flycode 操作。
@@ -464,7 +470,7 @@ page.getCtrl('表格').update({
 | row | 获取所有行控件 |
 | focusedRow | 获取焦点行控件 |
 | checkedRow | 获取勾选行控件 |
-| getRow() | 传入行序号获取行控件 |
+| getRowByIndex() | 传入行序号获取行控件 |
 
 类型定义：
 ```typescript
@@ -491,7 +497,7 @@ get focusedRow (): Row | null
 
 get checkedRow (): Row[]
 
-type getRow = (index: number | number[]): Row | Row[] | null
+type getRowByIndex = (index: number | number[]): Row | Row[] | null
 ```
 
 例子：
@@ -514,3 +520,83 @@ allRows[1].getCtrl('unit').options = [
 ]
 ```
 
+### getColByName()
+获取列控件。
+
+取得列控件后，可统一设置该列的 title readonly hidden required 等属性。
+
+类型定义：
+```typescript
+interface Col {
+  get title (): string
+  set title (value: string): void
+
+  set hidden (value: boolean): void
+
+  set readonly (value: boolean): void
+
+  set required (value: boolean): void
+
+  ...
+}
+
+type getColByName = (name: string): Col | null
+```
+
+例子：
+```js
+// 获取产品列控件
+const col = page.getCtrl('表格').getColByName('productname')
+
+// 获取列标题
+console.log(col.title)
+
+// 设置列标题
+col.title = '产品名称'
+
+// 隐藏列
+col.hidden = true
+
+// 设置列只读
+col.readonly = true
+
+// 设置列必填
+col.required = true
+```
+
+
+### getOperationCtrl()
+获取操作按钮控件
+
+通过传入操作按钮 name 值，获取操作按钮控件，可以对该操作按钮进行 flycode 设置。
+
+类型定义：
+```typescript
+type getOperationCtrl = (name: string): Ctrl | null
+```
+
+例子：
+```js
+// 获取表格中的新增操作按钮并设置隐藏和只读
+page.getCtrl('表格').getOperationCtrl('add').hidden = true
+page.getCtrl('表格').getOperationCtrl('add').readonly = true
+```
+
+
+### getRowoperationCtrl()
+获取行操作按钮，通过传入行操作按钮 name 值，获取所有行操作按钮控件数组，可以对行操作按钮控件进行 flycode 设置。
+
+类型定义：
+```typescript
+type getRowoperationCtrl = (name: string): Ctrl[] | null
+```
+
+例子：
+```js
+// 获取所有行的编辑操作按钮控件
+const rowoperation = page.getCtrl('表格').getRowoperationCtrl('edit')
+console.log(rowoperation)
+
+// 设置第一行的编辑按钮按钮只读
+rowoperation[0].readonly = true
+```

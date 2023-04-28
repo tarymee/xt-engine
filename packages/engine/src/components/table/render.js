@@ -3,7 +3,7 @@ import renderComponent from '../common/renderComponent'
 
 // 动态创建表头
 const renderColumns = function (h, viewRule, context) {
-  const columns = viewRule.columns || []
+  const columns = context.columns || []
   const columnsArr = []
 
   if (context.checkable) {
@@ -20,28 +20,28 @@ const renderColumns = function (h, viewRule, context) {
   }
 
   columns.forEach((item, i) => {
+    const required = item.required === '1' || (typeof item.required === 'boolean' && item.required)
     const dataObj = {
       props: {
         // minWidth: Number(item.width || 150),
         minWidth: item.width || 150,
         prop: item.name,
         // label: item.title,
-        label: `${item.required ? '* ' : ''}${item.title}`,
+        label: `${required ? '* ' : ''}${item.title}`,
         // key: JSON.stringify(item)
         key: item.code
       }
     }
     // 冻结前几列
-    // todo fixednumber 测试最多只能一个？
-    if (i < Number(viewRule.fixednumber || 0)) {
+    if (i < Number(context.fixednumber || 0)) {
       dataObj.props.fixed = true
     }
 
     dataObj.scopedSlots = {
       default: scope => {
-        // console.log(scope)
+        console.log(scope)
         // console.log(55555)
-        // console.log(item)
+        console.log(item.type, item.title)
         let viewRule = Object.assign(cloneDeep(item), {
           value: scope.row[item.name],
           // 如果为默认值 则继承 table 的值
@@ -58,17 +58,31 @@ const renderColumns = function (h, viewRule, context) {
     ))
   })
 
-  if (viewRule.rowoperations && viewRule.rowoperations.length) {
+  if (context.rowoperations && context.rowoperations.length) {
+    let width = 20
+    context.rowoperations.forEach((item) => {
+      for (let i = 0, len = item.text.length; i < len; i++) {
+        if (/[\u4e00-\u9fa5]/.test(item.text[i])) {
+          // 中文一个字符 14
+          width += 14
+        } else {
+          // 英文一个字符 7
+          width += 7
+        }
+      }
+      width += 10
+    })
+    // console.log(width)
 
     columnsArr.push(h(
       'el-table-column', {
       props: {
-        // todo 这里寻找最多字数算宽度
-        // minWidth: viewRule.rowoperations.length * 35,
-        width: '200',
+        // minWidth 对应列的最小宽度，与 width 的区别是 width 是固定的，min-width 会把剩余宽度按比例分配给设置了 min-width 的列
+        // minWidth: width,
+        width: width > 200 ? 200 : width, // 最大 200 超过换行
         fixed: 'right',
         label: '操作',
-        key: JSON.stringify(viewRule.rowoperations)
+        key: JSON.stringify(context.rowoperations)
       },
       scopedSlots: {
         default: scope => h(
@@ -78,7 +92,7 @@ const renderColumns = function (h, viewRule, context) {
               class: 'xt-table-rowoperations'
             }
           },
-          viewRule.rowoperations.map((item, i) => {
+          context.rowoperations.map((item, i) => {
             return renderComponent(h, item)
           })
         )
@@ -146,15 +160,14 @@ const render = function (h, viewRule, context) {
       // ]
     },
     [
-      (viewRule.operations && viewRule.operations.length) ? h(
+      (context.operations && context.operations.length) ? h(
         'div',
         {
           attrs: {
             class: 'xt-table-operations'
           }
         },
-        // todo: 换成普通el控件？
-        viewRule.operations.map((item, i) => {
+        context.operations.map((item, i) => {
           return renderComponent(h, item, {
             ref: `xt-table-operations-${i}`
           })

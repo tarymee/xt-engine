@@ -8,6 +8,8 @@
 + list 支持 operartor 高度计算很麻烦 兼容多种情况
 + 考虑怎么接入 vue-route
 + xt-engine 上的loadding要用全局命令式
++ table只读 按钮操作栏只读
++ 容器控件或数组控件设置readonly应连带子控件
 
 
 # todo
@@ -24,8 +26,8 @@
 + StorageProxy 所有项目检查 clear 方法有误
 + 研究 StorageProxy 用 代理写
 + 抽取baseinput slot
-+ 容器控件或数组控件设置readonly应连带子控件
 + 兼容 tree option： id = key name = text parentid
 + table update字数太多 操作栏错乱
-+ table只读 按钮操作栏只读
 + table columns 隐藏某一列
+
+

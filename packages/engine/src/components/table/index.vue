@@ -20,6 +20,10 @@ export default {
       required: this.returnViewRulePropValue('required', 'boolean'),
       pageable: this.returnViewRulePropValue('pageable', 'boolean'),
       checkable: this.returnViewRulePropValue('checkable', 'boolean'),
+      columns: this.returnViewRulePropValue('columns', 'array', []),
+      operations: this.returnViewRulePropValue('operations', 'array', []),
+      rowoperations: this.returnViewRulePropValue('rowoperations', 'array', []),
+      fixednumber: this.returnViewRulePropValue('fixednumber', 'number', 0),
       pageInfo: null,
       value: this.returnViewRulePropValue('value', 'array', [])
     }
@@ -45,6 +49,8 @@ export default {
       rowsEle.forEach((rowEle, i) => {
         const rowsInstance = {}
         const cellsEle = rowEle.querySelectorAll('.cell')
+        // console.log(cellsEle)
+        // debugger
         cellsEle.forEach((cellEle) => {
           const ctrl = cellEle.firstElementChild.__vue__
           if (ctrl && ctrl.name && ctrl.intable) {
@@ -53,6 +59,9 @@ export default {
         })
         cellCtrl.push(rowsInstance)
       })
+      // console.log(this.$refs)
+      // console.log(cellCtrl)
+      // debugger
       return cellCtrl
     },
     getRowsCtrlMap (indexes = []) {
@@ -61,10 +70,17 @@ export default {
         return allRowsCtrlMap[index]
       })
     },
+    getAllOperationsCtrl () {
+      return this.operations.map((item, i) => {
+        return this.$refs[`xt-table-operations-${i}`]
+      })
+    },
     // 如果 table 里有输入型控件 那么 this.value 则非实时数据 这里取实时数据
     getRealtimeValue () {
       const realtimeValue = cloneDeep(this.value)
       const cellCtrl = this.getAllRowsCtrlMap()
+      // console.log(cellCtrl)
+      // debugger
       cellCtrl.forEach((rowsInstance, i) => {
         for (const x in rowsInstance) {
           if (realtimeValue[i]) {
@@ -152,7 +168,7 @@ export default {
       }
     },
     dealBtnsState () {
-      this.viewRule.operations.forEach((item, i) => {
+      this.operations.forEach((item, i) => {
         const btnVm = this.$refs[`xt-table-operations-${i}`]
         if (!btnVm) return
         let checkData = this.value.filter((item) => item.__$$checked)
@@ -344,22 +360,83 @@ export default {
         }
       }, 0)
     },
-    // todo
     setPropReadonly (value) {
       // debugger
-      // console.log(value)
+      // console.log(this.getAllRowsCtrlMap())
+      console.log(value)
       this.readonly = value
-      this.viewRule.operations.forEach((item, i) => {
-        const btnVm = this.$refs[`xt-table-operations-${i}`]
-        if (!btnVm) return
-        btnVm.setProp('readonly', value)
+
+      const allOperationsCtrl = this.getAllOperationsCtrl()
+      allOperationsCtrl.forEach((item) => {
+        item && item.setProp('readonly', value)
       })
+
       this.$el.querySelectorAll('.xt-table-rowoperations .xt-button').forEach((item) => {
         if (item.__vue__) {
           item.__vue__.setProp('readonly', value)
         }
       })
+
       // debugger
+      const allRowsCtrlMap = this.getAllRowsCtrlMap()
+      allRowsCtrlMap.forEach((rowsInstance, i) => {
+        for (const x in rowsInstance) {
+          if (rowsInstance[x]) {
+            rowsInstance[x].setProp('readonly', value)
+          }
+        }
+      })
+    },
+    setColTitle (colname, title) {
+      // console.log(this.columns)
+      const curCol = this.columns.find((item) => item.name === colname)
+      if (curCol) {
+        curCol.title = title
+      }
+    },
+    getColTitle (colname) {
+      // console.log(this.columns)
+      const curCol = this.columns.find((item) => item.name === colname)
+      return curCol ? curCol.title : ''
+    },
+    setColReadonly (colname, value) {
+      // console.log(this.columns)
+      const allRowsCtrlMap = this.getAllRowsCtrlMap()
+      // console.log(allRowsCtrlMap)
+      allRowsCtrlMap.forEach((rowsInstance, i) => {
+        for (const x in rowsInstance) {
+          if (x === colname && rowsInstance[x]) {
+            rowsInstance[x].setProp('readonly', value)
+          }
+        }
+      })
+    },
+    // todo
+    setColHidden (colname, value) {
+      // console.log(this.columns)
+      console.error('该功能暂未实现')
+    },
+    setColRequired (colname, value) {
+      // console.log(this.columns)
+
+      const curCol = this.columns.find((item) => item.name === colname)
+      if (curCol) {
+        curCol.required = value ? '1' : '0'
+      }
+
+      const allRowsCtrlMap = this.getAllRowsCtrlMap()
+      // console.log(allRowsCtrlMap)
+      allRowsCtrlMap.forEach((rowsInstance, i) => {
+        for (const x in rowsInstance) {
+          if (x === colname && rowsInstance[x]) {
+            rowsInstance[x].setProp('required', value)
+          }
+        }
+      })
+    },
+    getOperationCtrl (name) {
+      const allOperationsCtrl = this.getAllOperationsCtrl()
+      return allOperationsCtrl.find((item) => item.name === name)
     }
   },
   render: function (h) {
