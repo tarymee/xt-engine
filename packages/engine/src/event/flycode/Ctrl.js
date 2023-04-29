@@ -167,34 +167,56 @@ class ArrayCtrl extends Ctrl {
   // 行控件
   get row () {
     const index = this.index
-    return this.getRow(index)
+    return this.getRowByIndex(index)
   }
 
   get focusedRow () {
     const focusedIndex = this.focusedIndex
-    return focusedIndex === null ? null : this.getRow(focusedIndex)
+    return focusedIndex === null ? null : this.getRowByIndex(focusedIndex)
   }
 
   get checkedRow () {
     const checkedIndex = this.checkedIndex
-    return this.getRow(checkedIndex)
+    return this.getRowByIndex(checkedIndex)
   }
 
-  getRow (index) {
+  getRowByIndex (index) {
     if (!this.instance.getRowsCtrlMap) throw Error('暂不支持该方法')
     if (Array.isArray(index)) {
       const maps = this.instance.getRowsCtrlMap(index)
       // console.log(maps)
       return maps.map((item, i) => {
-        return new Row(item, index[i])
+        return new Tablerow(item, index[i])
       })
     } else if (typeof index === 'number') {
       const map = this.instance.getRowsCtrlMap([index])[0]
-      return map ? new Row(map, index) : null
+      return map ? new Tablerow(map, index) : null
     } else {
       console.error('传入 index 类型错误')
       return null
     }
+  }
+
+  getColByName (name) {
+    const curCol = this.instance.columns.find((item) => item.name === name)
+    return curCol ? new Tablecol(this.instance, name) : null
+  }
+
+  getOperationCtrl (name) {
+    if (!name) {
+      console.error(`请传入 operation name 值`)
+      return null
+    }
+    const instance = this.instance.getOperationCtrl(name)
+    if (!instance) {
+      console.error(`找不到 operation name 为【${name}】的控件实例，请检查`)
+      return null
+    }
+    return new Ctrl(instance)
+  }
+
+  getRowoperationsCtrl (name) {
+    // todo
   }
 
   setCheck (value, index) {
@@ -204,7 +226,7 @@ class ArrayCtrl extends Ctrl {
 }
 
 
-class Row {
+class Tablerow {
   rowsCtrlMap
   index
 
@@ -229,6 +251,36 @@ class Row {
       return
     }
     return new Ctrl(instance)
+  }
+}
+
+class Tablecol {
+  instance
+  name
+
+  constructor (instance, name) {
+    this.instance = instance
+    this.name = name
+  }
+
+  get title () {
+    return this.instance.getColTitle(this.name)
+  }
+
+  set title (title) {
+    this.instance.setColTitle(this.name, title)
+  }
+
+  set readonly (value) {
+    this.instance.setColReadonly(this.name, value)
+  }
+
+  set required (value) {
+    this.instance.setColRequired(this.name, value)
+  }
+
+  set hidden (value) {
+    this.instance.setColHidden(this.name, value)
   }
 
 }

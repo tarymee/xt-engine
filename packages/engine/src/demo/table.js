@@ -23,11 +23,11 @@ export default {
               "value": "取值",
               "displaytype": "primary",
               "plain": "1",
-              "class": "xxx ssss",
+              // "class": "xxx",
               "css": `
-                .xxx.xt-button {
-                  width: 100%
-                }
+                // .xxx.xt-button {
+                //   width: 100%
+                // }
               `,
               "eventlist": [
                 {
@@ -52,6 +52,34 @@ export default {
               "style": {
                 "margin": "10px"
               }
+            },
+            {
+              "type": "button",
+              "value": "切换readonly",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-toggle-readonly"
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "校验",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-validata"
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
             }
           ]
         },
@@ -62,7 +90,28 @@ export default {
           "checkable": "1",
           "pageable": "0",
           "pagesize": "20",
+          // "fixednumber": "1",
           "columns": [
+            {
+              "type": "dropdownbox",
+              "title": "单位",
+              "name": "unit",
+              "placeholder": "选择单位",
+              "required": "1",
+              "width": "120",
+              "hiddenclearbtn": "",
+              "options": [
+                {
+                  "key": "bottle",
+                  "text": "瓶"
+                },
+                {
+                  "key": "box",
+                  "text": "箱"
+                }
+              ],
+              "eventlist": []
+            },
             {
               "type": "link",
               "title": "产品",
@@ -98,31 +147,12 @@ export default {
                 }
               ],
               "eventlist": []
-            },
-            {
-              "type": "dropdownbox",
-              "title": "单位",
-              "name": "unit",
-              "placeholder": "选择单位",
-              "required": "1",
-              "width": "120",
-              "hiddenclearbtn": "1",
-              "options": [
-                {
-                  "key": "bottle",
-                  "text": "瓶"
-                },
-                {
-                  "key": "box",
-                  "text": "箱"
-                }
-              ],
-              "eventlist": []
             }
           ],
           "operations": [
             {
               "text": "新增(append)",
+              "name": "add",
               "eventlist": [
                 {
                   "trigger": "onclicked",
@@ -154,6 +184,24 @@ export default {
                 {
                   "trigger": "onclicked",
                   "handler": "handle-getRow"
+                }
+              ]
+            },
+            {
+              "text": "getColByName",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-getColByName"
+                }
+              ]
+            },
+            {
+              "text": "getOperationCtrl",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-getOperationCtrl"
                 }
               ]
             },
@@ -358,6 +406,50 @@ export default {
                   text: 'xx'
                 }
               ]
+            `
+          }
+        ]
+      },
+      {
+        "code": "handle-getColByName",
+        "title": "",
+        "name": "",
+        "actions": [
+          {
+            "type": "flycode",
+            "title": "flycode",
+            "script": `
+              page.getCtrl('表格').getColByName('productname').title = '产品名称'
+              page.getCtrl('表格').getColByName('unit').readonly = true
+              page.getCtrl('表格').getColByName('unit').required = false
+            `
+          }
+        ]
+      },
+      {
+        "code": "handle-getOperationCtrl",
+        "title": "",
+        "name": "",
+        "actions": [
+          {
+            "type": "flycode",
+            "title": "flycode",
+            "script": `
+              page.getCtrl('表格').getOperationCtrl('add').hidden = true
+            `
+          }
+        ]
+      },
+      {
+        "code": "handle-toggle-readonly",
+        "title": "",
+        "name": "",
+        "actions": [
+          {
+            "type": "flycode",
+            "title": "flycode",
+            "script": `
+              page.getCtrl('表格').readonly = !page.getCtrl('表格').readonly
             `
           }
         ]
