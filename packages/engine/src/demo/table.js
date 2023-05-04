@@ -90,7 +90,7 @@ export default {
           "checkable": "1",
           "pageable": "0",
           "pagesize": "20",
-          // "fixednumber": "1",
+          "fixednumber": "1",
           "columns": [
             {
               "type": "dropdownbox",
@@ -151,7 +151,7 @@ export default {
           ],
           "operations": [
             {
-              "text": "新增(append)",
+              "text": "append",
               "name": "add",
               "eventlist": [
                 {
@@ -161,7 +161,7 @@ export default {
               ]
             },
             {
-              "text": "更新第一行数据(update)",
+              "text": "update",
               "eventlist": [
                 {
                   "trigger": "onclicked",
@@ -170,7 +170,7 @@ export default {
               ]
             },
             {
-              "text": "勾选第一行(setCheck)",
+              "text": "setCheck",
               "eventlist": [
                 {
                   "trigger": "onclicked",
@@ -179,11 +179,11 @@ export default {
               ]
             },
             {
-              "text": "获取第一行控件(getRow)",
+              "text": "getRowByIndex",
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-getRow"
+                  "handler": "handle-getRowByIndex"
                 }
               ]
             },
@@ -206,22 +206,31 @@ export default {
               ]
             },
             {
-              "text": "删除(deleteInScope)",
-              "readonly": "tableCheckedNumberIsEqualToZero",
+              "text": "getRowoperationsCtrl",
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-del"
+                  "handler": "handle-getRowoperationsCtrl"
                 }
               ]
             },
             {
-              "text": "打印勾选行数据(checkedIndex)",
+              "text": "deleteInScope",
+              "readonly": "tableCheckedNumberIsEqualToZero",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-deleteInScope"
+                }
+              ]
+            },
+            {
+              "text": "checkedValue",
               "readonly": "tableCheckedNumberIsNotEqualToOne",
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-print"
+                  "handler": "handle-checkedValue"
                 }
               ]
             }
@@ -229,10 +238,21 @@ export default {
           "rowoperations": [
             {
               "text": "编辑",
+              "name": "edit",
               "eventlist": [
                 {
                   "trigger": "onclicked",
                   "handler": "handle-edit"
+                }
+              ]
+            },
+            {
+              "text": "删除",
+              "name": "del",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-del"
                 }
               ]
             }
@@ -306,6 +326,36 @@ export default {
         ]
       },
       {
+        "code": "handle-edit",
+        "title": "",
+        "name": "",
+        "actions": [
+          {
+            "type": "flycode",
+            "title": "flycode",
+            "script": `
+              const value = page.getCtrl('表格').focusedValue
+              console.log(value)
+            `
+          }
+        ]
+      },
+      {
+        "code": "handle-del",
+        "title": "",
+        "name": "",
+        "actions": [
+          {
+            "type": "flycode",
+            "title": "flycode",
+            "script": `
+              const value = page.getCtrl('表格').focusedValue
+              console.log(value)
+            `
+          }
+        ]
+      },
+      {
         "code": "handle-new",
         "title": "",
         "name": "",
@@ -358,7 +408,7 @@ export default {
         ]
       },
       {
-        "code": "handle-del",
+        "code": "handle-deleteInScope",
         "title": "",
         "name": "",
         "actions": [
@@ -372,7 +422,7 @@ export default {
         ]
       },
       {
-        "code": "handle-print",
+        "code": "handle-checkedValue",
         "title": "",
         "name": "",
         "actions": [
@@ -387,7 +437,7 @@ export default {
         ]
       },
       {
-        "code": "handle-getRow",
+        "code": "handle-getRowByIndex",
         "title": "",
         "name": "",
         "actions": [
@@ -396,7 +446,7 @@ export default {
             "title": "flycode",
             "script": `
               const firstRow = page.getCtrl('表格').row[0]
-              // const firstRow = page.getCtrl('表格').getRow(0)
+              // const firstRow = page.getCtrl('表格').getRowByIndex(0)
               console.log(firstRow)
               firstRow.getCtrl('productname').value = 'xxxx'
               firstRow.getCtrl('unit').value = ''
@@ -435,7 +485,24 @@ export default {
             "type": "flycode",
             "title": "flycode",
             "script": `
-              page.getCtrl('表格').getOperationCtrl('add').hidden = true
+              const ctrl = page.getCtrl('表格').getOperationCtrl('add')
+              console.log(ctrl)
+              ctrl.hidden = true
+            `
+          }
+        ]
+      },
+      {
+        "code": "handle-getRowoperationsCtrl",
+        "title": "",
+        "name": "",
+        "actions": [
+          {
+            "type": "flycode",
+            "title": "flycode",
+            "script": `
+              const ctrls = page.getCtrl('表格').getRowoperationsCtrl('edit')
+              console.log(ctrls)
             `
           }
         ]

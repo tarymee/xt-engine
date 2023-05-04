@@ -39,9 +39,9 @@ const renderColumns = function (h, viewRule, context) {
 
     dataObj.scopedSlots = {
       default: scope => {
-        console.log(scope)
+        // console.log(scope)
         // console.log(55555)
-        console.log(item.type, item.title)
+        // console.log(item.type, item.title)
         let viewRule = Object.assign(cloneDeep(item), {
           value: scope.row[item.name],
           // 如果为默认值 则继承 table 的值
@@ -85,17 +85,19 @@ const renderColumns = function (h, viewRule, context) {
         key: JSON.stringify(context.rowoperations)
       },
       scopedSlots: {
-        default: scope => h(
-          'div',
-          {
-            attrs: {
-              class: 'xt-table-rowoperations'
-            }
-          },
-          context.rowoperations.map((item, i) => {
-            return renderComponent(h, item)
-          })
-        )
+        default: scope => {
+          return h(
+            'div',
+            {
+              attrs: {
+                class: 'xt-table-rowoperations'
+              }
+            },
+            context.rowoperations.map((item, i) => {
+              return renderComponent(h, item)
+            })
+          )
+        }
       }
     }
     ))

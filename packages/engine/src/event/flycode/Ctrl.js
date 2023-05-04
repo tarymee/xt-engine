@@ -204,19 +204,28 @@ class ArrayCtrl extends Ctrl {
 
   getOperationCtrl (name) {
     if (!name) {
-      console.error(`请传入 operation name 值`)
+      console.error(`请传入操作按钮 name 值`)
       return null
     }
-    const instance = this.instance.getOperationCtrl(name)
-    if (!instance) {
+    const operationInstance = this.instance.getOperationCtrl(name)
+    if (!operationInstance) {
+      console.error(`找不到 name 为【${name}】的操作按钮控件实例，请检查`)
+      return null
+    }
+    return new Ctrl(operationInstance)
+  }
+
+  getRowoperationCtrl (name) {
+    if (!name) {
+      console.error(`请传入行操作按钮 name 值`)
+      return null
+    }
+    const rowoperationInstance = this.instance.getRowoperationCtrl(name)
+    if (!rowoperationInstance) {
       console.error(`找不到 operation name 为【${name}】的控件实例，请检查`)
       return null
     }
-    return new Ctrl(instance)
-  }
-
-  getRowoperationsCtrl (name) {
-    // todo
+    return new Ctrl(rowoperationInstance)
   }
 
   setCheck (value, index) {
