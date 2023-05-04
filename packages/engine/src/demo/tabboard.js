@@ -11,21 +11,86 @@ export default {
       "flex": "1",
       "hidden": "",
       "style": {
-        "width": "400px",
-        "margin": "30px auto"
+        "width": "",
+        "margin": ""
       },
       "content": [
         {
-          "type": "tabboard",
-        
-          "name": "tabboard框架",
-          "flexdirection": "vertical",
-          "title": "基本信息",
-          "height": "300",
-          "hidden": "",
-          "width": "",
+          "type": "layout",
+          "flexdirection": "horizontal",
           "flex": "",
-          "overflow": "",
+          "style": {
+            "backgroundColor": "#eee"
+          },
+          "content": [
+            {
+              "type": "button",
+              "value": "取值",
+              "displaytype": "primary",
+              "plain": "1",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-get"
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "赋值",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-set"
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "切换readonly",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-toggle-readonly"
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "校验",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "handler": "handle-validata"
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            }
+          ]
+        },
+        {
+          "type": "tabboard",
+          "name": "tabboard框架",
+          "title": "基本信息",
+          "hidden": "",
+          "direction": "vertical",
+          "style": {
+            "margin": "0 30px"
+          },
           "cards": [
             {
               "title": "基本信息",
@@ -33,97 +98,9 @@ export default {
               "content": [
                 {
                   "type": "textinput",
-                  "titlewidth": "70",
-                  "title": "旧密码",
-                  "placeholder": "6-20个字符，区分大小写",
-                  "name": "旧密码",
-                  "displaytype": "password",
-                  "width": "100%",
-                  "required": "1",
-                  "eventlist": []
-                },
-                {
-                  "type": "textinput",
-                  "titlewidth": "70",
-                  "title": "新密码",
-                  "placeholder": "6-20个字符，区分大小写",
-                  "name": "新密码",
-                  "displaytype": "password",
-                  "width": "100%",
-                  "required": "1",
-                  "eventlist": []
-                },
-                {
-                  "type": "textinput",
-                  "titlewidth": "70",
-                  "title": "新密码",
-                  "placeholder": "6-20个字符，区分大小写",
-                  "name": "",
-                  "displaytype": "password",
-                  "width": "100%",
-                  "required": "1",
-                  "eventlist": []
-                },
-                {
-                  "type": "textinput",
-                  "titlewidth": "70",
-                  "title": "新密码",
-                  "placeholder": "6-20个字符，区分大小写",
-                  "name": "",
-                  "displaytype": "password",
-                  "width": "100%",
-                  "required": "1",
-                  "eventlist": []
-                },
-                {
-                  "type": "textinput",
-                  "titlewidth": "70",
-                  "title": "新密码",
-                  "placeholder": "6-20个字符，区分大小写",
-                  "name": "",
-                  "displaytype": "password",
-                  "width": "100%",
-                  "required": "1",
-                  "eventlist": []
-                },
-                {
-                  "type": "textinput",
-                  "titlewidth": "70",
-                  "title": "新密码",
-                  "placeholder": "6-20个字符，区分大小写",
-                  "name": "",
-                  "displaytype": "password",
-                  "width": "100%",
-                  "required": "1",
-                  "eventlist": []
-                },
-                {
-                  "type": "textinput",
-                  "titlewidth": "70",
-                  "title": "新密码",
-                  "placeholder": "6-20个字符，区分大小写",
-                  "name": "",
-                  "displaytype": "password",
-                  "width": "100%",
-                  "required": "1",
-                  "eventlist": []
-                },
-                {
-                  "type": "textinput",
-                  "titlewidth": "70",
-                  "title": "新密码",
-                  "placeholder": "6-20个字符，区分大小写",
-                  "name": "",
-                  "displaytype": "password",
-                  "width": "100%",
-                  "required": "1",
-                  "eventlist": []
-                },
-                {
-                  "type": "textinput",
-                  "titlewidth": "70",
-                  "title": "新密码",
-                  "placeholder": "6-20个字符，区分大小写",
+                  "titlewidth": "90",
+                  "title": "textinput",
+                  "placeholder": "textinput",
                   "name": "",
                   "displaytype": "password",
                   "width": "100%",
@@ -157,7 +134,7 @@ export default {
             },
             {
               "title": "基本信息2",
-              "hidden": "1",
+              "hidden": "",
               "content": [
                 {
                   "type": "textinput",
