@@ -457,13 +457,13 @@ export default {
 .xt-list-item-row-card {
   margin: 8px;
   box-sizing: border-box;
-  border: 1px solid #EBEEF5;
-  border-radius: 3px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #F1F5F8;
+  border-radius: 5px;
+  box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.05);
 }
 .xt-list-item-row-card:hover {
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border: 1px solid #eee;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, .1);
 }
 .xt-list-item-row-foot {
   /* padding: 4px 0; */

@@ -18,7 +18,7 @@
 + 优化 dealInnerProps 利用 parentcodepath
 + xt-engine xt-page？？
 + 事件 code 校验重复 空值
-+ tabboard 内控件校验
++ tabboard 内控件校验 支持垂直样式
 + popview 支持抽屉 支持show-close 优化校验代码
 + 输入型控件readonly文字加深
 + tags 控件优化样式
