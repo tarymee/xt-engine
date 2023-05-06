@@ -1,8 +1,5 @@
-# checkbox
-多选框控件。
-
-## 示例
-暂无。
+# checkbox 多选框
+一组备选项中进行多选
 
 ## 协议
 
@@ -24,16 +21,7 @@
       "text": "停用"
     }
   ],
-  "eventlist": [
-    {
-      "trigger": "onvaluechange",
-      "handler": ""
-    },
-    {
-      "trigger": "onload",
-      "handler": ""
-    }
-  ]
+  "eventlist": []
 }
 ```
 
@@ -57,6 +45,7 @@
 
 ### eventlist
 
+trigger
 | 值 | 说明 |
 | ---- | ---- |
 | onvaluechange | 值改变时触发 |

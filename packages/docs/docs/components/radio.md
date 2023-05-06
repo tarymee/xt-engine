@@ -1,8 +1,5 @@
-# radio
-单选控件
-
-## 示例
-暂无
+# radio 单选框
+在一组备选项中进行单选
 
 ## 协议
 
@@ -24,16 +21,7 @@
       "text": "停用"
     }
   ],
-  "eventlist": [
-    {
-      "trigger": "onvaluechange",
-      "handler": ""
-    },
-    {
-      "trigger": "onload",
-      "handler": ""
-    }
-  ]
+  "eventlist": []
 }
 ```
 
