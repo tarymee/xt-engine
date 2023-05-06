@@ -1,0 +1,14 @@
+{
+  "name": "@smart100/web-engine-docs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "docsify serve ./docs",
+    "build": "node build.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "adm-zip": "^0.5.10",
+    "docsify-cli": "^4.4.4"
+  }
+}
