@@ -8,36 +8,25 @@
   "type": "tabboard",
   "name": "",
   "title": "",
-  "hidden": "",
-  "eventlist": [],
-  "style": {},
   "cards": [
     {
       "title": "基本信息",
-      "hidden": "",
-      "style": {},
-      "content": []
-    },
-    {
-      "title": "模块授权",
-      "hidden": "",
-      "style": {},
       "content": []
     }
   ]
 }
 ```
 
+## 协议属性
+| 属性名称 | 说明 | 取值类型 | 默认值
+| ---- | ---- | ---- | ---- |
+| cards | 定义标签页内容 | layout控件协议对象数组 |  |
+| eventlist.trigger | 事件钩子 | enum |  |
+
 ### cards
-定义标签页内容，数组格式，接收 layout 控件协议。
+定义标签页内容，取值类型为`layout控件协议对象数组`。
 
-### eventlist
-
-
-
-
-
-
-
-
-
+### eventlist.trigger
+| 值 | 说明 |
+| ---- | ---- |
+| onload | 加载时触发 |

@@ -10,6 +10,7 @@
       :type="displaytype"
       :icon="icon"
       :plain="plain"
+      :round="round"
       @click="handleClick"
     >
       {{ buttonText }}
@@ -27,6 +28,7 @@ export default {
       // displaytype https://element.eleme.cn/2.15/#/zh-CN/component/button
       displaytype: this.returnViewRulePropValue('displaytype', 'string'),
       plain: this.returnViewRulePropValue('plain', 'boolean', false),
+      round: this.returnViewRulePropValue('round', 'boolean', false),
       text: this.returnViewRulePropValue('text', 'string'),
       icon: this.returnViewRulePropValue('icon', 'string'),
       size: this.returnViewRulePropValue('size', 'string', 'small') // big middle small mini

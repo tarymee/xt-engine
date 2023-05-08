@@ -18,30 +18,43 @@
 }
 ```
 
-### pageable
-是否支持分页，默认值为 `0`
-
-| 值 | 说明 |
-| ---- | ---- |
-| 1 | 支持分页 |
-| 0 | 不支持分页 |
-
-### pagesize
-如果支持分页，定义每页条数，默认值为 `20`
+## 协议属性
+| 属性名称 | 说明 | 取值类型 | 默认值
+| ---- | ---- | ---- | ---- |
+| checkable | 是否支持行勾选 | enum("0"/"1") | "0" |
+| pageable | 是否支持分页 | enum("0"/"1") | "0" |
+| pagesize | 分页条数 | number(字符串数字) | "20" |
+| fixednumber | 冻结前几列 | number(字符串数字) | "0" |
+| columns | 定义列 | 控件协议对象数组 | [] |
+| operations | 定义顶部操作按钮 | 按钮控件协议对象数组 | [] |
+| rowoperations | 定义行操作按钮 | 按钮控件协议对象数组 | [] |
+| eventlist.trigger | 事件钩子 | enum("onchecked"/"onload") | "" |
 
 ### checkable
-是否支持行勾选，默认值为 `0`
+是否支持行勾选。
 
 | 值 | 说明 |
 | ---- | ---- |
-| 1 | 支持行勾选 |
-| 0 | 不支持行勾选 |
+| "1" | 支持行勾选 |
+| "0" | 不支持行勾选，默认值 |
+
+### pageable
+是否支持分页。
+
+| 值 | 说明 |
+| ---- | ---- |
+| "1" | 支持分页 |
+| "0" | 不支持分页，默认值 |
+
+### pagesize
+如果支持分页，定义每页条数，默认值为 `"20"`
+
 
 ### fixednumber
-冻结前几列，默认值为 `0`
+冻结前几列，字符串数字，默认值为 `0`
 
 ### columns
-定义列，类型为数组，接收控件协议对象。
+定义列，取值类型为`控件协议对象数组`。
 
 例子：
 ```json
@@ -83,16 +96,6 @@
           "key": "box",
           "text": "箱"
         }
-      ],
-      "eventlist": [
-        {
-          "trigger": "onchecked",
-          "handler": ""
-        },
-        {
-          "trigger": "onload",
-          "handler": ""
-        }
       ]
     }
   ]
@@ -100,7 +103,7 @@
 ```
 
 ### operations
-定义顶部操作按钮，类型为数组，接受控件协议对象。
+定义顶部操作按钮，取值类型为`按钮控件协议对象数组`。
 
 按钮控件的 `readonly` 属性可接收专属 table 的关键字。
 
@@ -114,44 +117,28 @@
 {
   "operations": [
     {
+      "type": "button",
       "text": "新增(按钮一直可用)",
       "readonly": "",
-      "eventlist": [
-        {
-          "trigger": "onclicked",
-          "handler": ""
-        }
-      ]
+      "eventlist": []
     },
     {
+      "type": "button",
       "text": "删除(按钮一直不可用)",
       "readonly": "1",
-      "eventlist": [
-        {
-          "trigger": "onclicked",
-          "handler": ""
-        }
-      ]
+      "eventlist": []
     },
     {
+      "type": "button",
       "text": "table 勾选时可用",
       "readonly": "tableCheckedNumberIsEqualToZero",
-      "eventlist": [
-        {
-          "trigger": "onclicked",
-          "handler": ""
-        }
-      ]
+      "eventlist": []
     },
     {
+      "type": "button",
       "text": "table 勾选一个时可用",
       "readonly": "tableCheckedNumberIsNotEqualToOne",
-      "eventlist": [
-        {
-          "trigger": "onclicked",
-          "handler": ""
-        }
-      ]
+      "eventlist": []
     }
   ]
 }
@@ -159,27 +146,22 @@
 
 
 ### rowoperations
-定义行操作按钮，类型为数组，接受按钮控件协议对象。
+定义行操作按钮，取值类型为`按钮控件协议对象数组`。
 
 例子：
 ```json
 {
   "rowoperations": [
     {
+      "type": "button",
       "text": "编辑",
-      "eventlist": [
-        {
-          "trigger": "onclicked",
-          "handler": ""
-        }
-      ]
+      "eventlist": []
     }
   ]
 }
 ```
 
-### eventlist
-控件所支持的事件，接受事件协议对象。
+### eventlist.trigger
 
 | 值 | 说明 |
 | ---- | ---- |

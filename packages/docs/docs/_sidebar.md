@@ -1,9 +1,9 @@
 * 入门
 
   * [快速开始](introduction/quickstart)
-  * [介绍](api/)
-  * [页面协议](api/package)
-  * [控件](api/useRoute)
+  * [UI表单协议](introduction/protocol)
+  * [控件](introduction/component)
+  * [UI布局系统](introduction/style)
 
 * 基础控件
   * [button 按钮](components/button)
@@ -19,7 +19,7 @@
   * [popview 弹窗](components/popview)
   * [tabboard 标签页](components/tabboard)
 
-* 输入型控件
+* 输入控件
   * [attachment 附件上传](components/attachment)
   * [cascade 级联选择器](components/cascade)
   * [checkbox 多选框](components/checkbox)

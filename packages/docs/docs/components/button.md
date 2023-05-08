@@ -1,38 +1,74 @@
-# textinput 文本输入框
-文本输入框
+# button 按钮
+
 
 ## 协议
 
 ```json
 {
-  "type": "textinput",
-  "title": "文本输入框",
-  "value": "",
-  "displaytype": "",
+  "type": "button",
+  "title": "按钮",
+  "value": "按钮",
   "eventlist": [
     {
-      "trigger": "onvaluechange",
+      "trigger": "onclicked",
       "handler": ""
     }
   ]
 }
 ```
 
+## 协议属性
+| 属性名称 | 说明 | 取值类型 | 默认值
+| ---- | ---- | ---- | ---- |
+| value | 按钮文字 | string |  |
+| displaytype | 按钮显示样式 | enum(""/"primary"/"success"/"info"/"warning"/"danger") | "" |
+| plain | 是否朴素按钮 | enum("0"/1") | "0" |
+| round | 是否圆角按钮 | enum("0"/1") | "0" |
+| icon | 按钮图标 | string |  |
+| size | 按钮尺寸 | enum("big"/"middle"/"small"/"mini") | "small" |
+| eventlist.trigger | 事件钩子 | enum("onclicked") |  |
+
+
 ### value
-初始值，字符串类型。
+按钮显示文字。
 
 ### displaytype
-控件展示方式，默认值为 `text`。
+按钮显示样式。
 
 | 值 | 说明 |
 | ---- | ---- |
-| text | 常规，默认值，展示为单行文本输入框 |
-| textarea | 展示为多行文本输入框 |
-| password | 展示为密码框 |
+| "" | 默认样式 |
+| primary | 主要样式 |
+| success | 成功样式 |
+| info | 信息样式 |
+| warning | 警告样式 |
+| danger | 危险样式 |
 
-
-### eventlist 事件
+### plain
+是否朴素按钮。
 
 | 值 | 说明 |
 | ---- | ---- |
-| onvaluechange | 值改变时触发 |
+| "1" | 是朴素按钮 |
+| "0" | 非朴素按钮，默认值 |
+
+### round
+是否圆角按钮。
+
+| 值 | 说明 |
+| ---- | ---- |
+| "1" | 是圆角按钮 |
+| "0" | 非圆角按钮，默认值 |
+
+### icon
+按钮图标。
+支持 element-ui 图标：https://element.eleme.cn/2.15/#/zh-CN/component/icon
+
+### size
+按钮尺寸。
+
+### eventlist.trigger
+| 值 | 说明 |
+| ---- | ---- |
+| onclicked | 按钮点击时触发 |
+| onload | 加载时触发 |

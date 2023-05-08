@@ -2,7 +2,6 @@
 用清晰的树层级结构展示信息，可供选择节点。
 
 ## 协议
-
 ```json
 {
   "type": "tree",
@@ -25,6 +24,16 @@
 }
 ```
 
+## 协议属性
+| 属性名称 | 说明 | 取值类型 | 默认值
+| ---- | ---- | ---- | ---- |
+| eventlist.trigger | 事件钩子 | enum |  |
+
+
+
+### value
+默认值，字符串类型。
+
 
 ### multiselectable
 是否多选，默认值为 `0`。
@@ -39,7 +48,7 @@
 
 | 值 | 说明 |
 | ---- | ---- |
-| custom | 常规输入型样式，使用下拉方式进行选值 |
+| custom | 常规输入样式，使用下拉方式进行选值 |
 | navigation | 导航栏样式 |
 
 ### expandmodel
@@ -78,12 +87,8 @@
 
 
 
-### value
-默认值，字符串类型。
-
-### eventlist
-
+### eventlist.trigger
 | 值 | 说明 |
 | ---- | ---- |
-| onvaluechange | 值改变时触发 |
 | onload | 加载时触发 |
+| onvaluechange | 值改变时触发 |

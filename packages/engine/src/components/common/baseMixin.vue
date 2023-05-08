@@ -31,6 +31,8 @@ export default {
       eventlist: this.returnViewRulePropValue('eventlist', 'array', []),
       readonly: this.returnViewRulePropValue('readonly', 'boolean'),
       hidden: this.returnViewRulePropValue('hidden', 'boolean'),
+      css: this.returnViewRulePropValue('css', 'string'),
+      class: this.returnViewRulePropValue('class', 'string'),
       // $$intable $$inlist $$infilter $$ intabboard 去掉前面 $$
       // 详见 https://v2.vuejs.org/v2/api/#data
       // Properties that start with _ or $ will not be proxied on the Vue instance because they may conflict with Vue’s internal properties and API methods.You will have to access them as vm.$data._property.
@@ -42,8 +44,6 @@ export default {
       infilter: this.dealInnerProps('infilter', this.viewRule.parentcode),
       intabboard: this.dealInnerProps('intabboard', this.viewRule.parentcode),
       notCreateVMInEngine: false,
-      css: this.returnViewRulePropValue('css', 'string'),
-      class: this.returnViewRulePropValue('class', 'string'),
     }
   },
   computed: {

@@ -18,6 +18,12 @@
 }
 ```
 
+## 协议属性
+| 属性名称 | 说明 | 取值类型 | 默认值
+| ---- | ---- | ---- | ---- |
+| displaytype | 控件展示方式 | enum("text"/"textarea"/"password") | "text" |
+| eventlist.trigger | 事件钩子 | enum |  |
+
 ### value
 初始值，字符串类型。
 
@@ -31,8 +37,8 @@
 | password | 展示为密码框 |
 
 
-### eventlist 事件
-
+### eventlist.trigger
 | 值 | 说明 |
 | ---- | ---- |
+| onload | 加载时触发 |
 | onvaluechange | 值改变时触发 |
