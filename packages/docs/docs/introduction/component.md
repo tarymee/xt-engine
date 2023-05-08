@@ -14,19 +14,19 @@
 
 | 属性名称 | 说明 | 取值类型 | 默认值
 | ---- | ---- | ---- | ---- |
-| type | 控件类型 | string | "" |
-| code | 控件编码 必须唯一 可为空 引擎自动生成 | string | "" |
-| title | 控件类型标题 | string | "" |
-| name | 控件名称 用于flycode | string | "" |
+| type | 控件类型 | string | |
+| code | 控件编码 必须唯一 可为空 引擎自动生成 | string | |
+| title | 控件类型标题 | string | |
+| name | 控件名称 用于flycode | string | |
 | value | 默认值 | any |  |
-| hidden | 控件是否隐藏 | enum | "0" |
-| readonly | 控件是否只读 | enum | "0" |
+| hidden | 控件是否隐藏 | boolean | false |
+| readonly | 控件是否只读 | boolean | false |
 | style | css样式对象 | object | {} |
-| css | css样式 | string | "" |
-| class | css类名 | string | "" |
+| css | css样式 | string | |
+| class | css类名 | string | |
 | eventlist | 事件列表 | array | [] |
-| eventlist.handler | 事件code | string | "" |
-| eventlist.trigger | 事件触发时机 | enum | "" |
+| eventlist.handler | 事件code | string | |
+| eventlist.trigger | 事件触发时机 | enum | |
 
 
 ## 输入型控件通用属性
@@ -34,9 +34,9 @@
 
 | 属性名称 | 说明 | 取值类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| required | 控件是否必填 | enum | "0" |
-| placeholder | 占位文字 | string | "" |
-| hiddenclearbtn | 是否隐藏清空数据按钮 | enum | "0" |
+| required | 控件是否必填 | boolean | false |
+| placeholder | 占位文字 | string | |
+| hiddenclearbtn | 是否隐藏清空数据按钮 | boolean | false |
 | titlewidth | 标题的绝对宽度 | css长度单位 | "30%" |
 
 

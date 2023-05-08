@@ -174,7 +174,15 @@ export default {
         })
       } else {
         if (type === 'boolean') {
-          return originValue === '1'
+          if (typeof originValue === 'undefined') {
+            return (typeof defaultValue !== 'undefined') ? defaultValue : false
+          } else {
+            if (typeof originValue === 'boolean') {
+              return originValue
+            } else {
+              return originValue === '1'
+            }
+          }
         } else if (type === 'string') {
           defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : ''
           return originValue || defaultValue

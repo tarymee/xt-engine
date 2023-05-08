@@ -28,9 +28,9 @@
 | 属性名称 | 说明 | 取值类型 | 默认值
 | ---- | ---- | ---- | ---- |
 | value | 默认值 | any[] | [] |
-| displaytype | 选项值排列方式 | enum | "auto" |
+| displaytype | 选项值排列方式 | string | auto |
 | options | 数据源选项 | object[] | [] |
-| eventlist.trigger | 事件钩子 | enum | "" |
+| eventlist.trigger | 事件钩子 | enum | |
 
 ### value
 默认值，数组类型。
@@ -38,10 +38,10 @@
 ### displaytype
 选项值排列方式，默认值为 `auto`。
 
-| 值 | 说明 |
-| ---- | ---- |
-| auto | 常规，选项值按顺序水平排列 |
-| number | 字符串数字，选项值以每行 n 项排列 |
+| 值 | 说明 | 是否默认值 |
+| ---- | ---- | ---- |
+| auto | 常规，选项值按顺序水平排列 | 是 |
+| number | 选项值以每行 n 项排列 | |
 
 ### options
 控件数据源选项，接收对象数组。

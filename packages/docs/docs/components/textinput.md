@@ -22,9 +22,9 @@
 | 属性名称 | 说明 | 取值类型 | 默认值
 | ---- | ---- | ---- | ---- |
 | displaytype | 控件展示方式 | enum | "input" |
-| maxlength | 最大输入字符数 | number(字符串数字) |  |
-| minrow | 最小行数 | number(字符串数字) | "2" |
-| maxrow | 最大行数 | number(字符串数字) | "6" |
+| maxlength | 最大输入字符数 | number |  |
+| minrow | 最小行数 | number | "2" |
+| maxrow | 最大行数 | number | "6" |
 | eventlist.trigger | 事件钩子 | enum |  |
 
 ### value
@@ -42,12 +42,12 @@
 ### maxlength
 控件允许输入的最大字符数，如果超过，则校验不通过。
 
-取值类型为 `字符串数字`。
+取值类型为 `number | 字符串数字`。
 
 ### minrow/maxrow
 当 displaytype === textarea 时，定义多行文本框的最小和最大行数。
 
-取值类型为 `字符串数字`。
+取值类型为 `number | 字符串数字`。
 
 ### eventlist.trigger
 | 值 | 说明 |

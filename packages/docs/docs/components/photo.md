@@ -19,8 +19,8 @@
 | 属性名称 | 说明 | 取值类型 | 默认值
 | ---- | ---- | ---- | ---- |
 | value | 默认值 | object[] | [] |
-| maxlength | 最大图片数量 | number(字符串数字) |  |
-| maxsize | 单张图片大小限制 | number(字符串数字) |  |
+| maxlength | 最大图片数量 | number |  |
+| maxsize | 单张图片大小限制 | number |  |
 | accept | 文件格式 | string | "image/*" |
 | eventlist.trigger | 事件钩子 | enum |  |
 
@@ -41,7 +41,7 @@ type value = SingleValue[]
 ### maxlength
 允许上传的最大图片数量。
 
-取值类型为字符串数字，默认值为空，表示不限制最大图片数量。
+取值类型为 `number | 字符串数字`，默认值为空，表示不限制最大图片数量。
 
 ### maxsize
 允许上传的单张图片大小，单位为 KB，默认值为空，表示不限制。

@@ -19,8 +19,8 @@
 | 属性名称 | 说明 | 取值类型 | 默认值
 | ---- | ---- | ---- | ---- |
 | value | 默认值 | object[] | [] |
-| maxlength | 最大文件数量 | number(字符串数字) |  |
-| maxsize | 单个文件大小限制 | number(字符串数字) |  |
+| maxlength | 最大文件数量 | number |  |
+| maxsize | 单个文件大小限制 | number |  |
 | accept | 文件格式 | string |  |
 | eventlist.trigger | 事件钩子 | enum |  |
 
@@ -41,7 +41,7 @@ type value = SingleValue[]
 ### maxlength
 允许上传的最大文件数量。
 
-取值类型为字符串数字，默认值为空，表示不限制最大文件数量。
+取值类型为 `number | 字符串数字`，默认值为空，表示不限制最大文件数量。
 
 ### maxsize
 允许上传的单个文件大小，单位为 KB，默认值为空，表示不限制。
@@ -54,12 +54,12 @@ type value = SingleValue[]
 
 以下为参考值：
 
-| 值 | 说明 |
-| ---- | ---- |
-| "" | 默认值 允许所有文件格式 |
-| "image/*" | 所有图片格式 |
-| "image/png" | png 图片格式 |
-| ".jpg, .jpeg, .png" | jpg jpeg png 图片格式 |
+| 值 | 说明 | 是否默认值 |
+| ---- | ---- | ---- |
+| "" | 默认值 允许所有文件格式 | 是 |
+| "image/*" | 所有图片格式 | |
+| "image/png" | png 图片格式 | |
+| ".jpg, .jpeg, .png" | jpg jpeg png 图片格式 | |
 
 
 
