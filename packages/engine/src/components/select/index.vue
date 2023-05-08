@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     handleChange () {
-      console.log(this.value)
+      // console.log(this.value)
       this.executeEvent('onvaluechange')
     },
     // todo 多选改成数组

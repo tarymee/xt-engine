@@ -21,12 +21,12 @@
 | 属性名称 | 说明 | 取值类型 | 默认值
 | ---- | ---- | ---- | ---- |
 | value | 按钮文字 | string |  |
-| displaytype | 按钮显示样式 | enum(""/"primary"/"success"/"info"/"warning"/"danger") | "" |
-| plain | 是否朴素按钮 | enum("0"/1") | "0" |
-| round | 是否圆角按钮 | enum("0"/1") | "0" |
+| displaytype | 按钮显示样式 | enum | "" |
+| plain | 是否朴素按钮 | enum | "0" |
+| round | 是否圆角按钮 | enum | "0" |
 | icon | 按钮图标 | string |  |
-| size | 按钮尺寸 | enum("big"/"middle"/"small"/"mini") | "small" |
-| eventlist.trigger | 事件钩子 | enum("onclicked") |  |
+| size | 按钮尺寸 | enum | "small" |
+| eventlist.trigger | 事件钩子 | enum |  |
 
 
 ### value
@@ -70,5 +70,5 @@
 ### eventlist.trigger
 | 值 | 说明 |
 | ---- | ---- |
-| onclicked | 按钮点击时触发 |
+| onclicked | 点击时触发 |
 | onload | 加载时触发 |

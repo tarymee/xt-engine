@@ -10,7 +10,8 @@ export default {
     return {
       isContainerCtrl: true,
       index: 0,
-      currentTitle: ''
+      currentTitle: '',
+      cards: this.returnViewRulePropValue('cards', 'array', [])
     }
   },
   computed: {
@@ -20,7 +21,7 @@ export default {
     }
   },
   created() {
-    this.currentTitle = this.viewRule.cards[this.index || 0].title || ''
+    this.currentTitle = this.cards[this.index || 0].title || ''
   },
   mounted () {
     this.dealHeight()
@@ -38,9 +39,8 @@ export default {
     dealTabHidden () {
       this.$nextTick(() => {
         if (this.$el && this.$el.querySelectorAll('.el-tabs__item')) {
-          let cards = (this.viewRule.cards || [])
-          for (let i = 0, len = cards.length; i < len; i++) {
-            let isHidden = cards[i].hidden === '1'
+          for (let i = 0, len = this.cards.length; i < len; i++) {
+            let isHidden = this.cards[i].hidden === '1'
             const elTabsItem = this.$el.querySelectorAll('.el-tabs__item')[i]
             if (elTabsItem) {
               if (isHidden) {
@@ -60,7 +60,7 @@ export default {
   },
   render: function (h) {
     const _this = this
-    const cards = get(this.viewRule, 'cards', [])
+    const cards = this.cards
     return h(
       'div',
       {

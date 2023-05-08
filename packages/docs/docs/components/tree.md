@@ -27,6 +27,11 @@
 ## 协议属性
 | 属性名称 | 说明 | 取值类型 | 默认值
 | ---- | ---- | ---- | ---- |
+| multiselectable | 是否多选 | enum | "0" |
+| displaytype | 显示样式 | enum | "custom" |
+| expandmodel | 控制节点展开方式 | enum | "rootexpand" |
+| intermediateselectmode | 控件取值模式 | enum |  |
+| options | 控件数据源 | array | [] |
 | eventlist.trigger | 事件钩子 | enum |  |
 
 
@@ -61,7 +66,7 @@
 | allexpand | 全部展开 |
 
 ### intermediateselectmode
-树控件取值模式。
+控件取值模式。
 
 多选时，支持以下值，默认值为 `gather`。
 
@@ -84,7 +89,6 @@
 
 ### options
 控件数据源。
-
 
 
 ### eventlist.trigger

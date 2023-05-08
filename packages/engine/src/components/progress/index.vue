@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import { get } from 'lodash-es'
+// import { get } from 'lodash-es'
 import baseMixin from '../common/baseMixin'
 
 export default {
@@ -20,7 +20,7 @@ export default {
   data () {
     return {
       // todo: 圆环模式
-      displaytype: this.returnViewRulePropValue('displaytype', 'string')
+      displaytype: this.returnViewRulePropValue('displaytype', 'string', 'line')
     }
   },
   computed: {

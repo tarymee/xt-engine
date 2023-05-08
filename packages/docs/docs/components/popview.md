@@ -5,9 +5,8 @@
 
 ```json
 {
-  "type": "",
-  "title": "",
-  "value": "",
+  "type": "popview",
+  "title": "弹窗",
   "eventlist": []
 }
 ```

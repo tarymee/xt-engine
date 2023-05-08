@@ -3,9 +3,9 @@
 ## 控件分类
 控件可分为以下类型：
 
-+ 基础控件
-+ 输入控件
 + 容器控件
++ 基础控件
++ 输入型控件
 + 数组控件
 
 
@@ -19,24 +19,24 @@
 | title | 控件类型标题 | string | "" |
 | name | 控件名称 用于flycode | string | "" |
 | value | 默认值 | any |  |
-| hidden | 控件是否隐藏 | enum(""/"0"/"1") | "" |
-| readonly | 控件是否只读 | enum(""/"0"/"1") | "" |
+| hidden | 控件是否隐藏 | enum | "0" |
+| readonly | 控件是否只读 | enum | "0" |
 | style | css样式对象 | object | {} |
 | css | css样式 | string | "" |
 | class | css类名 | string | "" |
 | eventlist | 事件列表 | array | [] |
 | eventlist.handler | 事件code | string | "" |
-| eventlist.trigger | 事件触发时机 | string | "" |
+| eventlist.trigger | 事件触发时机 | enum | "" |
 
 
-## 输入控件通用属性
-输入控件都会有以下属性：
+## 输入型控件通用属性
+输入型控件都会有以下属性：
 
 | 属性名称 | 说明 | 取值类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| required | 控件是否必填 | enum(""/"0"/"1") | "" |
+| required | 控件是否必填 | enum | "0" |
 | placeholder | 占位文字 | string | "" |
-| hiddenclearbtn | 是否能清空数据 | enum(""/"0"/"1") | "" |
+| hiddenclearbtn | 是否隐藏清空数据按钮 | enum | "0" |
 | titlewidth | 标题的绝对宽度 | css长度单位 | "30%" |
 
 

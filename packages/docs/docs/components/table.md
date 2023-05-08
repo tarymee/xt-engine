@@ -21,17 +21,17 @@
 ## 协议属性
 | 属性名称 | 说明 | 取值类型 | 默认值
 | ---- | ---- | ---- | ---- |
-| checkable | 是否支持行勾选 | enum("0"/"1") | "0" |
-| pageable | 是否支持分页 | enum("0"/"1") | "0" |
+| checkable | 是否支持行勾选 | enum | "0" |
+| pageable | 是否支持分页 | enum | "0" |
 | pagesize | 分页条数 | number(字符串数字) | "20" |
 | fixednumber | 冻结前几列 | number(字符串数字) | "0" |
-| columns | 定义列 | 控件协议对象数组 | [] |
+| columns | 定义列 | 基础/输入型控件协议对象数组 | [] |
 | operations | 定义顶部操作按钮 | 按钮控件协议对象数组 | [] |
 | rowoperations | 定义行操作按钮 | 按钮控件协议对象数组 | [] |
-| eventlist.trigger | 事件钩子 | enum("onchecked"/"onload") | "" |
+| eventlist.trigger | 事件钩子 | enum |  |
 
 ### checkable
-是否支持行勾选。
+是否支持行勾选，默认值为 `"0"`
 
 | 值 | 说明 |
 | ---- | ---- |
@@ -51,10 +51,10 @@
 
 
 ### fixednumber
-冻结前几列，字符串数字，默认值为 `0`
+冻结前几列，字符串数字，默认值为 `"0"`
 
 ### columns
-定义列，取值类型为`控件协议对象数组`。
+表格定义列，取值类型为`基础/输入型控件协议对象数组`。
 
 例子：
 ```json

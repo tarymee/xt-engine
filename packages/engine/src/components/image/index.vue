@@ -22,7 +22,7 @@ export default {
     return {
       // 可通过fit确定图片如何适应到容器框，同原生 object-fit。
       // ['fill', 'contain', 'cover', 'none', 'scale-down']
-      fit: this.returnViewRulePropValue('fit', 'string', 'cover')
+      fit: this.returnViewRulePropValue('fit', 'string', 'fill')
     }
   },
   computed: {

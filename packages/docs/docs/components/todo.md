@@ -10,9 +10,11 @@
 + xt-engine 上的loadding要用全局命令式
 + table只读 按钮操作栏只读
 + 容器控件或数组控件设置readonly应连带子控件
++ 输入型控件readonly文字加深
 
 
 # todo
++ 日期选择器 时间选择器
 + engine,init()  检测是否有vue 和 elementui vue.use()
 + tablestyle: border | ... 支持多一种样式
 + 优化 dealInnerProps 利用 parentcodepath
@@ -20,7 +22,6 @@
 + 事件 code 校验重复 空值
 + tabboard 内控件校验 支持垂直样式
 + popview 支持抽屉 支持show-close 优化校验代码
-+ 输入控件readonly文字加深
 + tags 控件优化样式
 + 控制 frontoperations 显隐
 + StorageProxy 所有项目检查 clear 方法有误

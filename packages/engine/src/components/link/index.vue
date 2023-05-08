@@ -24,8 +24,6 @@ export default {
       style.color = '#409EFF'
       return style
     }
-  },
-  methods: {
   }
 }
 </script>

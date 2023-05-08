@@ -5,8 +5,8 @@
 
 ```json
 {
-  "type": "",
-  "title": "",
+  "type": "tags",
+  "title": "标签",
   "value": "",
   "eventlist": []
 }

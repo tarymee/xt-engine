@@ -28,7 +28,7 @@
 | 属性名称 | 说明 | 取值类型 | 默认值
 | ---- | ---- | ---- | ---- |
 | value | 默认值 | any[] | [] |
-| displaytype | 选项值排列方式 | enum("auto"/number) | "auto" |
+| displaytype | 选项值排列方式 | enum | "auto" |
 | options | 数据源选项 | object[] | [] |
 | eventlist.trigger | 事件钩子 | enum | "" |
 

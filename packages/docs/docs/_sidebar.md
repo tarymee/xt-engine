@@ -1,9 +1,16 @@
+<!-- * [入门](introduction/) -->
 * 入门
 
   * [快速开始](introduction/quickstart)
   * [UI表单协议](introduction/protocol)
   * [控件](introduction/component)
   * [UI布局系统](introduction/style)
+
+* 容器控件
+  * [layout 布局](components/layout)
+  * [filter 搜索栏](components/filter)
+  * [popview 弹窗](components/popview)
+  * [tabboard 标签页](components/tabboard)
 
 * 基础控件
   * [button 按钮](components/button)
@@ -13,22 +20,16 @@
   * [progress 进度](components/progress)
   * [tags 标签](components/tags)
 
-* 容器控件
-  * [layout 布局](components/layout)
-  * [filter 搜索栏](components/filter)
-  * [popview 弹窗](components/popview)
-  * [tabboard 标签页](components/tabboard)
-
-* 输入控件
-  * [attachment 附件上传](components/attachment)
-  * [cascade 级联选择器](components/cascade)
-  * [checkbox 多选框](components/checkbox)
-  * [date 日期选择器](components/date)
-  * [photo 图片上传](components/photo)
-  * [radio 单选框](components/radio)
-  * [select 选择器](components/select)
+* 输入型控件
   * [textinput 文本输入](components/textinput)
+  * [select 选择器](components/select)
   * [tree 选择树](components/tree)
+  * [date 日期选择器](components/date)
+  * [checkbox 多选框](components/checkbox)
+  * [radio 单选框](components/radio)
+  * [cascade 级联选择器](components/cascade)
+  * [photo 图片上传](components/photo)
+  * [attachment 附件上传](components/attachment)
 
 * 数组型控件
   * [table 表格](components/table)
@@ -41,11 +42,12 @@
 
 * flycode
   * [page](flycode/page)
-  * [page](flycode/page)
+  * [axios](flycode/axios)
+  * [service](flycode/service)
+  * [路由](flycode/route)
+  * [inject](flycode/inject)
 
 * 其他
 
-  * [createApp 自建应用](other/createApp)
-  * [query 链接参数](other/query)
-  <!-- * [helpers 帮助](other/helpers) -->
+  * [约定](other/agree)
 

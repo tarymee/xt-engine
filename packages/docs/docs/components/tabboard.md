@@ -6,8 +6,7 @@
 ```json
 {
   "type": "tabboard",
-  "name": "",
-  "title": "",
+  "title": "标签页",
   "cards": [
     {
       "title": "基本信息",

@@ -5,9 +5,11 @@
 
 ```json
 {
-  "type": "",
-  "title": "",
+  "type": "select",
+  "title": "选择器",
   "value": "",
+  "remotesearch": "",
+  "options": [],
   "eventlist": []
 }
 ```
@@ -15,12 +17,84 @@
 ## 协议属性
 | 属性名称 | 说明 | 取值类型 | 默认值
 | ---- | ---- | ---- | ---- |
+| value | 默认值 | string |  |
+| options | 控件数据源 | array | [] |
+| remotesearch | 是否支持远程搜索 | enum | "0" |
 | eventlist.trigger | 事件钩子 | enum |  |
 
 
+### value
+控件默认值
+
+### options
+控件数据源
+
+### remotesearch
+是否支持远程搜索。
+
+| 值 | 说明 |
+| ---- | ---- |
+| "0" | 不支持远程搜索，默认值 |
+| "1" | 支持远程搜索 |
+
+例子：
+```json
+{
+  "view": {
+    "body": {
+      "type": "layout",
+      "content": [
+        {
+          "type": "select",
+          "title": "选择器",
+          "value": "",
+          "remotesearch": "1",
+          "options": [],
+          "eventlist": [
+            {
+              "trigger": "onremotesearch",
+              "handler": "handle-remotesearch"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "presenter": {
+    "handlers": [
+      {
+        "code": "handle-remotesearch",
+        "title": "远程搜索",
+        "actions": [
+          {
+            "type": "flycode",
+            "title": "flycode",
+            "script": `
+              console.log(eventTarget)
+
+              axios.post('/api/masterserv/protocolEngine/getMetadataObject', {
+                objectname: eventTarget.remotesearchText
+              }).then((res) => {
+                // debugger
+                const data = res.data.resp_data || []
+                page.getCtrl('选择器').options = data.map((item) => {
+                  item.key = item.tablename
+                  item.text = item.objectname
+                  return item
+                })
+              })
+            `
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 
 ### eventlist.trigger
 | 值 | 说明 |
 | ---- | ---- |
 | onload | 加载时触发 |
 | onvaluechange | 值改变时触发 |
+| onremotesearch | 远程搜索时触发 |
