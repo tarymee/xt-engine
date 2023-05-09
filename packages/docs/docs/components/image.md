@@ -13,14 +13,14 @@
 ```
 
 ## 协议属性
-| 属性名称 | 说明 | 取值类型 | 默认值
+| 属性名称 | 说明 | 取值类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| value | 图片地址 | string |  |
-| fit | 确定图片如何适应容器框，同原生 object-fit | enum |  |
-| eventlist.trigger | 事件钩子 | enum |  |
+| value | 图片地址 | string | -- |
+| fit | 确定图片如何适应容器框，同原生 object-fit | enum | -- |
+| eventlist.trigger | 事件钩子 | enum | -- |
 
 ### value
-图片地址 | base64
+控件初始值，取值类型为 `图片地址 | base64`。
 
 ### fit
 确定图片如何适应容器框，同原生 object-fit https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit

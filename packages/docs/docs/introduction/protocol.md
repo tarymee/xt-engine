@@ -41,13 +41,13 @@
 }
 ```
 
-| 属性名称 | 说明 | 取值类型 | 默认值
+| 属性名称 | 说明 | 取值类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| code | 页面编码 必须唯一 | string | "" |
-| title | 页面标题 | string | "" |
+| code | 页面编码 必须唯一 | string | -- |
+| title | 页面标题 | string | -- |
 | eventlist | 事件列表 | array | [] |
-| eventlist.handler | 事件code | string | "" |
-| eventlist.trigger | 事件触发时机 | string | "" |
+| eventlist.handler | 事件code | string | -- |
+| eventlist.trigger | 事件触发时机 | string | -- |
 
 ## view
 这部分是关于表单的显示的UI的定义，是由各种控件相互嵌套组合后，共同确定表单的显示的样子。
@@ -77,7 +77,7 @@
 }
 ```
 
-| 属性名称 | 说明 | 取值类型 | 默认值
+| 属性名称 | 说明 | 取值类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | body | 主视图 | object | layout |
 | subviews | 子视图 | array | [] |
@@ -112,7 +112,7 @@
 }
 ```
 
-| 属性名称 | 说明 | 取值类型 | 默认值
+| 属性名称 | 说明 | 取值类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | initial | 页面初始化事件 | array | [] |
 | interface | 页面监听事件 | array | [] |

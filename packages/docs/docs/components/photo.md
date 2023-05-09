@@ -16,17 +16,17 @@
 ```
 
 ## 协议属性
-| 属性名称 | 说明 | 取值类型 | 默认值
+| 属性名称 | 说明 | 取值类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| value | 默认值 | object[] | [] |
-| maxlength | 最大图片数量 | number |  |
-| maxsize | 单张图片大小限制 | number |  |
+| value | 控件初始值 | object[] | [] |
+| maxlength | 最大图片数量 | number | -- |
+| maxsize | 单张图片大小限制 | number | -- |
 | accept | 文件格式 | string | "image/*" |
-| eventlist.trigger | 事件钩子 | enum |  |
+| eventlist.trigger | 事件钩子 | enum | -- |
 
 
 ### value
-控件值，取值类型为对象数组。
+控件初始值，取值类型为 `对象数组`。
 
 类型定义：
 ```typescript

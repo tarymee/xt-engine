@@ -13,14 +13,14 @@
 }
 ```
 ## 协议属性
-| 属性名称 | 说明 | 取值类型 | 默认值
+| 属性名称 | 说明 | 取值类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| value | 文本 | string |  |
-| linenumber | 文本显示行数 | number |  |
-| eventlist.trigger | 事件钩子 | enum |  |
+| value | 控件初始值 | string | -- |
+| linenumber | 文本显示行数 | number | -- |
+| eventlist.trigger | 事件钩子 | enum | -- |
 
 ### value
-显示文本。
+控件初始值，显示文本，取值类型为 `字符串`。
 
 ### linenumber
 文本显示行数，超过行数以省略号显示。

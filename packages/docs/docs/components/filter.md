@@ -26,13 +26,13 @@
 ```
 
 ## 协议属性
-| 属性名称 | 说明 | 取值类型 | 默认值
+| 属性名称 | 说明 | 取值类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | bindcallbtn | 是否配置独立的‘搜索’按钮 | boolean | false |
 | searchcondition | 搜索条件 | basic & advanced | {} |
 | searchcondition.basic | 基础搜索 | 输入型控件协议对象数组 | [] |
 | searchcondition.advanced | 高级搜索 暂未实现 | 输入型控件协议对象数组 | [] |
-| eventlist.trigger | 事件钩子 | enum |  |
+| eventlist.trigger | 事件钩子 | enum | -- |
 
 
 ### bindcallbtn
@@ -44,9 +44,9 @@
 
 | 值 | 说明 | 是否默认值 |
 | ---- | ---- | ---- |
-| true | 配置独立搜索按钮 | |
+| true | 配置独立搜索按钮 | -- |
 | false | 不配置独立搜索按钮 | 是 |
-| "1" | 配置独立搜索按钮 | |
+| "1" | 配置独立搜索按钮 | -- |
 | "0" | 不配置独立搜索按钮 | 是 |
 
 ### searchcondition
