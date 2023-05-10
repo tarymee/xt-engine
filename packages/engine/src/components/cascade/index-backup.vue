@@ -1,28 +1,37 @@
 <template>
-  <xt-inputwrapper>
-    <el-cascader
-      v-model="value"
-      size="small"
-      :disabled="readonly"
-      :placeholder="placeholder"
-      :clearable="!hiddenclearbtn"
-      :options="cascadeData"
-      filterable
-      :props="defaultProps"
-      @change="handleChange"
-    />
-  </xt-inputwrapper>
+  <div
+    class="xt-input xt-cascade"
+    :class="[customClass]"
+    :style="[viewStyle]"
+  >
+    <div
+      v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'"
+      class="xt-input-label"
+      :style="{ width: titlewidth }"
+    >
+      <span v-if="required">*</span>{{ title }}
+    </div>
+    <div class="xt-input-content">
+      <el-cascader
+        v-model="value"
+        size="small"
+        :disabled="readonly"
+        :placeholder="placeholder"
+        :clearable="!hiddenclearbtn"
+        :options="cascadeData"
+        filterable
+        :props="defaultProps"
+        @change="handleChange"
+      />
+    </div>
+  </div>
 </template>
 <script>
 import { get, cloneDeep } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
-import inputwrapper from '../inputwrapper'
 
 export default {
   name: 'xt-cascade',
-  components: {
-    'xt-inputwrapper': inputwrapper
-  },
   mixins: [baseInputMixin],
   data () {
     return {

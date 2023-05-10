@@ -30,6 +30,7 @@ export default {
   list: require('./list').default,
   image: require('./image').default,
   foreach: require('./foreach').default,
+  inputwrapper: require('./inputwrapper').default,
   baseMixin: require('./common/baseMixin').default,
   baseInputMixin: require('./common/baseInputMixin').default
 }

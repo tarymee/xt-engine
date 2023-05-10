@@ -14,16 +14,12 @@
   "rowsstyle": "card",
   "rows": {
     "type": "layout",
-    "content": [
-      ...
-    ]
+    "content": []
   },
   "frontoperations": [
     {
       "type": "layout",
-      "content": [
-        ...
-      ]
+      "content": []
     }
   ],
   "operations": [],

@@ -82,13 +82,9 @@
 <script>
 import { get, cloneDeep } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
-import inputwrapper from '../inputwrapper'
 
 export default {
   name: 'xt-tree',
-  components: {
-    'xt-inputwrapper': inputwrapper
-  },
   mixins: [baseInputMixin],
   data () {
     return {

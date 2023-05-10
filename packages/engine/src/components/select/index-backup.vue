@@ -1,37 +1,46 @@
 <template>
-  <xt-inputwrapper>
-    <!-- :collapse-tags="multiselectable" -->
-    <el-select
-      v-model="value"
-      size="small"
-      :multiple="multiselectable"
-      :placeholder="placeholder"
-      filterable
-      :remote="remotesearch"
-      :remote-method="remoteMethod"
-      :clearable="!hiddenclearbtn"
-      :disabled="readonly"
-      @change="handleChange"
+  <div
+    class="xt-input xt-select"
+    :class="[customClass, { 'xt-input-intable': intable }]"
+    :style="[viewStyle]"
+  >
+    <div
+      v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'"
+      class="xt-input-label"
+      :style="{ width: titlewidth }"
     >
-      <el-option
-        v-for="(item, index) in options"
-        :key="index"
-        :label="item.text"
-        :value="item.key"
-      />
-    </el-select>
-  </xt-inputwrapper>
+      <span v-if="required">*</span>{{ title }}
+    </div>
+    <div class="xt-input-content">
+      <!-- :collapse-tags="multiselectable" -->
+      <el-select
+        v-model="value"
+        size="small"
+        :multiple="multiselectable"
+        :placeholder="placeholder"
+        filterable
+        :remote="remotesearch"
+        :remote-method="remoteMethod"
+        :clearable="!hiddenclearbtn"
+        :disabled="readonly"
+        @change="handleChange"
+      >
+        <el-option
+          v-for="(item, index) in options"
+          :key="index"
+          :label="item.text"
+          :value="item.key"
+        />
+      </el-select>
+    </div>
+  </div>
 </template>
 <script>
 // import { get } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
-import inputwrapper from '../inputwrapper'
 
 export default {
   name: 'xt-select',
-  components: {
-    'xt-inputwrapper': inputwrapper
-  },
   mixins: [baseInputMixin],
   data () {
     return {
