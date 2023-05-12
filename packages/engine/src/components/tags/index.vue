@@ -80,6 +80,9 @@ export default {
       }
       return texts
     }
+  },
+  mounted () {
+    this.executeEvent('onload')
   }
 }
 </script>

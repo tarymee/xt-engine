@@ -42,6 +42,9 @@ export default {
       maxrow: this.returnViewRulePropValue('maxrow', 'number', 6)
     }
   },
+  mounted () {
+    this.executeEvent('onload')
+  },
   methods: {
     handleChange (e) {
       this.executeEvent('onvaluechange')

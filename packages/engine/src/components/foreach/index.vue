@@ -19,8 +19,7 @@ export default {
     // debugger
   },
   mounted () {
-    // this.dealBtnsState()
-    // this.dealHeight()
+    this.executeEvent('onload')
   },
   methods: {
     validata () {

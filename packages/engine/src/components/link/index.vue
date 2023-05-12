@@ -24,6 +24,9 @@ export default {
       style.color = '#409EFF'
       return style
     }
+  },
+  mounted () {
+    this.executeEvent('onload')
   }
 }
 </script>

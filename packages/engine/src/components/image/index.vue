@@ -38,6 +38,9 @@ export default {
   },
   created () {
   },
+  mounted () {
+    this.executeEvent('onload')
+  },
   methods: {
 
   }

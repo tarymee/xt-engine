@@ -36,6 +36,7 @@ export default {
     } : null
   },
   mounted () {
+    this.executeEvent('onload')
     // https://blog.csdn.net/qq_36016136/article/details/107398528
     this.dealBtnsState()
     this.executeEvent('onchecked')

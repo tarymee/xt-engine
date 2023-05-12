@@ -32,6 +32,9 @@ export default {
   created () {
     this.setValue(this.value)
   },
+  mounted () {
+    this.executeEvent('onload')
+  },
   methods: {
     handleChange (e) {
       // console.log(e)

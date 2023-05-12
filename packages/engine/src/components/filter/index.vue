@@ -12,6 +12,9 @@ export default {
       bindcallbtn: this.returnViewRulePropValue('bindcallbtn', 'boolean'), // 独立查询按钮
     }
   },
+  mounted () {
+    this.executeEvent('onload')
+  },
   render: function (h) {
     let searchcondition = get(this.viewRule, 'searchcondition')
     let basic = get(searchcondition, 'basic', [])

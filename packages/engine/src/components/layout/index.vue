@@ -13,6 +13,9 @@ export default {
       content: this.returnViewRulePropValue('content', 'array', []),
     }
   },
+  mounted () {
+    this.executeEvent('onload')
+  },
   methods: {
     setPropContent (value) {
       // todo

@@ -48,6 +48,9 @@ export default {
       }
       return map[this.size]
     }
+  },
+  mounted () {
+    this.executeEvent('onload')
   }
 }
 </script>

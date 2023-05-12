@@ -24,6 +24,7 @@ export default {
     this.currentTitle = this.cards[this.index || 0].title || ''
   },
   mounted () {
+    this.executeEvent('onload')
     this.dealHeight()
     this.dealTabHidden()
   },

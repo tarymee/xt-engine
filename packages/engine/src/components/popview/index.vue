@@ -35,6 +35,9 @@ export default {
       }
     }
   },
+  mounted () {
+    this.executeEvent('onload')
+  },
   methods: {
     setPropReadonly (value) {
       // debugger

@@ -47,6 +47,9 @@ export default {
   },
   created () {
   },
+  mounted () {
+    this.executeEvent('onload')
+  },
   methods: {
     handleChange (e) {
       this.executeEvent('onvaluechange')

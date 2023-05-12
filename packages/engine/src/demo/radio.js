@@ -7,7 +7,6 @@ export default {
   "view": {
     "body": {
       "type": "layout",
-    
       "flexdirection": "vertical",
       "flex": "1",
       "hidden": "",

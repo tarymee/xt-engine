@@ -88,11 +88,6 @@ export default {
       }
     }
   },
-  mounted () {
-    // debugger
-    // todo 每个控件自己实现
-    this.executeEvent('onload')
-  },
   destroyed () {
     if (!this.notInEngine) {
       if (!this.notCreateVMInEngine) {

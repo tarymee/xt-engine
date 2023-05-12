@@ -30,6 +30,7 @@ export default {
     } : null
   },
   mounted () {
+    this.executeEvent('onload')
     // this.dealBtnsState()
     this.dealHeight()
     this.dealHeightInTabboard()

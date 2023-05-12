@@ -16,6 +16,9 @@ export default {
   data () {
     return {}
   },
+  mounted () {
+    this.executeEvent('onload')
+  },
   methods: {}
 }
 </script>

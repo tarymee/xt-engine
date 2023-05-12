@@ -16,6 +16,7 @@ import tabboard from './tabboard.js'
 import foreach from './foreach.js'
 import layout from './layout.js'
 import form from './form.js'
+import webview from './webview.js'
 
 export default {
   components: {
@@ -48,6 +49,8 @@ export default {
       this.protocol = layout
     } else if (protocol === 'form') {
       this.protocol = form
+    } else if (protocol === 'webview') {
+      this.protocol = webview
     } else {
       this.protocol = table
     }

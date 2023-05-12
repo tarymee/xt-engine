@@ -52,6 +52,9 @@ export default {
     //   url: 'http://xxxx.xxx'
     // }])
   },
+  mounted () {
+    this.executeEvent('onload')
+  },
   methods: {
     getValue (getter) {
       const value = cloneDeep(this.value)

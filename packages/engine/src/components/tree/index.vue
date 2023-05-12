@@ -160,6 +160,7 @@ export default {
     }
   },
   mounted () {
+    this.executeEvent('onload')
     if (this.multiselectable) {
       this.setValue(this.value || [])
     } else {
