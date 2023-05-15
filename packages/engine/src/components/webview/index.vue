@@ -21,13 +21,11 @@ export default {
   },
   methods: {
     setValue (value, setter) {
-      if (value !== this.value) {
-        this.contentWindow = null
-        this.value = ''
-        setTimeout(() => {
-          this.value = value
-        }, 0)
-      }
+      this.contentWindow = null
+      this.value = ''
+      setTimeout(() => {
+        this.value = value
+      }, 0)
     },
     onload (e) {
       // console.log(e)
