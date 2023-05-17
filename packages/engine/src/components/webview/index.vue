@@ -31,8 +31,13 @@ export default {
       // console.log(e)
       const iframe = get(e, 'path[0]') || get(e, 'target')
       // console.log(iframe)
+      // console.log(iframe.contentWindow)
       if (iframe) {
-        this.contentWindow = iframe.contentWindow
+        try {
+          this.contentWindow = iframe.contentWindow
+        } catch (err) {
+          console.error(err)
+        }
         // iframe.contentWindow.aaa = 'aaa'
       }
       this.executeEvent('onload')
