@@ -114,11 +114,22 @@ export default {
     }
   },
   computed: {
+    optionsFormat () {
+      const optionsFormat = cloneDeep(this.options)
+      optionsFormat.forEach((item) => {
+        if (typeof item.id === 'undefined' && typeof item.key !== 'undefined') {
+          item.id = item.key
+          item.name = item.text
+          item.parentid = item.parentkey
+        }
+      })
+      return optionsFormat
+    },
     treeData () {
       // if (this.code === 'tree-145454') {
       //   console.log('treeData')
       // }
-      const treeData = this.listToTree(this.options, {
+      const treeData = this.listToTree(this.optionsFormat, {
         idKey: 'id',
         pidKey: 'parentid',
         childrenKey: 'children'
@@ -135,19 +146,6 @@ export default {
       }
       return keys
     }
-    // valueText () {
-    //   if (this.multiselectable) {
-    //     const selectOptions = this.options.filter((item) => {
-    //       return this.value.some((item2) => item2 === item.id)
-    //     })
-    //     return selectOptions.map((item) => item.name).join('，')
-    //   } else {
-    //     const valueNode = this.options.find((item) => {
-    //       return item.id === this.value
-    //     })
-    //     return valueNode ? valueNode.name : ''
-    //   }
-    // },
   },
   created () {
     // todo autofillvalue
@@ -172,7 +170,7 @@ export default {
       const component = get(getter, 'ctrl.component', 'id')
       if (this.multiselectable) {
         if (this.value && this.value.length) {
-          const selectOptions = this.options.filter((item) => {
+          const selectOptions = this.optionsFormat.filter((item) => {
             return this.value.some((item2) => item2 === item.id)
           })
           if (component === 'fullvalue') {
@@ -184,7 +182,7 @@ export default {
           return []
         }
       } else {
-        const valueNode = cloneDeep(this.options.find((item) => {
+        const valueNode = cloneDeep(this.optionsFormat.find((item) => {
           return item.id === this.value
         }))
         if (component === 'fullvalue') {
@@ -240,13 +238,13 @@ export default {
     // },
     dealValueText () {
       if (this.multiselectable) {
-        const selectOptions = this.options.filter((item) => {
+        const selectOptions = this.optionsFormat.filter((item) => {
           return this.value.some((item2) => item2 === item.id)
         })
         this.valueText = selectOptions.map((item) => item.name).join('，')
         this.valueTextArr = selectOptions
       } else {
-        const valueNode = this.options.find((item) => {
+        const valueNode = this.optionsFormat.find((item) => {
           return item.id === this.value
         })
         this.valueText = valueNode ? valueNode.name : ''

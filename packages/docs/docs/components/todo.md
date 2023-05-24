@@ -11,6 +11,7 @@
 + table只读 按钮操作栏只读
 + 容器控件或数组控件设置readonly应连带子控件
 + 输入型控件readonly文字加深
++ 兼容 tree option： id = key name = text parentid
 
 
 # todo
@@ -27,7 +28,6 @@
 + StorageProxy 所有项目检查 clear 方法有误
 + 研究 StorageProxy 用 代理写
 + 抽取baseinput slot
-+ 兼容 tree option： id = key name = text parentid
 + table update字数太多 操作栏错乱
 + table columns 隐藏某一列
 

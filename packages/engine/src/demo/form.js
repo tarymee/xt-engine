@@ -186,39 +186,39 @@ export default {
               "value": "",
               "options": [
                 {
-                  "parentid": "",
-                  "id": "1",
-                  "name": "巧克力公司"
+                  "parentkey": "",
+                  "key": "1",
+                  "text": "巧克力公司"
                 },
                 {
-                  "parentid": "1",
-                  "id": "1-1",
-                  "name": "西南大区"
+                  "parentkey": "1",
+                  "key": "1-1",
+                  "text": "西南大区"
                 },
                 {
-                  "parentid": "1-1",
-                  "id": "1-1-1",
-                  "name": "张三"
+                  "parentkey": "1-1",
+                  "key": "1-1-1",
+                  "text": "张三"
                 },
                 {
-                  "parentid": "1-1",
-                  "id": "1-1-2",
-                  "name": "李四"
+                  "parentkey": "1-1",
+                  "key": "1-1-2",
+                  "text": "李四"
                 },
                 {
-                  "parentid": "1-1",
-                  "id": "1-1-3",
-                  "name": "王五"
+                  "parentkey": "1-1",
+                  "key": "1-1-3",
+                  "text": "王五"
                 },
                 {
-                  "parentid": "1",
-                  "id": "1-2",
-                  "name": "华北大区"
+                  "parentkey": "1",
+                  "key": "1-2",
+                  "text": "华北大区"
                 },
                 {
-                  "parentid": "1",
-                  "id": "1-3",
-                  "name": "华东大区"
+                  "parentkey": "1",
+                  "key": "1-3",
+                  "text": "华东大区"
                 }
               ],
               "eventlist": [
