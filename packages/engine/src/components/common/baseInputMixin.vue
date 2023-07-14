@@ -86,7 +86,9 @@ export default {
 .xt-input .el-textarea.is-disabled .el-textarea__inner {
   color: #606266;
 }
-
+.xt-input .el-textarea .el-textarea__inner {
+  font-family: initial;
+}
 
 
 /* todo 垂直 简化等模式 */
