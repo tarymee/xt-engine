@@ -1,58 +1,66 @@
 <template>
-  <xt-inputwrapper v-if="displaytype !== 'navigation'">
-    <!-- todo 缺少 hiddenclearbtn 属性 -->
-    <div v-if="intermediateselectmode !== 'individual'" v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">
-      <div class="xt-tree-input-text">{{ valueText }}</div>
-      <div class="xt-tree-input-icon">
-        <i class="el-icon-arrow-down" />
-      </div>
-      <div v-if="!valueText" class="xt-tree-input-placeholder">{{ placeholder }}</div>
-    </div>
-    <div v-else v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">
-      <div class="xt-tree-input-icon">
-        <i class="el-icon-arrow-down" />
-      </div>
-      <div v-for="(item, index) in valueTextArr" :key="index" class="xt-tree-input-item">
-        {{ item.name }}
-        <i v-if="!readonly" class="xt-tree-input-item-close el-icon-close" @click="delItem(index)"></i>
-      </div>
-      <div v-if="!valueTextArr.length" class="xt-tree-input-placeholder">{{ placeholder }}</div>
-    </div>
-    <!-- todo 宽度基于控件宽度 -->
-    <el-popover
-      ref="popover"
-      :disabled="readonly"
-      placement="bottom"
-      width="200"
-      trigger="click"
-      @show="handlePopoverShow"
-    >
-      <el-tree
-        ref="tree"
-        class="xt-tree-tree"
-        :data="treeData"
-        node-key="id"
-        :default-expand-all="expandmodel === 'allexpand'"
-        :default-expanded-keys="defaultExpandedKeys"
-        check-on-click-node
-        empty-text="暂无数据"
-        :show-checkbox="multiselectable"
-        :check-strictly="multiselectable && intermediateselectmode === 'individual'"
-        :highlight-current="highlightCurrent"
-        :expand-on-click-node="expandOnClickNode"
-        :props="defaultProps"
-        @check="handleCheck"
-        @node-click="handleNodeClick"
-      />
-    </el-popover>
-  </xt-inputwrapper>
   <div
-    v-else
-    class="xt-input xt-tree xt-tree-navigation"
-    :class="[customClass]"
+    class="xt-input xt-tree"
+    :class="[customClass, { 'xt-tree-navigation': displaytype === 'navigation' }]"
     :style="[viewStyle]"
   >
+    <div
+      v-if="!infilter && !intable && displaytype !== 'navigation' && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'"
+      class="xt-input-label"
+      :style="{ width: titlewidth }"
+    >
+      <span v-if="required">*</span>{{ title }}
+    </div>
+    <div v-if="displaytype !== 'navigation'" class="xt-input-content">
+      <!-- todo 缺少 hiddenclearbtn 属性 -->
+      <div v-if="intermediateselectmode !== 'individual'" v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">
+        <div class="xt-tree-input-text">{{ valueText }}</div>
+        <div class="xt-tree-input-icon">
+          <i class="el-icon-arrow-down" />
+        </div>
+        <div v-if="!valueText" class="xt-tree-input-placeholder">{{ placeholder }}</div>
+      </div>
+      <div v-else v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">
+        <div class="xt-tree-input-icon">
+          <i class="el-icon-arrow-down" />
+        </div>
+        <div v-for="(item, index) in valueTextArr" :key="index" class="xt-tree-input-item">
+          {{ item.name }}
+          <i v-if="!readonly" class="xt-tree-input-item-close el-icon-close" @click="delItem(index)"></i>
+        </div>
+        <div v-if="!valueTextArr.length" class="xt-tree-input-placeholder">{{ placeholder }}</div>
+      </div>
+      <!-- todo 宽度基于控件宽度 -->
+      <el-popover
+        ref="popover"
+        :disabled="readonly"
+        placement="bottom"
+        width="200"
+        trigger="click"
+        @show="handlePopoverShow"
+      >
+        <el-tree
+          ref="tree"
+          class="xt-tree-tree"
+          :data="treeData"
+          node-key="id"
+          :default-expand-all="expandmodel === 'allexpand'"
+          :default-expanded-keys="defaultExpandedKeys"
+          check-on-click-node
+          empty-text="暂无数据"
+          :show-checkbox="multiselectable"
+          :check-strictly="multiselectable && intermediateselectmode === 'individual'"
+          :highlight-current="highlightCurrent"
+          :expand-on-click-node="expandOnClickNode"
+          :props="defaultProps"
+          @check="handleCheck"
+          @node-click="handleNodeClick"
+        />
+      </el-popover>
+    </div>
+
     <el-tree
+      v-if="displaytype === 'navigation'"
       ref="tree"
       class="xt-tree-navigation-tree"
       :data="treeData"
@@ -74,13 +82,9 @@
 <script>
 import { get, cloneDeep } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
-import inputwrapper from '../inputwrapper'
 
 export default {
   name: 'xt-tree',
-  components: {
-    'xt-inputwrapper': inputwrapper
-  },
   mixins: [baseInputMixin],
   data () {
     return {
@@ -114,22 +118,11 @@ export default {
     }
   },
   computed: {
-    optionsFormat () {
-      const optionsFormat = cloneDeep(this.options)
-      optionsFormat.forEach((item) => {
-        if (typeof item.id === 'undefined' && typeof item.key !== 'undefined') {
-          item.id = item.key
-          item.name = item.text
-          item.parentid = item.parentkey
-        }
-      })
-      return optionsFormat
-    },
     treeData () {
       // if (this.code === 'tree-145454') {
       //   console.log('treeData')
       // }
-      const treeData = this.listToTree(this.optionsFormat, {
+      const treeData = this.listToTree(this.options, {
         idKey: 'id',
         pidKey: 'parentid',
         childrenKey: 'children'
@@ -146,6 +139,19 @@ export default {
       }
       return keys
     }
+    // valueText () {
+    //   if (this.multiselectable) {
+    //     const selectOptions = this.options.filter((item) => {
+    //       return this.value.some((item2) => item2 === item.id)
+    //     })
+    //     return selectOptions.map((item) => item.name).join('，')
+    //   } else {
+    //     const valueNode = this.options.find((item) => {
+    //       return item.id === this.value
+    //     })
+    //     return valueNode ? valueNode.name : ''
+    //   }
+    // },
   },
   created () {
     // todo autofillvalue
@@ -158,7 +164,6 @@ export default {
     }
   },
   mounted () {
-    this.executeEvent('onload')
     if (this.multiselectable) {
       this.setValue(this.value || [])
     } else {
@@ -170,7 +175,7 @@ export default {
       const component = get(getter, 'ctrl.component', 'id')
       if (this.multiselectable) {
         if (this.value && this.value.length) {
-          const selectOptions = this.optionsFormat.filter((item) => {
+          const selectOptions = this.options.filter((item) => {
             return this.value.some((item2) => item2 === item.id)
           })
           if (component === 'fullvalue') {
@@ -182,7 +187,7 @@ export default {
           return []
         }
       } else {
-        const valueNode = cloneDeep(this.optionsFormat.find((item) => {
+        const valueNode = cloneDeep(this.options.find((item) => {
           return item.id === this.value
         }))
         if (component === 'fullvalue') {
@@ -238,13 +243,13 @@ export default {
     // },
     dealValueText () {
       if (this.multiselectable) {
-        const selectOptions = this.optionsFormat.filter((item) => {
+        const selectOptions = this.options.filter((item) => {
           return this.value.some((item2) => item2 === item.id)
         })
         this.valueText = selectOptions.map((item) => item.name).join('，')
         this.valueTextArr = selectOptions
       } else {
-        const valueNode = this.optionsFormat.find((item) => {
+        const valueNode = this.options.find((item) => {
           return item.id === this.value
         })
         this.valueText = valueNode ? valueNode.name : ''

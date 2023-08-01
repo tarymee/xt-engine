@@ -1,32 +1,41 @@
 <template>
-  <xt-inputwrapper>
-    <el-radio-group
-      v-model="value"
-      :disabled="readonly"
-      class="xt-radio-group"
-      @change="handleChange"
+  <div
+    class="xt-input xt-radio"
+    :class="[customClass, { 'xt-input-intable': intable }]"
+    :style="[viewStyle]"
+  >
+    <div
+      v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'"
+      class="xt-input-label"
+      :style="{ width: titlewidth }"
     >
-      <el-radio
-        v-for="(item, index) in options"
-        :key="index"
-        :label="item.key"
-        :disabled="item.disabled === '1'"
-        :style="[radioStyle]"
+      <span v-if="required">*</span>{{ title }}
+    </div>
+    <div class="xt-input-content">
+      <el-radio-group
+        v-model="value"
+        :disabled="readonly"
+        class="xt-radio-group"
+        @change="handleChange"
       >
-        {{ item.text }}
-      </el-radio>
-    </el-radio-group>
-  </xt-inputwrapper>
+        <el-radio
+          v-for="(item, index) in options"
+          :key="index"
+          :label="item.key"
+          :disabled="item.disabled === '1'"
+          :style="[radioStyle]"
+        >
+          {{ item.text }}
+        </el-radio>
+      </el-radio-group>
+    </div>
+  </div>
 </template>
 <script>
 import baseInputMixin from '../common/baseInputMixin'
-import inputwrapper from '../inputwrapper'
 
 export default {
   name: 'xt-radio',
-  components: {
-    'xt-inputwrapper': inputwrapper
-  },
   mixins: [baseInputMixin],
   data () {
     return {
@@ -46,9 +55,6 @@ export default {
     }
   },
   created () {
-  },
-  mounted () {
-    this.executeEvent('onload')
   },
   methods: {
     handleChange (e) {

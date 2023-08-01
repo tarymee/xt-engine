@@ -1,30 +1,31 @@
 <template>
-  <xt-inputwrapper>
-    <div v-for="(item, index) in value" :key="index" class="xt-attachment-item">
-      <a class="xt-attachment-item-file" :href="item.url" target="_blank">
-        <i class="el-icon-document"></i>
-        {{ item.filename }}
-      </a>
-      <i v-if="item.__$$status === 'uploadding'" class="xt-attachment-item-icon el-icon-loading"></i>
-      <i v-if="item.__$$status === 'done'" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
-      <i v-if="item.__$$status === 'done'" class="xt-attachment-item-icon el-icon-success"></i>
+  <div class="xt-input xt-attachment" :class="[customClass, { 'xt-input-intable': intable }]" :style="[viewStyle]">
+    <div v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'" class="xt-input-label" :style="{ width: titlewidth }">
+      <span v-if="required">*</span>{{ title }}
     </div>
-    <el-upload v-show="(maxnumber === '' || value.length < Number(maxnumber)) && !readonly" class="xt-attachment-upload" action="javascript:;" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
-      <el-button size="small" icon="el-icon-plus" class="xt-attachment-btn">点击上传</el-button>
-    </el-upload>
-  </xt-inputwrapper>
+    <div class="xt-input-content">
+      <div v-for="(item, index) in value" :key="index" class="xt-attachment-item">
+        <a class="xt-attachment-item-file" :href="item.url" target="_blank">
+          <i class="el-icon-document"></i>
+          {{ item.filename }}
+        </a>
+        <i v-if="item.__$$status === 'uploadding'" class="xt-attachment-item-icon el-icon-loading"></i>
+        <i v-if="item.__$$status === 'done'" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
+        <i v-if="item.__$$status === 'done'" class="xt-attachment-item-icon el-icon-success"></i>
+      </div>
+      <el-upload v-show="(maxnumber === '' || value.length < Number(maxnumber)) && !readonly" class="xt-attachment-upload" action="javascript:;" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
+        <el-button size="small" icon="el-icon-plus" class="xt-attachment-btn">点击上传</el-button>
+      </el-upload>
+    </div>
+  </div>
 </template>
 <script>
 import { get, cloneDeep } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 import { Message } from 'element-ui'
-import inputwrapper from '../inputwrapper'
 
 export default {
   name: 'xt-attachment',
-  components: {
-    'xt-inputwrapper': inputwrapper
-  },
   mixins: [baseInputMixin],
   data () {
     return {
@@ -51,9 +52,6 @@ export default {
     //   filename: 'kjshkj客家话客家话看喀什法国航空结果很快就会可结合公司会计和高科技规划算法v控件',
     //   url: 'http://xxxx.xxx'
     // }])
-  },
-  mounted () {
-    this.executeEvent('onload')
   },
   methods: {
     getValue (getter) {

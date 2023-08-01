@@ -1,32 +1,43 @@
 <template>
-  <xt-inputwrapper>
-    <el-checkbox-group
-      v-model="value"
-      :disabled="readonly"
-      class="xt-checkbox-group"
-      @change="handleChange"
+  <div
+    class="xt-input xt-checkbox"
+    :class="[customClass, { 'xt-input-intable': intable }]"
+    :style="[viewStyle]"
+  >
+    <div
+      v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'"
+      class="xt-input-label"
+      :style="{ width: titlewidth }"
     >
-      <el-checkbox
-        v-for="(item, index) in options"
-        :key="index"
-        :label="item.key"
-        :disabled="item.disabled === '1'"
-        :style="[checkboxStyle]"
+      <span v-if="required">*</span>{{ title }}
+    </div>
+    <div class="xt-input-content">
+      <el-checkbox-group
+        v-model="value"
+        :disabled="readonly"
+        class="xt-checkbox-group"
+        @change="handleChange"
       >
-        {{ item.text }}
-      </el-checkbox>
-    </el-checkbox-group>
-  </xt-inputwrapper>
+        <el-checkbox
+          v-for="(item, index) in options"
+          :key="index"
+          :label="item.key"
+          :disabled="item.disabled === '1'"
+          :style="[checkboxStyle]"
+        >
+          {{ item.text }}
+        </el-checkbox>
+      </el-checkbox-group>
+
+      <!-- <el-button @click="test">sss</el-button> -->
+    </div>
+  </div>
 </template>
 <script>
 import baseInputMixin from '../common/baseInputMixin'
-import inputwrapper from '../inputwrapper'
 
 export default {
   name: 'xt-checkbox',
-  components: {
-    'xt-inputwrapper': inputwrapper
-  },
   mixins: [baseInputMixin],
   data () {
     return {
@@ -47,9 +58,6 @@ export default {
     }
   },
   created () {
-  },
-  mounted () {
-    this.executeEvent('onload')
   },
   methods: {
     handleChange (e) {

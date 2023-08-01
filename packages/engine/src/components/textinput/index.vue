@@ -1,38 +1,47 @@
 <template>
-  <xt-inputwrapper>
-    <el-input
-      v-model="value"
-      size="small"
-      :type="displaytype === 'textarea' ? 'textarea' : ''"
-      :autosize="{ minRows: minrow, maxRows: maxrow }"
-      :disabled="readonly"
-      :placeholder="placeholder"
-      :show-password="displaytype === 'password'"
-      @change="handleChange"
+  <div
+    class="xt-input xt-textinput"
+    :class="[customClass, { 'xt-input-intable': intable }]"
+    :style="[viewStyle]"
+  >
+    <div
+      v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'"
+      class="xt-input-label"
+      :style="{ width: titlewidth }"
     >
-      <template
-        v-if="infilter"
-        #suffix
+      <span v-if="required">*</span>{{ title }}
+    </div>
+    <div class="xt-input-content">
+      <el-input
+        v-model="value"
+        size="small"
+        :type="displaytype === 'textarea' ? 'textarea' : ''"
+        :autosize="{ minRows: minrow, maxRows: maxrow }"
+        :disabled="readonly"
+        :placeholder="placeholder"
+        :show-password="displaytype === 'password'"
+        @change="handleChange"
       >
-        <i
-          class="el-input__icon el-icon-search"
-          style="cursor: pointer;"
-          @click="handleChange"
-        />
-      </template>
-    </el-input>
-  </xt-inputwrapper>
+        <template
+          v-if="infilter"
+          #suffix
+        >
+          <i
+            class="el-input__icon el-icon-search"
+            style="cursor: pointer;"
+            @click="handleChange"
+          />
+        </template>
+      </el-input>
+    </div>
+  </div>
 </template>
 <script>
 import baseInputMixin from '../common/baseInputMixin'
-import inputwrapper from '../inputwrapper'
 import { Message } from 'element-ui'
 
 export default {
   name: 'xt-textinput',
-  components: {
-    'xt-inputwrapper': inputwrapper
-  },
   mixins: [baseInputMixin],
   data () {
     return {
@@ -42,8 +51,7 @@ export default {
       maxrow: this.returnViewRulePropValue('maxrow', 'number', 6)
     }
   },
-  mounted () {
-    this.executeEvent('onload')
+  created () {
   },
   methods: {
     handleChange (e) {
