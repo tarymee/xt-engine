@@ -18,10 +18,7 @@
 </template>
 <script>
 export default {
-  name: 'xt-inputwrapper',
-  created () {
-    // console.log(this.$parent)
-  }
+  name: 'xt-inputwrapper'
 }
 </script>
 

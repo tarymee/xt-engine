@@ -54,7 +54,8 @@ export default {
       return styleObj
     }
   },
-  created () {
+  mounted () {
+    this.executeEvent('onload')
   },
   methods: {
     handleChange (e) {

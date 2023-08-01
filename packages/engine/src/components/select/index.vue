@@ -52,10 +52,14 @@ export default {
   },
   created () {
     this.setValue(this.value)
+    // window.aaaa = this
+  },
+  mounted () {
+    this.executeEvent('onload')
   },
   methods: {
     handleChange () {
-      console.log(this.value)
+      // console.log(this.value)
       this.executeEvent('onvaluechange')
     },
     // todo 多选改成数组

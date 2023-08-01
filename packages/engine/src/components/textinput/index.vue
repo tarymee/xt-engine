@@ -35,13 +35,42 @@
       </el-input>
     </div>
   </div>
+  <!-- <xt-inputwrapper>
+    <template>
+      <el-input
+        v-model="value"
+        size="small"
+        :type="displaytype === 'textarea' ? 'textarea' : ''"
+        :autosize="{ minRows: minrow, maxRows: maxrow }"
+        :disabled="readonly"
+        :placeholder="placeholder"
+        :show-password="displaytype === 'password'"
+        @change="handleChange"
+      >
+        <template
+          v-if="infilter"
+          #suffix
+        >
+          <i
+            class="el-input__icon el-icon-search"
+            style="cursor: pointer;"
+            @click="handleChange"
+          />
+        </template>
+      </el-input>
+    </template>
+  </xt-inputwrapper> -->
 </template>
 <script>
 import baseInputMixin from '../common/baseInputMixin'
+// import inputwrapper from '../inputwrapper'
 import { Message } from 'element-ui'
 
 export default {
   name: 'xt-textinput',
+  // components: {
+  //   'xt-inputwrapper': inputwrapper
+  // },
   mixins: [baseInputMixin],
   data () {
     return {
@@ -51,7 +80,10 @@ export default {
       maxrow: this.returnViewRulePropValue('maxrow', 'number', 6)
     }
   },
-  created () {
+  mounted () {
+    this.executeEvent('onload')
+    // debugger
+    // window.bbbb = this
   },
   methods: {
     handleChange (e) {

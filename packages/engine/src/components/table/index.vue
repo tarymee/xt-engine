@@ -89,6 +89,8 @@ export default {
           }
         }
       })
+      // console.log(cellCtrl)
+      // debugger
       return realtimeValue
     },
     getIndex (type = 'all') {

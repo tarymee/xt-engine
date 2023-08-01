@@ -125,7 +125,7 @@ export default {
               ]
             },
             {
-              "type": "text",
+              "type": "textinput",
               "title": "产品编码",
               "name": "productcode",
               "width": "150",
