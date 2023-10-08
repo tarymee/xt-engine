@@ -5,6 +5,7 @@
     :style="[viewStyle]"
   >
     <iframe v-if="value" frameborder="0" :src="value" @load="onload" />
+    <xt-widget-none v-else />
   </div>
 </template>
 <script>
@@ -13,6 +14,9 @@ import { get } from 'lodash-es'
 
 export default {
   name: 'xt-webview',
+  components: {
+    'xt-widget-none': () => import('../../widget/none')
+  },
   mixins: [baseMixin],
   data () {
     return {
@@ -51,6 +55,10 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 .xt-webview iframe {
   overflow: hidden;

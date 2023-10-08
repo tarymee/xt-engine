@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
 import { xtEngine } from '@smart100/web-engine'
+import store from './store'
+import VueRouter from 'vue-router'
+import router from './router'
 import Resource from 'vue-resource'
 import ElementUI from 'element-ui'
 
@@ -12,13 +13,12 @@ import './assets/css/style.css'
 
 Vue.config.productionTip = false
 
+Vue.use(VueRouter)
 Vue.use(Resource)
 Vue.use(ElementUI)
 
-
 // console.warn(xtEngine)
 xtEngine.provideFlycode('xxx', 'ssss')
-
 
 new Vue({
   router,

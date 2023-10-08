@@ -30,7 +30,7 @@ export default {
               "type": "webview",
               "title": "webview",
               "name": "webview",
-              "value": "http://172.16.72.91:8080/#/?protocol=table",
+              "value": "",
               "eventlist": [
                 {
                   "trigger": "onload",

@@ -264,25 +264,33 @@ export default {
       //   debugger
       // }
       for (const event of this.eventlist) {
-        if (event.trigger === triggerType && event.handler) {
-          // console.log(triggerType)
-          // console.log(this)
-          // debugger
-          // console.log(`${this.type}【${this.title || this.name || this.code}】执行 ${triggerType}`)
-          if (!this.notInEngine) {
-            this.engine.eventManager.runEvent(event.handler, {
-              eventTarget: this,
-              ...option
+        if (event.trigger === triggerType) {
+          if (event.handler) {
+            // console.log(triggerType)
+            // console.log(this)
+            // debugger
+            // console.log(`${this.type}【${this.title || this.name || this.code}】执行 ${triggerType}`)
+            if (!this.notInEngine) {
+              this.engine.eventManager.runEvent(event.handler, {
+                eventTarget: this,
+                ...option
+              })
+            } else {
+              // 兼容作为普通组件被引用时触发事件
+              // this.$emit(triggerType)
+              this.$parent[event.handler]({
+                eventTarget: this,
+                ...option
+              })
+            }
+            break
+          } else if (event.script) {
+            // debugger
+            this.executeFlycode(`fly: ${event.script}`, {
+              eventTarget: this
             })
-          } else {
-            // 兼容作为普通组件被引用时触发事件
-            // this.$emit(triggerType)
-            this.$parent[event.handler]({
-              eventTarget: this,
-              ...option
-            })
+            break
           }
-          break
         }
       }
     },

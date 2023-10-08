@@ -1,17 +1,12 @@
-import Vue from 'vue'
 import VueRouter from 'vue-router'
-
-Vue.use(VueRouter)
+import engineDemoRoutes from '@smart100/web-engine/src/demo/router'
 
 const routes = [
   {
-    path: '/',
-    component: () => import('@smart100/web-engine/src/demo/index.vue')
-  },
-  {
     path: '/ide',
     component: () => import('@smart100/web-ide')
-  }
+  },
+  ...engineDemoRoutes
 ]
 
 const router = new VueRouter({
