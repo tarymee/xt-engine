@@ -10,20 +10,6 @@
 
 <script>
 import components from '../components/index.js'
-
-import test from './test.js'
-
-import layout from './layout.js'
-import form from './form.js'
-import table from './table.js'
-import radio from './radio.js'
-import list from './list.js'
-import attachment from './attachment.js'
-import tabboard from './tabboard.js'
-import foreach from './foreach.js'
-import webview from './webview.js'
-import eventflycode from './eventflycode.js'
-
 export default {
   components: {
     'xt-page': components.page
@@ -56,34 +42,20 @@ export default {
     this.dealProtocol()
   },
   methods: {
-    dealProtocol () {
+    async dealProtocol () {
+      // const loadModuleFun = () => import('./eventflycode.js')
+      // const moduleRes = await loadModuleFun()
+      // console.log(loadModuleFun)
+      // console.log(moduleRes)
+      // console.log(moduleRes.default)
+      // debugger
       const key = this.$route.query.protocol
       this.protocol = null
-      setTimeout(() => {
-        if (key === 'table') {
-          this.protocol = table
-        } else if (key === 'radio') {
-          this.protocol = radio
-        } else if (key === 'list') {
-          this.protocol = list
-        } else if (key === 'attachment') {
-          this.protocol = attachment
-        } else if (key === 'tabboard') {
-          this.protocol = tabboard
-        } else if (key === 'foreach') {
-          this.protocol = foreach
-        } else if (key === 'layout') {
-          this.protocol = layout
-        } else if (key === 'form') {
-          this.protocol = form
-        } else if (key === 'webview') {
-          this.protocol = webview
-        } else if (key === 'eventflycode') {
-          this.protocol = eventflycode
-        } else if (key === 'test') {
-          this.protocol = test
-        }
-      }, 0)
+      if (key) {
+        import(`./${key}.js`).then((res) => {
+          this.protocol = res.default
+        })
+      }
     },
     jump (item) {
       // console.log(item)
