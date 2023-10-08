@@ -1,7 +1,7 @@
 
 # done
-+ filter 支持显示查询按钮 done
-+ 参考 photo 优化 attchment done
++ filter 支持显示查询按钮
++ 参考 photo 优化 attchment
 + scoped 样式 或者额外 class
 + 接入图片
 + xt-for 控件
