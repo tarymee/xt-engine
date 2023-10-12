@@ -38,7 +38,7 @@ export default {
                 "eventlist": []
               },
               {
-                "type": "filtertextinput",
+                "type": "textinput",
                 "title": "查询-企业编码",
                 "name": "查询-企业编码",
                 "placeholder": "企业编码",
@@ -50,7 +50,7 @@ export default {
           "eventlist": [
             {
               "trigger": "onvaluechange",
-              "handler": "1402930156032626778"
+              "handler": ""
             }
           ]
         },
@@ -69,7 +69,14 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-get"
+                  "script": `
+                    const value = page.getCtrl('列表').value
+                    const checkedValue = page.getCtrl('列表').checkedValue
+                    const focusedValue = page.getCtrl('列表').focusedValue
+                    console.log('all', value)
+                    console.log('checkedValue', checkedValue)
+                    console.log('focusedValue', focusedValue)
+                  `
                 }
               ],
               "style": {
@@ -78,12 +85,76 @@ export default {
             },
             {
               "type": "button",
-              "value": "赋值",
+              "value": "勾选",
               "displaytype": "primary",
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-set"
+                  "script": `
+                    page.getCtrl('列表').setCheck(true, 0)
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "删除勾选",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    page.getCtrl('列表').deleteInScope('checked')
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "更改第一项",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    const firstRow = page.getCtrl('列表').row[0]
+                    // const firstRow = page.getCtrl('列表').getRow(0)
+                    console.log(firstRow)
+                    firstRow.getCtrl('productname').value = 'xxxx'
+                    firstRow.getCtrl('unit').value = ''
+                    firstRow.getCtrl('unit').options = [
+                      {
+                        key: 'xx',
+                        text: 'xx'
+                      }
+                    ]
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "全局校验",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    const result = page.validata()
+                    console.log(result)
+                    if (!result) {
+                      throw Error('validata')
+                    }
+                  `
                 }
               ],
               "style": {
@@ -195,7 +266,14 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-update"
+                  "script": `
+                    page.getCtrl('列表').append({
+                      productname: '果粒橙',
+                      productcode: '003',
+                      status: '1',
+                      unit: 'bottle'
+                    })
+                  `
                 }
               ]
             }
@@ -207,7 +285,10 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-edit"
+                  "script": `
+                    const focusedValue = page.getCtrl('列表').focusedValue
+                    console.log('focusedValue', focusedValue)
+                  `
                 }
               ]
             },
@@ -216,25 +297,7 @@ export default {
             //   "eventlist": [
             //     {
             //       "trigger": "onclicked",
-            //       "handler": "handle-edit"
-            //     }
-            //   ]
-            // },
-            // {
-            //   "text": "启用",
-            //   "eventlist": [
-            //     {
-            //       "trigger": "onclicked",
-            //       "handler": "handle-edit"
-            //     }
-            //   ]
-            // },
-            // {
-            //   "text": "停用",
-            //   "eventlist": [
-            //     {
-            //       "trigger": "onclicked",
-            //       "handler": "handle-edit"
+            //       "script": ``
             //     }
             //   ]
             // }
@@ -242,11 +305,37 @@ export default {
           "eventlist": [
             {
               "trigger": "onload",
-              "handler": "handle-onload"
+              "script": `
+                page.getCtrl('列表').value = [
+                  {
+                    name: '',
+                    des: '',
+                    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                  },
+                  {
+                    name: '电子协议SPU电子协议SPU电子协议SPU电子协议SPU电子协议SPU',
+                    des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                    img: 'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
+                  },
+                  {
+                    name: '电子协议SPU',
+                    // des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                    img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
+                  },
+                  {
+                    name: '电子协议SPU',
+                    des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                    img: ''
+                  }
+                ]
+              `
             },
             {
               "trigger": "onchecked",
-              "handler": "handle-onchecked"
+              "handler": `
+                const checkedValue = page.getCtrl('列表').checkedValue
+                console.log('checkedValue', checkedValue)
+              `
             }
           ]
         }
@@ -256,246 +345,8 @@ export default {
     "subviews": []
   },
   "presenter": {
-    "initial": [
-      {
-        "code": "1454645626748",
-        "title": "初始化",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-
-            `
-          }
-        ]
-      }
-    ],
+    "initial": [],
     "interface": [],
-    "handlers": [
-      {
-        "code": "handle-get",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              debugger
-              const value = page.getCtrl('列表').value
-              const checkedValue = page.getCtrl('列表').checkedValue
-              console.log('all', value)
-              console.log('checked', checkedValue)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-onload",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              // return false
-              page.getCtrl('列表').value = [
-                {
-                  name: '',
-                  des: '',
-                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                },
-                {
-                  name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                  img: 'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
-                },
-                {
-                  name: '电子协议SPU',
-                  // des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                  img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
-                },
-                {
-                  name: '电子协议SPU',
-                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                  img: ''
-                },
-                // {
-                //   name: '电子协议SPU',
-                //   des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                //   img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
-                // },
-                // {
-                //   name: '电子协议SPU',
-                //   des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                // },
-                // {
-                //   name: '电子协议SPU',
-                //   des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                // },
-                // {
-                //   name: '电子协议SPU',
-                //   des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                // },
-                // {
-                //   name: '电子协议SPU',
-                //   des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                // },
-                // {
-                //   name: '电子协议SPU',
-                //   des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                // },
-                // {
-                //   name: '电子协议SPU',
-                //   des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                // },
-                // {
-                //   name: '电子协议SPU',
-                //   des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                // },
-                // {
-                //   name: '电子协议SPU',
-                //   des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                // }
-              ]
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-new",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('列表').append({
-                productname: '果粒橙',
-                productcode: '003',
-                status: '1',
-                unit: 'bottle'
-              })
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-update",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('列表').update({
-                productname: '娃哈哈',
-                productcode: '004',
-                status: '0',
-                unit: 'box'
-              }, 0)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-setCheck",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('列表').setCheck(true, 0)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-del",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('列表').deleteInScope('checked')
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-print",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const checkedValue = page.getCtrl('列表').checkedValue
-              console.log(checkedValue)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-getRow",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const firstRow = page.getCtrl('列表').row[0]
-              // const firstRow = page.getCtrl('列表').getRow(0)
-              console.log(firstRow)
-              firstRow.getCtrl('productname').value = 'xxxx'
-              firstRow.getCtrl('unit').value = ''
-              firstRow.getCtrl('unit').options = [
-                {
-                  key: 'xx',
-                  text: 'xx'
-                }
-              ]
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-validata",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const result = page.validata()
-              console.log(result)
-              if (!result) {
-                throw Error('validata')
-              }
-            `
-          }
-        ]
-      }
-    ]
+    "handlers": []
   }
 }
