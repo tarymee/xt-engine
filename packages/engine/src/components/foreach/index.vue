@@ -37,11 +37,13 @@ export default {
       // debugger
       if (scope === 'focused') {
         result = realtimeValue.find((item) => item.__$$focused)
+      } else if (scope === 'checked') {
+        throw Error('foreach 控件不支持勾选操作 因此没有 checked 相关方法')
+        // result = []
       } else {
         result = realtimeValue
       }
       result = this.delInsidePropery(result)
-      // console.log(result)
       return result
     },
     setValue (data, setter) {
@@ -130,6 +132,9 @@ export default {
       if (type === 'focused') {
         result = realtimeValue.find((item) => item.__$$focused)
         return result ? result.__$$index : null
+      } else if (type === 'checked') {
+        throw Error('foreach 控件不支持勾选操作 因此没有 checked 相关方法')
+        // return []
       } else {
         result = realtimeValue
         return result.map((item) => item.__$$index)
@@ -179,6 +184,31 @@ export default {
       // console.log(this.value)
       this.$forceUpdate()
     },
+    getAllRowsCtrlMap () {
+      const refsArr = this.$refs
+      const cellCtrl = []
+      for (const x in refsArr) {
+        // console.log(x)
+        const arr = x.split('__$$__')
+        const name = arr[0]
+        const index = Number(arr[1])
+        // const type = arr[2]
+        if (!cellCtrl[index]) {
+          cellCtrl[index] = {}
+        }
+        cellCtrl[index][name] = refsArr[x]
+      }
+      // console.log(refsArr)
+      // console.log(cellCtrl)
+      // debugger
+      return cellCtrl
+    },
+    getRowsCtrlMap (indexes = []) {
+      const allRowsCtrlMap = this.getAllRowsCtrlMap()
+      return indexes.map((index) => {
+        return allRowsCtrlMap[index]
+      })
+    },
   },
   render: function (h) {
     const rows = get(this.viewRule, 'rows', {})
@@ -214,7 +244,10 @@ export default {
             },
             [
               (item.__$$viewRule.content || []).map((item2, i) => {
-                return renderComponent(h, item2)
+                return renderComponent(h, item2, {
+                  // 分隔符搞特殊一点免得与用户定义的name冲突
+                  ref: `${item2.name || item2.code}__$$__${index}__$$__${item2.type}`
+                })
               })
             ]
           )

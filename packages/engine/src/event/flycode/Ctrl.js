@@ -185,12 +185,12 @@ class ArrayCtrl extends Ctrl {
     if (Array.isArray(index)) {
       const maps = this.instance.getRowsCtrlMap(index)
       // console.log(maps)
-      return maps.map((item, i) => {
-        return new Tablerow(item, index[i])
+      return maps.map((itemCtrlMap, i) => {
+        return new ArrayRowCtrl(itemCtrlMap, index[i])
       })
     } else if (typeof index === 'number') {
       const map = this.instance.getRowsCtrlMap([index])[0]
-      return map ? new Tablerow(map, index) : null
+      return map ? new ArrayRowCtrl(map, index) : null
     } else {
       console.error('传入 index 类型错误')
       return null
@@ -199,7 +199,7 @@ class ArrayCtrl extends Ctrl {
 
   getColByName (name) {
     const curCol = this.instance.columns.find((item) => item.name === name)
-    return curCol ? new Tablecol(this.instance, name) : null
+    return curCol ? new TableColCtrl(this.instance, name) : null
   }
 
   getOperationCtrl (name) {
@@ -207,6 +207,7 @@ class ArrayCtrl extends Ctrl {
       console.error(`请传入操作按钮 name 值`)
       return null
     }
+    if (!this.instance.getOperationCtrl) throw Error('暂不支持该方法')
     const operationInstance = this.instance.getOperationCtrl(name)
     if (!operationInstance) {
       console.error(`找不到 name 为【${name}】的操作按钮控件实例，请检查`)
@@ -220,6 +221,7 @@ class ArrayCtrl extends Ctrl {
       console.error(`请传入行操作按钮 name 值`)
       return null
     }
+    if (!this.instance.getRowoperationCtrl) throw Error('暂不支持该方法')
     const rowoperationInstance = this.instance.getRowoperationCtrl(name)
     if (!rowoperationInstance) {
       console.error(`找不到 operation name 为【${name}】的控件实例，请检查`)
@@ -235,12 +237,12 @@ class ArrayCtrl extends Ctrl {
 }
 
 
-class Tablerow {
-  rowsCtrlMap
+class ArrayRowCtrl {
+  instanceMap
   index
 
-  constructor (rowsCtrlMap, index) {
-    this.rowsCtrlMap = rowsCtrlMap
+  constructor (instanceMap, index) {
+    this.instanceMap = instanceMap
     this.index = index
   }
 
@@ -254,7 +256,7 @@ class Tablerow {
       console.error(`${tipPrefix} 请传入控件 name 值`)
       return
     }
-    const instance = this.rowsCtrlMap[name]
+    const instance = this.instanceMap[name]
     if (!instance) {
       console.error(`${tipPrefix} 找不到 name 为【${name}】的控件实例，请检查`)
       return
@@ -263,7 +265,7 @@ class Tablerow {
   }
 }
 
-class Tablecol {
+class TableColCtrl {
   instance
   name
 

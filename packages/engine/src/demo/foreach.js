@@ -121,6 +121,31 @@ export default {
             },
             {
               "type": "button",
+              "value": "getRowByIndex",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    const firstRow = page.getCtrl('循环控件').getRowByIndex(0)
+                    console.log(firstRow)
+                    firstRow.getCtrl('buttonname').setProp('value', 'ssss')
+                    firstRow.getCtrl('buttonname').setProp('size', 'mini')
+
+                    const allRow = page.getCtrl('循环控件').row
+                    console.log(allRow)
+                    allRow.forEach((item) => {
+                      item.getCtrl('buttonname').setProp('value', 'ssss')
+                    })
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
               "value": "validata",
               "displaytype": "primary",
               "eventlist": [
@@ -205,6 +230,13 @@ export default {
                   "margin-top": "8px",
                   "margin-bottom": "4px"
                 },
+                "eventlist": []
+              },
+              {
+                "type": "text",
+                "title": "其他",
+                "name": "",
+                "value": "其他描述无name",
                 "eventlist": []
               }
             ]

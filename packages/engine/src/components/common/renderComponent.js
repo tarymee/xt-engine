@@ -7,6 +7,12 @@ const renderComponent = function (h, viewRule, other = {}) {
       // key: viewRule.code,
       viewRule
     },
+    // style: {
+    //   background: `red`
+    // },
+    // attrs: {
+    //   id: `xxxx`
+    // },
     ...other
   })
 }
