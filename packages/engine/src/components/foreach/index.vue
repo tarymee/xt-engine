@@ -50,20 +50,24 @@ export default {
       this.value = []
       // todo 不要延时 100 添加key试试
       setTimeout(() => {
-        this.value = cloneDeep(data.map((item, i) => {
-          const rows = cloneDeep(get(this.viewRule, 'rows', {}))
-          this.createValueViewRule(rows, item)
-          return {
-            __$$index: i,
-            __$$uuid: uuidv4(),
-            __$$focused: false,
-            __$$viewRule: rows,
-            ...item
-          }
-        }))
+        this.value = this.createValue(data)
         // console.log(this.value)
         // this.executeEvent('onchecked')
       }, 100)
+    },
+    createValue (data) {
+      return cloneDeep(data.map((item, i) => {
+        const rows = cloneDeep(this.viewRule?.rows || {})
+        // debugger
+        this.createValueViewRule(rows, item)
+        return {
+          __$$index: i,
+          __$$uuid: uuidv4(),
+          __$$focused: false,
+          __$$viewRule: rows,
+          ...item
+        }
+      }))
     },
     // 删除内部属性
     delInsidePropery (data) {
@@ -71,7 +75,7 @@ export default {
         data.forEach((item) => {
           item = this.delInsidePropery(item)
         })
-      } else if (Object.prototype.toString.call(data) === '[object Object]') {
+      } else if (this.isObject(data)) {
         for (const x in data) {
           if (x.indexOf('__$$') === 0) {
             delete data[x]
@@ -80,23 +84,31 @@ export default {
       }
       return data
     },
+    isObject (data) {
+      return Object.prototype.toString.call(data) === '[object Object]'
+    },
     createValueViewRule (ctrlViewRule, value) {
       if (ctrlViewRule.name && value[ctrlViewRule.name] !== undefined) {
         ctrlViewRule.value = value[ctrlViewRule.name]
+        const itemViewRule = value[`__$$${ctrlViewRule.name}`]
+        if (itemViewRule && this.isObject(itemViewRule)) {
+          for (const x in itemViewRule) {
+            ctrlViewRule[x] = itemViewRule[x]
+          }
+        }
       }
       for (const x in ctrlViewRule) {
         let item = ctrlViewRule[x]
-        if (Object.prototype.toString.call(item) === '[object Object]' && item.type) {
+        if (this.isObject(item) && item.type) {
           this.createValueViewRule(item, value)
         } else if (Array.isArray(item)) {
           item.forEach((item2) => {
-            if (Object.prototype.toString.call(item2) === '[object Object]' && item2.type) {
+            if (this.isObject(item2) && item2.type) {
               this.createValueViewRule(item2, value)
             }
           })
         }
       }
-      return ctrlViewRule
     },
     // 如果有输入型控件 那么 this.value 则非实时数据 这里取实时数据
     getRealtimeValue () {
@@ -123,6 +135,50 @@ export default {
         return result.map((item) => item.__$$index)
       }
     },
+    // 针对数组进行插入 删除等操作后 对内部 __$$index 属性重新排序
+    sortValue () {
+      this.value.forEach((item, i) => {
+        item.__$$index = i
+      })
+    },
+    deleteInScope (scope = 'all') {
+      if (scope === 'focused') {
+        const index = this.value.findIndex((item) => item.__$$focused)
+        if (index !== -1) {
+          this.value.splice(index, 1)
+          this.sortValue()
+        }
+      } else {
+        this.value = []
+      }
+    },
+    // type = head | tail
+    append (data, type = 'tail') {
+      if (!data || !data.length) return
+      const appendData = this.createValue(data)
+      if (type === 'head') {
+        appendData.reverse().forEach((item) => {
+          this.value.unshift(item)
+        })
+      } else {
+        appendData.forEach((item) => {
+          this.value.push(item)
+        })
+      }
+      this.sortValue()
+      // console.log(this.value)
+    },
+    update (data = [], index = []) {
+      // debugger
+      if (!data || !data.length) return
+      const updateValue = this.createValue(data)
+      index.forEach((item, i) => {
+        this.value[item] = updateValue[i]
+      })
+      this.sortValue()
+      // console.log(this.value)
+      this.$forceUpdate()
+    },
   },
   render: function (h) {
     const rows = get(this.viewRule, 'rows', {})
@@ -135,7 +191,7 @@ export default {
         style: this.viewStyle,
       },
       [
-        this.value.map((item) => {
+        this.value.map((item, index) => {
           return h(
             'div',
             {
@@ -153,7 +209,8 @@ export default {
                   }, 500)
                   this.handleClick()
                 }
-              }
+              },
+              key: item.__$$uuid
             },
             [
               (item.__$$viewRule.content || []).map((item2, i) => {

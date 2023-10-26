@@ -25,26 +25,7 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "script": `
-                    page.getCtrl('循环控件').value = [
-                      {
-                        name: 'name1',
-                        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                      },
-                      {
-                        name: 'name2',
-                        img: 'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
-                      },
-                      {
-                        name: 'name3',
-                        img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
-                      },
-                      {
-                        name: 'name4',
-                        img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
-                      }
-                    ]
-                  `
+                  "code": 'handle-setvalue'
                 }
               ],
               "style": {
@@ -61,9 +42,26 @@ export default {
                   "script": `
                     // debugger
                     const value = page.getCtrl('循环控件').value
-                    const checkedValue = page.getCtrl('循环控件').checkedValue
+                    const focusedValue = page.getCtrl('循环控件').focusedValue
                     console.log('all', value)
-                    console.log('checked', checkedValue)
+                    console.log('focused', focusedValue)
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "deleteInScope",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    // debugger
+                    page.getCtrl('循环控件').deleteInScope('all')
                   `
                 }
               ],
@@ -80,9 +78,40 @@ export default {
                   "trigger": "onclicked",
                   "script": `
                     page.getCtrl('循环控件').append({
+                      buttonname: 'buttonname5',
                       name: 'name5',
                       img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
                     })
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "update",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    page.getCtrl('循环控件').update(
+                      [
+                        {
+                          buttonname: 'buttonname5',
+                          name: 'name5',
+                          img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
+                        },
+                        {
+                          buttonname: 'buttonname5',
+                          name: 'name5',
+                          img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
+                        }
+                      ],
+                      [0, 2]
+                    )
                   `
                 }
               ],
@@ -131,9 +160,28 @@ export default {
               {
                 "type": "button",
                 "value": "按钮",
-                "name": "",
+                "name": "buttonname",
                 "style": {},
-                "eventlist": []
+                "eventlist": [
+                  {
+                    "trigger": "onclicked",
+                    "script": `
+                      console.log(eventTarget)
+                      // debugger
+                      const value = page.getCtrl('循环控件').value
+                      const focusedValue = page.getCtrl('循环控件').focusedValue
+                      const index = page.getCtrl('循环控件').index
+                      const focusedIndex = page.getCtrl('循环控件').focusedIndex
+                      console.log('all', value)
+                      console.log('focused', focusedValue)
+                      console.log('index', index)
+                      console.log('focusedIndex', focusedIndex)
+
+
+                      // page.getCtrl('循环控件').deleteInScope('focused')
+                    `
+                  }
+                ]
               },
               {
                 "type": "image",
@@ -164,7 +212,7 @@ export default {
           "eventlist": [
             {
               "trigger": "onload",
-              "handler": "handle-onload"
+              "handler": "handle-setvalue"
             }
           ]
         }
@@ -176,6 +224,48 @@ export default {
   "presenter": {
     "initial": [],
     "interface": [],
-    "handlers": []
+    "handlers": [
+      {
+        "code": "handle-setvalue",
+        "title": "",
+        "name": "",
+        "actions": [
+          {
+            "type": "flycode",
+            "title": "flycode",
+            "script": `
+              page.getCtrl('循环控件').value = [
+                {
+                  buttonname: 'buttonname1',
+                  name: 'name1',
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+                  // 支持设置某个控件的其他属性
+                  __$$buttonname: {
+                    round: '1',
+                    title: 'xxxx',
+                    size: 'big'
+                  }
+                },
+                {
+                  buttonname: 'buttonname2',
+                  name: 'name2',
+                  img: 'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
+                },
+                {
+                  buttonname: 'buttonname3',
+                  name: 'name3',
+                  img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
+                },
+                {
+                  buttonname: 'buttonname4',
+                  name: 'name4',
+                  img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
+                }
+              ]
+            `
+          }
+        ]
+      }
+    ]
   }
 }
