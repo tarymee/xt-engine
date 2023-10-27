@@ -50,7 +50,6 @@ export default {
       // todo 这里用js滚动到顶部
       // if (setter) {}
       this.value = []
-      // todo 不要延时 100 添加key试试
       setTimeout(() => {
         this.value = this.createValue(data)
         // console.log(this.value)
@@ -115,14 +114,17 @@ export default {
     // 如果有输入型控件 那么 this.value 则非实时数据 这里取实时数据
     getRealtimeValue () {
       const realtimeValue = cloneDeep(this.value)
-      // const cellCtrl = this.getAllRowsCtrlMap()
-      // cellCtrl.forEach((rowsInstance, i) => {
-      //   for (const x in rowsInstance) {
-      //     if (realtimeValue[i]) {
-      //       realtimeValue[i][x] = rowsInstance[x].getValue()
-      //     }
-      //   }
-      // })
+      const allRowsCtrlMap = this.getAllRowsCtrlMap()
+      allRowsCtrlMap.forEach((rowsInstance, i) => {
+        for (const x in rowsInstance) {
+          if (realtimeValue[i]) {
+            realtimeValue[i][x] = rowsInstance[x].getValue()
+          }
+        }
+      })
+      // console.log(realtimeValue)
+      // console.log(allRowsCtrlMap)
+      // debugger
       return realtimeValue
     },
     getIndex (type = 'all') {
@@ -153,6 +155,9 @@ export default {
           this.value.splice(index, 1)
           this.sortValue()
         }
+      } else if (scope === 'checked') {
+        throw Error('foreach 控件不支持勾选操作 因此没有 checked 相关方法')
+        // return []
       } else {
         this.value = []
       }
@@ -196,7 +201,9 @@ export default {
         if (!cellCtrl[index]) {
           cellCtrl[index] = {}
         }
-        cellCtrl[index][name] = refsArr[x]
+        if (name) {
+          cellCtrl[index][name] = refsArr[x]
+        }
       }
       // console.log(refsArr)
       // console.log(cellCtrl)
@@ -246,7 +253,8 @@ export default {
               (item.__$$viewRule.content || []).map((item2, i) => {
                 return renderComponent(h, item2, {
                   // 分隔符搞特殊一点免得与用户定义的name冲突
-                  ref: `${item2.name || item2.code}__$$__${index}__$$__${item2.type}`
+                  // ref: `${item2.name || item2.code}__$$__${index}__$$__${item2.type}`
+                  ref: `${item2.name || ''}__$$__${index}__$$__${item2.type}`
                 })
               })
             ]

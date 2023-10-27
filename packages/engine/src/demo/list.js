@@ -101,13 +101,13 @@ export default {
             },
             {
               "type": "button",
-              "value": "删除勾选",
+              "value": "deleteInScope",
               "displaytype": "primary",
               "eventlist": [
                 {
                   "trigger": "onclicked",
                   "script": `
-                    page.getCtrl('列表').deleteInScope('checked')
+                    page.getCtrl('列表').deleteInScope('all')
                   `
                 }
               ],
@@ -117,23 +117,71 @@ export default {
             },
             {
               "type": "button",
-              "value": "更改第一项",
+              "value": "append",
               "displaytype": "primary",
               "eventlist": [
                 {
                   "trigger": "onclicked",
                   "script": `
-                    const firstRow = page.getCtrl('列表').row[0]
-                    // const firstRow = page.getCtrl('列表').getRow(0)
+                    page.getCtrl('列表').append({
+                      name: '',
+                      des: '',
+                      number: '1',
+                      img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                    })
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "update",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    page.getCtrl('列表').update(
+                      [
+                        {
+                          name: 'zzz',
+                          des: 'zzzz',
+                          number: '111',
+                          img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                        },
+                        {}
+                      ],
+                      [0, 2]
+                    )
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "getRowByIndex",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    const firstRow = page.getCtrl('列表').getRowByIndex(0)
                     console.log(firstRow)
-                    firstRow.getCtrl('productname').value = 'xxxx'
-                    firstRow.getCtrl('unit').value = ''
-                    firstRow.getCtrl('unit').options = [
-                      {
-                        key: 'xx',
-                        text: 'xx'
-                      }
-                    ]
+                    firstRow.getCtrl('name').setProp('value', 'ssss')
+                    firstRow.getCtrl('button').setProp('size', 'mini')
+                    firstRow.getCtrl('number').value = '888'
+
+                    const allRow = page.getCtrl('列表').row
+                    console.log(allRow)
+                    allRow.forEach((item) => {
+                      item.getCtrl('name').setProp('value', 'ssss')
+                    })
                   `
                 }
               ],
@@ -168,7 +216,7 @@ export default {
           "title": "列表",
           "name": "列表",
           "checkable": "1",
-          "pageable": "1",
+          "pageable": "0",
           "pagesize": "20",
           "flex": "1",
           "style": {
@@ -229,14 +277,28 @@ export default {
                 },
                 "eventlist": []
               },
-              // {
-              //   "type": "textinput",
-              //   "title": "数量",
-              //   "name": "number",
-              //   "value": "",
-              //   "style": {},
-              //   "eventlist": []
-              // }
+              {
+                "type": "textinput",
+                "title": "数量",
+                "name": "number",
+                "value": "",
+                "style": {},
+                "eventlist": []
+              },
+              {
+                "type": "button",
+                "value": "button",
+                "name": "button",
+                "displaytype": "primary",
+                "eventlist": [
+                  {
+                    "trigger": "onclicked",
+                    "script": `
+                      page.getCtrl('列表').deleteInScope('focused')
+                    `
+                  }
+                ]
+              },
             ]
           },
           "frontoperations": [
@@ -305,30 +367,7 @@ export default {
           "eventlist": [
             {
               "trigger": "onload",
-              "script": `
-                page.getCtrl('列表').value = [
-                  {
-                    name: '',
-                    des: '',
-                    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                  },
-                  {
-                    name: '电子协议SPU电子协议SPU电子协议SPU电子协议SPU电子协议SPU',
-                    des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                    img: 'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
-                  },
-                  {
-                    name: '电子协议SPU',
-                    // des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                    img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
-                  },
-                  {
-                    name: '电子协议SPU',
-                    des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
-                    img: ''
-                  }
-                ]
-              `
+              "handler": "handle-setvalue"
             },
             {
               "trigger": "onchecked",
@@ -347,6 +386,46 @@ export default {
   "presenter": {
     "initial": [],
     "interface": [],
-    "handlers": []
+    "handlers": [
+      {
+        "code": "handle-setvalue",
+        "title": "",
+        "name": "",
+        "actions": [
+          {
+            "type": "flycode",
+            "title": "flycode",
+            "script": `
+              page.getCtrl('列表').value = [
+                {
+                  name: '',
+                  des: '',
+                  number: '1',
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                },
+                {
+                  name: '电子协议SPU电子协议SPU电子协议SPU电子协议SPU电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  number: '',
+                  img: 'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
+                },
+                {
+                  name: '电子协议SPU',
+                  // des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  number: '',
+                  img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
+                },
+                {
+                  name: '电子协议SPU',
+                  des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
+                  number: '1',
+                  img: ''
+                }
+              ]
+            `
+          }
+        ]
+      }
+    ]
   }
 }

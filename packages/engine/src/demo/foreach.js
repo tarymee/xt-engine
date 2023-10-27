@@ -136,6 +136,7 @@ export default {
                     console.log(allRow)
                     allRow.forEach((item) => {
                       item.getCtrl('buttonname').setProp('value', 'ssss')
+                      item.getCtrl('name').value = 'sss'
                     })
                   `
                 }
@@ -220,16 +221,10 @@ export default {
                 "eventlist": []
               },
               {
-                "type": "text",
+                "type": "textinput",
                 "title": "名称",
                 "name": "name",
                 "value": "名称",
-                "style": {
-                  "fontWeight": "bold",
-                  "fontSize": "16px",
-                  "margin-top": "8px",
-                  "margin-bottom": "4px"
-                },
                 "eventlist": []
               },
               {

@@ -235,8 +235,6 @@ class ArrayCtrl extends Ctrl {
     this.instance.setCheck(value, index)
   }
 }
-
-
 class ArrayRowCtrl {
   instanceMap
   index
@@ -264,7 +262,6 @@ class ArrayRowCtrl {
     return new Ctrl(instance)
   }
 }
-
 class TableColCtrl {
   instance
   name
