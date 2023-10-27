@@ -134,9 +134,12 @@ export default {
       return Object.prototype.toString.call(data) === '[object Object]'
     },
     createValueViewRule (ctrlViewRule, value) {
-      if (ctrlViewRule.name && value[ctrlViewRule.name] !== undefined) {
-        ctrlViewRule.value = value[ctrlViewRule.name]
-        const itemViewRule = value[`__$$${ctrlViewRule.name}`]
+      const itemName = value[ctrlViewRule.name]
+      const itemViewRule = value[`__$$${ctrlViewRule.name}`]
+      if (ctrlViewRule.name && (itemName !== undefined || (itemViewRule && this.isObject(itemViewRule)))) {
+        if (itemName !== undefined) {
+          ctrlViewRule.value = itemName
+        }
         if (itemViewRule && this.isObject(itemViewRule)) {
           for (const x in itemViewRule) {
             ctrlViewRule[x] = itemViewRule[x]

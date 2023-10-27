@@ -348,6 +348,9 @@ export default {
       return res
     },
     setCheck (value, index) {
+      if (!this.checkable) {
+        console.error('该控件暂不支持勾选操作，请检查 checkable 属性值。')
+      }
       // debugger
       setTimeout(() => {
         // console.log(this.value)

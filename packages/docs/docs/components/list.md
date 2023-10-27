@@ -22,35 +22,37 @@
       "content": []
     }
   ],
-  "operations": [],
+  // "operations": [],
   "rowoperations": [],
   "eventlist": []
 }
 ```
 
-### pageable
-是否支持分页，默认值为 `0`
+## pageable
++ 类型： boolean | "1" | "0"
++ 默认： "0"
 
-| 值 | 说明 |
-| ---- | ---- |
-| 1 | 支持分页 |
-| 0 | 不支持分页 |
+是否支持分页。
 
-### pagesize
-如果支持分页，定义每页条数，默认值为 `20`
+## pagesize
++ 类型： string
++ 默认： "20"
 
-### checkable
-是否支持勾选，默认值为 `0`
+如果支持分页，定义每页条数
 
-| 值 | 说明 |
-| ---- | ---- |
-| 1 | 支持勾选 |
-| 0 | 不支持勾选 |
+## checkable
++ 类型： boolean | "1" | "0"
++ 默认： "0"
 
-### rows
+是否支持勾选。
+
+## rows
++ 类型： ILayoutViewRule
++ 默认： {}
+
 接收一个 layout 结构的控件协议对象，基于控件值多次渲染的控件模板块。
 
-例子：
+DEMO：
 ```json
 {
   "rows": {
@@ -102,30 +104,45 @@
 }
 ```
 
-### rowswidth
-定义循环渲染块的宽度，接收CSS单位值，如 `px` `%` `vw` `vh` 等等，默认值为 `100%`
+## rowswidth
++ 类型： string
++ 默认： "100%"
 
-### rowsstyle
+定义循环渲染块的宽度，接收CSS单位值，如 `px` `%` `vw` `vh` 等等。
+
+## rowsstyle
++ 类型： "card" | ""
++ 默认： ""
+
 定义循环渲染块的样式，默认值为空。
 
 | 值 | 说明 |
 | ---- | ---- |
-| 空 | 无样式 可通过 rows.style 结构自行定义样式 |
+| "" | 无样式 |
 | card | 展示为卡片样式 |
 | ... | 更多样式待开发 |
 
-### frontoperations
-定义顶部操作按钮，类型为数组，接受控件协议对象。
+## frontoperations
++ 类型： ILayoutViewRule[]
++ 默认： []
 
-### operations
-定义顶部操作按钮，类型为数组，接受控件协议对象。
+定义列表前置控件，类型为数组，接受控件协议对象。
+
+## operations
++ 类型： ILayoutViewRule[]
++ 默认： []
+
+定义列表后置控件，类型为数组，接受控件协议对象。
 
 待开发。
 
-### rowoperations
+## rowoperations
++ 类型： IButtonViewRule[]
++ 默认： []
+
 定义行操作按钮，类型为数组，接受按钮控件协议对象。
 
-例子：
+DEMO：
 ```json
 {
   "rowoperations": [
@@ -142,32 +159,19 @@
 }
 ```
 
-### eventlist
-事件，接受事件协议对象。
+## eventlist.trigger
++ 类型： string
++ 默认： ""
+
+
+
 
 | 值 | 说明 |
 | ---- | ---- |
-| onchecked | table 勾选时触发 |
 | onload | table 加载时触发 |
-
-```json
-{
-  "eventlist": [
-    {
-      "trigger": "onchecked",
-      "handler": ""
-    },
-    {
-      "trigger": "onload",
-      "handler": ""
-    }
-  ]
-}
-```
+| onchecked | table 勾选时触发 |
 
 ## flycode
-
-
 | flycode | 说明 |
 | ---- | ---- |
 | value | 取值赋值 |
@@ -189,21 +193,20 @@
 | getColByName() | 传入列名获取列控件 暂未实现 |
 
 
-### value
-对 table 控件进行取值、赋值。
+## value
++ 类型：
 
-类型定义：
 ```typescript
 interface RowValue {
   [propName: string]: any
 }
-
 get value (): RowValue[]
-
 set value (data: RowValue[]): void
 ```
 
-例子：
+对 table 控件进行取值、赋值。
+
+DEMO：
 ```js
 // 取值
 const value = page.getCtrl('列表').value
@@ -221,26 +224,18 @@ page.getCtrl('列表').value = [
 ```
 
 
-### focusedValue checkedValue
-获取控件特定值。
+## focusedValue checkedValue
 
-| 值 | 说明 |
-| ---- | ---- |
-| focusedValue | 获取焦点行的值 |
-| checkedValue | 获取勾选行的值 |
++ 类型：
 
-类型定义：
 ```typescript
-interface RowValue {
-  [propName: string]: any
-}
-
 get focusedValue (): RowValue | null
-
 get checkedValue (): RowValue[]
 ```
 
-例子：
+获取控件特定值。
+
+DEMO：
 ```js
 // 当点击某一行时触发事件 获取焦点行的值
 const focusedValue = page.getCtrl('列表').focusedValue
@@ -251,7 +246,15 @@ const checkedValue = page.getCtrl('列表').checkedValue
 console.log(checkedValue)
 ```
 
-### index focusedIndex checkedIndex
+## index focusedIndex checkedIndex
++ 类型：
+
+```typescript
+get index (): number[]
+get focusedIndex (): number | null
+get checkedIndex (): number[]
+```
+
 获取控件行序号。
 
 | 值 | 说明 |
@@ -260,16 +263,7 @@ console.log(checkedValue)
 | focusedIndex | 获取焦点行序号 |
 | checkedIndex | 获取勾选行序号 |
 
-类型定义：
-```typescript
-get index (): number[]
-
-get focusedIndex (): number | null
-
-get checkedIndex (): number[]
-```
-
-例子：
+DEMO：
 ```js
 // 获取所有行的序号
 const index = page.getCtrl('列表').index
@@ -284,36 +278,38 @@ const checkedIndex = page.getCtrl('列表').checkedIndex
 console.log(checkedIndex)
 ```
 
-### pageable
-获取是否设置分页。
+## pageable
++ 类型：
 
-类型定义：
 ```typescript
 get pageable (): boolean
 ```
 
-例子：
+获取是否设置分页。
+
+DEMO：
 ```js
 const pageable = page.getCtrl('列表').pageable
 console.log(pageable)
 ```
 
-### pageInfo
-在 table 定义支持分页的情况下，获取/设置分页信息。
+## pageInfo
++ 类型：
 
-类型定义：
 ```typescript
 interface PageInfo {
   __itemcount: number | string;
   __pageindex: number | string; // 第一页为 1 而不是 0
   __pagesize: number | string;
 }
-
 get pageInfo (): PageInfo
 set pageInfo (pageInfo: PageInfo): void
 ```
 
-例子：
+在 table 定义支持分页的情况下，获取/设置分页信息。
+
+
+DEMO：
 ```js
 // 获取当前分页信息
 const pageInfo = page.getCtrl('列表').pageInfo
@@ -327,30 +323,32 @@ page.getCtrl('列表').pageInfo = {
 }
 ```
 
-### setCheck()
-设置行勾选状态。
+## setCheck()
++ 类型：
 
-类型定义：
 ```typescript
 type setCheck = (value: boolean, index: number): void
 ```
 
-例子：
+设置行勾选状态。
+
+DEMO：
 ```js
 // 设置第一行为勾选状态
 page.getCtrl('列表').setCheck(true, 0)
 ```
 
 
-### deleteInScope()
-删除特定行。
+## deleteInScope()
++ 类型：
 
-类型定义：
 ```typescript
 type deleteInScope = (scope: 'all' | 'focused' | 'checked'): void
 ```
 
-例子：
+删除特定行。
+
+DEMO：
 ```js
 // 删除所有行
 page.getCtrl('列表').deleteInScope('all')
@@ -363,24 +361,21 @@ page.getCtrl('列表').deleteInScope('checked')
 ```
 
 
-### append()
-插入行数据。
+## append()
++ 类型：
 
-类型定义：
 ```typescript
-interface RowValue {
-  [propName: string]: any
-}
-
 type append = (data: RowValue | RowValue[], type: 'head' | 'tail'): void
 ```
 
-| type值 | 说明 |
+插入行数据。
+
+| type 值 | 说明 |
 | ---- | ---- |
 | head | 从行头插入数据 |
 | tail | 从行尾插入数据 |
 
-例子：
+DEMO：
 ```js
 // 从行头插入一条空数据
 page.getCtrl('列表').append([
@@ -402,19 +397,16 @@ page.getCtrl('列表').append([
 
 
 
-### update()
-更新行数据。
+## update()
++ 类型：
 
-类型定义：
 ```typescript
-interface RowValue {
-  [propName: string]: any
-}
-
 type update = (data: RowValue | RowValue[], index: number | number[]): void
 ```
 
-例子：
+更新行数据。
+
+DEMO：
 ```js
 // 同时更新第1行和第3行数据
 page.getCtrl('列表').update([
@@ -433,19 +425,9 @@ page.getCtrl('列表').update({
 ```
 
 
-### row focusedRow checkedRow getRow()
-获取行控件。
+## row focusedRow checkedRow getRow()
++ 类型：
 
-取得行控件后，可通过 getCtrl() 方法获取该行下某一单元格的控件实例，从而对单元格控件进行 flycode 操作。
-
-| 值 | 说明 |
-| ---- | ---- |
-| row | 获取所有行控件 |
-| focusedRow | 获取焦点行控件 |
-| checkedRow | 获取勾选行控件 |
-| getRow() | 传入行序号获取行控件 |
-
-类型定义：
 ```typescript
 interface Ctrl {
   get value (): any
@@ -465,15 +447,25 @@ interface Row {
 }
 
 get row (): Row[]
-
 get focusedRow (): Row | null
-
 get checkedRow (): Row[]
 
 type getRow = (index: number | number[]): Row | Row[] | null
 ```
 
-例子：
+获取行控件。
+
+取得行控件后，可通过 getCtrl() 方法获取该行下某一单元格的控件实例，从而对单元格控件进行 flycode 操作。
+
+| 值 | 说明 |
+| ---- | ---- |
+| row | 获取所有行控件 |
+| focusedRow | 获取焦点行控件 |
+| checkedRow | 获取勾选行控件 |
+| getRow() | 传入行序号获取行控件 |
+
+
+DEMO：
 ```js
 // 获取所有行控件
 const allRows = page.getCtrl('列表').row

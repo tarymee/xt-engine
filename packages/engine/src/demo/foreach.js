@@ -268,9 +268,7 @@ export default {
                   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
                   // 支持设置某个控件的其他属性
                   __$$buttonname: {
-                    round: '1',
-                    title: 'xxxx',
-                    size: 'big'
+                    title: 'xxsxx'
                   }
                 },
                 {

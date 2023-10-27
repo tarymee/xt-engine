@@ -18,38 +18,42 @@
 }
 ```
 
-## 协议属性
-| 属性名称 | 说明 | 取值类型 | 默认值 |
-| ---- | ---- | ---- | ---- |
-| displaytype | 控件展示方式 | enum | input |
-| maxlength | 最大输入字符数 | number | -- |
-| minrow | 最小行数 | number | 2 |
-| maxrow | 最大行数 | number | 6 |
-| eventlist.trigger | 事件钩子 | enum | -- |
+## value
++ 类型： string
++ 默认： ""
 
-### value
-控件初始值，显示文本框内文字，取值类型为 `字符串`。
+控件初始值，显示文本框内文字。
 
-### displaytype
-控件展示方式，默认值为 `input`。
+## displaytype
++ 类型： "input" | "textarea" | "password"
++ 默认： "input"
+
+控件展示方式。
 
 | 值 | 说明 |
 | ---- | ---- |
-| input | 常规，默认值，展示为单行文本输入框 |
+| input | 展示为单行文本输入框 |
 | textarea | 展示为多行文本输入框 |
 | password | 展示为密码框 |
 
-### maxlength
+## maxlength
++ 类型： string | number
++ 默认： ""
+
 控件允许输入的最大字符数，如果超过，则校验不通过。
 
-取值类型为 `number | 字符串数字`。
+## minrow/maxrow
++ 类型： string | number
++ 默认： ""
 
-### minrow/maxrow
 当 displaytype === textarea 时，定义多行文本框的最小和最大行数。
 
-取值类型为 `number | 字符串数字`。
+## eventlist.trigger
++ 类型： string
++ 默认： ""
 
-### eventlist.trigger
+
+
 | 值 | 说明 |
 | ---- | ---- |
 | onload | 加载时触发 |

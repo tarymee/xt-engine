@@ -2,7 +2,6 @@
 
 
 ## 协议
-
 ```json
 {
   "type": "select",
@@ -14,32 +13,33 @@
 }
 ```
 
-## 协议属性
-| 属性名称 | 说明 | 取值类型 | 默认值
-| ---- | ---- | ---- | ---- |
-| value | 控件初始值 | string | -- |
-| options | 控件数据源 | array | [] |
-| remotesearch | 是否支持远程搜索 | boolean | false |
-| eventlist.trigger | 事件钩子 | enum | -- |
+## value
++ 类型： string
++ 默认： ""
 
+控件初始值。
 
-### value
-控件初始值，取值类型为 `字符串`。
+## options
+控件数据源。
 
-### options
-控件数据源
+## remotesearch
++ 类型： boolean | "1" | "0"
++ 默认： "0"
 
-### remotesearch
 是否支持远程搜索。
 
-| 值 | 说明 | 是否默认值 |
-| ---- | ---- | ---- |
-| true | 支持远程搜索 | -- |
-| false | 不支持远程搜索 | 是 |
-| "1" | 支持远程搜索 | -- |
-| "0" | 不支持远程搜索 | 是 |
+## eventlist.trigger
++ 类型： string
++ 默认： ""
 
-例子：
+| 值 | 说明 |
+| ---- | ---- |
+| onload | 加载时触发 |
+| onvaluechange | 值改变时触发 |
+| onremotesearch | 远程搜索时触发 |
+
+
+## DEMO
 ```json
 {
   "view": {
@@ -93,10 +93,3 @@
   }
 }
 ```
-
-### eventlist.trigger
-| 值 | 说明 |
-| ---- | ---- |
-| onload | 加载时触发 |
-| onvaluechange | 值改变时触发 |
-| onremotesearch | 远程搜索时触发 |

@@ -1,8 +1,7 @@
 # radio 单选框
-在一组备选项中进行单选
+在一组备选项中进行单选。
 
 ## 协议
-
 ```json
 {
   "type": "radio",
@@ -25,29 +24,24 @@
 }
 ```
 
-## 协议属性
-| 属性名称 | 说明 | 取值类型 | 默认值 |
-| ---- | ---- | ---- | ---- |
-| value | 控件初始值 | any[] | [] |
-| displaytype | 选项值排列方式 | enum | auto |
-| options | 数据源选项 | object[] | [] |
-| eventlist.trigger | 事件钩子 | enum | -- |
+## value
++ 类型： string
++ 默认： ""
 
-### value
-控件初始值，取值类型为 `数组`。
+控件初始值。
 
-### displaytype
-选项值排列方式。
+## displaytype
+同 checkbox 控件。
 
-| 值 | 说明 | 是否默认值 |
-| ---- | ---- | ---- |
-| auto | 常规，选项值按顺序水平排列 | 是 |
-| number | 选项值以每行 n 项排列 | -- |
+## options
+同 checkbox 控件。
 
-### options
-控件数据源选项，接收对象数组。
+## eventlist.trigger
++ 类型： string
++ 默认： ""
 
-### eventlist.trigger
+
+
 | 值 | 说明 |
 | ---- | ---- |
 | onload | 加载时触发 |

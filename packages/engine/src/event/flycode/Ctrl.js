@@ -94,6 +94,9 @@ class ArrayCtrl extends Ctrl {
   }
 
   get checkedValue () {
+    if (!this.instance.checkable) {
+      console.error('该控件暂不支持勾选操作，请检查 checkable 属性值。')
+    }
     return this.instance.getValue({
       datatype: '1',
       ctrl: {
@@ -114,6 +117,9 @@ class ArrayCtrl extends Ctrl {
   }
 
   get checkedIndex () {
+    if (!this.instance.checkable) {
+      console.error('该控件暂不支持勾选操作，请检查 checkable 属性值。')
+    }
     if (!this.instance.getIndex) throw Error('暂不支持该方法')
     return this.instance.getIndex('checked')
   }
@@ -231,6 +237,9 @@ class ArrayCtrl extends Ctrl {
   }
 
   setCheck (value, index) {
+    if (!this.instance.checkable) {
+      console.error('该控件暂不支持勾选操作，请检查 checkable 属性值。')
+    }
     if (!this.instance.setCheck) throw Error('暂不支持该方法')
     this.instance.setCheck(value, index)
   }

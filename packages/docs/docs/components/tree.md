@@ -24,23 +24,11 @@
 }
 ```
 
-## 协议属性
-| 属性名称 | 说明 | 取值类型 | 默认值 |
-| ---- | ---- | ---- | ---- |
-| multiselectable | 是否多选 | boolean | false |
-| displaytype | 显示样式 | enum | "custom" |
-| expandmodel | 控制节点展开方式 | enum | "rootexpand" |
-| intermediateselectmode | 控件取值模式 | enum | -- |
-| options | 控件数据源 | array | [] |
-| eventlist.trigger | 事件钩子 | enum | -- |
-
-
-
-### value
+## value
 控件初始值，取值类型为 `字符串`。
 
 
-### multiselectable
+## multiselectable
 是否多选。
 
 | 值 | 说明 | 是否默认值 |
@@ -50,7 +38,7 @@
 | "1" | 多选 | -- |
 | "0" | 单选 | 是 |
 
-### displaytype
+## displaytype
 控件显示样式。
 
 | 值 | 说明 | 是否默认值 |
@@ -58,7 +46,7 @@
 | custom | 常规输入样式，使用下拉方式进行选值 | 是 |
 | navigation | 导航栏样式 | -- |
 
-### expandmodel
+## expandmodel
 控制节点展开方式。
 
 | 值 | 说明 | 是否默认值 |
@@ -67,7 +55,7 @@
 | noexpand | 不展开 | -- |
 | allexpand | 全部展开 | -- |
 
-### intermediateselectmode
+## intermediateselectmode
 控件取值模式。
 
 多选时，支持以下值，默认值为 `gather`。
@@ -89,11 +77,15 @@
 | individual | 父子无关联 各自独立取值 默认 | 是 |
 | disable | (不能选非叶子节点 取值叶子节点) 暂不实现 | -- |
 
-### options
+## options
 控件数据源。
 
 
-### eventlist.trigger
+## eventlist.trigger
++ 类型： string
++ 默认： ""
+
+
 | 值 | 说明 |
 | ---- | ---- |
 | onload | 加载时触发 |

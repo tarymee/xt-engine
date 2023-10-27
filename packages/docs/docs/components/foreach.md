@@ -1,8 +1,6 @@
 # foreach 循环
 
-
 ## 协议
-
 ```json
 {
   "type": "foreach",
@@ -11,14 +9,14 @@
 }
 ```
 
-## 协议属性
-| 属性名称 | 说明 | 取值类型 | 默认值 |
-| ---- | ---- | ---- | ---- |
-| eventlist.trigger | 事件钩子 | enum | -- |
+
+
+## eventlist.trigger
++ 类型： string
++ 默认： ""
 
 
 
-### eventlist.trigger
 | 值 | 说明 |
 | ---- | ---- |
 | onload | 加载时触发 |

@@ -299,6 +299,53 @@ export default {
                   }
                 ]
               },
+              {
+                "type": "foreach",
+                "title": "循环控件",
+                "name": "foreach",
+                "flex": "",
+                // "flexdirection": "vertical",
+                "style": {
+                  // "height": "500px",
+                  // "width": "500px"
+                },
+                "rows": {
+                  "type": "layout",
+                  "style": {
+                    "margin": "8px 0 0 8px"
+                  },
+                  "content": [
+                    {
+                      "type": "button",
+                      "value": "按钮",
+                      "name": "buttonname",
+                      "style": {},
+                      "eventlist": [
+                        {
+                          "trigger": "onclicked",
+                          "script": `
+                            console.log(eventTarget)
+                            
+                            // // debugger
+                            // const value = page.getCtrl('循环控件').value
+                            // const focusedValue = page.getCtrl('循环控件').focusedValue
+                            // const index = page.getCtrl('循环控件').index
+                            // const focusedIndex = page.getCtrl('循环控件').focusedIndex
+                            // console.log('all', value)
+                            // console.log('focused', focusedValue)
+                            // console.log('index', index)
+                            // console.log('focusedIndex', focusedIndex)
+
+
+                            // // page.getCtrl('循环控件').deleteInScope('focused')
+                          `
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "eventlist": []
+              }
             ]
           },
           "frontoperations": [
@@ -401,25 +448,49 @@ export default {
                   name: '',
                   des: '',
                   number: '1',
-                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                  button: '1',
+                  __$$button: {
+                    value: 'big',
+                    size: 'big',
+                    round: '1'
+                  },
+                  img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+                  foreach: [
+                    {
+                      // buttonname: '执行',
+                      __$$buttonname: {
+                        value: 'qqq',
+                        title: 'xxxxx'
+                      }
+                    },
+                    {
+                      buttonname: '执行',
+                      __$$buttonname: {
+                        title: 'eeeeee'
+                      }
+                    }
+                  ]
                 },
                 {
                   name: '电子协议SPU电子协议SPU电子协议SPU电子协议SPU电子协议SPU',
                   des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
                   number: '',
-                  img: 'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
+                  img: 'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg',
+                  foreach: []
                 },
                 {
                   name: '电子协议SPU',
                   // des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
                   number: '',
-                  img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
+                  img: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
+                  foreach: []
                 },
                 {
                   name: '电子协议SPU',
                   des: '电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述电子协议SPU描述',
                   number: '1',
-                  img: ''
+                  img: '',
+                  foreach: []
                 }
               ]
             `
