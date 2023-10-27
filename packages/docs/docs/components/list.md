@@ -52,7 +52,6 @@
 
 接收一个 layout 结构的控件协议对象，基于控件值多次渲染的控件模板块。
 
-DEMO：
 ```json
 {
   "rows": {
@@ -129,10 +128,7 @@ DEMO：
 定义列表前置控件，类型为数组，接受控件协议对象。
 
 ## operations
-+ 类型： ILayoutViewRule[]
-+ 默认： []
-
-定义列表后置控件，类型为数组，接受控件协议对象。
+同 table 控件。
 
 待开发。
 
@@ -142,7 +138,6 @@ DEMO：
 
 定义行操作按钮，类型为数组，接受按钮控件协议对象。
 
-DEMO：
 ```json
 {
   "rowoperations": [
@@ -206,7 +201,6 @@ set value (data: RowValue[]): void
 
 对 table 控件进行取值、赋值。
 
-DEMO：
 ```js
 // 取值
 const value = page.getCtrl('列表').value
@@ -224,7 +218,7 @@ page.getCtrl('列表').value = [
 ```
 
 
-## focusedValue checkedValue
+## focusedValue/checkedValue
 
 + 类型：
 
@@ -235,7 +229,6 @@ get checkedValue (): RowValue[]
 
 获取控件特定值。
 
-DEMO：
 ```js
 // 当点击某一行时触发事件 获取焦点行的值
 const focusedValue = page.getCtrl('列表').focusedValue
@@ -246,7 +239,7 @@ const checkedValue = page.getCtrl('列表').checkedValue
 console.log(checkedValue)
 ```
 
-## index focusedIndex checkedIndex
+## index/focusedIndex/checkedIndex
 + 类型：
 
 ```typescript
@@ -263,7 +256,6 @@ get checkedIndex (): number[]
 | focusedIndex | 获取焦点行序号 |
 | checkedIndex | 获取勾选行序号 |
 
-DEMO：
 ```js
 // 获取所有行的序号
 const index = page.getCtrl('列表').index
@@ -287,7 +279,6 @@ get pageable (): boolean
 
 获取是否设置分页。
 
-DEMO：
 ```js
 const pageable = page.getCtrl('列表').pageable
 console.log(pageable)
@@ -308,8 +299,6 @@ set pageInfo (pageInfo: PageInfo): void
 
 在 table 定义支持分页的情况下，获取/设置分页信息。
 
-
-DEMO：
 ```js
 // 获取当前分页信息
 const pageInfo = page.getCtrl('列表').pageInfo
@@ -332,7 +321,6 @@ type setCheck = (value: boolean, index: number): void
 
 设置行勾选状态。
 
-DEMO：
 ```js
 // 设置第一行为勾选状态
 page.getCtrl('列表').setCheck(true, 0)
@@ -348,7 +336,6 @@ type deleteInScope = (scope: 'all' | 'focused' | 'checked'): void
 
 删除特定行。
 
-DEMO：
 ```js
 // 删除所有行
 page.getCtrl('列表').deleteInScope('all')
@@ -375,7 +362,6 @@ type append = (data: RowValue | RowValue[], type: 'head' | 'tail'): void
 | head | 从行头插入数据 |
 | tail | 从行尾插入数据 |
 
-DEMO：
 ```js
 // 从行头插入一条空数据
 page.getCtrl('列表').append([
@@ -406,7 +392,6 @@ type update = (data: RowValue | RowValue[], index: number | number[]): void
 
 更新行数据。
 
-DEMO：
 ```js
 // 同时更新第1行和第3行数据
 page.getCtrl('列表').update([
@@ -425,7 +410,7 @@ page.getCtrl('列表').update({
 ```
 
 
-## row focusedRow checkedRow getRow()
+## row/focusedRow/checkedRow/getRow()
 + 类型：
 
 ```typescript
@@ -465,7 +450,6 @@ type getRow = (index: number | number[]): Row | Row[] | null
 | getRow() | 传入行序号获取行控件 |
 
 
-DEMO：
 ```js
 // 获取所有行控件
 const allRows = page.getCtrl('列表').row

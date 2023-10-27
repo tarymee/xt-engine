@@ -18,37 +18,28 @@
 }
 ```
 
-### checkable
-是否支持行勾选。
+## pageable
+同 list 控件。
 
-| 值 | 说明 | 是否默认值 |
-| ---- | ---- | ---- |
-| true | 支持行勾选 | -- |
-| false | 不支持行勾选 | 是 |
-| "1" | 支持行勾选 | -- |
-| "0" | 不支持行勾选 | 是 |
+## pagesize
+同 list 控件。
 
-### pageable
-是否支持分页。
+## checkable
+同 list 控件。
 
-| 值 | 说明 | 是否默认值 |
-| ---- | ---- | ---- |
-| true | 支持分页 | -- |
-| false | 不支持分页 | 是 |
-| "1" | 支持分页 | -- |
-| "0" | 不支持分页 | 是 |
+## fixednumber
++ 类型： string | number
++ 默认： "0"
 
-### pagesize
-如果支持分页，定义每页条数，取值类型为 `number | 字符串数字`，默认值为 `20`
+冻结前几列，取值类型为 `number | 字符串数字`。
 
+## columns
++ 类型： IBaseOrInputViewRule[]
++ 默认： []
 
-### fixednumber
-冻结前几列，取值类型为 `number | 字符串数字`，默认值为 `0`
-
-### columns
 表格定义列，取值类型为`基础/输入型控件协议对象数组`。
 
-DEMO：
+
 ```json
 {
   "columns": [
@@ -94,7 +85,10 @@ DEMO：
 }
 ```
 
-### operations
+## operations
++ 类型： IButtonViewRule[]
++ 默认： []
+
 定义顶部操作按钮，取值类型为`按钮控件协议对象数组`。
 
 按钮控件的 `readonly` 属性可接收专属 table 的关键字。
@@ -104,7 +98,6 @@ DEMO：
 | tableCheckedNumberIsEqualToZero | 按钮在 table 勾选时可用 |
 | tableCheckedNumberIsNotEqualToOne | 按钮在 table 勾选一个时可用 |
 
-DEMO：
 ```json
 {
   "operations": [
@@ -137,10 +130,12 @@ DEMO：
 ```
 
 
-### rowoperations
+## rowoperations
++ 类型： IButtonViewRule[]
++ 默认： []
+
 定义行操作按钮，取值类型为`按钮控件协议对象数组`。
 
-DEMO：
 ```json
 {
   "rowoperations": [
@@ -156,7 +151,6 @@ DEMO：
 ## eventlist.trigger
 + 类型： string
 + 默认： ""
-
 
 
 | 值 | 说明 |
@@ -191,21 +185,20 @@ DEMO：
 | getRowoperationCtrl() | 获取行操作按钮控件 |
 
 
-### value
-对 table 控件进行取值、赋值。
+## value
++ 类型：
 
-类型：
 ```typescript
 interface RowValue {
   [propName: string]: any
 }
-
 get value (): RowValue[]
-
 set value (data: RowValue[]): void
 ```
 
-DEMO：
+对 table 控件进行取值、赋值。
+
+
 ```js
 // 取值
 const value = page.getCtrl('表格').value
@@ -223,7 +216,7 @@ page.getCtrl('表格').value = [
 ```
 
 
-### focusedValue checkedValue
+## focusedValue/checkedValue
 获取控件特定值。
 
 | 值 | 说明 |
@@ -242,7 +235,7 @@ get focusedValue (): RowValue | null
 get checkedValue (): RowValue[]
 ```
 
-DEMO：
+
 ```js
 // 当点击某一行时触发事件 获取焦点行的值
 const focusedValue = page.getCtrl('表格').focusedValue
@@ -253,7 +246,7 @@ const checkedValue = page.getCtrl('表格').checkedValue
 console.log(checkedValue)
 ```
 
-### index focusedIndex checkedIndex
+## index/focusedIndex/checkedIndex
 获取控件行序号。
 
 | 值 | 说明 |
@@ -265,13 +258,11 @@ console.log(checkedValue)
 类型：
 ```typescript
 get index (): number[]
-
 get focusedIndex (): number | null
-
 get checkedIndex (): number[]
 ```
 
-DEMO：
+
 ```js
 // 获取所有行的序号
 const index = page.getCtrl('表格').index
@@ -286,7 +277,7 @@ const checkedIndex = page.getCtrl('表格').checkedIndex
 console.log(checkedIndex)
 ```
 
-### pageable
+## pageable
 获取是否设置分页。
 
 类型：
@@ -294,13 +285,13 @@ console.log(checkedIndex)
 get pageable (): boolean
 ```
 
-DEMO：
+
 ```js
 const pageable = page.getCtrl('表格').pageable
 console.log(pageable)
 ```
 
-### pageInfo
+## pageInfo
 在 table 定义支持分页的情况下，获取/设置分页信息。
 
 类型：
@@ -315,7 +306,7 @@ get pageInfo (): PageInfo
 set pageInfo (pageInfo: PageInfo): void
 ```
 
-DEMO：
+
 ```js
 // 获取当前分页信息
 const pageInfo = page.getCtrl('表格').pageInfo
@@ -329,7 +320,7 @@ page.getCtrl('表格').pageInfo = {
 }
 ```
 
-### setCheck()
+## setCheck()
 设置行勾选状态。
 
 类型：
@@ -337,14 +328,14 @@ page.getCtrl('表格').pageInfo = {
 type setCheck = (value: boolean, index: number): void
 ```
 
-DEMO：
+
 ```js
 // 设置第一行为勾选状态
 page.getCtrl('表格').setCheck(true, 0)
 ```
 
 
-### deleteInScope()
+## deleteInScope()
 删除特定行。
 
 类型：
@@ -352,7 +343,7 @@ page.getCtrl('表格').setCheck(true, 0)
 type deleteInScope = (scope: 'all' | 'focused' | 'checked'): void
 ```
 
-DEMO：
+
 ```js
 // 删除所有行
 page.getCtrl('表格').deleteInScope('all')
@@ -365,7 +356,7 @@ page.getCtrl('表格').deleteInScope('checked')
 ```
 
 
-### append()
+## append()
 插入行数据。
 
 类型：
@@ -382,7 +373,7 @@ type append = (data: RowValue | RowValue[], type: 'head' | 'tail'): void
 | head | 从行头插入数据 |
 | tail | 从行尾插入数据 |
 
-DEMO：
+
 ```js
 // 从行头插入一条空数据
 page.getCtrl('表格').append([
@@ -404,7 +395,7 @@ page.getCtrl('表格').append([
 
 
 
-### update()
+## update()
 更新行数据。
 
 类型：
@@ -416,7 +407,7 @@ interface RowValue {
 type update = (data: RowValue | RowValue[], index: number | number[]): void
 ```
 
-DEMO：
+
 ```js
 // 同时更新第1行和第3行数据
 page.getCtrl('表格').update([
@@ -435,7 +426,7 @@ page.getCtrl('表格').update({
 ```
 
 
-### row focusedRow checkedRow getRowByIndex()
+## row/focusedRow/checkedRow/getRowByIndex()
 获取行控件。
 
 取得行控件后，可通过 getCtrl() 方法获取该行下某一单元格的控件实例，从而对单元格控件进行 flycode 操作。
@@ -467,15 +458,12 @@ interface Row {
 }
 
 get row (): Row[]
-
 get focusedRow (): Row | null
-
 get checkedRow (): Row[]
-
 type getRowByIndex = (index: number | number[]): Row | Row[] | null
 ```
 
-DEMO：
+
 ```js
 // 获取所有行控件
 const allRows = page.getCtrl('表格').row
@@ -495,7 +483,7 @@ allRows[1].getCtrl('unit').options = [
 ]
 ```
 
-### getColByName()
+## getColByName()
 获取列控件。
 
 取得列控件后，可统一设置该列的 title readonly hidden required 等属性。
@@ -505,20 +493,16 @@ allRows[1].getCtrl('unit').options = [
 interface Col {
   get title (): string
   set title (value: string): void
-
   set hidden (value: boolean): void
-
   set readonly (value: boolean): void
-
   set required (value: boolean): void
-
   ...
 }
 
 type getColByName = (name: string): Col | null
 ```
 
-DEMO：
+
 ```js
 // 获取产品列控件
 const col = page.getCtrl('表格').getColByName('productname')
@@ -540,7 +524,7 @@ col.required = true
 ```
 
 
-### getOperationCtrl()
+## getOperationCtrl()
 获取操作按钮控件
 
 通过传入操作按钮 name 值，获取操作按钮控件，可以对该操作按钮进行 flycode 设置。
@@ -550,7 +534,7 @@ col.required = true
 type getOperationCtrl = (name: string): Ctrl | null
 ```
 
-DEMO：
+
 ```js
 // 获取表格中的新增操作按钮并设置隐藏和只读
 page.getCtrl('表格').getOperationCtrl('add').hidden = true
@@ -558,7 +542,7 @@ page.getCtrl('表格').getOperationCtrl('add').readonly = true
 ```
 
 
-### getRowoperationCtrl()
+## getRowoperationCtrl()
 获取行操作按钮，通过传入行操作按钮 name 值，获取所有行操作按钮控件数组，可以对行操作按钮控件进行 flycode 设置。
 
 类型：
@@ -566,7 +550,7 @@ page.getCtrl('表格').getOperationCtrl('add').readonly = true
 type getRowoperationCtrl = (name: string): Ctrl[] | null
 ```
 
-DEMO：
+
 ```js
 // 获取所有行的编辑操作按钮控件
 const rowoperation = page.getCtrl('表格').getRowoperationCtrl('edit')
