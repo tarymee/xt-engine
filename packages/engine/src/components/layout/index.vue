@@ -2,7 +2,7 @@
 import { get, cloneDeep } from 'lodash-es'
 import baseMixin from '../common/baseMixin'
 import renderComponent from '../common/renderComponent'
-import { viewRuleAddProps, viewRuleAddParentcode, createViewRuleMap, delViewRuleMap } from '../page/dealProtocol'
+import { viewRuleAddProps, viewRuleAddParentcode, createViewRuleMap, delViewRuleMap } from '../engine/dealProtocol'
 
 export default {
   name: 'xt-layout',

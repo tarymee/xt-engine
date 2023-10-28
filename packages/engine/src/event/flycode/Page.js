@@ -36,22 +36,9 @@ export default class Page {
     this.eventManager.engine.title = title
   }
 
-  // get params () {
-  //   return this.getLinkParams()
-  // }
-
-  // set params (value) {
-  //   console.error('Page.params 不支持设置页面传参。')
-  // }
-
   // // 获取表单传参
   // getLinkParams () {
   //   return this.eventManager.memoryPool.get('__linkparam')
-  // }
-
-  // // 刷新表单布局
-  // applyLayout() {
-  //     console.error('该方法暂未实现')
   // }
 
   // 获取页面内存值
@@ -226,21 +213,6 @@ export default class Page {
   //     routerManager.back(0 - Number(count))
   // }
 
-  // // 返回指定层级的表单
-  // returnToPageCount(count = 1) {
-  //     routerManager.back(0 - Number(count))
-  // }
-
-  // // 返回到指定表单（名称）
-  // returnToPage(pageName) {
-  //     console.error('该方法暂未实现')
-  // }
-
-  // // 返回到指定表单（code）
-  // returnToPageCode(code) {
-  //     routerManager.back(code.toString())
-  // }
-
   // 针对表单控件赋值
   // updateSerialized(serializedValue, setter) {}
 
@@ -249,12 +221,4 @@ export default class Page {
   // getProperties() {}
   // setProperty() {}
   // setProperties() {}
-
-  // 流程表单对象
-  // 流程详细信息
-  // currentInfo() {}
-  // 发起流程
-  // preaddFlow() {}
-  // 获取表单传参
-  // handleFlow() {}
 }

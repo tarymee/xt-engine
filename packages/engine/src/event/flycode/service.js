@@ -1,34 +1,10 @@
 import _ from 'lodash-es'
-import { v4 as uuidv4 } from 'uuid'
+// import { v4 as uuidv4 } from 'uuid'
 
+// 考虑移除 让用户自行注入
 const service = {
-  // axios: axiosInstance,
-  _,
-  uuid: uuidv4
-  // dayjs,
-  // VConsole,
-  // AMapLoader,
-  // echarts,
-  // vant: {
-  //   Dialog,
-  //   Notify,
-  //   Toast,
-  //   ImagePreview,
-  //   ...vantUse
-  // },
-  // useUniqueid,
-  // getUniqueid: useUniqueid().getUniqueid,
-  // useRoute,
-  // useRouter,
-  // useLink,
-  // useRouteLeave,
-  // onBeforeRouteLeave,
-  // onBeforeRouteUpdate,
-  // useAI,
-  // useList,
-  // useDict,
-  // useLocation,
-  // useOSS
+  // uuid: uuidv4,
+  _
 }
 
 export default service

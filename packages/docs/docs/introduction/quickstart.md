@@ -26,8 +26,22 @@ module.exports = {
 ```
 
 ## 使用
-创建一个 .vue 文件，写入以下代码，基于该 vue 文件创建对应的路由，访问该路由，即可看到一个基于协议生成的页面。
+1、完整引入 element-ui
+```js
+import Vue from 'vue'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import App from './App.vue'
 
+Vue.use(ElementUI)
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
+```
+
+2、创建一个 .vue 文件，写入以下代码，基于该 vue 文件创建对应的路由，访问该路由，即可看到一个基于协议生成的页面。
 ```vue
 <template>
   <xt-page :protocol="protocol"/>

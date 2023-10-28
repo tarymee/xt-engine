@@ -1,12 +1,9 @@
 import Page from './Page'
-// import System from './System'
 import service from './service'
-// import engineMap from '../../components/page/engineMap'
 import engineAxiosInstance from '../../service/axios'
-// import { cloneDeep } from 'lodash-es'
 import axios from 'axios'
 
-export default class Flycode {
+class Flycode {
 
   eventManager
   dependenceMap = new Map()
@@ -15,11 +12,9 @@ export default class Flycode {
     this.eventManager = eventManager
 
     // 这里预先收集固定不变的依赖
-    // page 应小写 因为是页面实例
-    const page = new Page(this.eventManager)
+
+    this.dependenceMap.set('page', new Page(this.eventManager)) // page 应小写 因为是页面实例
     // page.xxx = 'xxx' // 用户在页面协议注册方法 变量
-    this.dependenceMap.set('page', page)
-    // this.dependenceMap.set('system', new System(this.eventManager))
 
     // 每个表单创建一个axios实例 继承引擎与外部注入的拦截器
     const axiosInstance = axios.create()
@@ -36,7 +31,7 @@ export default class Flycode {
     // axiosInstance.interceptors.request.use(config => {
     //   // console.log('interceptors', this.eventManager.engine.pagecode)
     //   // debugger
-    //   // console.log('interceptors', engineMap)
+    //   // console.log('interceptors')
     //   this.eventManager.engine.openLoading()
     //   return config
     // }, error => {
@@ -52,7 +47,6 @@ export default class Flycode {
     this.dependenceMap.set('axios', axiosInstance)
 
     // 引擎提供的flycode服务
-    // service.axios = axiosInstance
     this.dependenceMap.set('service', service)
 
     // 用户注册的flycode
@@ -146,8 +140,20 @@ export default class Flycode {
   }
 }
 
-
-
 // 用户注册的flycode 挂到静态对象上 需要时注入
 Flycode.inject = {}
 // console.log(Flycode.inject)
+
+// 为 flycode 提供变量/函数 在 flycode 中通过 inject[name] 获取
+function provide (name, data) {
+  // 有可能传入的是字符串 后期可能会改 所以要支持可变动
+  if (Flycode.inject[name]) {
+    console.warn(`您已注入 flycode： ${name}，重复注入会覆盖上一次的值。`)
+  }
+  Flycode.inject[name] = data
+}
+
+export {
+  Flycode as default,
+  provide
+}

@@ -7,7 +7,7 @@ import renderComponent from '../common/renderComponent'
 // import { v4 as uuidv4 } from 'uuid'
 
 export default {
-  name: 'xt-page',
+  name: 'xt-engine',
   provide () {
     return {
       engine: this
@@ -58,7 +58,7 @@ export default {
       'div',
       {
         attrs: {
-          class: 'xt-engine xt-page',
+          class: 'xt-engine',
         },
         directives: [
           // {
