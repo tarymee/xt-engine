@@ -16,13 +16,13 @@ function installElement (Vue) {
 
 // vue 安装插件
 function install (Vue, options) {
-  if (install.installed) return
-  install.installed = true
-
   // console.log(Vue)
   // console.log(Vue.prototype)
   // console.log(options)
   // debugger
+
+  if (install.installed) return
+  install.installed = true
 
   installElement(Vue)
 

@@ -271,6 +271,7 @@ class ArrayRowCtrl {
     return new Ctrl(instance)
   }
 }
+
 class TableColCtrl {
   instance
   name

@@ -1,7 +1,7 @@
 import Page from './Page'
-import service from './service'
 import engineAxiosInstance from '../../service/axios'
 import axios from 'axios'
+import _ from 'lodash-es'
 
 class Flycode {
 
@@ -47,7 +47,10 @@ class Flycode {
     this.dependenceMap.set('axios', axiosInstance)
 
     // 引擎提供的flycode服务
-    this.dependenceMap.set('service', service)
+    // todo 考虑移除 让用户自行注入
+    this.dependenceMap.set('service', {
+      _
+    })
 
     // 用户注册的flycode
     this.dependenceMap.set('inject', Flycode.inject)
