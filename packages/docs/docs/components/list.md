@@ -1,7 +1,7 @@
 # list 列表
 用于展示多条结构类似的数据，可对数据进行自定义操作。
 
-## 协议
+# 协议
 ```json
 {
   "type": "list",
@@ -29,22 +29,21 @@
 ```
 
 ## pageable
-+ 类型： boolean | "1" | "0"
-+ 默认： "0"
-
-是否支持分页。
+同 table 控件。
 
 ## pagesize
-+ 类型： string
-+ 默认： "20"
-
-如果支持分页，定义每页条数
+同 table 控件。
 
 ## checkable
-+ 类型： boolean | "1" | "0"
-+ 默认： "0"
+同 table 控件。
 
-是否支持勾选。
+## operations
+同 table 控件。
+
+待开发。
+
+## rowoperations
+同 table 控件。
 
 ## rows
 + 类型： ILayoutViewRule
@@ -127,345 +126,51 @@
 
 定义列表前置控件，类型为数组，接受控件协议对象。
 
-## operations
-同 table 控件。
-
-待开发。
-
-## rowoperations
-+ 类型： IButtonViewRule[]
-+ 默认： []
-
-定义行操作按钮，类型为数组，接受按钮控件协议对象。
-
-```json
-{
-  "rowoperations": [
-    {
-      "text": "编辑",
-      "eventlist": [
-        {
-          "trigger": "onclicked",
-          "handler": ""
-        }
-      ]
-    }
-  ]
-}
-```
 
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
+同 table 控件。
 
 
-
-
-| 值 | 说明 |
-| ---- | ---- |
-| onload | table 加载时触发 |
-| onchecked | table 勾选时触发 |
-
-## flycode
+# flycode
 | flycode | 说明 |
 | ---- | ---- |
 | value | 取值赋值 |
-| focusedValue | 获取焦点行值 |
-| checkedValue | 获取勾选行值 |
-| index | 获取所有行序号 |
-| focusedIndex | 获取焦点行序号 |
-| checkedIndex | 获取勾选行序号 |
+| focusedValue/checkedValue | 获取焦点行/勾选行的值 |
+| index/focusedIndex/checkedIndex | 获取所有行/焦点行/勾选行序号 |
 | pageable | 获取是否设置分页 |
 | pageInfo | 获取/设置分页 |
 | setCheck() | 设置行勾选状态 |
-| deleteInScope() | 删除特定行 |
+| deleteInScope() | 删除所有行/焦点行/勾选行 |
 | append() | 插入行数据 |
 | update() | 更新行数据 |
-| row | 获取所有行控件 |
-| focusedRow | 获取焦点行控件 |
-| checkedRow | 获取勾选行控件 |
-| getRow() | 传入行序号获取行控件 |
-| getColByName() | 传入列名获取列控件 暂未实现 |
-
+| row/focusedRow/checkedRow/getRowByIndex() | 获取所有行/焦点行/勾选行/传入序号行控件 |
 
 ## value
-+ 类型：
-
-```typescript
-interface RowValue {
-  [propName: string]: any
-}
-get value (): RowValue[]
-set value (data: RowValue[]): void
-```
-
-对 table 控件进行取值、赋值。
-
-```js
-// 取值
-const value = page.getCtrl('列表').value
-console.log(value)
-
-// 赋值
-page.getCtrl('列表').value = [
-  {
-    productname: '可口可乐'
-  },
-  {
-    productname: '百事可乐'
-  }
-]
-```
-
+同 table 控件。
 
 ## focusedValue/checkedValue
-
-+ 类型：
-
-```typescript
-get focusedValue (): RowValue | null
-get checkedValue (): RowValue[]
-```
-
-获取控件特定值。
-
-```js
-// 当点击某一行时触发事件 获取焦点行的值
-const focusedValue = page.getCtrl('列表').focusedValue
-console.log(focusedValue)
-
-// 获取勾选行的值
-const checkedValue = page.getCtrl('列表').checkedValue
-console.log(checkedValue)
-```
+同 table 控件。
 
 ## index/focusedIndex/checkedIndex
-+ 类型：
-
-```typescript
-get index (): number[]
-get focusedIndex (): number | null
-get checkedIndex (): number[]
-```
-
-获取控件行序号。
-
-| 值 | 说明 |
-| ---- | ---- |
-| index | 获取所有行序号 |
-| focusedIndex | 获取焦点行序号 |
-| checkedIndex | 获取勾选行序号 |
-
-```js
-// 获取所有行的序号
-const index = page.getCtrl('列表').index
-console.log(index)
-
-// 当点击某一行时触发事件 获取焦点行的序号
-const focusedIndex = page.getCtrl('列表').focusedIndex
-console.log(focusedIndex)
-
-// 获取勾选行的序号
-const checkedIndex = page.getCtrl('列表').checkedIndex
-console.log(checkedIndex)
-```
+同 table 控件。
 
 ## pageable
-+ 类型：
-
-```typescript
-get pageable (): boolean
-```
-
-获取是否设置分页。
-
-```js
-const pageable = page.getCtrl('列表').pageable
-console.log(pageable)
-```
+同 table 控件。
 
 ## pageInfo
-+ 类型：
-
-```typescript
-interface PageInfo {
-  __itemcount: number | string;
-  __pageindex: number | string; // 第一页为 1 而不是 0
-  __pagesize: number | string;
-}
-get pageInfo (): PageInfo
-set pageInfo (pageInfo: PageInfo): void
-```
-
-在 table 定义支持分页的情况下，获取/设置分页信息。
-
-```js
-// 获取当前分页信息
-const pageInfo = page.getCtrl('列表').pageInfo
-console.log(pageInfo)
-
-// 设置当前分页信息
-page.getCtrl('列表').pageInfo = {
-  __itemcount: 100,
-  __pageindex: 1;
-  __pagesize: 20;
-}
-```
+同 table 控件。
 
 ## setCheck()
-+ 类型：
-
-```typescript
-type setCheck = (value: boolean, index: number): void
-```
-
-设置行勾选状态。
-
-```js
-// 设置第一行为勾选状态
-page.getCtrl('列表').setCheck(true, 0)
-```
-
+同 table 控件。
 
 ## deleteInScope()
-+ 类型：
-
-```typescript
-type deleteInScope = (scope: 'all' | 'focused' | 'checked'): void
-```
-
-删除特定行。
-
-```js
-// 删除所有行
-page.getCtrl('列表').deleteInScope('all')
-
-// 删除焦点行
-page.getCtrl('列表').deleteInScope('focused')
-
-// 删除勾选行
-page.getCtrl('列表').deleteInScope('checked')
-```
-
+同 table 控件。
 
 ## append()
-+ 类型：
-
-```typescript
-type append = (data: RowValue | RowValue[], type: 'head' | 'tail'): void
-```
-
-插入行数据。
-
-| type 值 | 说明 |
-| ---- | ---- |
-| head | 从行头插入数据 |
-| tail | 从行尾插入数据 |
-
-```js
-// 从行头插入一条空数据
-page.getCtrl('列表').append([
-  {
-    productname: ''
-  }
-], 'head')
-
-// 从行尾同时插入两条数据
-page.getCtrl('列表').append([
-  {
-    productname: '可口可乐'
-  },
-  {
-    productname: '百事可乐'
-  }
-], 'tail')
-```
-
-
+同 table 控件。
 
 ## update()
-+ 类型：
+同 table 控件。
 
-```typescript
-type update = (data: RowValue | RowValue[], index: number | number[]): void
-```
-
-更新行数据。
-
-```js
-// 同时更新第1行和第3行数据
-page.getCtrl('列表').update([
-  {
-    productname: '可口可乐'
-  },
-  {
-    productname: '百事可乐'
-  }
-], [0, 2])
-
-// 更新第1行
-page.getCtrl('列表').update({
-  productname: '可口可乐'
-}, 0)
-```
-
-
-## row/focusedRow/checkedRow/getRow()
-+ 类型：
-
-```typescript
-interface Ctrl {
-  get value (): any
-  set value (data: any): void
-
-  get hidden (): boolean
-  set hidden (data: boolean): void
-
-  get options (): any[]
-  set options (data: any[]): void
-  ...
-}
-
-interface Row {
-  index: number;
-  getCtrl(name: string): Ctrl;
-}
-
-get row (): Row[]
-get focusedRow (): Row | null
-get checkedRow (): Row[]
-
-type getRow = (index: number | number[]): Row | Row[] | null
-```
-
-获取行控件。
-
-取得行控件后，可通过 getCtrl() 方法获取该行下某一单元格的控件实例，从而对单元格控件进行 flycode 操作。
-
-| 值 | 说明 |
-| ---- | ---- |
-| row | 获取所有行控件 |
-| focusedRow | 获取焦点行控件 |
-| checkedRow | 获取勾选行控件 |
-| getRow() | 传入行序号获取行控件 |
-
-
-```js
-// 获取所有行控件
-const allRows = page.getCtrl('列表').row
-
-// 行控件序号
-console.log(allRows[1].index) // 1
-
-// 获取 第1行 列名为'产品名称' 的单元格，并对其值清空。
-allRows[0].getCtrl('productname').value = ''
-
-// 获取 第2行 列名为'单位' 的单元格，设置其选项值。
-allRows[1].getCtrl('unit').options = [
-  {
-    key: 'cup',
-    text: '罐'
-  }
-]
-```
-
+## row/focusedRow/checkedRow/getRowByIndex()
+同 table 控件。

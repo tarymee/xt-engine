@@ -2,12 +2,13 @@
 
 通过本章节你可以了解到 @smart100/web-engine 的安装方法和基本使用姿势。
 
-## 前置条件
-本项目基于 Vue2 和 Element UI ，在安装使用前请先保证您的项目已安装这两个依赖。
 
-推荐版本：
+## 前置条件
+本项目基于 Vue2 和 Element-UI ，在安装使用前请先保证您的项目已安装这两个依赖，推荐版本：
 + "element-ui": "^2.15.5"
 + "vue": "^2.6.14"
+
+
 
 ## 安装
 
@@ -21,19 +22,25 @@ npm install @smart100/web-engine
 ```js
 module.exports = {
   ...
-  transpileDependencies: ['@smart100/web-engine']
+  transpileDependencies: [
+    '@smart100/web-engine'
+  ]
 }
 ```
 
 ## 使用
-1、完整引入 element-ui
+1、引入
 ```js
+// main.js
 import Vue from 'vue'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
 import App from './App.vue'
+import xtEngine from '@smart100/web-engine'
 
-Vue.use(ElementUI)
+// import ElementUI from 'element-ui'
+// import 'element-ui/lib/theme-chalk/index.css'
+// Vue.use(ElementUI)
+
+Vue.use(xtEngine) // 引擎会自动引入完整的 element-ui，因此不再需要手动引入
 
 new Vue({
   el: '#app',
@@ -41,18 +48,14 @@ new Vue({
 })
 ```
 
-2、创建一个 .vue 文件，写入以下代码，基于该 vue 文件创建对应的路由，访问该路由，即可看到一个基于协议生成的页面。
+2、创建以下 .vue 文件，访问即可看到一个基于协议生成的页面。
 ```vue
 <template>
-  <xt-page :protocol="protocol"/>
+  <xt-engine :protocol="protocol" />
 </template>
 
 <script>
-import { components } from '@smart100/web-engine'
 export default {
-  components: {
-    'xt-page': components.page
-  },
   data: function () {
     return {
       protocol: {

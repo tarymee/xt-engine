@@ -1,13 +1,14 @@
 # image 图片
 
 
-## 协议
+# 协议
 
 ```json
 {
   "type": "image",
   "title": "图片",
   "value": "",
+  "fit": "fill",
   "eventlist": []
 }
 ```
@@ -35,8 +36,6 @@
 ## eventlist.trigger
 + 类型： string
 + 默认： ""
-
-
 
 | 值 | 说明 |
 | ---- | ---- |

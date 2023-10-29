@@ -1,8 +1,7 @@
 # photo 图片上传
 
 
-## 协议
-
+# 协议
 ```json
 {
   "type": "photo",
@@ -74,7 +73,7 @@ interface IPhotoValue {
 | onupload | 上传时触发 |
 
 
-## DEMO
+# DEMO
 ```json
 {
   "view": {

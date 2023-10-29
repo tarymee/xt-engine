@@ -1,7 +1,7 @@
 # checkbox 多选框
 一组备选项中进行多选。
 
-## 协议
+# 协议
 ```json
 {
   "type": "checkbox",
@@ -60,8 +60,6 @@ interface Ioption {
 ## eventlist.trigger
 + 类型： string
 + 默认： ""
-
-
 
 | 值 | 说明 |
 | ---- | ---- |

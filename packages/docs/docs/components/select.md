@@ -1,7 +1,7 @@
 # select 选择器
 
 
-## 协议
+# 协议
 ```json
 {
   "type": "select",
@@ -39,7 +39,7 @@
 | onremotesearch | 远程搜索时触发 |
 
 
-## DEMO
+# DEMO
 ```json
 {
   "view": {

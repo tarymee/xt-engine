@@ -1,7 +1,6 @@
 # popview 弹窗
 
-
-## 协议
+# 协议
 
 ```json
 {
@@ -14,8 +13,6 @@
 ## eventlist.trigger
 + 类型： string
 + 默认： ""
-
-
 
 | 值 | 说明 |
 | ---- | ---- |

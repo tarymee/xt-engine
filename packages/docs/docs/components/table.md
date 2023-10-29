@@ -1,7 +1,7 @@
 # table 表格
 用于展示多条结构类似的数据，可对数据进行自定义操作。
 
-## 协议
+# 协议
 ```json
 {
   "type": "table",
@@ -19,25 +19,34 @@
 ```
 
 ## pageable
-同 list 控件。
++ 类型： boolean | "1" | "0"
++ 默认： "0"
+
+是否支持分页。
 
 ## pagesize
-同 list 控件。
++ 类型： string
++ 默认： "20"
+
+如果支持分页，定义每页条数
 
 ## checkable
-同 list 控件。
++ 类型： boolean | "1" | "0"
++ 默认： "0"
+
+是否支持勾选。
 
 ## fixednumber
 + 类型： string | number
 + 默认： "0"
 
-冻结前几列，取值类型为 `number | 字符串数字`。
+冻结前几列。
 
 ## columns
 + 类型： IBaseOrInputViewRule[]
 + 默认： []
 
-表格定义列，取值类型为`基础/输入型控件协议对象数组`。
+表格定义列，取值类型为 `基础/输入型控件协议对象数组`。
 
 
 ```json
@@ -160,30 +169,23 @@
 
 
 
-## flycode
+# flycode
 
 | flycode | 说明 |
 | ---- | ---- |
 | value | 取值赋值 |
-| focusedValue | 获取焦点行值 |
-| checkedValue | 获取勾选行值 |
-| index | 获取所有行序号 |
-| focusedIndex | 获取焦点行序号 |
-| checkedIndex | 获取勾选行序号 |
+| focusedValue/checkedValue | 获取焦点行/勾选行的值 |
+| index/focusedIndex/checkedIndex | 获取所有行/焦点行/勾选行序号 |
 | pageable | 获取是否设置分页 |
 | pageInfo | 获取/设置分页 |
 | setCheck() | 设置行勾选状态 |
-| deleteInScope() | 删除特定行 |
+| deleteInScope() | 删除所有行/焦点行/勾选行 |
 | append() | 插入行数据 |
 | update() | 更新行数据 |
-| row | 获取所有行控件 |
-| focusedRow | 获取焦点行控件 |
-| checkedRow | 获取勾选行控件 |
-| getRowByIndex() | 传入行序号获取行控件 |
+| row/focusedRow/checkedRow/getRowByIndex() | 获取所有行/焦点行/勾选行/传入序号行控件 |
 | getColByName() | 传入列名获取列控件 |
 | getOperationCtrl() | 获取操作按钮控件 |
 | getRowoperationCtrl() | 获取行操作按钮控件 |
-
 
 ## value
 + 类型：
@@ -197,7 +199,6 @@ set value (data: RowValue[]): void
 ```
 
 对 table 控件进行取值、赋值。
-
 
 ```js
 // 取值
@@ -215,26 +216,15 @@ page.getCtrl('表格').value = [
 ]
 ```
 
-
 ## focusedValue/checkedValue
-获取控件特定值。
++ 类型：
 
-| 值 | 说明 |
-| ---- | ---- |
-| focusedValue | 获取焦点行的值 |
-| checkedValue | 获取勾选行的值 |
-
-类型：
 ```typescript
-interface RowValue {
-  [propName: string]: any
-}
-
 get focusedValue (): RowValue | null
-
 get checkedValue (): RowValue[]
 ```
 
+获取焦点行/勾选行的值。
 
 ```js
 // 当点击某一行时触发事件 获取焦点行的值
@@ -247,21 +237,15 @@ console.log(checkedValue)
 ```
 
 ## index/focusedIndex/checkedIndex
-获取控件行序号。
++ 类型：
 
-| 值 | 说明 |
-| ---- | ---- |
-| index | 获取所有行序号 |
-| focusedIndex | 获取焦点行序号 |
-| checkedIndex | 获取勾选行序号 |
-
-类型：
 ```typescript
 get index (): number[]
 get focusedIndex (): number | null
 get checkedIndex (): number[]
 ```
 
+获取所有行/焦点行/勾选行序号。
 
 ```js
 // 获取所有行的序号
@@ -278,13 +262,13 @@ console.log(checkedIndex)
 ```
 
 ## pageable
-获取是否设置分页。
++ 类型：
 
-类型：
 ```typescript
 get pageable (): boolean
 ```
 
+获取是否设置分页。
 
 ```js
 const pageable = page.getCtrl('表格').pageable
@@ -292,20 +276,19 @@ console.log(pageable)
 ```
 
 ## pageInfo
-在 table 定义支持分页的情况下，获取/设置分页信息。
++ 类型：
 
-类型：
 ```typescript
 interface PageInfo {
   __itemcount: number | string;
   __pageindex: number | string; // 第一页为 1 而不是 0
   __pagesize: number | string;
 }
-
 get pageInfo (): PageInfo
 set pageInfo (pageInfo: PageInfo): void
 ```
 
+在支持分页的情况下，获取/设置分页信息。
 
 ```js
 // 获取当前分页信息
@@ -315,19 +298,19 @@ console.log(pageInfo)
 // 设置当前分页信息
 page.getCtrl('表格').pageInfo = {
   __itemcount: 100,
-  __pageindex: 1;
-  __pagesize: 20;
+  __pageindex: 1,
+  __pagesize: 20
 }
 ```
 
 ## setCheck()
-设置行勾选状态。
++ 类型：
 
-类型：
 ```typescript
-type setCheck = (value: boolean, index: number): void
+type FunctionSetCheck = (value: boolean, index: number): void
 ```
 
+设置行勾选状态。
 
 ```js
 // 设置第一行为勾选状态
@@ -336,13 +319,13 @@ page.getCtrl('表格').setCheck(true, 0)
 
 
 ## deleteInScope()
-删除特定行。
++ 类型：
 
-类型：
 ```typescript
-type deleteInScope = (scope: 'all' | 'focused' | 'checked'): void
+type FunctionDeleteInScope = (scope: 'all' | 'focused' | 'checked'): void
 ```
 
+删除所有行/焦点行/勾选行。
 
 ```js
 // 删除所有行
@@ -357,16 +340,13 @@ page.getCtrl('表格').deleteInScope('checked')
 
 
 ## append()
-插入行数据。
++ 类型：
 
-类型：
 ```typescript
-interface RowValue {
-  [propName: string]: any
-}
-
-type append = (data: RowValue | RowValue[], type: 'head' | 'tail'): void
+type FunctionAppend = (data: RowValue | RowValue[], type: 'head' | 'tail'): void
 ```
+
+插入行数据。
 
 | type值 | 说明 |
 | ---- | ---- |
@@ -396,17 +376,13 @@ page.getCtrl('表格').append([
 
 
 ## update()
-更新行数据。
++ 类型：
 
-类型：
 ```typescript
-interface RowValue {
-  [propName: string]: any
-}
-
-type update = (data: RowValue | RowValue[], index: number | number[]): void
+type FunctionUpdate = (data: RowValue | RowValue[], index: number | number[]): void
 ```
 
+更新行数据。
 
 ```js
 // 同时更新第1行和第3行数据
@@ -427,18 +403,8 @@ page.getCtrl('表格').update({
 
 
 ## row/focusedRow/checkedRow/getRowByIndex()
-获取行控件。
++ 类型：
 
-取得行控件后，可通过 getCtrl() 方法获取该行下某一单元格的控件实例，从而对单元格控件进行 flycode 操作。
-
-| 值 | 说明 |
-| ---- | ---- |
-| row | 获取所有行控件 |
-| focusedRow | 获取焦点行控件 |
-| checkedRow | 获取勾选行控件 |
-| getRowByIndex() | 传入行序号获取行控件 |
-
-类型：
 ```typescript
 interface Ctrl {
   get value (): any
@@ -452,16 +418,28 @@ interface Ctrl {
   ...
 }
 
-interface Row {
-  index: number;
-  getCtrl(name: string): Ctrl;
+interface ArrayRowCtrl {
+  index: number
+  getCtrl(name: string): Ctrl
 }
 
-get row (): Row[]
-get focusedRow (): Row | null
-get checkedRow (): Row[]
-type getRowByIndex = (index: number | number[]): Row | Row[] | null
+get row (): ArrayRowCtrl[]
+get focusedRow (): ArrayRowCtrl | null
+get checkedRow (): ArrayRowCtrl[]
+
+type FunctionGetRowByIndex = (index: number | number[]): ArrayRowCtrl | ArrayRowCtrl[] | null
 ```
+
+获取行控件。
+
+取得行控件后，可通过 getCtrl() 方法获取该行下某一单元格的控件实例，从而对单元格控件进行 flycode 操作。
+
+| 值 | 说明 |
+| ---- | ---- |
+| row | 获取所有行控件 |
+| focusedRow | 获取焦点行控件 |
+| checkedRow | 获取勾选行控件 |
+| getRowByIndex() | 传入行序号获取行控件 |
 
 
 ```js
@@ -484,13 +462,10 @@ allRows[1].getCtrl('unit').options = [
 ```
 
 ## getColByName()
-获取列控件。
++ 类型：
 
-取得列控件后，可统一设置该列的 title readonly hidden required 等属性。
-
-类型：
 ```typescript
-interface Col {
+interface TableColCtrl {
   get title (): string
   set title (value: string): void
   set hidden (value: boolean): void
@@ -499,8 +474,12 @@ interface Col {
   ...
 }
 
-type getColByName = (name: string): Col | null
+type FunctionGetColByName = (name: string): TableColCtrl | null
 ```
+
+获取列控件。
+
+取得列控件后，可统一设置该列的 title readonly hidden required 等属性。
 
 
 ```js
@@ -525,15 +504,15 @@ col.required = true
 
 
 ## getOperationCtrl()
-获取操作按钮控件
++ 类型：
 
-通过传入操作按钮 name 值，获取操作按钮控件，可以对该操作按钮进行 flycode 设置。
-
-类型：
 ```typescript
-type getOperationCtrl = (name: string): Ctrl | null
+type FunctionGetOperationCtrl = (name: string): Ctrl | null
 ```
 
+获取操作按钮控件。
+
+通过传入操作按钮 name 值，获取操作按钮控件，可以对该操作按钮进行 flycode 设置。
 
 ```js
 // 获取表格中的新增操作按钮并设置隐藏和只读
@@ -543,13 +522,13 @@ page.getCtrl('表格').getOperationCtrl('add').readonly = true
 
 
 ## getRowoperationCtrl()
-获取行操作按钮，通过传入行操作按钮 name 值，获取所有行操作按钮控件数组，可以对行操作按钮控件进行 flycode 设置。
++ 类型：
 
-类型：
 ```typescript
-type getRowoperationCtrl = (name: string): Ctrl[] | null
+type FunctionGetRowoperationCtrl = (name: string): Ctrl[] | null
 ```
 
+获取行操作按钮，通过传入行操作按钮 name 值，获取所有行操作按钮控件数组，可以对行操作按钮控件进行 flycode 设置。
 
 ```js
 // 获取所有行的编辑操作按钮控件
