@@ -2,18 +2,11 @@
   <div v-if="!protocol" style="padding: 12px">
     <el-button v-for="(item, index) in demoArr" :key="index" type="primary" size="mini" @click="jump(item)">{{ item }}</el-button>
   </div>
-  <xt-page
-    v-else
-    :protocol="protocol"
-  />
+  <xt-engine v-else :protocol="protocol" />
 </template>
 
 <script>
-import components from '../components/index.js'
 export default {
-  components: {
-    'xt-page': components.page
-  },
   data: function () {
     return {
       demoArr: [
@@ -54,6 +47,8 @@ export default {
       if (key) {
         import(`./${key}.js`).then((res) => {
           this.protocol = res.default
+        }).catch((err) => {
+          this.protocol = null
         })
       }
     },

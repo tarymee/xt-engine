@@ -1,13 +1,15 @@
-
 // import xtButton from './button'
-export default {
+import engine from './engine'
+
+const components = {
   // button: () => import('./button'),
   // button: require('./button').default,
   // button: xtButton,
   // 引用ref="XX"的组件不能采用懒加载的形式引入
   // https://blog.csdn.net/qq_36016136/article/details/107398528
   default: require('./default').default,
-  page: require('./page').default,
+  engine: engine,
+  // page: engine,
   layout: require('./layout').default,
   popview: require('./popview').default,
   text: require('./text').default,
@@ -36,3 +38,17 @@ export default {
   baseInputMixin: require('./common/baseInputMixin').default
 }
 
+// 注册组件
+function register (name, vm) {
+  if (components[name]) {
+    console.error(`引擎已存在 ${name} 组件，请更换组件 name 值。`)
+  } else {
+    components[name] = vm
+  }
+}
+
+// export default components
+export {
+  components as default,
+  register
+}
