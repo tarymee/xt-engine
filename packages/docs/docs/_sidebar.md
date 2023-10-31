@@ -6,7 +6,7 @@
   * [UI布局系统](introduction/style)
 
 * 控件
-  * [控件基础](components/index)
+  * [基础信息](components/index)
   * **容器控件**
   * [layout 布局](components/layout)
   * [filter 搜索栏](components/filter)

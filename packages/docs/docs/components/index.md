@@ -47,6 +47,9 @@
 | style | css 样式对象 |
 | css | css 样式 |
 | class | css 类名 |
+| width | 宽度 |
+| height | 高度 |
+| flex | flex |
 
 
 输入型控件都会有的属性：
@@ -128,7 +131,13 @@
 }
 ```
 
+## width/height
++ 类型： string
++ 默认： ""
 
+设置控件宽度/高度，接收CSS单位值，如 `px` `%` `vw` `vh` 等等。
+
+与在 style css样式对象里设置 width/height 效果是一样的。
 
 
 ## required
