@@ -7,9 +7,9 @@
 + 数组控件
 
 # 控件协议
-控件协议是一钟json对象格式的协议，由不同的控件属性组成，根据不同的 type 值区别不同种类的控件。
+控件协议是一钟json对象格式的协议，由不同的控件属性组成，根据不同的 `type` 值区别不同种类的控件。
 
-以 textinput 文本输入框控件为例，它的协议如下：
+以 `textinput` 文本输入框控件为例，它的协议如下：
 
 ```json
 {
@@ -20,11 +20,13 @@
   "eventlist": [
     {
       "trigger": "onvaluechange",
-      "handler": ""
+      "handler": "",
+      "script": ""
     },
     {
       "trigger": "onload",
-      "handler": ""
+      "handler": "",
+      "script": ""
     }
   ]
 }

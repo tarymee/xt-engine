@@ -40,7 +40,8 @@ import xtEngine from '@smart100/web-engine'
 // import 'element-ui/lib/theme-chalk/index.css'
 // Vue.use(ElementUI)
 
-Vue.use(xtEngine) // 引擎会自动引入完整的 element-ui，因此不再需要手动引入
+// 引擎会自动引入完整的 element-ui，因此不再需要手动引入
+Vue.use(xtEngine)
 
 new Vue({
   el: '#app',

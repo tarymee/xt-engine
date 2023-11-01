@@ -1,25 +1,8 @@
-# xt-engine
+# @smart100/web-engine
+> 玄迅销售云智慧100 Web 端低代码引擎。
 
-## Project setup
-```
-npm install
-```
+## 概述
+`@smart100/web-engine` 是一个基于 `Vue2` + `Element-UI` 的通用页面协议引擎，它可以帮助你使用协议快速生成页面。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
+## 文档
+[@smart100/web-engine](https://tarymee.github.io/xt-engine/)
