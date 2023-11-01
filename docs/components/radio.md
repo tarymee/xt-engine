@@ -1,7 +1,6 @@
 # radio 单选框
 在一组备选项中进行单选。
 
-# 协议
 ```json
 {
   "type": "radio",
@@ -23,6 +22,7 @@
   "eventlist": []
 }
 ```
+
 
 ## value
 + 类型： string

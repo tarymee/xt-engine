@@ -1,7 +1,5 @@
 # attachment 附件上传
 
-
-# 协议
 ```json
 {
   "type": "attachment",
@@ -16,6 +14,7 @@
 
 ## value
 + 类型： IAttachmentValue[]
++ 默认： []
 
 ```typescript
 interface IAttachmentValue {
@@ -24,10 +23,7 @@ interface IAttachmentValue {
 }
 ```
 
-+ 默认： []
-
 控件初始值。
-
 
 ## maxlength
 + 类型： string

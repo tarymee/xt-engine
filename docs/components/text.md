@@ -1,8 +1,6 @@
 # text 文本
 
 
-# 协议
-
 ```json
 {
   "type": "text",
@@ -12,6 +10,7 @@
   "eventlist": []
 }
 ```
+
 
 ## value
 + 类型： string

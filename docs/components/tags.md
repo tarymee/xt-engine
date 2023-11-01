@@ -1,8 +1,5 @@
 # tags 标签
 
-
-# 协议
-
 ```json
 {
   "type": "tags",
@@ -11,6 +8,7 @@
   "eventlist": []
 }
 ```
+
 
 ## eventlist.trigger
 + 类型： string

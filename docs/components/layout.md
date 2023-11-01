@@ -1,8 +1,6 @@
 # layout 布局
 用于布局的容器控件，方便快速搭建页面的基本结构，类似于 html 的 div 标签。
 
-# 协议
-
 ```json
 {
   "type": "layout",
@@ -12,8 +10,10 @@
 }
 ```
 
+
 ## content
 + 类型： IviewRule[]
++ 默认： []
 
 ```typescript
 interface IviewRule {
@@ -24,8 +24,6 @@ interface IviewRule {
   [propName: string]: any
 }
 ```
-
-+ 默认： []
 
 定义布局容器内容，取值类型为`控件协议对象数组`，可多重嵌套。
 

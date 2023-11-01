@@ -1,7 +1,5 @@
 # photo 图片上传
 
-
-# 协议
 ```json
 {
   "type": "photo",
@@ -13,6 +11,7 @@
   "eventlist": []
 }
 ```
+
 
 ## value
 + 类型： IPhotoValue[]

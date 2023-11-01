@@ -1,8 +1,6 @@
 # link 链接
 使用单纯的文字来作为一个按钮功能的控件。
 
-# 协议
-
 ```json
 {
   "type": "link",
@@ -11,6 +9,7 @@
   "eventlist": []
 }
 ```
+
 
 ## value
 + 类型： string

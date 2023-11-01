@@ -1,7 +1,6 @@
 # checkbox 多选框
 一组备选项中进行多选。
 
-# 协议
 ```json
 {
   "type": "checkbox",
@@ -24,6 +23,8 @@
 }
 ```
 
+
+
 ## value
 + 类型： string[]
 + 默认： []
@@ -43,6 +44,7 @@
 
 ## options
 + 类型： Ioption[]
++ 默认： []
 
 ```typescript
 interface Ioption {
@@ -51,8 +53,6 @@ interface Ioption {
   disabled?: string // 选项值是否不可选
 }
 ```
-
-+ 默认： []
 
 
 控件数据源选项。

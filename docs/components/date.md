@@ -1,8 +1,5 @@
 # date 日期选择器
 
-
-# 协议
-
 ```json
 {
   "type": "date",
@@ -13,6 +10,7 @@
   "eventlist": []
 }
 ```
+
 
 ## value
 + 类型： string

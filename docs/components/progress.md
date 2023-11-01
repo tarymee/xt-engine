@@ -1,7 +1,6 @@
 # progress 进度
 用于展示操作进度，告知用户当前状态和预期。
 
-# 协议
 
 ```json
 {
@@ -11,6 +10,7 @@
   "eventlist": []
 }
 ```
+
 
 ## value
 + 类型： string | number

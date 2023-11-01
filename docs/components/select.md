@@ -1,7 +1,6 @@
 # select 选择器
 
 
-# 协议
 ```json
 {
   "type": "select",
@@ -12,6 +11,7 @@
   "eventlist": []
 }
 ```
+
 
 ## value
 + 类型： string

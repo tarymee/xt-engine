@@ -1,8 +1,5 @@
 # image 图片
 
-
-# 协议
-
 ```json
 {
   "type": "image",
@@ -12,6 +9,7 @@
   "eventlist": []
 }
 ```
+
 
 ## value
 + 类型： string

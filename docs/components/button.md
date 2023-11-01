@@ -1,8 +1,6 @@
 # button 按钮
 
 
-# 协议
-
 ```json
 {
   "type": "button",
@@ -16,6 +14,7 @@
   ]
 }
 ```
+
 
 ## value
 + 类型： string

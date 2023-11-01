@@ -3,7 +3,6 @@
 
   * [快速开始](introduction/quickstart)
   * [UI表单协议](introduction/protocol)
-  * [UI布局系统](introduction/style)
 
 * 控件
   * [基础信息](components/index)
@@ -45,7 +44,6 @@
   * [路由](flycode/route)
   * [inject](flycode/inject)
 
-* 其他
-
-  * [约定](other/agree)
+<!-- * 其他
+  * [约定](other/agree) -->
 

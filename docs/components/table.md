@@ -1,7 +1,6 @@
 # table 表格
 用于展示多条结构类似的数据，可对数据进行自定义操作。
 
-# 协议
 ```json
 {
   "type": "table",
@@ -17,6 +16,7 @@
   "eventlist": []
 }
 ```
+
 
 ## pageable
 + 类型： boolean | "1" | "0"
