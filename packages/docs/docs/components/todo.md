@@ -16,7 +16,6 @@
 
 # todo
 + 日期选择器 时间选择器
-+ engine,init()  检测是否有vue 和 elementui vue.use()
 + tablestyle: border | ... 支持多一种样式
 + 优化 dealInnerProps 利用 parentcodepath
 + xt-engine xt-page？？
