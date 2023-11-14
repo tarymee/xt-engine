@@ -57,7 +57,9 @@ const xtEngine = {
 }
 
 const components$1 = {
-  page: components.engine
+  page: components.engine,
+  baseMixin: components.baseMixin,
+  baseInputMixin: components.baseInputMixin
 }
 
 export {

@@ -5,6 +5,10 @@
   "author": "tarymee <tarymee@qq.com>",
   "homepage": "https://tarymee.github.io/xt-engine/#/",
   "license": "ISC",
+  "files": [
+    "index.js",
+    "src"
+  ],
   "main": "index.js",
   "publishConfig": {
     "access": "public"
