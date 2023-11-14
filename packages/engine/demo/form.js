@@ -416,6 +416,41 @@ export default {
               ]
             },
             {
+              "type": "layout",
+              "title": "",
+              "name": "",
+              "style": {
+                "width": "100%",
+                "flex-direction": "row",
+                "font-weight": "bold",
+                "padding": "15px 0",
+                "margin": "15px",
+                "border-bottom": "1px solid #eee"
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "title": "",
+                  "value": "♦",
+                  "style": {
+                    "font-weight": "bold",
+                    "margin-right": "5px",
+                    "color": "#1a85ff"
+                  },
+                  "eventlist": []
+                },
+                {
+                  "type": "text",
+                  "title": "",
+                  "value": "高级配置",
+                  "style": {
+                    "font-weight": "bold"
+                  },
+                  "eventlist": []
+                }
+              ]
+            },
+            {
               "type": "attachment",
               "titlewidth": "120",
               "title": "attachment",

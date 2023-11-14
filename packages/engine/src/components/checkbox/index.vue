@@ -34,6 +34,7 @@
   </div>
 </template>
 <script>
+import { get, cloneDeep } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 
 export default {
@@ -43,7 +44,8 @@ export default {
     return {
       value: this.returnViewRulePropValue('value', 'array', []),
       options: this.returnViewRulePropValue('options', 'array', []),
-      displaytype: this.returnViewRulePropValue('displaytype', 'string', 'auto') // auto | number
+      displaytype: this.returnViewRulePropValue('displaytype', 'string', 'auto'), // auto | number
+      valuetype: this.returnViewRulePropValue('valuetype', 'string', 'array') // string | array
     }
   },
   computed: {
@@ -63,6 +65,20 @@ export default {
   methods: {
     handleChange (e) {
       this.executeEvent('onvaluechange')
+    },
+    getValue (getter) {
+      if (this.valuetype === 'string') {
+        return (this.value && this.value.length) ? JSON.stringify(this.value) : ''
+      } else {
+        return cloneDeep(this.value)
+      }
+    },
+    setValue (value, setter) {
+      if (this.valuetype === 'string') {
+        this.value = (value && !Array.isArray(value)) ? JSON.parse(value) : []
+      } else {
+        this.value = (value && Array.isArray(value) && value.length) ? cloneDeep(value) : []
+      }
     },
     test (e) {
       console.log(this.value)

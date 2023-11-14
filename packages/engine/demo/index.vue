@@ -1,6 +1,8 @@
 <template>
   <div v-if="!protocol" style="padding: 12px">
-    <el-button v-for="(item, index) in demoArr" :key="index" type="primary" size="mini" @click="jump(item)">{{ item }}</el-button>
+    <div v-for="(item, index) in demoArr" :key="index" style="display: inline-block;margin: 5px">
+      <el-button type="primary" size="mini" @click="jump(item)">{{ item }}</el-button>
+    </div>
   </div>
   <xt-engine v-else :protocol="protocol" />
 </template>
@@ -18,6 +20,7 @@ export default {
         'foreach',
         'layout',
         'form',
+        'customervisitconfig',
         'webview',
         'eventflycode',
         'test',
