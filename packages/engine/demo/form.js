@@ -23,7 +23,23 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-get"
+                  "script": `
+                    // debugger
+                    const value = {
+                      textinput: page.getCtrl('textinput').value,
+                      select: page.getCtrl('select').value,
+                      tree: page.getCtrl('tree').value,
+                      treemul: page.getCtrl('treemul').value,
+                      cascade: page.getCtrl('cascade').value,
+                      date: page.getCtrl('date').value,
+                      textarea: page.getCtrl('textarea').value,
+                      checkbox: page.getCtrl('checkbox').value,
+                      radio: page.getCtrl('radio').value,
+                      attachment: page.getCtrl('attachment').value,
+                      photo: page.getCtrl('photo').value,
+                    }
+                    console.log(value)
+                  `
                 }
               ],
               "style": {
@@ -37,7 +53,29 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-set"
+                  "script": `
+                    page.getCtrl('textinput').value = 'textinput'
+                    page.getCtrl('select').value = '1'
+                    page.getCtrl('tree').value = '1'
+                    page.getCtrl('treemul').value = ['1-1-1', '1-1-2']
+                    page.getCtrl('cascade').value = ['1', '1-1', '1-1-1']
+                    page.getCtrl('date').value = '1681228800000'
+                    page.getCtrl('textarea').value = 'textarea'
+                    page.getCtrl('checkbox').value = ['0', '4']
+                    page.getCtrl('radio').value = '4'
+                    page.getCtrl('attachment').value = [
+                      {
+                        filename: '鸟',
+                        url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                      }
+                    ]
+                    page.getCtrl('photo').value = [
+                      {
+                        filename: '鸟',
+                        url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                      }
+                    ]
+                  `
                 }
               ],
               "style": {
@@ -51,7 +89,10 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-readonly"
+                  "script": `
+                    console.log('handle-readonly')
+                    page.getCtrl('表单layout').readonly = !page.getCtrl('表单layout').readonly
+                  `
                 }
               ],
               "style": {
@@ -65,7 +106,20 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-required"
+                  "script": `
+                    console.log('handle-required')
+                    page.getCtrl('textinput').required = !page.getCtrl('textinput').required
+                    page.getCtrl('select').required = !page.getCtrl('select').required
+                    page.getCtrl('tree').required = !page.getCtrl('tree').required
+                    page.getCtrl('treemul').required = !page.getCtrl('treemul').required
+                    page.getCtrl('cascade').required = !page.getCtrl('cascade').required
+                    page.getCtrl('date').required = !page.getCtrl('date').required
+                    page.getCtrl('textarea').required = !page.getCtrl('textarea').required
+                    page.getCtrl('checkbox').required = !page.getCtrl('checkbox').required
+                    page.getCtrl('radio').required = !page.getCtrl('radio').required
+                    page.getCtrl('attachment').required = !page.getCtrl('attachment').required
+                    page.getCtrl('photo').required = !page.getCtrl('photo').required
+                  `
                 }
               ],
               "style": {
@@ -79,7 +133,14 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-validata"
+                  "script": `
+                    const result = page.validata()
+                    console.log(result)
+                    if (!result) {
+                      // throw Error('validata')
+                      return
+                    }
+                  `
                 }
               ],
               "style": {
@@ -93,7 +154,9 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-test"
+                  "script": `
+                    console.log(page.engine)
+                  `
                 }
               ],
               "style": {
@@ -181,6 +244,63 @@ export default {
               "displaytype": "custom",
               "expandmodel": "rootexpand",
               "intermediateselectmode": "individual",
+              "width": "50%",
+              "required": "",
+              "value": "",
+              "options": [
+                {
+                  "parentkey": "",
+                  "key": "1",
+                  "text": "巧克力公司"
+                },
+                {
+                  "parentkey": "1",
+                  "key": "1-1",
+                  "text": "西南大区"
+                },
+                {
+                  "parentkey": "1-1",
+                  "key": "1-1-1",
+                  "text": "张三"
+                },
+                {
+                  "parentkey": "1-1",
+                  "key": "1-1-2",
+                  "text": "李四"
+                },
+                {
+                  "parentkey": "1-1",
+                  "key": "1-1-3",
+                  "text": "王五"
+                },
+                {
+                  "parentkey": "1",
+                  "key": "1-2",
+                  "text": "华北大区"
+                },
+                {
+                  "parentkey": "1",
+                  "key": "1-3",
+                  "text": "华东大区"
+                }
+              ],
+              "eventlist": [
+                {
+                  "trigger": "onvaluechange",
+                  "handler": ""
+                }
+              ]
+            },
+            {
+              "type": "tree",
+              "titlewidth": "120",
+              "title": "treemul",
+              "placeholder": "treemul",
+              "name": "treemul",
+              "multiselectable": "1",
+              "displaytype": "custom",
+              "expandmodel": "rootexpand",
+              "intermediateselectmode": "shortcut",
               "width": "50%",
               "required": "",
               "value": "",
@@ -468,7 +588,27 @@ export default {
                 },
                 {
                   "trigger": "onupload",
-                  "handler": "handle-attachment-onupload"
+                  "script": `
+                    console.log(eventTarget)
+                    console.log(eventTarget.selectFile)
+
+                    eventTarget.handleSuccess({
+                      filename: eventTarget.selectFile.filename,
+                      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                    })
+
+                    // debugger
+                    // inject.uploadFileToOSS(eventTarget.selectFile).then(res => {
+                    //   console.log(res)
+                    //   eventTarget.handleSuccess({
+                    //     filename: res.objectKey,
+                    //     url: res.imageUrl
+                    //   })
+                    // }).catch(error => {
+                    //   console.error(error)
+                    //   eventTarget.handleFail()
+                    // })
+                  `
                 }
               ]
             },
@@ -490,7 +630,27 @@ export default {
                 },
                 {
                   "trigger": "onupload",
-                  "handler": "handle-photo-onupload"
+                  "script": `
+                    console.log(eventTarget)
+                    console.log(eventTarget.selectFile)
+
+                    eventTarget.handleSuccess({
+                      filename: eventTarget.selectFile.filename,
+                      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                    })
+
+                    // debugger
+                    // inject.uploadFileToOSS(eventTarget.selectFile).then(res => {
+                    //   console.log(res)
+                    //   eventTarget.handleSuccess({
+                    //     filename: res.objectKey,
+                    //     url: res.imageUrl
+                    //   })
+                    // }).catch(error => {
+                    //   console.error(error)
+                    //   eventTarget.handleFail()
+                    // })
+                  `
                 }
               ]
             },
@@ -560,224 +720,15 @@ export default {
     "interface": [],
     "handlers": [
       {
-        "code": "handle-get",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              // debugger
-              const value = {
-                textinput: page.getCtrl('textinput').value,
-                select: page.getCtrl('select').value,
-                tree: page.getCtrl('tree').value,
-                cascade: page.getCtrl('cascade').value,
-                date: page.getCtrl('date').value,
-                textarea: page.getCtrl('textarea').value,
-                checkbox: page.getCtrl('checkbox').value,
-                radio: page.getCtrl('radio').value,
-                attachment: page.getCtrl('attachment').value,
-                photo: page.getCtrl('photo').value,
-              }
-              console.log(value)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-set",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('textinput').value = 'textinput'
-              page.getCtrl('select').value = '1'
-              page.getCtrl('tree').value = '1'
-              page.getCtrl('cascade').value = ['1', '1-1', '1-1-1']
-              page.getCtrl('date').value = '1681228800000'
-              page.getCtrl('textarea').value = 'textarea'
-              page.getCtrl('checkbox').value = ['0', '4']
-              page.getCtrl('radio').value = '4'
-              page.getCtrl('attachment').value = [
-                {
-                  filename: '鸟',
-                  url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                }
-              ]
-              page.getCtrl('photo').value = [
-                {
-                  filename: '鸟',
-                  url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                }
-              ]
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-validata",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const result = page.validata()
-              console.log(result)
-              if (!result) {
-                // throw Error('validata')
-                return
-              }
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-readonly",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              console.log('handle-readonly')
-              page.getCtrl('表单layout').readonly = !page.getCtrl('表单layout').readonly
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-required",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              console.log('handle-required')
-              page.getCtrl('textinput').required = !page.getCtrl('textinput').required
-              page.getCtrl('select').required = !page.getCtrl('select').required
-              page.getCtrl('tree').required = !page.getCtrl('tree').required
-              page.getCtrl('cascade').required = !page.getCtrl('cascade').required
-              page.getCtrl('date').required = !page.getCtrl('date').required
-              page.getCtrl('textarea').required = !page.getCtrl('textarea').required
-              page.getCtrl('checkbox').required = !page.getCtrl('checkbox').required
-              page.getCtrl('radio').required = !page.getCtrl('radio').required
-              page.getCtrl('attachment').required = !page.getCtrl('attachment').required
-              page.getCtrl('photo').required = !page.getCtrl('photo').required
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-cancel",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              console.log('handle-cancel')
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-save",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              console.log('handle-save')
-            `
-          }
-        ]
-      },
-      {
         "code": "handle-test",
         "title": "",
         "name": "",
         "actions": [
           {
             "type": "flycode",
-            "title": "flycode",
             "script": `
-              console.log(page.engine)
+              console.log('test')
             `
-          }
-        ]
-      },
-      {
-        "code": "handle-photo-onupload",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "script": `
-                console.log(eventTarget)
-                console.log(eventTarget.selectFile)
-
-                eventTarget.handleSuccess({
-                  filename: eventTarget.selectFile.filename,
-                  url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                })
-
-                // debugger
-                // inject.uploadFileToOSS(eventTarget.selectFile).then(res => {
-                //   console.log(res)
-                //   eventTarget.handleSuccess({
-                //     filename: res.objectKey,
-                //     url: res.imageUrl
-                //   })
-                // }).catch(error => {
-                //   console.error(error)
-                //   eventTarget.handleFail()
-                // })
-              `
-          }
-        ]
-      },
-      {
-        "code": "handle-attachment-onupload",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "script": `
-                console.log(eventTarget)
-                console.log(eventTarget.selectFile)
-
-                eventTarget.handleSuccess({
-                  filename: eventTarget.selectFile.filename,
-                  url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-                })
-
-                // debugger
-                // inject.uploadFileToOSS(eventTarget.selectFile).then(res => {
-                //   console.log(res)
-                //   eventTarget.handleSuccess({
-                //     filename: res.objectKey,
-                //     url: res.imageUrl
-                //   })
-                // }).catch(error => {
-                //   console.error(error)
-                //   eventTarget.handleFail()
-                // })
-              `
           }
         ]
       }
