@@ -242,6 +242,7 @@ export default {
               "name": "tree",
               "multiselectable": "",
               "displaytype": "custom",
+              // "displaytype": "navigation",
               "expandmodel": "rootexpand",
               "intermediateselectmode": "individual",
               "width": "50%",
@@ -251,7 +252,24 @@ export default {
                 {
                   "parentkey": "",
                   "key": "1",
-                  "text": "巧克力公司"
+                  "text": "巧克力公司",
+                  "tags": [
+                    {
+                      "text": '标签',
+                      "effect": 'dark',
+                      "type": 'success'
+                    },
+                    {
+                      "text": '标签',
+                      "effect": 'light',
+                      "type": 'success'
+                    },
+                    {
+                      "text": '标签',
+                      "effect": 'plain',
+                      "type": 'success'
+                    }
+                  ]
                 },
                 {
                   "parentkey": "1",
@@ -299,6 +317,7 @@ export default {
               "name": "treemul",
               "multiselectable": "1",
               "displaytype": "custom",
+              // "displaytype": "navigation",
               "expandmodel": "rootexpand",
               "intermediateselectmode": "shortcut",
               "width": "50%",
@@ -562,6 +581,8 @@ export default {
                 {
                   "type": "text",
                   "title": "",
+                  "hidden": "",
+                  "linenumber": "1",
                   "value": "高级配置",
                   "style": {
                     "font-weight": "bold"

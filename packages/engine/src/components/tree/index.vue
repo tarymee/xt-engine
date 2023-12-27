@@ -40,6 +40,7 @@
         @show="handlePopoverShow"
       >
         <el-tree
+          v-if="!isHasTags"
           ref="tree"
           class="xt-tree-tree"
           :data="treeData"
@@ -56,11 +57,45 @@
           @check="handleCheck"
           @node-click="handleNodeClick"
         />
+        <el-tree
+          v-if="isHasTags"
+          ref="tree"
+          class="xt-tree-tree"
+          :data="treeData"
+          node-key="id"
+          :default-expand-all="expandmodel === 'allexpand'"
+          :default-expanded-keys="defaultExpandedKeys"
+          check-on-click-node
+          empty-text="暂无数据"
+          :show-checkbox="multiselectable"
+          :check-strictly="multiselectable && intermediateselectmode === 'individual'"
+          :highlight-current="highlightCurrent"
+          :expand-on-click-node="expandOnClickNode"
+          :props="defaultProps"
+          @check="handleCheck"
+          @node-click="handleNodeClick"
+        >
+          <div slot-scope="{ node, data }" class="xt-tree-custom-tree-node">
+            <span class="el-tree-node__label" style="margin-right: 4px;">{{ node.label }}</span>
+            <template v-if="data.tags && data.tags.length">
+              <el-tag
+                v-for="(item, index) in data.tags"
+                :key="index"
+                size="mini"
+                :type="item.type"
+                :effect="item.effect"
+                style="margin-right: 4px;"
+              >
+                {{ item.text }}
+              </el-tag>
+            </template>
+          </div>
+        </el-tree>
       </el-popover>
     </div>
 
     <el-tree
-      v-if="displaytype === 'navigation'"
+      v-if="displaytype === 'navigation' && !isHasTags"
       ref="tree"
       class="xt-tree-navigation-tree"
       :data="treeData"
@@ -77,6 +112,40 @@
       @check="handleCheck"
       @node-click="handleNodeClick"
     />
+    <el-tree
+      v-if="displaytype === 'navigation' && isHasTags"
+      ref="tree"
+      class="xt-tree-navigation-tree"
+      :data="treeData"
+      node-key="id"
+      :default-expand-all="expandmodel === 'allexpand'"
+      :default-expanded-keys="defaultExpandedKeys"
+      check-on-click-node
+      empty-text="暂无数据"
+      :show-checkbox="multiselectable"
+      :check-strictly="multiselectable && intermediateselectmode === 'individual'"
+      :highlight-current="highlightCurrent"
+      :expand-on-click-node="expandOnClickNode"
+      :props="defaultProps"
+      @check="handleCheck"
+      @node-click="handleNodeClick"
+    >
+      <div slot-scope="{ node, data }" class="xt-tree-custom-tree-node">
+        <span class="el-tree-node__label" style="margin-right: 4px;">{{ node.label }}</span>
+        <template v-if="data.tags && data.tags.length">
+          <el-tag
+            v-for="(item, index) in data.tags"
+            :key="index"
+            size="mini"
+            :type="item.type"
+            :effect="item.effect"
+            style="margin-right: 4px;"
+          >
+            {{ item.text }}
+          </el-tag>
+        </template>
+      </div>
+    </el-tree>
   </div>
 </template>
 <script>
@@ -138,8 +207,13 @@ export default {
         pidKey: 'parentid',
         childrenKey: 'children'
       })
-      console.log(treeData)
+      // console.log(treeData)
       return treeData
+    },
+    isHasTags () {
+      return this.optionsFormat.some((item) => {
+        return item.tags && item.tags.length
+      })
     },
     defaultExpandedKeys () {
       const keys = []
@@ -170,6 +244,10 @@ export default {
     }
   },
   methods: {
+    // test (node, data) {
+    //   console.log(node)
+    //   console.log(data)
+    // },
     getValue (getter) {
       const component = get(getter, 'ctrl.component', 'id')
       if (this.multiselectable) {
@@ -462,5 +540,11 @@ export default {
 }
 .xt-tree-input-item-close {
   cursor: pointer;
+}
+
+.xt-tree-custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 </style>

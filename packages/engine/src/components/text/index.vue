@@ -27,8 +27,10 @@ export default {
         style['text-overflow'] = 'ellipsis'
         style['display'] = '-webkit-box'
         style['-webkit-box-orient'] = 'vertical'
-        style['display'] = '-webkit-box'
         style['-webkit-line-clamp'] = Number(this.linenumber)
+      }
+      if (this.hidden) {
+        style.display = 'none'
       }
       return style
     }
