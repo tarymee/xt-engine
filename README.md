@@ -8,4 +8,4 @@
 [@smart100/web-engine](https://tarymee.github.io/xt-engine/)
 
 ## node
-版本 >= 16.14.0
+version >= 16.14.0
