@@ -7,5 +7,6 @@
 ## 文档
 [@smart100/web-engine](https://tarymee.github.io/xt-engine/)
 
-## node
-version >= 16.14.0
+## 开发要求
++ node version >= 16.14.0
++ 使用 npm
