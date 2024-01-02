@@ -1,37 +1,35 @@
 {
-  "name": "xt-engine",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "name": "@smart100/web-engine",
+  "version": "0.2.11",
+  "description": "",
   "scripts": {
     "dev": "vue-cli-service serve",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
     "docs": "docsify serve ./docs"
   },
+  "author": "tarymee <tarymee@qq.com>",
+  "files": [
+    "src"
+  ],
+  "main": "src/index.js",
   "dependencies": {
-    "core-js": "^3.6.5",
+    "axios": "^0.24.0",
     "element-ui": "^2.15.14",
     "lodash-es": "^4.17.21",
-    "uuid": "^8.3.2",
-    "vue": "^2.6.11",
-    "vue-resource": "^1.3.5",
-    "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
+    "core-js": "^3.6.5",
     "docsify-cli": "^4.4.4",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "lerna": "^4.0.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vue": "^2.6.11",
+    "vue-resource": "^1.3.5",
+    "vue-router": "^3.2.0"
   }
 }

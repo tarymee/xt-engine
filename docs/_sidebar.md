@@ -44,6 +44,6 @@
   * [路由](flycode/route)
   * [inject](flycode/inject)
 
-<!-- * 其他
-  * [约定](other/agree) -->
+* 其他
+  * [更新日志](other/changelog)
 
