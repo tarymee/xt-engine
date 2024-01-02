@@ -1,10 +1,9 @@
 {
   "name": "@smart100/web-engine",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "description": "",
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "docs": "docsify serve ./docs"
+    "dev": "vue-cli-service serve"
   },
   "author": "tarymee <tarymee@qq.com>",
   "files": [
