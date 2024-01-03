@@ -170,6 +170,7 @@ export default class Page {
   openLoading () {
     loading.open()
   }
+
   // 关闭 loading 弹窗
   closeLoading () {
     loading.close()
