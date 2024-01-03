@@ -39,7 +39,7 @@
 | onremotesearch | 远程搜索时触发 |
 
 
-# DEMO
+# 示例
 ```json
 {
   "view": {

@@ -72,7 +72,7 @@ interface IPhotoValue {
 | onupload | 上传时触发 |
 
 
-# DEMO
+# 示例
 ```json
 {
   "view": {

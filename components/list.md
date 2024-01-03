@@ -132,6 +132,8 @@
 
 
 # flycode
+支持通过 page.getCtrl() 获取控件实例对控件进行 flycode 操作，除了支持 [通用方法](flycode/page?id=getctrl) 之外，还额外支持以下方法。
+
 | flycode | 说明 |
 | ---- | ---- |
 | value | 取值赋值 |
@@ -143,7 +145,7 @@
 | deleteInScope() | 删除所有行/焦点行/勾选行 |
 | append() | 插入行数据 |
 | update() | 更新行数据 |
-| row/focusedRow/checkedRow/getRowByIndex() | 获取所有行/焦点行/勾选行/传入序号行控件 |
+| row/focusedRow/checkedRow/getRowByIndex() | 获取所有行/焦点行/勾选行/传入序号获取行控件 |
 
 ## value
 同 table 控件。

@@ -186,7 +186,9 @@ interface IEvent {
 
 
 ## eventlist.trigger
-表示控件所支持的触发事件，一般是以 `on` 作为前缀，一般来说，所有的控件都支持 `onload` 事件，输入型控件支持 `onvaluechange` 事件，大部分普通控件支持 `onclicked` 事件，等等。
+表示控件所支持的触发事件，以 `on` 作为前缀。
+
+一般来说，所有的控件都支持 `onload` 事件，输入型控件支持 `onvaluechange` 事件，大部分普通控件支持 `onclicked` 事件，等等。
 
 以下是比较常用的事件：
 
@@ -207,7 +209,7 @@ interface IEvent {
 
 一般来说，如果要执行的逻辑比较简单，或者不想关联`事件 code`的话，可以用此方式。
 
-## DEMO
+## 示例
 
 ```json
 {

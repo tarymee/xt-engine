@@ -54,7 +54,6 @@ interface Ioption {
 }
 ```
 
-
 控件数据源选项。
 
 ## eventlist.trigger

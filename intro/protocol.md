@@ -77,7 +77,9 @@ interface IEvent {
 
 
 ## eventlist
-表单生命周期事件。类型、用法跟[控件事件](components/index?id=控件事件)保持一致。
+表单生命周期事件。
+
+规则用法跟 [控件事件](components/index?id=控件事件) 保持一致。
 
 
 ## eventlist.trigger
@@ -160,21 +162,20 @@ interface IPopviewViewRule {
 
 ```typescript
 interface IPresenter {
-  initial: IHandleEvent[]
-  handlers: IHandleEvent[]
-  interface: IHandleEvent[]
+  initial?: IHandleEvent[]
+  handlers?: IHandleEvent[]
+  interface?: IHandleEvent[]
 }
 
 interface IHandleEvent {
   code: string
-  title: string
-  name: string
-  actions: IFlycodeAction[]
+  title?: string
+  name?: string
+  actions: IAction[]
 }
 
-interface IFlycodeAction {
-  code: string
-  title: string
+interface IAction {
+  title?: string
   type: string
   script: string
 }
@@ -191,16 +192,26 @@ interface IFlycodeAction {
 ## initial
 + 类型： IHandleEvent[]
 
-页面初始化事件。
-
-放置在这里的事件，会在表单初始化时自动按顺序执行。
+页面初始化事件。放置在这里的事件，会在表单初始化时自动按顺序执行。
 
 ## handlers
 + 类型： IHandleEvent[]
 
-页面事件的放置区域，该区域的事件通常由控件触发，例如点击按钮，列表加载数据等。
+定义表单页面的所有事件，一个事件由 `code: 事件code`，`title: 事件标题`，`name: 事件名称`，`actions: 事件行为` 组成。
 
-`handlers` 中可以有多个独立的事件，每个事件由一系列的行为构成。
+`code` 一般被用来关联控件的 `eventlist.handler`，表示该事件被触发。
+
+`title` 事件标题，描述事件，方便开发人员了解该事件的作用。
+
+`name` 可以为空，但如果想通过 `flycode: page.runEvent('handlerName')` 执行该事件时，则必须被定义。
+
+`actions` 为数组，一个事件由一系列的行为构成，当一个事件被执行时，会按顺序执行这些行为，称之为 `行为流`。
+
+`actions.title` 行为标题，描述行为，方便开发人员了解该行为的作用。
+
+`actions.type` 行为类型，目前只支持一种行为：flycode。
+
+`actions.script` 所要执行的 flycode 语句。
 
 ```json
 {
@@ -212,9 +223,21 @@ interface IFlycodeAction {
       "actions": [
         {
           "type": "flycode",
-          "title": "flycode",
           "script": `
             page.getCtrl('详情页面').hidden = false
+          `
+        }
+      ]
+    },
+    {
+      "code": "handle-edit",
+      "title": "编辑",
+      "name": "",
+      "actions": [
+        {
+          "type": "flycode",
+          "script": `
+            page.getCtrl('编辑页面').hidden = false
           `
         }
       ]
@@ -223,6 +246,11 @@ interface IFlycodeAction {
   ]
 }
 ```
+
+事件通常由控件触发，例如页面上按钮控件被用户点击，则可以通过控件的 `eventlist` 属性，定义 `eventlist.trigger = 'onclicked'`，`eventlist.handler = 事件code` 来触发执行事件。
+
+
+
 
 
 ## interface

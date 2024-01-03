@@ -171,6 +171,8 @@
 
 # flycode
 
+支持通过 page.getCtrl() 获取控件实例对控件进行 flycode 操作，除了支持 [通用方法](flycode/page?id=getctrl) 之外，还额外支持以下方法。
+
 | flycode | 说明 |
 | ---- | ---- |
 | value | 取值赋值 |
@@ -182,23 +184,90 @@
 | deleteInScope() | 删除所有行/焦点行/勾选行 |
 | append() | 插入行数据 |
 | update() | 更新行数据 |
-| row/focusedRow/checkedRow/getRowByIndex() | 获取所有行/焦点行/勾选行/传入序号行控件 |
+| row/focusedRow/checkedRow/getRowByIndex() | 获取所有行/焦点行/勾选行/传入序号获取行控件 |
 | getColByName() | 传入列名获取列控件 |
 | getOperationCtrl() | 获取操作按钮控件 |
 | getRowoperationCtrl() | 获取行操作按钮控件 |
 
-## value
+
 + 类型：
 
 ```typescript
+// 控件值类型
 interface RowValue {
   [propName: string]: any
 }
-get value (): RowValue[]
-set value (data: RowValue[]): void
+
+// 分页信息类型
+interface PageInfo {
+  __itemcount: number | string
+  __pageindex: number | string // 第一页为 1 而不是 0
+  __pagesize: number | string
+}
+
+// 行控件类型
+interface ArrayRowCtrl {
+  index: number
+  getCtrl(name: string): Ctrl
+}
+
+// 列控件类型
+interface TableColCtrl {
+  get title (): string
+  set title (value: string): void
+  set hidden (value: boolean): void
+  set readonly (value: boolean): void
+  set required (value: boolean): void
+  ...
+}
+
+// 数组型控件实例
+interface ArrayCtrl extends Ctrl {
+  get value (): RowValue
+  set value (data: RowValue)
+
+  getValue (): RowValue
+  setValue (value: RowValue)
+
+  get focusedValue (): RowValue | null
+  get checkedValue (): RowValue[]
+
+  get index (): number[]
+  get focusedIndex (): number | null
+  get checkedIndex (): number[]
+
+  get pageable (): boolean
+
+  get pageInfo (): PageInfo
+  set pageInfo (pageInfo: PageInfo): void
+
+  setCheck (value: boolean, index: number)
+
+  deleteInScope (scope: 'all' | 'focused' | 'checked')
+  append (data: RowValue | RowValue[], type: 'head' | 'tail')
+  update (data: RowValue | RowValue[], index: number | number[])
+
+  get row (): ArrayRowCtrl[]
+  get focusedRow (): ArrayRowCtrl | null
+  get checkedRow (): ArrayRowCtrl[]
+  getRowByIndex (index: number | number[]): ArrayRowCtrl | ArrayRowCtrl[] | null
+
+  getColByName (name: string): TableColCtrl | null
+
+  getOperationCtrl (name: string): Ctrl | null
+  getRowoperationCtrl (name: string): Ctrl[] | null
+}
+
+type FunctionGetCtrl = (name: string): ArrayCtrl
 ```
 
+
+## value
++ 类型：ArrayCtrl['value']
+
 对 table 控件进行取值、赋值。
+
++ 示例：
 
 ```js
 // 取值
@@ -217,14 +286,11 @@ page.getCtrl('表格').value = [
 ```
 
 ## focusedValue/checkedValue
-+ 类型：
-
-```typescript
-get focusedValue (): RowValue | null
-get checkedValue (): RowValue[]
-```
++ 类型：ArrayCtrl['focusedValue'] | ArrayCtrl['checkedValue']
 
 获取焦点行/勾选行的值。
+
++ 示例：
 
 ```js
 // 当点击某一行时触发事件 获取焦点行的值
@@ -237,15 +303,11 @@ console.log(checkedValue)
 ```
 
 ## index/focusedIndex/checkedIndex
-+ 类型：
-
-```typescript
-get index (): number[]
-get focusedIndex (): number | null
-get checkedIndex (): number[]
-```
++ 类型：ArrayCtrl['index'] | ArrayCtrl['focusedIndex'] | ArrayCtrl['checkedIndex']
 
 获取所有行/焦点行/勾选行序号。
+
++ 示例：
 
 ```js
 // 获取所有行的序号
@@ -262,13 +324,11 @@ console.log(checkedIndex)
 ```
 
 ## pageable
-+ 类型：
-
-```typescript
-get pageable (): boolean
-```
++ 类型：ArrayCtrl['pageable']
 
 获取是否设置分页。
+
++ 示例：
 
 ```js
 const pageable = page.getCtrl('表格').pageable
@@ -276,19 +336,11 @@ console.log(pageable)
 ```
 
 ## pageInfo
-+ 类型：
-
-```typescript
-interface PageInfo {
-  __itemcount: number | string;
-  __pageindex: number | string; // 第一页为 1 而不是 0
-  __pagesize: number | string;
-}
-get pageInfo (): PageInfo
-set pageInfo (pageInfo: PageInfo): void
-```
++ 类型：ArrayCtrl['pageInfo']
 
 在支持分页的情况下，获取/设置分页信息。
+
++ 示例：
 
 ```js
 // 获取当前分页信息
@@ -304,13 +356,11 @@ page.getCtrl('表格').pageInfo = {
 ```
 
 ## setCheck()
-+ 类型：
-
-```typescript
-type FunctionSetCheck = (value: boolean, index: number): void
-```
++ 类型：ArrayCtrl['setCheck']
 
 设置行勾选状态。
+
++ 示例：
 
 ```js
 // 设置第一行为勾选状态
@@ -319,13 +369,11 @@ page.getCtrl('表格').setCheck(true, 0)
 
 
 ## deleteInScope()
-+ 类型：
-
-```typescript
-type FunctionDeleteInScope = (scope: 'all' | 'focused' | 'checked'): void
-```
++ 类型：ArrayCtrl['deleteInScope']
 
 删除所有行/焦点行/勾选行。
+
++ 示例：
 
 ```js
 // 删除所有行
@@ -340,11 +388,7 @@ page.getCtrl('表格').deleteInScope('checked')
 
 
 ## append()
-+ 类型：
-
-```typescript
-type FunctionAppend = (data: RowValue | RowValue[], type: 'head' | 'tail'): void
-```
++ 类型：ArrayCtrl['append']
 
 插入行数据。
 
@@ -353,6 +397,8 @@ type FunctionAppend = (data: RowValue | RowValue[], type: 'head' | 'tail'): void
 | head | 从行头插入数据 |
 | tail | 从行尾插入数据 |
 
+
++ 示例：
 
 ```js
 // 从行头插入一条空数据
@@ -374,15 +420,12 @@ page.getCtrl('表格').append([
 ```
 
 
-
 ## update()
-+ 类型：
-
-```typescript
-type FunctionUpdate = (data: RowValue | RowValue[], index: number | number[]): void
-```
++ 类型：ArrayCtrl['update']
 
 更新行数据。
+
++ 示例：
 
 ```js
 // 同时更新第1行和第3行数据
@@ -403,32 +446,7 @@ page.getCtrl('表格').update({
 
 
 ## row/focusedRow/checkedRow/getRowByIndex()
-+ 类型：
-
-```typescript
-interface Ctrl {
-  get value (): any
-  set value (data: any): void
-
-  get hidden (): boolean
-  set hidden (data: boolean): void
-
-  get options (): any[]
-  set options (data: any[]): void
-  ...
-}
-
-interface ArrayRowCtrl {
-  index: number
-  getCtrl(name: string): Ctrl
-}
-
-get row (): ArrayRowCtrl[]
-get focusedRow (): ArrayRowCtrl | null
-get checkedRow (): ArrayRowCtrl[]
-
-type FunctionGetRowByIndex = (index: number | number[]): ArrayRowCtrl | ArrayRowCtrl[] | null
-```
++ 类型：ArrayCtrl['row'] | ArrayCtrl['focusedRow'] | ArrayCtrl['checkedRow'] | ArrayCtrl['getRowByIndex']
 
 获取行控件。
 
@@ -441,6 +459,8 @@ type FunctionGetRowByIndex = (index: number | number[]): ArrayRowCtrl | ArrayRow
 | checkedRow | 获取勾选行控件 |
 | getRowByIndex() | 传入行序号获取行控件 |
 
+
++ 示例：
 
 ```js
 // 获取所有行控件
@@ -462,25 +482,11 @@ allRows[1].getCtrl('unit').options = [
 ```
 
 ## getColByName()
-+ 类型：
++ 类型：ArrayCtrl['getColByName']
 
-```typescript
-interface TableColCtrl {
-  get title (): string
-  set title (value: string): void
-  set hidden (value: boolean): void
-  set readonly (value: boolean): void
-  set required (value: boolean): void
-  ...
-}
+获取列控件。取得列控件后，可统一设置该列的 title readonly hidden required 等属性。
 
-type FunctionGetColByName = (name: string): TableColCtrl | null
-```
-
-获取列控件。
-
-取得列控件后，可统一设置该列的 title readonly hidden required 等属性。
-
++ 示例：
 
 ```js
 // 获取产品列控件
@@ -504,15 +510,11 @@ col.required = true
 
 
 ## getOperationCtrl()
-+ 类型：
++ 类型：ArrayCtrl['getOperationCtrl']
 
-```typescript
-type FunctionGetOperationCtrl = (name: string): Ctrl | null
-```
+获取操作按钮控件。通过传入操作按钮 name 值，获取操作按钮控件，可以对该操作按钮进行 flycode 设置。
 
-获取操作按钮控件。
-
-通过传入操作按钮 name 值，获取操作按钮控件，可以对该操作按钮进行 flycode 设置。
++ 示例：
 
 ```js
 // 获取表格中的新增操作按钮并设置隐藏和只读
@@ -522,13 +524,11 @@ page.getCtrl('表格').getOperationCtrl('add').readonly = true
 
 
 ## getRowoperationCtrl()
-+ 类型：
-
-```typescript
-type FunctionGetRowoperationCtrl = (name: string): Ctrl[] | null
-```
++ 类型：ArrayCtrl['getRowoperationCtrl']
 
 获取行操作按钮，通过传入行操作按钮 name 值，获取所有行操作按钮控件数组，可以对行操作按钮控件进行 flycode 设置。
+
++ 示例：
 
 ```js
 // 获取所有行的编辑操作按钮控件

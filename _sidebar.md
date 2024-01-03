@@ -1,8 +1,8 @@
-<!-- * [入门](introduction/) -->
+<!-- * [入门](intro/) -->
 * 入门
 
-  * [快速开始](introduction/quickstart)
-  * [UI表单协议](introduction/protocol)
+  * [快速开始](intro/quickstart)
+  * [UI表单协议](intro/protocol)
 
 * 控件
   * [基础信息](components/index)
@@ -32,10 +32,6 @@
   * [table 表格](components/table)
   * [list 列表](components/list)
   * [foreach 循环](components/foreach)
-
-* 事件
-  * [flycode](event/flycode)
-
 
 * flycode
   * [page](flycode/page)
