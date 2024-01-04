@@ -23,20 +23,21 @@
 }
 ```
 
-
 ## value
-控件初始值，取值类型为 `字符串`。
++ 类型：`string`
++ 默认：`""`
 
+控件初始值。
 
 ## multiselectable
-+ 类型： boolean | "1" | "0"
-+ 默认： "0"
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
 
 是否多选。
 
 ## displaytype
-+ 类型： "custom" | "navigation"
-+ 默认： "custom"
++ 类型：`"custom" | "navigation"`
++ 默认：`"custom"`
 
 控件显示样式。
 
@@ -46,8 +47,8 @@
 | navigation | 导航栏样式 |
 
 ## expandmodel
-+ 类型： "rootexpand" | "noexpand" | "allexpand"
-+ 默认： "rootexpand"
++ 类型：`"rootexpand" | "noexpand" | "allexpand"`
++ 默认：`"rootexpand"`
 
 控制节点展开方式。
 
@@ -58,8 +59,8 @@
 | allexpand | 全部展开 |
 
 ## intermediateselectmode
-+ 类型： "gather" | "individual" | "disable" | "shortcut" | "related" | "highest"
-+ 默认： "individual" | "gather"
++ 类型：`"gather" | "individual" | "disable" | "shortcut" | "related" | "highest"`
++ 默认：`"individual" | "gather"`
 
 控件取值模式。
 
@@ -86,9 +87,8 @@
 
 
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
-
++ 类型：`string`
++ 默认：`""`
 
 | 值 | 说明 |
 | ---- | ---- |

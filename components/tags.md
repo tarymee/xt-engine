@@ -11,8 +11,8 @@
 
 
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 | 值 | 说明 |
 | ---- | ---- |

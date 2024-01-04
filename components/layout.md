@@ -12,24 +12,24 @@
 
 
 ## content
-+ 类型： IviewRule[]
-+ 默认： []
-
 ```typescript
 interface IviewRule {
   type: string
-  title?: string
-  value?: any
-  content?: IviewRule[]
+  title: string
+  content: IviewRule[]
   [propName: string]: any
 }
 ```
 
++ 类型：`IviewRule[]`
++ 默认：`[]`
+
+
 定义布局容器内容，取值类型为`控件协议对象数组`，可多重嵌套。
 
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 | 值 | 说明 |
 | ---- | ---- |

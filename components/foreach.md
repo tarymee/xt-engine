@@ -19,16 +19,15 @@
 同 list 控件。
 
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 | 值 | 说明 |
 | ---- | ---- |
 | onload | 加载时触发 |
 
-
 # flycode
-支持通过 page.getCtrl() 获取控件实例对控件进行 flycode 操作，除了支持 [通用方法](flycode/page?id=getctrl) 之外，还额外支持以下方法。
+支持通过 `page.getCtrl()` 获取控件实例对控件进行 `flycode` 操作，除了支持 [通用方法](flycode/page?id=getctrl) 之外，还额外支持以下方法。
 
 | flycode | 说明 |
 | ---- | ---- |

@@ -26,14 +26,14 @@
 
 
 ## value
-+ 类型： string[]
-+ 默认： []
++ 类型：`string[]`
++ 默认：`[]`
 
 控件初始值。
 
 ## displaytype
-+ 类型： "auto" | number
-+ 默认： "auto"
++ 类型：`"auto" | number`
++ 默认：`"auto"`
 
 选项值排列方式。
 
@@ -43,9 +43,6 @@
 | number | 选项值以每行 n 项排列 |
 
 ## options
-+ 类型： Ioption[]
-+ 默认： []
-
 ```typescript
 interface Ioption {
   key: any
@@ -53,12 +50,14 @@ interface Ioption {
   disabled?: string // 选项值是否不可选
 }
 ```
++ 类型：`Ioption[]`
++ 默认：`[]`
 
 控件数据源选项。
 
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 | 值 | 说明 |
 | ---- | ---- |

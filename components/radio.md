@@ -25,8 +25,8 @@
 
 
 ## value
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 控件初始值。
 
@@ -37,8 +37,8 @@
 同 checkbox 控件。
 
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 | 值 | 说明 |
 | ---- | ---- |

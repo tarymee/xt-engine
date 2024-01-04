@@ -13,38 +13,35 @@
 ```
 
 ## value
-+ 类型： IAttachmentValue[]
-+ 默认： []
-
 ```typescript
 interface IAttachmentValue {
   filename: string
   url: string
 }
 ```
++ 类型：`IAttachmentValue[]`
++ 默认：`[]`
 
 控件初始值。
 
 ## maxlength
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 允许上传的最大文件数量，默认值为空字符串，表示不限制最大文件数量。
 
 ## maxsize
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
-允许上传的单个文件大小，单位为 KB，默认值为空字符串，表示不限制。
-
-假如您想要限制单个文件大小为 10M，那么 maxsize: "10485760"
+允许上传的单个文件大小，单位为 `KB`，默认值为空字符串，表示不限制。
+假如您想要限制单个文件大小为 `10M`，那么 `maxsize: "10485760"`。
 
 ## accept
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
-允许上传的文件格式，参考 input 标签 type="file" 的 accept 属性定义。
-
+允许上传的文件格式，参考 `input 标签 type="file" 的 accept` 属性定义。
 以下为参考值：
 
 | 值 | 说明 |
@@ -54,19 +51,15 @@ interface IAttachmentValue {
 | "image/png" | png 图片格式 |
 | ".jpg, .jpeg, .png" | jpg jpeg png 图片格式 |
 
-
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
-
-
++ 类型：`string`
++ 默认：`""`
 
 | 值 | 说明 |
 | ---- | ---- |
 | onload | 加载时触发 |
 | onvaluechange | 值改变时触发 |
 | onupload | 上传时触发 |
-
 
 # 示例
 ```json

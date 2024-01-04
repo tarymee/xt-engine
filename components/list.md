@@ -46,8 +46,8 @@
 同 table 控件。
 
 ## rows
-+ 类型： ILayoutViewRule
-+ 默认： {}
++ 类型：`ILayoutViewRule`
++ 默认：`{}`
 
 接收一个 layout 结构的控件协议对象，基于控件值多次渲染的控件模板块。
 
@@ -103,14 +103,14 @@
 ```
 
 ## rowswidth
-+ 类型： string
-+ 默认： "100%"
++ 类型：`string`
++ 默认：`"100%"`
 
 定义循环渲染块的宽度，接收CSS单位值，如 `px` `%` `vw` `vh` 等等。
 
 ## rowsstyle
-+ 类型： "card" | ""
-+ 默认： ""
++ 类型：`"card" | ""`
++ 默认：`""`
 
 定义循环渲染块的样式，默认值为空。
 
@@ -121,8 +121,8 @@
 | ... | 更多样式待开发 |
 
 ## frontoperations
-+ 类型： ILayoutViewRule[]
-+ 默认： []
++ 类型：`ILayoutViewRule[]`
++ 默认：`[]`
 
 定义列表前置控件，类型为数组，接受控件协议对象。
 
@@ -132,7 +132,7 @@
 
 
 # flycode
-支持通过 page.getCtrl() 获取控件实例对控件进行 flycode 操作，除了支持 [通用方法](flycode/page?id=getctrl) 之外，还额外支持以下方法。
+支持通过 `page.getCtrl()` 获取控件实例对控件进行 `flycode` 操作，除了支持 [通用方法](flycode/page?id=getctrl) 之外，还额外支持以下方法。
 
 | flycode | 说明 |
 | ---- | ---- |

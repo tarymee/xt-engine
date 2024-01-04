@@ -12,65 +12,36 @@
 }
 ```
 
-
 ## value
-+ 类型： IPhotoValue[]
-
 ```typescript
 interface IPhotoValue {
   filename: string
   url: string
 }
 ```
-
-+ 默认： []
++ 类型：`IPhotoValue[]`
++ 默认：`[]`
 
 控件初始值。
 
 ## maxlength
-+ 类型： string
-+ 默认： ""
-
-允许上传的最大文件数量，默认值为空字符串，表示不限制最大文件数量。
+定义用法同 [attachment 控件 maxlength 属性](components/attachment?id=maxlength)
 
 ## maxsize
-+ 类型： string
-+ 默认： ""
-
-允许上传的单个文件大小，单位为 KB，默认值为空字符串，表示不限制。
-
-假如您想要限制单个文件大小为 10M，那么 maxsize: "10485760"
-
+定义用法同 [attachment 控件 maxsize 属性](components/attachment?id=maxsize)
 
 ## accept
-+ 类型： string
-+ 默认： ""
-
-允许上传的文件格式，参考 input 标签 type="file" 的 accept 属性定义。
-
-以下为参考值：
-
-| 值 | 说明 |
-| ---- | ---- |
-| "" | 允许所有文件格式 |
-| "image/*" | 所有图片格式 |
-| "image/png" | png 图片格式 |
-| ".jpg, .jpeg, .png" | jpg jpeg png 图片格式 |
-
-
+定义用法同 [attachment 控件 accept 属性](components/attachment?id=accept)
 
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
-
-
++ 类型：`string`
++ 默认：`""`
 
 | 值 | 说明 |
 | ---- | ---- |
 | onload | 加载时触发 |
 | onvaluechange | 值改变时触发 |
 | onupload | 上传时触发 |
-
 
 # 示例
 ```json

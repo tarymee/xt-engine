@@ -13,14 +13,14 @@
 
 
 ## value
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
-控件初始值，取值类型为 `字符串时间戳`。
+控件初始值，取值类型为`字符串时间戳`。
 
 ## format
-+ 类型： "yyyy-MM-dd" | "yyyy-MM" | "yyyy-MM-dd HH:mm:ss"
-+ 默认： "yyyy-MM-dd"
++ 类型：`"yyyy-MM-dd" | "yyyy-MM" | "yyyy-MM-dd HH:mm:ss"`
++ 默认：`"yyyy-MM-dd"`
 
 使用 format 指定显示时间格式。
 
@@ -32,8 +32,8 @@
 
 
 ## unit
-+ 类型： "date" | "year" | "month"
-+ 默认： "date"
++ 类型：`"date" | "year" | "month"`
++ 默认：`"date"`
 
 显示类型。
 <!-- https://element.eleme.cn/2.15/#/zh-CN/component/date-picker -->
@@ -45,8 +45,8 @@
 | month | 月份选择 |
 
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 | 值 | 说明 |
 | ---- | ---- |

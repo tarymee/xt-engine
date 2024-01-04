@@ -12,16 +12,16 @@
 
 
 ## value
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
-控件初始值，取值类型为 `图片地址` 或 `图片base64编码`。
+控件初始值，取值类型为`图片地址`或`图片base64编码`。
 
 ## fit
-+ 类型： "fill" | "contain" | "cover" | "none" | "scale-down"
-+ 默认： "fill"
++ 类型：`"fill" | "contain" | "cover" | "none" | "scale-down"`
++ 默认：`"fill"`
 
-确定图片如何适应容器框，同原生 object-fit https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit
+确定图片如何适应容器框，同原生 `object-fit` 属性：https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit
 
 | 值 | 说明 |
 | ---- | ---- |
@@ -32,8 +32,8 @@
 | scale-down | 保持原有尺寸比例。内容的尺寸与 none 或 contain 中的一个相同，取决于它们两个之间谁得到的对象尺寸会更小一些。 |
 
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 | 值 | 说明 |
 | ---- | ---- |

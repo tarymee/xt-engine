@@ -29,7 +29,6 @@ page.title = 'xxx'
 
 ## message
 消息提示，常用于主动操作后的反馈提示。
-
 引用的是 `Element-UI` 的 `Message` 模块，具体 API 请查阅：[https://element.eleme.cn/#/zh-CN/component/message](https://element.eleme.cn/#/zh-CN/component/message)
 
 ```js
@@ -41,7 +40,6 @@ page.message.info('提示信息。')
 
 ## confirm()
 确认消息，提示用户确认其已经触发的动作，并询问是否进行此操作时会用到此对话框。
-
 引用的是 `Element-UI` 的 `MessageBox.confirm` 模块，具体 API 请查阅：[https://element.eleme.cn/#/zh-CN/component/message-box](https://element.eleme.cn/#/zh-CN/component/message-box)
 
 ```js
@@ -191,10 +189,8 @@ interface Ctrl {
 type FunctionGetCtrl = (name: string): Ctrl
 ```
 
-获取控件实例，以调用控件实例方法，对控件进行 `取值/赋值/显示/隐藏/设置只读/设置非只读/设置必填/设置非必填/获取数据源/设置数据源/获取控件协议属性/设置控件协议属性` 等操作。
-
-当控件为 `数组型控件` 时，除了支持以上通用方法之外，还额外支持独属于数组型控件的方法。具体请查看 `数组型控件` API 章节。
-
+获取控件实例，以调用控件实例方法，对控件进行`取值/赋值/显示/隐藏/设置只读/设置非只读/设置必填/设置非必填/获取数据源/设置数据源/获取控件协议属性/设置控件协议属性`等操作。
+当控件为`数组型控件`时，除了支持以上通用方法之外，还额外支持独属于数组型控件的方法。具体请查看`数组型控件 API` 章节。
 
 + 示例：
 

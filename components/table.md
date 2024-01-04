@@ -17,37 +17,35 @@
 }
 ```
 
-
 ## pageable
-+ 类型： boolean | "1" | "0"
-+ 默认： "0"
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
 
 是否支持分页。
 
 ## pagesize
-+ 类型： string
-+ 默认： "20"
++ 类型：`string`
++ 默认：`"20"`
 
 如果支持分页，定义每页条数
 
 ## checkable
-+ 类型： boolean | "1" | "0"
-+ 默认： "0"
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
 
 是否支持勾选。
 
 ## fixednumber
-+ 类型： string | number
-+ 默认： "0"
++ 类型：`string | number`
++ 默认：`"0"`
 
 冻结前几列。
 
 ## columns
-+ 类型： IBaseOrInputViewRule[]
-+ 默认： []
++ 类型：`IBaseOrInputViewRule[]`
++ 默认：`[]`
 
-表格定义列，取值类型为 `基础/输入型控件协议对象数组`。
-
+表格定义列，取值类型为`基础/输入型控件协议对象数组`。
 
 ```json
 {
@@ -95,12 +93,11 @@
 ```
 
 ## operations
-+ 类型： IButtonViewRule[]
-+ 默认： []
++ 类型：`IButtonViewRule[]`
++ 默认：`[]`
 
 定义顶部操作按钮，取值类型为`按钮控件协议对象数组`。
-
-按钮控件的 `readonly` 属性可接收专属 table 的关键字。
+按钮控件的 `readonly` 属性可接收专属关键字。
 
 | 值 | 说明 |
 | ---- | ---- |
@@ -140,8 +137,8 @@
 
 
 ## rowoperations
-+ 类型： IButtonViewRule[]
-+ 默认： []
++ 类型：`IButtonViewRule[]`
++ 默认：`[]`
 
 定义行操作按钮，取值类型为`按钮控件协议对象数组`。
 
@@ -158,9 +155,8 @@
 ```
 
 ## eventlist.trigger
-+ 类型： string
-+ 默认： ""
-
++ 类型：`string`
++ 默认：`""`
 
 | 值 | 说明 |
 | ---- | ---- |
@@ -169,9 +165,10 @@
 
 
 
+
 # flycode
 
-支持通过 page.getCtrl() 获取控件实例对控件进行 flycode 操作，除了支持 [通用方法](flycode/page?id=getctrl) 之外，还额外支持以下方法。
+支持通过 `page.getCtrl()` 获取控件实例对控件进行 `flycode` 操作，除了支持 [通用方法](flycode/page?id=getctrl) 之外，还额外支持以下方法。
 
 | flycode | 说明 |
 | ---- | ---- |
@@ -261,9 +258,8 @@ interface ArrayCtrl extends Ctrl {
 type FunctionGetCtrl = (name: string): ArrayCtrl
 ```
 
-
 ## value
-+ 类型：ArrayCtrl['value']
++ 类型：`ArrayCtrl['value']`
 
 对 table 控件进行取值、赋值。
 
@@ -286,7 +282,7 @@ page.getCtrl('表格').value = [
 ```
 
 ## focusedValue/checkedValue
-+ 类型：ArrayCtrl['focusedValue'] | ArrayCtrl['checkedValue']
++ 类型：`ArrayCtrl['focusedValue'] | ArrayCtrl['checkedValue']`
 
 获取焦点行/勾选行的值。
 
@@ -303,7 +299,7 @@ console.log(checkedValue)
 ```
 
 ## index/focusedIndex/checkedIndex
-+ 类型：ArrayCtrl['index'] | ArrayCtrl['focusedIndex'] | ArrayCtrl['checkedIndex']
++ 类型：`ArrayCtrl['index'] | ArrayCtrl['focusedIndex'] | ArrayCtrl['checkedIndex']`
 
 获取所有行/焦点行/勾选行序号。
 
@@ -324,7 +320,7 @@ console.log(checkedIndex)
 ```
 
 ## pageable
-+ 类型：ArrayCtrl['pageable']
++ 类型：`ArrayCtrl['pageable']`
 
 获取是否设置分页。
 
@@ -336,7 +332,7 @@ console.log(pageable)
 ```
 
 ## pageInfo
-+ 类型：ArrayCtrl['pageInfo']
++ 类型：`ArrayCtrl['pageInfo']`
 
 在支持分页的情况下，获取/设置分页信息。
 
@@ -356,7 +352,7 @@ page.getCtrl('表格').pageInfo = {
 ```
 
 ## setCheck()
-+ 类型：ArrayCtrl['setCheck']
++ 类型：`ArrayCtrl['setCheck']`
 
 设置行勾选状态。
 
@@ -369,7 +365,7 @@ page.getCtrl('表格').setCheck(true, 0)
 
 
 ## deleteInScope()
-+ 类型：ArrayCtrl['deleteInScope']
++ 类型：`ArrayCtrl['deleteInScope']`
 
 删除所有行/焦点行/勾选行。
 
@@ -388,7 +384,7 @@ page.getCtrl('表格').deleteInScope('checked')
 
 
 ## append()
-+ 类型：ArrayCtrl['append']
++ 类型：`ArrayCtrl['append']`
 
 插入行数据。
 
@@ -421,7 +417,7 @@ page.getCtrl('表格').append([
 
 
 ## update()
-+ 类型：ArrayCtrl['update']
++ 类型：`ArrayCtrl['update']`
 
 更新行数据。
 
@@ -446,11 +442,9 @@ page.getCtrl('表格').update({
 
 
 ## row/focusedRow/checkedRow/getRowByIndex()
-+ 类型：ArrayCtrl['row'] | ArrayCtrl['focusedRow'] | ArrayCtrl['checkedRow'] | ArrayCtrl['getRowByIndex']
++ 类型：`ArrayCtrl['row'] | ArrayCtrl['focusedRow'] | ArrayCtrl['checkedRow'] | ArrayCtrl['getRowByIndex']`
 
-获取行控件。
-
-取得行控件后，可通过 getCtrl() 方法获取该行下某一单元格的控件实例，从而对单元格控件进行 flycode 操作。
+获取行控件。取得行控件后，可通过 `getCtrl()` 方法获取该行下某一单元格的控件实例，从而对单元格控件进行 `flycode` 操作。
 
 | 值 | 说明 |
 | ---- | ---- |
@@ -458,7 +452,6 @@ page.getCtrl('表格').update({
 | focusedRow | 获取焦点行控件 |
 | checkedRow | 获取勾选行控件 |
 | getRowByIndex() | 传入行序号获取行控件 |
-
 
 + 示例：
 
@@ -482,9 +475,9 @@ allRows[1].getCtrl('unit').options = [
 ```
 
 ## getColByName()
-+ 类型：ArrayCtrl['getColByName']
++ 类型：`ArrayCtrl['getColByName']`
 
-获取列控件。取得列控件后，可统一设置该列的 title readonly hidden required 等属性。
+获取列控件。取得列控件后，可统一设置该列的 `title` `readonly` `hidden` `required` 等属性。
 
 + 示例：
 
@@ -510,9 +503,9 @@ col.required = true
 
 
 ## getOperationCtrl()
-+ 类型：ArrayCtrl['getOperationCtrl']
++ 类型：`ArrayCtrl['getOperationCtrl']`
 
-获取操作按钮控件。通过传入操作按钮 name 值，获取操作按钮控件，可以对该操作按钮进行 flycode 设置。
+获取操作按钮控件。通过传入操作按钮 `name` 值，获取操作按钮控件，可以对该操作按钮进行 `flycode` 设置。
 
 + 示例：
 
@@ -524,9 +517,9 @@ page.getCtrl('表格').getOperationCtrl('add').readonly = true
 
 
 ## getRowoperationCtrl()
-+ 类型：ArrayCtrl['getRowoperationCtrl']
++ 类型：`ArrayCtrl['getRowoperationCtrl']`
 
-获取行操作按钮，通过传入行操作按钮 name 值，获取所有行操作按钮控件数组，可以对行操作按钮控件进行 flycode 设置。
+获取行操作按钮，通过传入行操作按钮 `name` 值，获取所有行操作按钮控件数组，可以对行操作按钮控件进行 `flycode` 设置。
 
 + 示例：
 

@@ -7,8 +7,7 @@
 + 数组控件
 
 # 控件协议
-控件协议是一钟json对象格式的协议，由不同的控件属性组成，根据不同的 `type` 值区别不同种类的控件。
-
+控件协议是一种 `JSON` 对象格式的协议，由不同的控件属性组成，根据不同的 `type` 值区别不同种类的控件。
 以 `textinput` 文本输入框控件为例，它的协议如下：
 
 ```json
@@ -62,43 +61,40 @@
 | titlewidth | 标题的绝对宽度 |
 
 ## title
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 控件的标题，其显示方式受控件的具体类型和显示模式影响。
-
 当控件放置在表格中后，其标题将会作为表格的表头标题显示。
 
-
 ## name
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
-控件名称，用于 flycode 获取控件实例使用。
+控件名称，用于 `flycode` 获取控件实例使用。
 
 ## value
-+ 类型： any
-+ 默认： ""
++ 类型：`any`
++ 默认：`""`
 
 控件初始值，通过该属性对控件的默认值进行设定。
-
-取值类型基于控件类型有所不同，比如，table/list/foreach 数组型控件则取值类型为 array，textinput/text 等大部分控件取值类型为 string。
+取值类型基于控件类型有所不同，比如，数组型控件则取值类型为 `array`，普通控件取值类型为 `string`。
 
 ## hidden
-+ 类型： boolean | "1" | "0"
-+ 默认： "0"
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
 
 控件是否隐藏。
 
 ## readonly
-+ 类型： boolean | "1" | "0"
-+ 默认： "0"
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
 
 控件是否只读。
 
 ## style
-+ 类型： object | null
-+ 默认： null
++ 类型：`object | null`
++ 默认：`null`
 
 设置控件样式，接受`CSS样式对象`。
 
@@ -115,8 +111,8 @@
 ```
 
 ## css/class
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 `style` 只能对控件最外层的样式进行设置，如果想更改控件内部元素结构的样式，必须使用 `css + class` 进行设置。
 
@@ -132,46 +128,40 @@
 ```
 
 ## width/height
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 设置控件宽度/高度，接收CSS单位值，如 `px` `%` `vw` `vh` 等等。
-
-与在 style css样式对象里设置 width/height 效果是一样的。
-
+与在 `style` 样式对象里设置 `width/height` 效果是一样的。
 
 ## required
-+ 类型： boolean | "1" | "0"
-+ 默认： "0"
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
 
 控件是否必填。
 
 ## placeholder
-+ 类型： string
-+ 默认： ""
++ 类型：`string`
++ 默认：`""`
 
 输入型控件的输入框占位文字。
 
 ## hiddenclearbtn
-+ 类型： boolean | "1" | "0"
-+ 默认： "0"
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
 
 输入型控件是否隐藏清空值按钮。
 
 ## titlewidth
-+ 类型： string
-+ 默认： "30%"
++ 类型：`string`
++ 默认：`"30%"`
 
 控件标题宽度，接收CSS单位值，如 `px` `%` `vw` `vh` 等等。
-
-
 
 
 # 控件事件
 
 ## eventlist
-+ 类型： IEvent[]
-
 ```typescript
 interface IEvent {
   trigger: string
@@ -180,16 +170,14 @@ interface IEvent {
 }
 ```
 
-+ 默认： []
++ 类型：`IEvent[]`
++ 默认：`[]`
 
 所有控件都支持绑定事件去执行业务逻辑。
 
-
 ## eventlist.trigger
 表示控件所支持的触发事件，以 `on` 作为前缀。
-
 一般来说，所有的控件都支持 `onload` 事件，输入型控件支持 `onvaluechange` 事件，大部分普通控件支持 `onclicked` 事件，等等。
-
 以下是比较常用的事件：
 
 | 值 | 说明 |
@@ -206,11 +194,9 @@ interface IEvent {
 
 ## eventlist.script
 当控件某个事件被触发时，所要执行的 `flycode`，它与 `eventlist.handler` 只能二者选其一。
-
-一般来说，如果要执行的逻辑比较简单，或者不想关联`事件 code`的话，可以用此方式。
+一般来说，如果要执行的逻辑比较简单，或者不想关联 `事件 code` 的话，可以用此方式。
 
 ## 示例
-
 ```json
 {
   "type": "textinput",
