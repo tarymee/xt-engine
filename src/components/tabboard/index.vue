@@ -8,19 +8,19 @@ export default {
   data () {
     return {
       isContainerCtrl: true,
-      index: 0,
       currentTitle: '',
       cards: this.returnViewRulePropValue('cards', 'array', [])
     }
   },
   computed: {
-    viewStyle () {
-      const style = this.createBaseStyle()
-      return style
+    index () {
+      return this.cards.findIndex((item) => {
+        return item.title === this.currentTitle
+      })
     }
   },
   created() {
-    this.currentTitle = this.cards[this.index || 0].title || ''
+    this.currentTitle = this.cards.length ? this.cards[0].title : ''
   },
   mounted () {
     this.executeEvent('onload')
@@ -40,7 +40,8 @@ export default {
       this.$nextTick(() => {
         if (this.$el && this.$el.querySelectorAll('.el-tabs__item')) {
           for (let i = 0, len = this.cards.length; i < len; i++) {
-            let isHidden = this.cards[i].hidden === '1'
+            // let isHidden = this.cards[i].hidden === '1'
+            let isHidden = this.returnValueBaseOnType(this.cards[i].hidden, 'boolean')
             const elTabsItem = this.$el.querySelectorAll('.el-tabs__item')[i]
             if (elTabsItem) {
               if (isHidden) {
@@ -52,6 +53,13 @@ export default {
           }
         }
       })
+    },
+    getValue (getter) {
+      return this.index.toString()
+    },
+    setValue (value, setter) {
+      const index = Number(value) || 0
+      this.currentTitle = this.cards[index].title
     },
     // todo 校验tabboard内的控件 校验不通过切换到该tab？
     validata () {
@@ -78,33 +86,32 @@ export default {
               style: {
                 height: '300px'
               },
-              value: this.currentTitle || ''
+              value: _this.currentTitle || ''
             },
             on: {
-              input (newVal) {
-                // console.log(newVal)
+              'input' (newVal) {
+                // console.log('input', newVal, _this.currentTitle)
                 if (_this.currentTitle !== newVal) {
                   _this.currentTitle = newVal
-                  _this.index = cards.findIndex((item) => {
-                    return item.title === newVal
-                  })
-                  // console.log(_this.index)
+                  _this.executeEvent('onvaluechange')
                 }
               },
               'tab-click' (tab, event) {
-                _this.executeEvent('onvaluechange')
+                // console.log('tab-click', tab, event)
+                // _this.executeEvent('onvaluechange')
               }
             }
           },
           [
-            cards.map((item) => {
-              let isHidden = item.hidden === '1'
+            cards.map((item, i) => {
+              // let isHidden = item.hidden === '1'
+              let isHidden = _this.returnValueBaseOnType(item.hidden, 'boolean')
               return h(
                 'el-tab-pane',
                 {
                   props: {
-                    // 如果是初始化就隐藏的tab 其标题用-占位 因为真正隐藏该tab是要在mounted之后 不要让用户一开始就看到隐藏tab的标题
-                    // 不用空值占位是因为eleme的el-tab-pane如果是用空值做标题 样式会有问题
+                    // 如果是初始化就隐藏的 tab 其标题用-占位 因为真正隐藏该 tab 是要在 mounted 之后 不要让用户一开始就看到隐藏 tab 的标题
+                    // 不用空值占位是因为 eleme 的 el-tab-pane 如果是用空值做标题 样式会有问题
                     label: !isHidden ? item.title : '-',
                     name: item.title
                   },

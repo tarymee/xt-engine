@@ -31,7 +31,11 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-get"
+                  "script": `
+                    console.log('取值')
+                    const value = page.getCtrl('tabboard框架').value
+                    console.log(value)
+                  `
                 }
               ],
               "style": {
@@ -45,21 +49,10 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-set"
-                }
-              ],
-              "style": {
-                "margin": "10px"
-              }
-            },
-            {
-              "type": "button",
-              "value": "切换readonly",
-              "displaytype": "primary",
-              "eventlist": [
-                {
-                  "trigger": "onclicked",
-                  "handler": "handle-toggle-readonly"
+                  "script": `
+                    console.log('赋值')
+                    page.getCtrl('tabboard框架').value = '0'
+                  `
                 }
               ],
               "style": {
@@ -73,13 +66,31 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-validata"
+                  "script": `
+                    console.log('校验')
+                  `
                 }
               ],
               "style": {
                 "margin": "10px"
               }
-            }
+            },
+            {
+              "type": "button",
+              "value": "测试",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    console.log('测试')
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
           ]
         },
         {
@@ -124,7 +135,10 @@ export default {
                       "eventlist": [
                         {
                           "trigger": "onclicked",
-                          "handler": "handle-test"
+                          "script": `
+                            page.getCtrl('确认密码').value = '1'
+                            // page.getCtrl('tabboard框架').hidden = true
+                          `
                         }
                       ]
                     }
@@ -156,13 +170,30 @@ export default {
                   "eventlist": [
                     {
                       "trigger": "onclicked",
-                      "handler": "handle-save"
+                      "script": `
+                        console.log('确认')
+                      `
                     }
                   ]
                 }
               ]
+            },
+            {
+              "title": "基本信息3",
+              "hidden": "1",
+              "content": []
             }
-          ]
+          ],
+          "eventlist": [
+            {
+              "trigger": "onvaluechange",
+              "script": `
+                // console.log(eventTarget)
+                console.log('onvaluechange')
+                console.log(page.getCtrl('tabboard框架').value)
+              `
+            }
+          ],
         }
       ],
       "eventlist": []
@@ -172,37 +203,6 @@ export default {
   "presenter": {
     "initial": [],
     "interface": [],
-    "handlers": [
-      {
-        "code": "handle-test",
-        "title": "测试",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('确认密码').value = '1'
-              // page.getCtrl('tabboard框架').hidden = true
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-save",
-        "title": "修改密码",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              console.log(page)
-              // page.getCtrl('新密码').value = '1'
-            `
-          }
-        ]
-      }
-    ]
+    "handlers": []
   }
 }

@@ -159,10 +159,13 @@ export default {
     // 依据各属性值所属变量类型处理
     // 以 readonly 为例 它的值为 'fly: return true' | '' | '1' | '0' 映射到 vm 上的为 true | false
     returnViewRulePropValue (propName, type, defaultValue) {
+      return this.returnValueBaseOnType(this.viewRule[propName], type, defaultValue)
+    },
+    returnValueBaseOnType (value, type, defaultValue) {
       // if (this.type === 'checkbox') {
       //   debugger
       // }
-      const originValue = this.viewRule[propName]
+      const originValue = cloneDeep(value)
       if (originValue && typeof originValue === 'string' && originValue.indexOf('fly:') === 0) {
         return this.executeFlycode(originValue, {
           eventTarget: this
@@ -193,7 +196,7 @@ export default {
         } else if (type === 'array') {
           // options eventlist
           defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : []
-          return Array.isArray(originValue) ? cloneDeep(originValue) : defaultValue
+          return Array.isArray(originValue) ? originValue : defaultValue
         } else if (type === 'unit') {
           // 单位 titlewidth ...
           defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : ''
@@ -201,7 +204,7 @@ export default {
         } else {
           // 有可能是其他任意类型值
           defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : null
-          return (typeof originValue !== 'undefined') ? cloneDeep(originValue) : defaultValue
+          return (typeof originValue !== 'undefined') ? originValue : defaultValue
         }
       }
     },
