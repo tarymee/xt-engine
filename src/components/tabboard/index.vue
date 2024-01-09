@@ -1,5 +1,4 @@
 <script>
-import { get, cloneDeep } from 'lodash-es'
 import baseMixin from '../common/baseMixin'
 import renderComponent from '../common/renderComponent'
 
