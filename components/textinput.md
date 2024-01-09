@@ -1,7 +1,6 @@
 # textinput 文本输入框
 文本输入框
 
-
 ```json
 {
   "type": "textinput",
@@ -16,7 +15,6 @@
   ]
 }
 ```
-
 
 ## value
 + 类型：`string`

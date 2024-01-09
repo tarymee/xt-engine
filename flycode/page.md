@@ -234,6 +234,10 @@ page.getCtrl('树控件').setProp('displaytype', 'navigation')
 // 触发控件行为事件
 page.getCtrl('按钮').triggerEvent('onclicked')
 
-// 控件校验
-page.getCtrl('文本输入框').validata()
+
+// 控件校验，不通过则返回 false，并弹出校验不通过控件的提示信息，如果通过则返回 true。
+// 当控件为 普通控件/输入型控件 时，执行的是单个控件校验方法
+// 当控件为 容器控件/数组型控件 时，依次执行 容器控件/数组型控件 下所包含的所有控件校验方法
+page.getCtrl('文本输入框').validata() // 单个控件校验
+page.getCtrl('popview').validata() // 校验弹窗控件下的所有控件，新增-保存场景时非常有用
 ```

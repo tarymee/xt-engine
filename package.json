@@ -3,7 +3,7 @@
   "version": "*",
   "description": "@smart100/web-engine 开发文档",
   "scripts": {
-    "dev": "docsify serve"
+    "dev": "docsify serve -o -p 5009"
   },
   "dependencies": {},
   "devDependencies": {
