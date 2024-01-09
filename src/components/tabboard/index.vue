@@ -40,7 +40,6 @@ export default {
       this.$nextTick(() => {
         if (this.$el && this.$el.querySelectorAll('.el-tabs__item')) {
           for (let i = 0, len = this.cards.length; i < len; i++) {
-            // let isHidden = this.cards[i].hidden === '1'
             let isHidden = this.returnValueBaseOnType(this.cards[i].hidden, 'boolean')
             const elTabsItem = this.$el.querySelectorAll('.el-tabs__item')[i]
             if (elTabsItem) {
@@ -104,7 +103,6 @@ export default {
           },
           [
             cards.map((item, i) => {
-              // let isHidden = item.hidden === '1'
               let isHidden = _this.returnValueBaseOnType(item.hidden, 'boolean')
               return h(
                 'el-tab-pane',

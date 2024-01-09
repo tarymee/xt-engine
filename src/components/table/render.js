@@ -20,7 +20,7 @@ const renderColumns = function (h, viewRule, context) {
   }
 
   columns.forEach((item, i) => {
-    const required = item.required === '1' || (typeof item.required === 'boolean' && item.required)
+    const required = context.returnValueBaseOnType(item.required, 'boolean')
     const dataObj = {
       props: {
         // minWidth: Number(item.width || 150),
