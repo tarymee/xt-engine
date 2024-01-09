@@ -25,8 +25,8 @@
 + 类型：`number`
 + 默认：`""`
 
-初始选中哪个`tab标签页`。
-可以使用`flycode`动态获取/切换标签页。
+初始选中哪个 `tab标签页`。
+可以使用 `flycode` 动态获取/切换标签页。
 
 示例：
 ```js
@@ -41,7 +41,7 @@ page.getCtrl('标签页').value = 1
 + 类型：`ILayoutViewRule[]`
 + 默认：`[]`
 
-定义标签页内容，取值类型为`layout控件协议对象数组`。
+定义标签页内容，取值类型为 `layout控件协议对象数组`。
 
 ## eventlist.trigger
 + 类型：`string`
