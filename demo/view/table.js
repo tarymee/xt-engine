@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
   "pageinfo": {
-    "code": "table",
-    "title": "table"
+    "code": "test",
+    "title": "test"
   },
   "view": {
     "body": {

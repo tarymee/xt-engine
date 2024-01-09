@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
   "pageinfo": {
-    "code": "customervisitconfig",
-    "title": "customervisitconfig"
+    "code": "test",
+    "title": "test"
   },
   "view": {
     "body": {

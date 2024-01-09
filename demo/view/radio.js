@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
   "pageinfo": {
-    "code": "radio",
-    "title": "radio"
+    "code": "test",
+    "title": "test"
   },
   "view": {
     "body": {

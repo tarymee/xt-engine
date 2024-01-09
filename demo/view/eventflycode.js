@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
   "pageinfo": {
-    "code": "eventflycode",
-    "title": "eventflycode"
+    "code": "test",
+    "title": "test"
   },
   "view": {
     "body": {

@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
   "pageinfo": {
-    "code": "webview",
-    "title": "webview"
+    "code": "test",
+    "title": "test"
   },
   "view": {
     "body": {

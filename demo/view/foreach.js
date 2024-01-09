@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
   "pageinfo": {
-    "code": "foreach",
-    "title": "foreach"
+    "code": "test",
+    "title": "test"
   },
   "view": {
     "body": {

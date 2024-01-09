@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
   "pageinfo": {
-    "code": "form",
-    "title": "form"
+    "code": "test",
+    "title": "test"
   },
   "view": {
     "body": {

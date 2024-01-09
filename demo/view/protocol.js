@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
   "pageinfo": {
-    "code": "changepwd",
-    "title": "changepwd"
+    "code": "test",
+    "title": "test"
   },
   "view": {
     "body": {
