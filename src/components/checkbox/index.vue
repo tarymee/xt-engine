@@ -34,7 +34,7 @@
   </div>
 </template>
 <script>
-import { get, cloneDeep } from 'lodash-es'
+import { cloneDeep } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 
 export default {
@@ -43,6 +43,13 @@ export default {
   data () {
     return {
       value: this.returnViewRulePropValue('value', 'array', []),
+      // [
+      //   {
+      //     "key": "1",
+      //     "disabled": "1",
+      //     "text": "启用"
+      //   }
+      // ]
       options: this.returnViewRulePropValue('options', 'array', []),
       displaytype: this.returnViewRulePropValue('displaytype', 'string', 'auto'), // auto | number
       valuetype: this.returnViewRulePropValue('valuetype', 'string', 'array') // string | array

@@ -39,6 +39,13 @@ export default {
   mixins: [baseInputMixin],
   data () {
     return {
+      // [
+      //   {
+      //     "key": "1",
+      //     "disabled": "1",
+      //     "text": "启用"
+      //   }
+      // ]
       options: this.returnViewRulePropValue('options', 'array', []),
       displaytype: this.returnViewRulePropValue('displaytype', 'string', 'auto') // auto / number
     }
