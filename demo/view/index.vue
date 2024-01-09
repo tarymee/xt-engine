@@ -22,6 +22,7 @@ export default {
         'form',
         'customervisitconfig',
         'webview',
+        'popview',
         'eventflycode',
         'test',
       ],
