@@ -20,7 +20,7 @@ export default {
     }
   },
   created() {
-    this.currentTitle = this.cards.length ? this.cards[0].title : ''
+    this.currentTitle = this.cards.length ? (this.cards[Number(this.value) || 0]?.title || this.cards[0].title) : ''
   },
   mounted () {
     this.executeEvent('onload')

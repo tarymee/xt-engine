@@ -97,6 +97,7 @@ export default {
           "type": "tabboard",
           "name": "tabboard框架",
           "title": "基本信息",
+          "value": "1",
           "hidden": "",
           "direction": "vertical",
           "style": {
