@@ -201,7 +201,7 @@ export default {
           // 单位 titlewidth ...
           defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : ''
           return fixLength(originValue || defaultValue)
-        } else {
+        } else if (type === 'any') {
           // 有可能是其他任意类型值
           defaultValue = (typeof defaultValue !== 'undefined') ? defaultValue : null
           return (typeof originValue !== 'undefined') ? originValue : defaultValue

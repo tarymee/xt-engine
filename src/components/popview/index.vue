@@ -11,7 +11,7 @@ export default {
       isContainerCtrl: true,
       width: this.returnViewRulePropValue('width', 'unit', '50%'),
       wrapwidth: this.returnViewRulePropValue('wrapwidth', 'unit'),
-      value: this.returnViewRulePropValue('value', 'other', null),
+      value: this.returnViewRulePropValue('value', 'any', null),
       fullscreen: this.returnViewRulePropValue('fullscreen', 'boolean')
     }
   },
