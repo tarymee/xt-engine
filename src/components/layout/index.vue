@@ -1,5 +1,5 @@
 <script>
-import { get, cloneDeep } from 'lodash-es'
+import { cloneDeep } from 'lodash-es'
 import baseMixin from '../common/baseMixin'
 import renderComponent from '../common/renderComponent'
 import { viewRuleAddProps, viewRuleAddParentcode, createViewRuleMap, delViewRuleMap } from '../engine/dealProtocol'

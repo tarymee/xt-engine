@@ -84,7 +84,6 @@ const dealOldView = (ctrlViewRule) => {
   dealPropMap(ctrlViewRule, 'paddingright', 'paddingRight')
 }
 
-
 const dealHandler = (handler) => {
   delete handler.key
   delete handler.successhint
@@ -231,7 +230,6 @@ export const viewRuleAddProps = (ctrlViewRule) => {
     }
   }
 }
-
 
 export const createViewRuleMap = (ctrlViewRule, viewRuleMap) => {
   if (ctrlViewRule && ctrlViewRule.code && ctrlViewRule.type) {
