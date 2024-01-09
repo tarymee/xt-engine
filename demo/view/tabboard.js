@@ -51,7 +51,7 @@ export default {
                   "trigger": "onclicked",
                   "script": `
                     console.log('赋值')
-                    page.getCtrl('tabboard框架').value = '0'
+                    page.getCtrl('tabboard框架').value = 1
                   `
                 }
               ],
@@ -97,7 +97,7 @@ export default {
           "type": "tabboard",
           "name": "tabboard框架",
           "title": "基本信息",
-          "value": "1",
+          "value": "",
           "hidden": "",
           "direction": "vertical",
           "style": {

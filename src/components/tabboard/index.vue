@@ -9,6 +9,7 @@ export default {
     return {
       isContainerCtrl: true,
       currentTitle: '',
+      value: this.returnViewRulePropValue('value', 'number', 0),
       cards: this.returnViewRulePropValue('cards', 'array', [])
     }
   },
@@ -20,7 +21,9 @@ export default {
     }
   },
   created() {
-    this.currentTitle = this.cards.length ? (this.cards[Number(this.value) || 0]?.title || this.cards[0].title) : ''
+    // console.log(this.value)
+    // debugger
+    this.setValue(this.value)
   },
   mounted () {
     this.executeEvent('onload')
@@ -54,11 +57,22 @@ export default {
       })
     },
     getValue (getter) {
-      return this.index.toString()
+      return this.index
     },
     setValue (value, setter) {
-      const index = Number(value) || 0
-      this.currentTitle = this.cards[index].title
+      if (Object.prototype.toString.call(value) === '[object Number]' && value >= 0) {
+        if (this.cards.length) {
+          if (this.cards[value]) {
+            this.currentTitle = this.cards[value].title
+          } else {
+            throw new Error('赋值已超过标签页个数！')
+          }
+        } else {
+          this.currentTitle = ''
+        }
+      } else {
+        throw new Error('赋值必须为大于等于 0 的数字！')
+      }
     },
     // todo 校验tabboard内的控件 校验不通过切换到该tab？
     validata () {
