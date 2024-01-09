@@ -1,5 +1,4 @@
 <script>
-import { get } from 'lodash-es'
 import { Message } from 'element-ui'
 import baseMixin from './baseMixin'
 
@@ -13,8 +12,6 @@ export default {
       hiddenclearbtn: this.returnViewRulePropValue('hiddenclearbtn', 'boolean'),
       titlewidth: this.returnViewRulePropValue('titlewidth', 'unit', '30%'),
     }
-  },
-  created () {
   },
   methods: {
     requiredValidata () {
