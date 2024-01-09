@@ -188,7 +188,11 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onvaluechange",
-                  "handler": ""
+                  "script": `
+                    // console.log(eventTarget)
+                    console.log('onvaluechange')
+                    console.log(page.getCtrl('textinput').value)
+                  `
                 }
               ]
             },

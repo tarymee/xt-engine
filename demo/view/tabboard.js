@@ -180,7 +180,7 @@ export default {
             },
             {
               "title": "基本信息3",
-              "hidden": "1",
+              "hidden": "",
               "content": []
             }
           ],
