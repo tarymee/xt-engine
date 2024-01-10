@@ -77,6 +77,21 @@ export default {
     // todo 校验tabboard内的控件 校验不通过切换到该tab？
     validata () {
       return true
+    },
+    setPropReadonly (value) {
+      // debugger
+      // console.log(value)
+      this.readonly = value
+      const childrenInstace = this.getChildrenInstace()
+      // console.log(childrenInstace)
+      // debugger
+      childrenInstace.forEach((item) => {
+        if (!item.isContainerCtrl) {
+          item.setProp('readonly', value)
+        } else {
+          item.readonly = value
+        }
+      })
     }
   },
   render: function (h) {

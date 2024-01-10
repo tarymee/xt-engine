@@ -15,6 +15,23 @@ export default {
   mounted () {
     this.executeEvent('onload')
   },
+  methods: {
+    setPropReadonly (value) {
+      // debugger
+      // console.log(value)
+      this.readonly = value
+      const childrenInstace = this.getChildrenInstace()
+      // console.log(childrenInstace)
+      // debugger
+      childrenInstace.forEach((item) => {
+        if (!item.isContainerCtrl) {
+          item.setProp('readonly', value)
+        } else {
+          item.readonly = value
+        }
+      })
+    }
+  },
   render: function (h) {
     let searchcondition = get(this.viewRule, 'searchcondition')
     let basic = get(searchcondition, 'basic', [])
@@ -55,6 +72,7 @@ export default {
             props: {
               // plain: true,
               // type: 'primary',
+              disabled: this.readonly,
               size: 'small'
             },
             on: {
