@@ -84,10 +84,11 @@ export default {
           {
             "type": "button",
             "text": "确 定",
+            "name": "确定",
             "eventlist": [
               {
                 "trigger": "onclicked",
-                "handler": ""
+                "script": `page.getCtrl('确定').readonly = true`
               }
             ]
           },
