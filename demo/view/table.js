@@ -32,7 +32,10 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-get"
+                  "script": `
+                    const value = page.getCtrl('表格').value
+                    console.log(value)
+                  `
                 }
               ],
               "style": {
@@ -46,7 +49,22 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-set"
+                  "script": `
+                    page.getCtrl('表格').value = [
+                      {
+                        productname: '可口可乐',
+                        productcode: '001',
+                        status: '1',
+                        unit: 'box'
+                      },
+                      {
+                        productname: '百事可乐',
+                        productcode: '002',
+                        status: '1',
+                        unit: 'bottle'
+                      }
+                    ]
+                  `
                 }
               ],
               "style": {
@@ -60,7 +78,7 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-toggle-readonly"
+                  "script": `page.getCtrl('表格').readonly = !page.getCtrl('表格').readonly`
                 }
               ],
               "style": {
@@ -74,7 +92,13 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-validata"
+                  "script": `
+                    const result = page.validata()
+                    console.log(result)
+                    if (!result) {
+                      throw Error('validata')
+                    }
+                  `
                 }
               ],
               "style": {
@@ -120,7 +144,10 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-edit"
+                  "script": `
+                    const value = page.getCtrl('表格').focusedValue
+                    console.log(value)
+                  `
                 }
               ]
             },
@@ -156,7 +183,14 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-new"
+                  "script": `
+                    page.getCtrl('表格').append({
+                      productname: '果粒橙',
+                      productcode: '003',
+                      status: '1',
+                      unit: 'bottle'
+                    })
+                  `
                 }
               ]
             },
@@ -165,7 +199,14 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-update"
+                  "script": `
+                    page.getCtrl('表格').update({
+                      productname: '娃哈哈',
+                      productcode: '004',
+                      status: '0',
+                      unit: 'box'
+                    }, 0)
+                  `
                 }
               ]
             },
@@ -174,7 +215,9 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-setCheck"
+                  "script": `
+                    page.getCtrl('表格').setCheck(true, 0)
+                  `
                 }
               ]
             },
@@ -183,7 +226,19 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-getRowByIndex"
+                  "script": `
+                    const firstRow = page.getCtrl('表格').row[0]
+                    // const firstRow = page.getCtrl('表格').getRowByIndex(0)
+                    console.log(firstRow)
+                    firstRow.getCtrl('productname').value = 'xxxx'
+                    firstRow.getCtrl('unit').value = ''
+                    firstRow.getCtrl('unit').options = [
+                      {
+                        key: 'xx',
+                        text: 'xx'
+                      }
+                    ]
+                  `
                 }
               ]
             },
@@ -192,7 +247,11 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-getColByName"
+                  "script": `
+                    page.getCtrl('表格').getColByName('productname').title = '产品名称'
+                    page.getCtrl('表格').getColByName('unit').readonly = true
+                    page.getCtrl('表格').getColByName('unit').required = false
+                  `
                 }
               ]
             },
@@ -201,7 +260,11 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-getOperationCtrl"
+                  "script": `
+                    const ctrl = page.getCtrl('表格').getOperationCtrl('add')
+                    console.log(ctrl)
+                    ctrl.hidden = true
+                  `
                 }
               ]
             },
@@ -210,7 +273,10 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-getRowoperationsCtrl"
+                  "script": `
+                    const ctrls = page.getCtrl('表格').getRowoperationsCtrl('edit')
+                    console.log(ctrls)
+                  `
                 }
               ]
             },
@@ -220,7 +286,9 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-deleteInScope"
+                  "script": `
+                    page.getCtrl('表格').deleteInScope('checked')
+                  `
                 }
               ]
             },
@@ -230,7 +298,10 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-checkedValue"
+                  "script": `
+                    const checkedValue = page.getCtrl('表格').checkedValue
+                    console.log(checkedValue)
+                  `
                 }
               ]
             }
@@ -242,7 +313,10 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-edit"
+                  "script": `
+                    const value = page.getCtrl('表格').focusedValue
+                    console.log(value)
+                  `
                 }
               ]
             },
@@ -252,7 +326,10 @@ export default {
               "eventlist": [
                 {
                   "trigger": "onclicked",
-                  "handler": "handle-del"
+                  "script": `
+                    const value = page.getCtrl('表格').focusedValue
+                    console.log(value)
+                  `
                 }
               ]
             }
@@ -282,263 +359,6 @@ export default {
       }
     ],
     "interface": [],
-    "handlers": [
-      {
-        "code": "handle-get",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const value = page.getCtrl('表格').value
-              console.log(value)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-set",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('表格').value = [
-                {
-                  productname: '可口可乐',
-                  productcode: '001',
-                  status: '1',
-                  unit: 'box'
-                },
-                {
-                  productname: '百事可乐',
-                  productcode: '002',
-                  status: '1',
-                  unit: 'bottle'
-                }
-              ]
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-edit",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const value = page.getCtrl('表格').focusedValue
-              console.log(value)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-del",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const value = page.getCtrl('表格').focusedValue
-              console.log(value)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-new",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('表格').append({
-                productname: '果粒橙',
-                productcode: '003',
-                status: '1',
-                unit: 'bottle'
-              })
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-update",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('表格').update({
-                productname: '娃哈哈',
-                productcode: '004',
-                status: '0',
-                unit: 'box'
-              }, 0)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-setCheck",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('表格').setCheck(true, 0)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-deleteInScope",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('表格').deleteInScope('checked')
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-checkedValue",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const checkedValue = page.getCtrl('表格').checkedValue
-              console.log(checkedValue)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-getRowByIndex",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const firstRow = page.getCtrl('表格').row[0]
-              // const firstRow = page.getCtrl('表格').getRowByIndex(0)
-              console.log(firstRow)
-              firstRow.getCtrl('productname').value = 'xxxx'
-              firstRow.getCtrl('unit').value = ''
-              firstRow.getCtrl('unit').options = [
-                {
-                  key: 'xx',
-                  text: 'xx'
-                }
-              ]
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-getColByName",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('表格').getColByName('productname').title = '产品名称'
-              page.getCtrl('表格').getColByName('unit').readonly = true
-              page.getCtrl('表格').getColByName('unit').required = false
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-getOperationCtrl",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const ctrl = page.getCtrl('表格').getOperationCtrl('add')
-              console.log(ctrl)
-              ctrl.hidden = true
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-getRowoperationsCtrl",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const ctrls = page.getCtrl('表格').getRowoperationsCtrl('edit')
-              console.log(ctrls)
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-toggle-readonly",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              page.getCtrl('表格').readonly = !page.getCtrl('表格').readonly
-            `
-          }
-        ]
-      },
-      {
-        "code": "handle-validata",
-        "title": "",
-        "name": "",
-        "actions": [
-          {
-            "type": "flycode",
-            "title": "flycode",
-            "script": `
-              const result = page.validata()
-              console.log(result)
-              if (!result) {
-                throw Error('validata')
-              }
-            `
-          }
-        ]
-      }
-    ]
+    "handlers": []
   }
 }

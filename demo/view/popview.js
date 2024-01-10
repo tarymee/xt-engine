@@ -69,12 +69,24 @@ export default {
           },
           {
             "type": "button",
-            "value": "button",
+            "value": "获取弹窗内存值",
             "eventlist": [
               {
                 "trigger": "onclicked",
                 "script": `
                     console.log(page.getCtrl('弹窗1').value)
+                  `
+              }
+            ]
+          },
+          {
+            "type": "button",
+            "value": "设置弹窗只读",
+            "eventlist": [
+              {
+                "trigger": "onclicked",
+                "script": `
+                    page.getCtrl('弹窗1').readonly = true
                   `
               }
             ]
@@ -98,27 +110,7 @@ export default {
             "eventlist": [
               {
                 "trigger": "onclicked",
-                "handler": ""
-              }
-            ]
-          },
-          {
-            "type": "button",
-            "text": "其他按钮1",
-            "eventlist": [
-              {
-                "trigger": "onclicked",
-                "handler": ""
-              }
-            ]
-          },
-          {
-            "type": "button",
-            "text": "其他按钮2",
-            "eventlist": [
-              {
-                "trigger": "onclicked",
-                "handler": ""
+                "script": `page.getCtrl('弹窗1').hidden = true`
               }
             ]
           }

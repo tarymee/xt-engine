@@ -61,8 +61,8 @@ export default {
                     page.getCtrl('cascade').value = ['1', '1-1', '1-1-1']
                     page.getCtrl('date').value = '1681228800000'
                     page.getCtrl('textarea').value = 'textarea'
-                    page.getCtrl('checkbox').value = ['0', '4']
-                    page.getCtrl('radio').value = '4'
+                    page.getCtrl('checkbox').value = ['0', true, 1]
+                    page.getCtrl('radio').value = '0'
                     page.getCtrl('attachment').value = [
                       {
                         filename: '鸟',
@@ -204,6 +204,7 @@ export default {
               "name": "select",
               "width": "50%",
               "required": "",
+              // "value": true,
               "value": "",
               "options": [
                 {
@@ -215,20 +216,20 @@ export default {
                   "text": "启用"
                 },
                 {
-                  "key": "2",
-                  "text": "开发中"
+                  "key": true,
+                  "text": "true"
                 },
                 {
-                  "key": "3",
-                  "text": "测试中"
+                  "key": false,
+                  "text": "false"
                 },
                 {
-                  "key": "4",
-                  "text": "冒烟中"
+                  "key": 1,
+                  "text": "数字1"
                 },
                 {
-                  "key": "5",
-                  "text": "发版中"
+                  "key": 2,
+                  "text": "数字2"
                 }
               ],
               "eventlist": [
@@ -482,24 +483,24 @@ export default {
                   "text": "停用"
                 },
                 {
-                  "key": "2",
+                  "key": true,
                   "disabled": "",
-                  "text": "开发中"
+                  "text": "true"
                 },
                 {
-                  "key": "3",
+                  "key": false,
                   "disabled": "",
-                  "text": "测试中"
+                  "text": "false"
                 },
                 {
-                  "key": "4",
+                  "key": 1,
                   "disabled": "",
-                  "text": "冒烟中"
+                  "text": "数字1"
                 },
                 {
-                  "key": "5",
+                  "key": 2,
                   "disabled": "",
-                  "text": "发版中"
+                  "text": "数字2"
                 }
               ],
               "eventlist": [
@@ -518,7 +519,9 @@ export default {
               "displaytype": "3",
               "width": "50%",
               "required": "",
-              "value": "",
+              // "value": "",
+              "value": true,
+              // "value": 1,
               "options": [
                 {
                   "key": "1",
@@ -531,24 +534,24 @@ export default {
                   "text": "停用"
                 },
                 {
-                  "key": "2",
+                  "key": true,
                   "disabled": "",
-                  "text": "开发中"
+                  "text": "true"
                 },
                 {
-                  "key": "3",
+                  "key": false,
                   "disabled": "",
-                  "text": "测试中"
+                  "text": "false"
                 },
                 {
-                  "key": "4",
+                  "key": 1,
                   "disabled": "",
-                  "text": "冒烟中"
+                  "text": "数字1"
                 },
                 {
-                  "key": "5",
+                  "key": 2,
                   "disabled": "",
-                  "text": "发版中"
+                  "text": "数字2"
                 }
               ],
               "eventlist": [

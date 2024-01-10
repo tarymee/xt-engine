@@ -11,50 +11,6 @@ export default {
       "flex": "1",
       "content": [
         {
-          "type": "filter",
-          "name": "查询栏",
-          "title": "查询栏",
-          "searchcondition": {
-            "basic": [
-              {
-                "type": "select",
-                "title": "查询-租户类型",
-                "name": "查询-租户类型",
-                "placeholder": "租户类型",
-                "required": "",
-                "value": "1",
-                "hidden": "",
-                "options": [
-                  {
-                    "key": "1",
-                    "text": "企业"
-                  },
-                  {
-                    "key": "0",
-                    "text": "产品开发"
-                  }
-                ],
-                "hiddenclearbtn": "1",
-                "eventlist": []
-              },
-              {
-                "type": "textinput",
-                "title": "查询-企业编码",
-                "name": "查询-企业编码",
-                "placeholder": "企业编码",
-                "eventlist": []
-              }
-            ],
-            "advanced": []
-          },
-          "eventlist": [
-            {
-              "trigger": "onvaluechange",
-              "handler": ""
-            }
-          ]
-        },
-        {
           "type": "layout",
           "flexdirection": "horizontal",
           "flex": "",
@@ -208,6 +164,67 @@ export default {
               "style": {
                 "margin": "10px"
               }
+            },
+            {
+              "type": "button",
+              "value": "查询栏只读切换",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    page.getCtrl('查询栏').readonly = !page.getCtrl('查询栏').readonly
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            }
+          ]
+        },
+        {
+          "type": "filter",
+          "name": "查询栏",
+          "title": "查询栏",
+          "bindcallbtn": "1",
+          "searchcondition": {
+            "basic": [
+              {
+                "type": "select",
+                "title": "查询-租户类型",
+                "name": "查询-租户类型",
+                "placeholder": "租户类型",
+                "required": "",
+                "value": "1",
+                "hidden": "",
+                "options": [
+                  {
+                    "key": "1",
+                    "text": "企业"
+                  },
+                  {
+                    "key": "0",
+                    "text": "产品开发"
+                  }
+                ],
+                "hiddenclearbtn": "1",
+                "eventlist": []
+              },
+              {
+                "type": "textinput",
+                "title": "查询-企业编码",
+                "name": "查询-企业编码",
+                "placeholder": "企业编码",
+                "eventlist": []
+              }
+            ],
+            "advanced": []
+          },
+          "eventlist": [
+            {
+              "trigger": "onvaluechange",
+              "handler": ""
             }
           ]
         },

@@ -77,6 +77,22 @@ export default {
             },
             {
               "type": "button",
+              "value": "切换只读",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    page.getCtrl('tabboard框架').readonly = !page.getCtrl('tabboard框架').readonly
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
               "value": "测试",
               "displaytype": "primary",
               "eventlist": [
