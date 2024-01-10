@@ -68,6 +68,8 @@ export default {
                   "trigger": "onclicked",
                   "script": `
                     console.log('校验')
+                    const res = page.getCtrl('tabboard框架').validata()
+                    console.log(res)
                   `
                 }
               ],

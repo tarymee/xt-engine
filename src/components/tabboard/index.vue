@@ -74,9 +74,20 @@ export default {
         throw new Error('赋值必须为大于等于 0 的数字！')
       }
     },
-    // todo 校验tabboard内的控件 校验不通过切换到该tab？
+    // todo 校验tabboard内的控件 校验不通过切换到该tab
     validata () {
-      return true
+      let res = true
+      const childrenInstace = this.getChildrenInstace()
+      for (let i = 0, len = childrenInstace.length; i < len; i++) {
+        const item = childrenInstace[i]
+        if (!item.isContainerCtrl) {
+          res = item.validata()
+        }
+        if (!res) {
+          break
+        }
+      }
+      return res
     },
     setPropReadonly (value) {
       // debugger
