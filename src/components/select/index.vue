@@ -44,6 +44,7 @@ export default {
   mixins: [baseInputMixin],
   data () {
     return {
+      value: this.returnViewRulePropValue('value', 'any', ''),
       options: this.returnViewRulePropValue('options', 'array', []),
       multiselectable: this.returnViewRulePropValue('multiselectable', 'boolean'),
       remotesearch: this.returnViewRulePropValue('remotesearch', 'boolean'),
