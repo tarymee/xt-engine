@@ -91,6 +91,19 @@
 + 默认：`"0"`
 
 控件是否只读。
+当控件为`容器控件/数组型控件`时，使用 `flycode` 赋值控件 `readonly` 属性时会对控件内部的所有控件都生效。
+
+示例：
+```js
+// 设置 layout/filter/popview/tabboard/table/list/foreach 控件下的所有控件为只读
+page.getCtrl('layout').readonly = true
+page.getCtrl('filter').readonly = true
+page.getCtrl('popview').readonly = true
+page.getCtrl('tabboard').readonly = true
+page.getCtrl('table').readonly = true
+page.getCtrl('list').readonly = true
+page.getCtrl('foreach').readonly = true
+```
 
 ## style
 + 类型：`object | null`
