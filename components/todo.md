@@ -15,6 +15,9 @@
 
 
 # todo
++ tag支持样式
++ popview 全屏模式下 右上角关闭图标改成左边箭头
++ tree 当导航模式时选择项颜色深一点
 + 日期选择器 时间选择器
 + tablestyle: border | ... 支持多一种样式
 + 优化 dealInnerProps 利用 parentcodepath
