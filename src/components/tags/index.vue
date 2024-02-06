@@ -22,7 +22,6 @@
   </div>
 </template>
 <script>
-import { get, cloneDeep } from 'lodash-es'
 import baseMixin from '../common/baseMixin'
 
 export default {
@@ -61,12 +60,14 @@ export default {
           texts = []
         } else {
           if (typeof valueJson[0] !== 'object') {
-            // 多值 + 有options属性，json对象字符串
+            // 多值 有options属性 value = JSON.stringify(['1', '2'])
+            // JSON.stringify(['1', '2'])
             texts = valueJson.map((item) => {
-              return this.options.find((item2) => item === item2.key) || item
+              const obj = this.options.find((item2) => item === item2.key)
+              return obj ? obj.text : item
             })
           } else {
-            // 多值 + 无options属性，json对象字符串
+            // 多值 无options属性 value = JSON.stringify([{ "key": "1", "text": "启用" }, { "key": "0", "text": "停用" }])
             texts = valueJson.map(item => item.text)
           }
         }
@@ -88,7 +89,7 @@ export default {
 </script>
 
 <style scoped>
-/* .xt-text {
+/* .xt-tags {
 
 } */
 </style>

@@ -12,18 +12,19 @@ export default {
   data: function () {
     return {
       demoArr: [
-        'table',
-        'radio',
-        'list',
-        'attachment',
-        'tabboard',
-        'foreach',
-        'layout',
         'form',
-        'customervisitconfig',
-        'webview',
+        'table',
+        'list',
+        'foreach',
+        'tabboard',
         'popview',
+        'layout',
+        'radio',
+        'attachment',
+        'webview',
+        'tags',
         'eventflycode',
+        'customervisitconfig',
         'test',
       ],
       protocol: null
