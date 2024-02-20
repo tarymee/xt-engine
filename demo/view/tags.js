@@ -32,15 +32,21 @@ export default {
               "options": [
                 {
                   "key": "1",
-                  "text": "启用"
+                  "text": "启用",
+                  "type": "success",
+                  "effect": "light"
                 },
                 {
                   "key": "0",
-                  "text": "停用"
+                  "text": "停用",
+                  "type": "info",
+                  "effect": "plain"
                 },
                 {
                   "key": "2",
-                  "text": "开发中"
+                  "text": "开发中",
+                  "type": "warning",
+                  "effect": "dark"
                 }
               ],
               "eventlist": []
@@ -50,20 +56,7 @@ export default {
               "title": "tags-单值-对象",
               "name": "tags_2",
               "width": "150",
-              "options": [
-                {
-                  "key": "1",
-                  "text": "启用"
-                },
-                {
-                  "key": "0",
-                  "text": "停用"
-                },
-                {
-                  "key": "2",
-                  "text": "开发中"
-                }
-              ],
+              "options": [],
               "eventlist": []
             },
             {
@@ -74,15 +67,21 @@ export default {
               "options": [
                 {
                   "key": "1",
-                  "text": "启用"
+                  "text": "启用",
+                  "type": "success",
+                  "effect": "light"
                 },
                 {
                   "key": "0",
-                  "text": "停用"
+                  "text": "停用",
+                  "type": "info",
+                  "effect": "plain"
                 },
                 {
                   "key": "2",
-                  "text": "开发中"
+                  "text": "开发中",
+                  "type": "warning",
+                  "effect": "dark"
                 }
               ],
               "eventlist": []
@@ -92,20 +91,7 @@ export default {
               "title": "tags-多值-对象",
               "name": "tags_4",
               "width": "150",
-              "options": [
-                {
-                  "key": "1",
-                  "text": "启用"
-                },
-                {
-                  "key": "0",
-                  "text": "停用"
-                },
-                {
-                  "key": "2",
-                  "text": "开发中"
-                }
-              ],
+              "options": [],
               "eventlist": []
             }
           ],
@@ -119,26 +105,46 @@ export default {
                   "script": `
                     page.getCtrl('表格').append({
                       tags_1: '1',
-                      tags_2: JSON.stringify({ "key": "1", "text": "启用xxx" }),
+                      tags_2: JSON.stringify({ "key": "1", "text": "启用", "type": "danger" }),
                       tags_3: JSON.stringify(['1', '2']),
-                      tags_4: JSON.stringify([{ "key": "1", "text": "启用aaa" }, { "key": "0", "text": "停用bbb" }]),
+                      tags_4: JSON.stringify([{ "key": "1", "text": "启用" }, { "key": "0", "text": "停用" }]),
+                    })
+                    page.getCtrl('表格').append({
+                      tags_1: '2',
+                      tags_2: JSON.stringify({ "key": "1", "text": "启用", "type": "warning" }),
+                      tags_3: JSON.stringify(['1', '2']),
+                      tags_4: JSON.stringify([{ "key": "1", "text": "启用" }, { "key": "0", "text": "停用" }]),
+                    })
+                    page.getCtrl('表格').append({
+                      tags_1: '0',
+                      tags_2: JSON.stringify({ "key": "1", "text": "启用", "type": "danger", "effect": "plain" }),
+                      tags_3: JSON.stringify(['1', '2']),
+                      tags_4: JSON.stringify([{ "key": "1", "text": "启用" }, { "key": "0", "text": "停用" }]),
+                    })
+                    page.getCtrl('表格').append({
+                      tags_1: '0',
+                      tags_2: JSON.stringify({ "key": "1", "text": "启用", "type": "danger", "effect": "plain" }),
+                      tags_3: JSON.stringify(['1', '2']),
+                      tags_4: JSON.stringify([{ "key": "1", "text": "启用", "type": "warning", "effect": "dark" }, { "key": "0", "text": "停用", "type": "info", "effect": "dark" }, { "key": "2", "text": "开发中", "type": "success", "effect": "dark" }, { "key": "3", "text": "测试中", "type": "danger", "effect": "dark" }, { "key": "4", "text": "上线中", "type": "", "effect": "dark" }]),
+                    })
+                    page.getCtrl('表格').append({
+                      tags_1: '8',
+                      tags_2: '',
+                      tags_3: JSON.stringify(['8', '1']),
+                      tags_4: '',
                     })
                   `
                 }
               ]
             },
             {
-              "text": "update",
+              "text": "getValue",
               "eventlist": [
                 {
                   "trigger": "onclicked",
                   "script": `
-                    page.getCtrl('表格').update({
-                      productname: '娃哈哈',
-                      productcode: '004',
-                      status: '0',
-                      unit: 'box'
-                    }, 0)
+                    const value = page.getCtrl('表格').value
+                    console.log(value)
                   `
                 }
               ]
