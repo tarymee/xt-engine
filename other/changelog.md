@@ -1,5 +1,8 @@
 # 更新日志
 
+## v0.2.13（未发版）
+- feat(tags): 优化 tags 控件，支持样式。
+
 ## v0.2.12
 - feat(tabboard): 支持初始 value 值，支持取值赋值，优化 value 值类型为 number，支持对内部控件设置只读，完善校验方法
 - feat(select): 优化 value 值类型为 any

@@ -29,6 +29,27 @@
 
 控件初始值。
 
+
+## options
+```javascript
+interface ITags {
+  text: string
+  type?: '' | 'success' | 'info' | 'warning' | 'danger' // 对应 el-tag 控件 type 属性
+  effect?: 'light' | 'dark' | 'plain' // 对应 el-tag 控件 effect 属性
+}
+
+interface IOption {
+  key: string
+  parentkey: string
+  text: string
+  tags?: ITags[] // 额外显示树节点标签
+}
+```
++ 类型：`IOption[]`
++ 默认：`[]`
+
+控件数据源。
+
 ## multiselectable
 + 类型：`boolean | "1" | "0"`
 + 默认：`"0"`
@@ -81,10 +102,6 @@
 | shortcut | 父子有关联 取值叶子节点 |
 | related | 父子有关联 取值非叶子节点 如果只有一级 最高节点同样也是叶子节点时 则该级视为最高级 要取值 半选不取 |
 | highest | 父子有关联 取值最高节点 未实现 |
-
-## options
-控件数据源。
-
 
 ## eventlist.trigger
 + 类型：`string`

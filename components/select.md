@@ -12,7 +12,6 @@
 }
 ```
 
-
 ## value
 + 类型：`string`
 + 默认：`""`
@@ -20,6 +19,15 @@
 控件初始值。
 
 ## options
+```javascript
+interface IOption {
+  key: string
+  text: string
+}
+```
++ 类型：`IOption[]`
++ 默认：`[]`
+
 控件数据源。
 
 ## remotesearch
