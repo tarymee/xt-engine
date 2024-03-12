@@ -25,6 +25,7 @@ export default {
         'tags',
         'eventflycode',
         'customervisitconfig',
+        'licenseconfig',
         'test',
       ],
       protocol: null
