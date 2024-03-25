@@ -10,7 +10,7 @@
         :key="item.key"
         :type="item.type"
         :effect="item.effect"
-        size="small"
+        :size="item.size ? item.size : 'mini'"
         class="xt-tags-item"
       >
         {{ item.text }}
