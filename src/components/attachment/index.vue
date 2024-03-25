@@ -1,20 +1,46 @@
 <template>
   <div class="xt-input xt-attachment" :class="[customClass, { 'xt-input-intable': intable }]" :style="[viewStyle]">
-    <div v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'" class="xt-input-label" :style="{ width: titlewidth }">
+    <div
+      v-if="!infilter && !intable && titlewidth !== '0px' && titlewidth !== '0%' && titlewidth !== '0'"
+      class="xt-input-label"
+      :style="{ width: titlewidth }"
+    >
       <span v-if="required">*</span>{{ title }}
     </div>
     <div class="xt-input-content">
-      <div v-for="(item, index) in value" :key="index" class="xt-attachment-item">
-        <a class="xt-attachment-item-file" :href="item.url" target="_blank">
-          <i class="el-icon-document"></i>
-          {{ item.filename }}
-        </a>
-        <i v-if="item.__$$status === 'uploadding'" class="xt-attachment-item-icon el-icon-loading"></i>
-        <i v-if="item.__$$status === 'done'" class="xt-attachment-item-icon el-icon-error" @click="handleRemove(index)"></i>
-        <i v-if="item.__$$status === 'done'" class="xt-attachment-item-icon el-icon-success"></i>
-      </div>
-      <el-upload v-show="(maxnumber === '' || value.length < Number(maxnumber)) && !readonly" class="xt-attachment-upload" action="javascript:;" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
-        <el-button size="small" icon="el-icon-plus" class="xt-attachment-btn">点击上传</el-button>
+      <template v-if="!hidefile">
+        <div v-for="(item, index) in value" :key="index" class="xt-attachment-item">
+          <a class="xt-attachment-item-file" :href="item.url" target="_blank">
+            <i class="el-icon-document"></i>
+            {{ item.filename }}
+          </a>
+          <i v-if="item.__$$status === 'uploadding'" class="xt-attachment-item-icon el-icon-loading"></i>
+          <i
+            v-if="item.__$$status === 'done'"
+            class="xt-attachment-item-icon el-icon-error"
+            @click="handleRemove(index)"
+          >
+          </i>
+          <i v-if="item.__$$status === 'done'" class="xt-attachment-item-icon el-icon-success"></i>
+        </div>
+      </template>
+      <el-upload
+        v-show="(maxnumber === '' || value.length < Number(maxnumber)) && !readonly"
+        class="xt-attachment-upload" action="javascript:;"
+        :before-upload="handlerBeforeUpload"
+        :http-request="handleHttpRequest"
+        :accept="accept"
+        :show-file-list="false"
+        :multiple="true"
+      >
+        <el-button
+          size="small"
+          :type="uploadtype"
+          :icon="uploadicon"
+          class="xt-attachment-btn"
+        >
+          {{ uploadtext }}
+        </el-button>
       </el-upload>
     </div>
   </div>
@@ -30,6 +56,10 @@ export default {
   data () {
     return {
       selectFile: null,
+      uploadtype: this.returnViewRulePropValue('uploadtype', 'string', ''),
+      uploadtext: this.returnViewRulePropValue('uploadtext', 'string', '点击上传'),
+      uploadicon: this.returnViewRulePropValue('uploadicon', 'string', 'el-icon-plus'),
+      hidefile: this.returnViewRulePropValue('hidefile', 'boolean', false),
       maxnumber: this.returnViewRulePropValue('maxnumber', 'number'),
       // maxsize 单位 KB 默认不限制
       // 10M = 1024 * 1024 * 10
