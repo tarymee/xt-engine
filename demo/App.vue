@@ -5,6 +5,13 @@
 </template>
 
 <style>
-@import './assets/css/base.css';
-@import './assets/css/style.css';
+* {
+  padding: 0;
+  margin: 0;
+}
+html,
+body,
+#app {
+  height: 100vh;
+}
 </style>
