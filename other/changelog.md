@@ -1,14 +1,13 @@
 # 更新日志
 
-## v0.2.13（未发版）
-
-
 ## v1.0.0
-- chore: 架构改造，移除 learn ，兼容旧架构，新架构采用 vue 插件安装。
+- chore: 架构改造，移除 learn 架构，兼容旧架构，新架构采用 vue 插件形式安装
 - feat(tabboard): 支持初始 value 值，支持取值赋值，优化 value 值类型为 number，支持对内部控件设置只读，完善校验方法
 - feat(select): 优化 value 值类型为 any
 - feat(filter): 支持对内部控件设置只读
-- feat(tags): 优化 tags 控件，支持样式。
+- feat(tags): 支持 el-tag 样式
+- feat(attachment): 支持定义上传按钮样式和定义上传文件的显隐，优化超过 maxsize 提示文字
+- feat(photo): 优化超过 maxsize 提示文字
 
 ## v0.2.11
 - feat(element-ui): element-ui 由 2.15.5 升级至 2.15.14

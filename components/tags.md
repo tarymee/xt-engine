@@ -28,8 +28,10 @@
 interface IOption {
   key: string
   text: string
-  type?: '' | 'success' | 'info' | 'warning' | 'danger' // 对应 el-tag 控件 type 属性
-  effect?: 'light' | 'dark' | 'plain' // 对应 el-tag 控件 effect 属性
+  // 如果数据源中有 type 属性值 则采用 el-tag 控件渲染
+  type?: '' | 'success' | 'info' | 'warning' | 'danger' // 对应 el-tag 控件 type 属性 默认 ''
+  effect?: 'light' | 'dark' | 'plain' // 对应 el-tag 控件 effect 属性 默认 light
+  size?: '' | 'medium' | 'small' | 'mini' // 对应 el-tag 控件 size 属性 默认 mini
 }
 ```
 + 类型：`IOption[]`

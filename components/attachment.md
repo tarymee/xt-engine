@@ -8,6 +8,10 @@
   "maxnumber": "",
   "maxsize": "",
   "accept": "",
+  "hidefile": "",
+  "uploadtype": "",
+  "uploadtext": "",
+  "uploadicon": "",
   "eventlist": []
 }
 ```
@@ -34,8 +38,9 @@ interface IAttachmentValue {
 + 类型：`string`
 + 默认：`""`
 
-允许上传的单个文件大小，单位为 `KB`，默认值为空字符串，表示不限制。
-假如您想要限制单个文件大小为 `10M`，那么 `maxsize: "10485760"`。
+允许上传的单个文件大小，单位为 `BITS`，默认值为空字符串，表示不限制。
+假如您想要限制单个文件大小为 `1KB`，那么 `maxsize: "1024"`。
+假如您想要限制单个文件大小为 `1MB`，那么 `maxsize: "1048576"`。
 
 ## accept
 + 类型：`string`
@@ -50,6 +55,18 @@ interface IAttachmentValue {
 | "image/*" | 所有图片格式 |
 | "image/png" | png 图片格式 |
 | ".jpg, .jpeg, .png" | jpg jpeg png 图片格式 |
+
+## hidefile
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
+
+是否隐藏上传文件。
+
+## uploadtype、uploadtext、uploadicon
++ 类型：`string`
++ 默认：`""`
+
+定义上传按钮样式，对应 `el-button` 控件的  `type` `text` `icon` 属性。
 
 ## eventlist.trigger
 + 类型：`string`
