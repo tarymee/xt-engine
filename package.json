@@ -1,6 +1,6 @@
 {
   "name": "@smart100/web-engine",
-  "version": "0.2.12",
+  "version": "1.0.0",
   "description": "",
   "scripts": {
     "dev": "vue-cli-service serve"

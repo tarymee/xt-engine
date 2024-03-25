@@ -21,17 +21,51 @@ export default {
           "fixednumber": "0",
           "columns": [
             {
-              "type": "text",
-              "title": "环境",
-              "name": "evn",
+              "type": "tags",
+              "title": "应用",
+              "name": "appcode",
               "width": "100",
+              "options": [
+                {
+                  "key": "distribution",
+                  "text": "distribution",
+                  "type": "success",
+                  "effect": "dark"
+                },
+                {
+                  "key": "promotion",
+                  "text": "promotion",
+                  "type": "",
+                  "effect": "dark"
+                },
+                {
+                  "key": "sales",
+                  "text": "sales",
+                  "type": "danger",
+                  "effect": "dark"
+                }
+              ],
               "eventlist": []
             },
             {
-              "type": "text",
-              "title": "应用",
-              "name": "appcode",
-              "width": "80",
+              "type": "tags",
+              "title": "环境",
+              "name": "evn",
+              "width": "110",
+              "options": [
+                {
+                  "key": "产品运营中心",
+                  "text": "产品运营中心",
+                  "type": "success",
+                  "effect": "light"
+                },
+                {
+                  "key": "租户真实环境",
+                  "text": "租户真实环境",
+                  "type": "",
+                  "effect": "light"
+                }
+              ],
               "eventlist": []
             },
             {
@@ -49,20 +83,12 @@ export default {
               "eventlist": []
             },
             {
-              "type": "text",
-              "title": "使用数",
-              "name": "uselicense",
-              "width": "80",
-              "eventlist": []
-            },
-            {
               "type": "dropdownbox",
               "title": "是否限制许可",
               "name": "islimit",
               "placeholder": "",
-              "required": "1",
               "width": "100",
-              "hiddenclearbtn": "",
+              "hiddenclearbtn": "1",
               "options": [
                 {
                   "key": "1",
@@ -81,7 +107,7 @@ export default {
               "name": "time",
               "format": "yyyy-MM-dd",
               "unit": "date",
-              "width": "150",
+              "width": "170",
               "eventlist": []
             },
             {
@@ -89,8 +115,115 @@ export default {
               "title": "应用状态",
               "name": "status",
               "placeholder": "",
-              "required": "1",
-              "width": "120",
+              "width": "100",
+              "hiddenclearbtn": "1",
+              "options": [
+                {
+                  "key": "1",
+                  "text": "启用"
+                },
+                {
+                  "key": "0",
+                  "text": "停用"
+                }
+              ],
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "title": "更新时间",
+              "name": "createtime",
+              "width": "140",
+              "eventlist": []
+            },
+            {
+              "type": "tags",
+              "title": "数据是否一致",
+              "name": "issame",
+              "width": "100",
+              "options": [
+                {
+                  "key": "1",
+                  "text": "是",
+                  "type": "success",
+                  "effect": "plain"
+                },
+                {
+                  "key": "0",
+                  "text": "否",
+                  "type": "danger",
+                  "effect": "plain"
+                }
+              ],
+              "eventlist": []
+            },
+            {
+              "type": "tags",
+              "title": "环境",
+              "name": "evn1",
+              "width": "110",
+              "options": [
+                {
+                  "key": "产品运营中心",
+                  "text": "产品运营中心",
+                  "type": "success",
+                  "effect": "light"
+                },
+                {
+                  "key": "租户真实环境",
+                  "text": "租户真实环境",
+                  "type": "",
+                  "effect": "light"
+                }
+              ],
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "title": "限制许可数",
+              "name": "maxlicense1",
+              "width": "90",
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "title": "购买许可数",
+              "name": "buylicense1",
+              "width": "90",
+              "eventlist": []
+            },
+            {
+              "type": "tags",
+              "title": "是否限制许可",
+              "name": "islimit1",
+              "placeholder": "",
+              "width": "100",
+              "hiddenclearbtn": "",
+              "options": [
+                {
+                  "key": "1",
+                  "text": "是"
+                },
+                {
+                  "key": "0",
+                  "text": "否"
+                }
+              ],
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "title": "有效期",
+              "name": "time1",
+              "width": "100",
+              "eventlist": []
+            },
+            {
+              "type": "tags",
+              "title": "应用状态",
+              "name": "status1",
+              "placeholder": "",
+              "width": "70",
               "hiddenclearbtn": "",
               "options": [
                 {
@@ -105,20 +238,24 @@ export default {
               "eventlist": []
             },
             {
-              "type": "tags",
-              "title": "是否一致",
-              "name": "issame",
+              "type": "text",
+              "title": "已使用数",
+              "name": "uselicense1",
               "width": "80",
-              "options": [
-                {
-                  "key": "1",
-                  "text": "是"
-                },
-                {
-                  "key": "0",
-                  "text": "否"
-                }
-              ],
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "title": "实际使用数",
+              "name": "realuselicense1",
+              "width": "90",
+              "eventlist": []
+            },
+            {
+              "type": "text",
+              "title": "更新时间",
+              "name": "createtime1",
+              "width": "140",
               "eventlist": []
             }
           ],
@@ -130,93 +267,87 @@ export default {
               "script": `
                 page.getCtrl('表格').append([
                   {
-                    evn: '产品运营中心',
                     appcode: 'distribution',
-                    maxlicense: '100',
-                    buylicense: '10',
-                    uselicense: '1',
-                    islimit: '1',
-                    time: '1710260906120',
-                    status: '1',
-                    issame: '1'
-                  },
-                  {
-                    evn: '租户真实环境',
-                    appcode: 'distribution',
-                    maxlicense: '100',
-                    buylicense: '10',
-                    uselicense: '1',
-                    islimit: '1',
-                    time: '1710260906120',
-                    status: '1',
-                    issame: '1'
-                  },
-                  {
                     evn: '产品运营中心',
-                    appcode: 'promotion',
                     maxlicense: '100',
                     buylicense: '10',
-                    uselicense: '1',
                     islimit: '1',
                     time: '1710260906120',
                     status: '1',
+                    createtime: '2024-03-13 12:20:20',
+                    evn1: '租户真实环境',
+                    maxlicense1: '100',
+                    buylicense1: '10',
+                    uselicense1: '1',
+                    realuselicense1: '1',
+                    islimit1: '1',
+                    time1: '2024-03-13',
+                    status1: '1',
+                    createtime1: '2024-03-13 12:20:20',
                     issame: '1'
                   },
                   {
-                    evn: '租户真实环境',
                     appcode: 'promotion',
-                    maxlicense: '100',
-                    buylicense: '10',
-                    uselicense: '1',
-                    islimit: '1',
-                    time: '1710260906120',
-                    status: '1',
-                    issame: '1'
-                  },
-                  {
                     evn: '产品运营中心',
-                    appcode: 'sales',
                     maxlicense: '100',
                     buylicense: '10',
-                    uselicense: '1',
                     islimit: '1',
                     time: '1710260906120',
                     status: '1',
+                    createtime: '2024-03-13 12:20:20',
+                    evn1: '租户真实环境',
+                    maxlicense1: '100',
+                    buylicense1: '10',
+                    uselicense1: '1',
+                    realuselicense1: '1',
+                    islimit1: '1',
+                    time1: '2024-03-13',
+                    status1: '1',
+                    createtime1: '2024-03-13 12:20:20',
                     issame: '1'
                   },
                   {
-                    evn: '租户真实环境',
                     appcode: 'sales',
+                    evn: '产品运营中心',
                     maxlicense: '100',
                     buylicense: '10',
-                    uselicense: '1',
                     islimit: '1',
                     time: '1710260906120',
                     status: '1',
+                    createtime: '2024-03-13 12:20:20',
+                    evn1: '租户真实环境',
+                    maxlicense1: '100',
+                    buylicense1: '10',
+                    uselicense1: '1',
+                    realuselicense1: '1',
+                    islimit1: '1',
+                    time1: '2024-03-13',
+                    status1: '1',
+                    createtime1: '2024-03-13 12:20:20',
                     issame: '1'
                   }
                 ])
 
-                setTimeout(() => {
-                  const allRows = page.getCtrl('表格').row
-                  console.log(allRows)
-                  // debugger
-                  allRows[1].getCtrl('maxlicense').readonly = true
-                  allRows[3].getCtrl('maxlicense').readonly = true
-                  allRows[5].getCtrl('maxlicense').readonly = true
-                  allRows[1].getCtrl('buylicense').readonly = true
-                  allRows[3].getCtrl('buylicense').readonly = true
-                  allRows[5].getCtrl('buylicense').readonly = true
-                  allRows[1].getCtrl('islimit').readonly = true
-                  allRows[3].getCtrl('islimit').readonly = true
-                  allRows[5].getCtrl('islimit').readonly = true
-                  allRows[1].getCtrl('time').readonly = true
-                  allRows[3].getCtrl('time').readonly = true
-                  allRows[5].getCtrl('time').readonly = true
-                  allRows[1].getCtrl('status').readonly = true
-                  allRows[3].getCtrl('status').readonly = true
-                  allRows[5].getCtrl('status').readonly = true
-                }, 200)
+                // setTimeout(() => {
+                //   const allRows = page.getCtrl('表格').row
+                //   console.log(allRows)
+                //   // debugger
+                //   allRows[1].getCtrl('maxlicense').readonly = true
+                //   allRows[3].getCtrl('maxlicense').readonly = true
+                //   allRows[5].getCtrl('maxlicense').readonly = true
+                //   allRows[1].getCtrl('buylicense').readonly = true
+                //   allRows[3].getCtrl('buylicense').readonly = true
+                //   allRows[5].getCtrl('buylicense').readonly = true
+                //   allRows[1].getCtrl('islimit').readonly = true
+                //   allRows[3].getCtrl('islimit').readonly = true
+                //   allRows[5].getCtrl('islimit').readonly = true
+                //   allRows[1].getCtrl('time').readonly = true
+                //   allRows[3].getCtrl('time').readonly = true
+                //   allRows[5].getCtrl('time').readonly = true
+                //   allRows[1].getCtrl('status').readonly = true
+                //   allRows[3].getCtrl('status').readonly = true
+                //   allRows[5].getCtrl('status').readonly = true
+                // }, 200)
 
               `
             }
