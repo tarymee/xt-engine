@@ -25,7 +25,7 @@ export default {
           "required": "1",
           "maxnumber": "2",
           "accept": "image/png,image/jpg,text/txt,.zip",
-          "maxsize": "300",
+          "maxsize": "1048576",
           "eventlist": [
             {
               "trigger": "onvaluechange",

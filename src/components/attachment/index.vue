@@ -49,6 +49,7 @@
 import { get, cloneDeep } from 'lodash-es'
 import baseInputMixin from '../common/baseInputMixin'
 import { Message } from 'element-ui'
+import { BITSToMB } from '../../service/utils'
 
 export default {
   name: 'xt-attachment',
@@ -61,8 +62,9 @@ export default {
       uploadicon: this.returnViewRulePropValue('uploadicon', 'string', 'el-icon-plus'),
       hidefile: this.returnViewRulePropValue('hidefile', 'boolean', false),
       maxnumber: this.returnViewRulePropValue('maxnumber', 'number'),
-      // maxsize 单位 KB 默认不限制
-      // 10M = 1024 * 1024 * 10
+      // maxsize 单位 BITS 默认不限制
+      // 1KB = 1024 BITS
+      // 1M = 1024 * 1024 BITS
       // 数字类型 空字符串表示不限制
       maxsize: this.returnViewRulePropValue('maxsize', 'number'),
       // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file
@@ -153,8 +155,6 @@ export default {
       this.executeEvent('onvaluechange')
     },
     handlerBeforeUpload (file) {
-      // console.log(file)
-      // debugger
       if (this.checkIsUploadding()) {
         Message({
           message: `${this.title}正在上传中，请稍后`,
@@ -162,9 +162,8 @@ export default {
         })
         return false
       } else if (this.maxsize !== '' && file.size > Number(this.maxsize)) {
-        // todo 基于大小显示 K M
         Message({
-          message: `${this.title}大小不能超过${this.maxsize}KB`,
+          message: `${this.title}大小不能超过${BITSToMB(this.maxsize)}`,
           type: 'error'
         })
         return false
