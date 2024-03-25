@@ -12,10 +12,10 @@
 + 容器控件或数组控件设置readonly应连带子控件
 + 输入型控件readonly文字加深
 + 兼容 tree option： id = key name = text parentid
++ tag支持样式
 
 
 # todo
-+ tag支持样式
 + popview 全屏模式下 右上角关闭图标改成左边箭头
 + tree 当导航模式时选择项颜色深一点
 + 日期选择器 时间选择器
