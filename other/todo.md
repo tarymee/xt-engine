@@ -16,6 +16,7 @@
 
 
 # todo
++ 考虑 table 取消支持 fixednumber 以便不需要兼容太多instance的问题
 + popview 全屏模式下 右上角关闭图标改成左边箭头
 + tree 当导航模式时选择项颜色深一点
 + 日期选择器 时间选择器
@@ -31,6 +32,7 @@
 + 抽取baseinput slot
 + table update字数太多 操作栏错乱
 + table columns 隐藏某一列
++ 支持 textonly 只显示文本？
 
 
 # 原则

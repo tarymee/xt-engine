@@ -1,6 +1,11 @@
 # 更新日志
 
-## v1.0.0
+## v1.0.1（未发版）
+- feat(table): 优化 tree cascade date 控件在 table 中的显示效果
+- feat(table): table 头部改为灰色背景
+
+
+## v1.0.0（）
 - chore: 架构改造，移除 learn 架构，兼容旧架构，新架构采用 vue 插件形式安装
 - feat(tabboard): 支持初始 value 值，支持取值赋值，优化 value 值类型为 number，支持对内部控件设置只读，完善校验方法
 - feat(select): 优化 value 值类型为 any
