@@ -1,7 +1,7 @@
 <template>
   <div
     class="xt-input xt-tree"
-    :class="[customClass, { 'xt-tree-navigation': displaytype === 'navigation' }]"
+    :class="[customClass, { 'xt-input-intable': intable, 'xt-tree-navigation': displaytype === 'navigation' }]"
     :style="[viewStyle]"
   >
     <div
@@ -487,6 +487,7 @@ export default {
 
 .xt-tree-input {
   overflow: hidden;
+  background-color: #fff;
   border: 1px solid #DCDFE6;
   padding: 0 30px 0 0;
   min-height: 30px;
@@ -500,15 +501,17 @@ export default {
   cursor: not-allowed;
 }
 .xt-tree-input-icon {
-  height: 12px;
+  height: 100%;
   width: 30px;
   font-size: 12px;
   text-align: center;
   position: absolute;
-  top: 50%;
+  top: 0;
   right: 0;
-  margin-top: -6px;
   color: #C0C4CC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .xt-tree-input-text {
   padding: 0 15px;

@@ -482,11 +482,15 @@ export default {
   background-color: #f5f7fa;
   box-sizing: border-box;
 }
-.xt-table .el-table th {
+</style>
+
+<style>
+.xt-table .el-table th.el-table__cell {
   /* background-color: #eef1f6; */
   background-color: #f5f7fa;
 }
-.xt-table .el-table thead {
-  color: #333;
+
+.xt-table .el-table thead .cell {
+  color: #666;
 }
 </style>

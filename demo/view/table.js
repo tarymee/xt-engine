@@ -52,16 +52,10 @@ export default {
                   "script": `
                     page.getCtrl('表格').value = [
                       {
-                        productname: '可口可乐',
-                        productcode: '001',
-                        status: '1',
-                        unit: 'box'
+                        text: '可口可乐'
                       },
                       {
-                        productname: '百事可乐',
-                        productcode: '002',
-                        status: '1',
-                        unit: 'bottle'
+                        text: '百事可乐'
                       }
                     ]
                   `
@@ -117,13 +111,34 @@ export default {
           "fixednumber": "1",
           "columns": [
             {
-              "type": "dropdownbox",
-              "title": "单位",
-              "name": "unit",
-              "placeholder": "选择单位",
+              "type": "link",
+              "title": "link",
+              "name": "link",
+              "width": "150",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    const value = page.getCtrl('表格').focusedValue
+                    console.log(value)
+                  `
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "title": "text",
+              "name": "text",
+              "width": "100"
+            },
+            {
+              "type": "select",
+              "title": "select",
+              "name": "select",
+              "placeholder": "select",
               "required": "1",
               "width": "120",
-              "hiddenclearbtn": "",
+              "hiddenclearbtn": "1",
               "options": [
                 {
                   "key": "bottle",
@@ -137,31 +152,101 @@ export default {
               "eventlist": []
             },
             {
-              "type": "link",
-              "title": "产品",
-              "name": "productname",
+              "type": "date",
+              "title": "有效期",
+              "name": "time",
+              "required": "1",
+              "format": "yyyy-MM-dd",
+              "unit": "date",
+              "width": "170",
+              "eventlist": []
+            },
+            {
+              "type": "tree",
+              "titlewidth": "120",
+              "title": "tree",
+              "placeholder": "tree",
+              "name": "tree",
+              "multiselectable": "",
+              "displaytype": "custom",
+              // "displaytype": "navigation",
+              "expandmodel": "rootexpand",
+              "intermediateselectmode": "individual",
               "width": "150",
+              "required": "",
+              "value": "",
+              "options": [
+                {
+                  "parentkey": "",
+                  "key": "1",
+                  "text": "巧克力公司",
+                  "tags": [
+                    {
+                      "text": '标签',
+                      "effect": 'dark',
+                      "type": 'success'
+                    },
+                    {
+                      "text": '标签',
+                      "effect": 'light',
+                      "type": 'success'
+                    },
+                    {
+                      "text": '标签',
+                      "effect": 'plain',
+                      "type": 'success'
+                    }
+                  ]
+                },
+                {
+                  "parentkey": "1",
+                  "key": "1-1",
+                  "text": "西南大区"
+                },
+                {
+                  "parentkey": "1-1",
+                  "key": "1-1-1",
+                  "text": "张三"
+                },
+                {
+                  "parentkey": "1-1",
+                  "key": "1-1-2",
+                  "text": "李四"
+                },
+                {
+                  "parentkey": "1-1",
+                  "key": "1-1-3",
+                  "text": "王五"
+                },
+                {
+                  "parentkey": "1",
+                  "key": "1-2",
+                  "text": "华北大区"
+                },
+                {
+                  "parentkey": "1",
+                  "key": "1-3",
+                  "text": "华东大区"
+                }
+              ],
               "eventlist": [
                 {
-                  "trigger": "onclicked",
-                  "script": `
-                    const value = page.getCtrl('表格').focusedValue
-                    console.log(value)
-                  `
+                  "trigger": "onvaluechange",
+                  "handler": ""
                 }
               ]
             },
             {
               "type": "textinput",
               "title": "产品编码",
-              "name": "productcode",
+              "name": "textinput",
               "width": "150",
               "eventlist": []
             },
             {
               "type": "tags",
-              "title": "状态",
-              "name": "status",
+              "title": "tags",
+              "name": "tags",
               "width": "80",
               "options": [
                 {
@@ -185,10 +270,10 @@ export default {
                   "trigger": "onclicked",
                   "script": `
                     page.getCtrl('表格').append({
-                      productname: '果粒橙',
-                      productcode: '003',
-                      status: '1',
-                      unit: 'bottle'
+                      link: '果粒橙',
+                      textinput: '003',
+                      tags: '1',
+                      select: 'bottle'
                     })
                   `
                 }
@@ -201,10 +286,10 @@ export default {
                   "trigger": "onclicked",
                   "script": `
                     page.getCtrl('表格').update({
-                      productname: '娃哈哈',
-                      productcode: '004',
-                      status: '0',
-                      unit: 'box'
+                      link: '娃哈哈',
+                      textinput: '004',
+                      tags: '0',
+                      select: 'box'
                     }, 0)
                   `
                 }
@@ -230,9 +315,9 @@ export default {
                     const firstRow = page.getCtrl('表格').row[0]
                     // const firstRow = page.getCtrl('表格').getRowByIndex(0)
                     console.log(firstRow)
-                    firstRow.getCtrl('productname').value = 'xxxx'
-                    firstRow.getCtrl('unit').value = ''
-                    firstRow.getCtrl('unit').options = [
+                    firstRow.getCtrl('link').value = 'xxxx'
+                    firstRow.getCtrl('select').value = ''
+                    firstRow.getCtrl('select').options = [
                       {
                         key: 'xx',
                         text: 'xx'
@@ -248,9 +333,9 @@ export default {
                 {
                   "trigger": "onclicked",
                   "script": `
-                    page.getCtrl('表格').getColByName('productname').title = '产品名称'
-                    page.getCtrl('表格').getColByName('unit').readonly = true
-                    page.getCtrl('表格').getColByName('unit').required = false
+                    page.getCtrl('表格').getColByName('link').title = '产品名称'
+                    page.getCtrl('表格').getColByName('select').readonly = true
+                    page.getCtrl('表格').getColByName('select').required = false
                   `
                 }
               ]

@@ -1,6 +1,7 @@
 <template>
   <div
     class="xt-input xt-date"
+    :class="[customClass, { 'xt-input-intable': intable }]"
     :style="[viewStyle]"
   >
     <div
