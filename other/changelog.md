@@ -3,6 +3,7 @@
 ## v1.0.1（未发版）
 - feat(table): 优化 tree cascade date 控件在 table 中的显示效果
 - feat(table): table 头部改为灰色背景
+- feat(checkbox radio): 优化只读样式 文字显示更清新
 
 
 ## v1.0.0（）
