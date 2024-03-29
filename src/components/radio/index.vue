@@ -84,3 +84,8 @@ export default {
   line-height: 20px;
 }
 </style>
+<style>
+.xt-table .el-table .cell .xt-radio {
+  line-height: normal;
+}
+</style>

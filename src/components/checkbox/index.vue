@@ -102,3 +102,8 @@ export default {
   padding: 6px 0;
 }
 </style>
+<style>
+.xt-table .el-table .cell .xt-checkbox {
+  line-height: normal;
+}
+</style>

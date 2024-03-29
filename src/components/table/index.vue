@@ -493,4 +493,5 @@ export default {
 .xt-table .el-table thead .cell {
   color: #666;
 }
+
 </style>

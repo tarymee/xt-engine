@@ -264,3 +264,11 @@ export default {
   width: 100%;
 }
 </style>
+<style>
+.xt-table .el-table .cell .xt-attachment {
+  line-height: normal;
+}
+.xt-table .el-table td.el-table__cell .xt-attachment div {
+  box-sizing: initial;
+}
+</style>

@@ -237,11 +237,287 @@ export default {
               ]
             },
             {
+              "type": "tree",
+              "titlewidth": "120",
+              "title": "treemul",
+              "placeholder": "treemul",
+              "name": "treemul",
+              "multiselectable": "1",
+              "displaytype": "custom",
+              // "displaytype": "navigation",
+              "expandmodel": "rootexpand",
+              "intermediateselectmode": "shortcut",
+              "width": "150",
+              "required": "",
+              "value": "",
+              "options": [
+                {
+                  "parentkey": "",
+                  "key": "1",
+                  "text": "巧克力公司"
+                },
+                {
+                  "parentkey": "1",
+                  "key": "1-1",
+                  "text": "西南大区"
+                },
+                {
+                  "parentkey": "1-1",
+                  "key": "1-1-1",
+                  "text": "张三"
+                },
+                {
+                  "parentkey": "1-1",
+                  "key": "1-1-2",
+                  "text": "李四"
+                },
+                {
+                  "parentkey": "1-1",
+                  "key": "1-1-3",
+                  "text": "王五"
+                },
+                {
+                  "parentkey": "1",
+                  "key": "1-2",
+                  "text": "华北大区"
+                },
+                {
+                  "parentkey": "1",
+                  "key": "1-3",
+                  "text": "华东大区"
+                }
+              ],
+              "eventlist": [
+                {
+                  "trigger": "onvaluechange",
+                  "handler": ""
+                }
+              ]
+            },
+            {
+              "type": "cascade",
+              "titlewidth": "120",
+              "title": "cascade",
+              "placeholder": "cascade",
+              "name": "cascade",
+              "width": "150",
+              "required": "",
+              "value": "",
+              "options": [
+                {
+                  "parentid": "",
+                  "key": "1",
+                  "text": "巧克力公司"
+                },
+                {
+                  "parentid": "1",
+                  "key": "1-1",
+                  "text": "西南大区"
+                },
+                {
+                  "parentid": "1-1",
+                  "key": "1-1-1",
+                  "text": "张三"
+                },
+                {
+                  "parentid": "1-1",
+                  "key": "1-1-2",
+                  "text": "李四"
+                },
+                {
+                  "parentid": "1-1",
+                  "key": "1-1-3",
+                  "text": "王五"
+                },
+                {
+                  "parentid": "1",
+                  "key": "1-2",
+                  "text": "华北大区"
+                },
+                {
+                  "parentid": "1",
+                  "key": "1-3",
+                  "text": "华东大区"
+                }
+              ],
+              "eventlist": [
+                {
+                  "trigger": "onvaluechange",
+                  "handler": ""
+                }
+              ]
+            },
+            {
               "type": "textinput",
               "title": "产品编码",
               "name": "textinput",
               "width": "150",
               "eventlist": []
+            },
+            {
+              "type": "checkbox",
+              "titlewidth": "120",
+              "title": "checkbox",
+              "placeholder": "checkbox",
+              "name": "checkbox",
+              "displaytype": "",
+              "width": "200",
+              "required": "",
+              "value": "",
+              "options": [
+                {
+                  "key": "1",
+                  "disabled": "1",
+                  "text": "启用"
+                },
+                {
+                  "key": "0",
+                  "disabled": "",
+                  "text": "停用"
+                },
+                {
+                  "key": true,
+                  "disabled": "",
+                  "text": "true"
+                },
+                {
+                  "key": false,
+                  "disabled": "",
+                  "text": "false"
+                },
+                {
+                  "key": 1,
+                  "disabled": "",
+                  "text": "数字1"
+                },
+                {
+                  "key": 2,
+                  "disabled": "",
+                  "text": "数字2"
+                }
+              ],
+              "eventlist": [
+                {
+                  "trigger": "onvaluechange",
+                  "handler": ""
+                }
+              ]
+            },
+            {
+              "type": "radio",
+              "titlewidth": "120",
+              "title": "radio",
+              "placeholder": "radio",
+              "name": "radio",
+              "displaytype": "",
+              "width": "150",
+              "required": "",
+              // "value": "",
+              "value": true,
+              // "value": 1,
+              "options": [
+                {
+                  "key": "1",
+                  "disabled": "1",
+                  "text": "启用"
+                },
+                {
+                  "key": "0",
+                  "disabled": "",
+                  "text": "停用"
+                },
+                {
+                  "key": true,
+                  "disabled": "",
+                  "text": "true"
+                },
+                {
+                  "key": false,
+                  "disabled": "",
+                  "text": "false"
+                },
+                {
+                  "key": 1,
+                  "disabled": "",
+                  "text": "数字1"
+                },
+                {
+                  "key": 2,
+                  "disabled": "",
+                  "text": "数字2"
+                }
+              ],
+              "eventlist": [
+                {
+                  "trigger": "onvaluechange",
+                  "handler": ""
+                }
+              ]
+            },
+            {
+              "type": "attachment",
+              "titlewidth": "120",
+              "title": "attachment",
+              "placeholder": "attachment",
+              "name": "attachment",
+              "hidefile": "",
+              "uploadtype": "",
+              "uploadtext": "",
+              "uploadicon": "",
+              "name": "attachment",
+              "width": "250",
+              "required": "",
+              "maxnumber": "2",
+              "maxsize": "1048576",
+              "accept": "image/*",
+              "eventlist": [
+                {
+                  "trigger": "onvaluechange",
+                  "handler": ""
+                },
+                {
+                  "trigger": "onupload",
+                  "script": `
+                    console.log(eventTarget)
+                    console.log(eventTarget.selectFile)
+
+                    eventTarget.handleSuccess({
+                      filename: eventTarget.selectFile.filename,
+                      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                    })
+                  `
+                }
+              ]
+            },
+            {
+              "type": "photo",
+              "titlewidth": "120",
+              "title": "photo",
+              "placeholder": "photo",
+              "name": "photo",
+              "width": "250",
+              "required": "",
+              "maxnumber": "2",
+              "maxsize": "1048576",
+              "accept": "image/*",
+              "eventlist": [
+                {
+                  "trigger": "onvaluechange",
+                  "handler": ""
+                },
+                {
+                  "trigger": "onupload",
+                  "script": `
+                    console.log(eventTarget)
+                    console.log(eventTarget.selectFile)
+
+                    eventTarget.handleSuccess({
+                      filename: eventTarget.selectFile.filename,
+                      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+                    })
+                  `
+                }
+              ]
             },
             {
               "type": "tags",

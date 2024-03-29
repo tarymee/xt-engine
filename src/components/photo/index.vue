@@ -197,7 +197,7 @@ export default {
   height: 80px;
   /* border-radius: 4px; */
   border: 1px dashed #d9d9d9;
-  margin-right: 16px;
+  margin-right: 12px;
   position: relative;
 }
 .xt-photo-item:hover {
@@ -244,5 +244,13 @@ export default {
 .xt-photo-btn-icon {
   font-size: 30px;
   line-height: 80px;
+}
+</style>
+<style>
+.xt-table .el-table .cell .xt-photo {
+  line-height: normal;
+}
+.xt-table .el-table td.el-table__cell .xt-photo div {
+  box-sizing: initial;
 }
 </style>
