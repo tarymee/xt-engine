@@ -20,6 +20,7 @@
   * [tags 标签](components/tags)
   * **输入型控件**
   * [textinput 文本输入](components/textinput)
+  * [number 数字输入](components/number)
   * [select 选择器](components/select)
   * [tree 选择树](components/tree)
   * [date 日期选择器](components/date)

@@ -7,6 +7,7 @@
   "title": "文本输入框",
   "value": "",
   "displaytype": "",
+  "maxlength": "",
   "eventlist": [
     {
       "trigger": "onvaluechange",
