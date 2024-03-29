@@ -9,7 +9,7 @@
     </div>
     <div class="xt-input-content">
       <template v-if="!hidefile">
-        <div v-for="(item, index) in value" :key="index" class="xt-attachment-item">
+        <div v-for="(item, index) in value" :key="index" class="xt-attachment-item" :class="{ 'xt-attachment-item-readonly': readonly }">
           <a class="xt-attachment-item-file" :href="item.url" target="_blank">
             <i class="el-icon-document"></i>
             {{ item.filename }}
@@ -204,9 +204,13 @@ export default {
   border-radius: 4px;
   margin-bottom: 8px;
 }
+.xt-attachment-item-readonly {
+  background-color: #F5F7FA;
+  border-color: #E4E7ED;
+}
 .xt-attachment-item:hover {
-  background-color: #f5f7fa;
-  border-color: #C0C4CC;
+  background-color: #ecf5ff;
+  border-color: #c6e2ff;
 }
 .xt-attachment-item-file {
   width: 90%;
@@ -230,6 +234,13 @@ export default {
 .xt-attachment-item .el-icon-success {
   display: block !important;
   color: #67c23a !important;
+}
+
+.xt-attachment-item.xt-attachment-item-readonly:hover .el-icon-success {
+  display: block !important;
+}
+.xt-attachment-item.xt-attachment-item-readonly:hover .el-icon-error {
+  display: none !important;
 }
 
 .xt-attachment-item:hover .xt-attachment-item-file {

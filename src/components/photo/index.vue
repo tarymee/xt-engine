@@ -237,7 +237,8 @@ export default {
   color: #999;
 }
 .xt-photo-btn:hover {
-  border: 1px dashed #409EFF;
+  border: 1px dashed #c6e2ff;
+  background-color: #ecf5ff;
   color: #409EFF;
 }
 .xt-photo-btn-icon {
