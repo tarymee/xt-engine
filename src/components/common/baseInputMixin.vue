@@ -88,6 +88,26 @@ export default {
 }
 
 
+.xt-input .el-checkbox__input.is-disabled.is-checked+.el-checkbox__label {
+  color: #606266;
+}
+.xt-input .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner {
+  border-color: #aaa;
+}
+.xt-input .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner::after {
+  border-color: #606266;
+}
+.xt-input .el-radio__input.is-checked.is-disabled+span.el-radio__label {
+  color: #606266;
+}
+.xt-input .el-radio__input.is-disabled.is-checked .el-radio__inner::after {
+  background-color: #606266;
+}
+.xt-input .el-radio__input.is-disabled.is-checked .el-radio__inner {
+  background-color: #F5F7FA;
+  border-color: #aaa;
+}
+
 /* todo 垂直 简化等模式 */
 .xt-input-vertical {
   flex-direction: column;
