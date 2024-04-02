@@ -22,7 +22,11 @@ export default {
       checkable: this.returnViewRulePropValue('checkable', 'boolean'),
       columns: this.returnViewRulePropValue('columns', 'array', []),
       operations: this.returnViewRulePropValue('operations', 'array', []),
+      operationshidden: this.returnViewRulePropValue('operationshidden', 'boolean'),
       rowoperations: this.returnViewRulePropValue('rowoperations', 'array', []),
+      rowoperationstitle: this.returnViewRulePropValue('rowoperationstitle', 'string', '操作'),
+      rowoperationswidth: this.returnViewRulePropValue('rowoperationswidth', 'number'),
+      rowoperationshidden: this.returnViewRulePropValue('rowoperationshidden', 'boolean'),
       fixednumber: this.returnViewRulePropValue('fixednumber', 'number', 0),
       pageInfo: null,
       value: this.returnViewRulePropValue('value', 'array', [])

@@ -58,30 +58,32 @@ const renderColumns = function (h, viewRule, context) {
     ))
   })
 
-  if (context.rowoperations && context.rowoperations.length) {
-    let width = 20
+  if (context.rowoperations && context.rowoperations.length && !context.rowoperationshidden) {
+    let textwidth = 20
     context.rowoperations.forEach((item) => {
       for (let i = 0, len = item.text.length; i < len; i++) {
         if (/[\u4e00-\u9fa5]/.test(item.text[i])) {
           // 中文一个字符 14
-          width += 14
+          textwidth += 14
         } else {
           // 英文一个字符 7
-          width += 7
+          textwidth += 7
         }
       }
-      width += 10
+      textwidth += 10
     })
     // console.log(width)
+
+    const width = textwidth > 200 ? 200 : textwidth // 最大 200 超过换行
 
     columnsArr.push(h(
       'el-table-column', {
       props: {
         // minWidth 对应列的最小宽度，与 width 的区别是 width 是固定的，min-width 会把剩余宽度按比例分配给设置了 min-width 的列
         // minWidth: width,
-        width: width > 200 ? 200 : width, // 最大 200 超过换行
+        width: context.rowoperationswidth || width, // 最大 200 超过换行
         fixed: 'right',
-        label: '操作',
+        label: context.rowoperationstitle, // '操作'
         key: JSON.stringify(context.rowoperations)
       },
       scopedSlots: {
@@ -167,6 +169,9 @@ const render = function (h, viewRule, context) {
         {
           attrs: {
             class: 'xt-table-operations'
+          },
+          style: {
+            display: context.operationshidden ? 'none' : 'flex'
           }
         },
         context.operations.map((item, i) => {

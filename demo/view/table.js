@@ -81,6 +81,43 @@ export default {
             },
             {
               "type": "button",
+              "value": "rowoperations 状态更改",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    const a = page.getCtrl('表格').getProp('rowoperationshidden')
+                    page.getCtrl('表格').setProp('rowoperationshidden', !a)
+
+                    page.getCtrl('表格').setProp('rowoperationstitle', '操作栏更改文字')
+                    page.getCtrl('表格').setProp('rowoperationswidth', 300)
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "operations 状态更改",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    const a = page.getCtrl('表格').getProp('operationshidden')
+                    page.getCtrl('表格').setProp('operationshidden', !a)
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
               "value": "校验",
               "displaytype": "primary",
               "eventlist": [
@@ -667,9 +704,10 @@ export default {
               ]
             }
           ],
+          "operationshidden": "",
           "rowoperations": [
             {
-              "text": "编辑",
+              "text": "编辑编辑编辑编辑",
               "name": "edit",
               "eventlist": [
                 {
@@ -682,7 +720,7 @@ export default {
               ]
             },
             {
-              "text": "删除",
+              "text": "删除删除删除删除",
               "name": "del",
               "eventlist": [
                 {
@@ -695,6 +733,9 @@ export default {
               ]
             }
           ],
+          "rowoperationshidden": "",
+          "rowoperationstitle": "",
+          "rowoperationswidth": "",
           "eventlist": []
         }
       ],
