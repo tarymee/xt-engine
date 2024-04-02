@@ -29,13 +29,13 @@ interface IAttachmentValue {
 控件初始值。
 
 ## maxlength
-+ 类型：`string`
++ 类型：`number | string`
 + 默认：`""`
 
 允许上传的最大文件数量，默认值为空字符串，表示不限制最大文件数量。
 
 ## maxsize
-+ 类型：`string`
++ 类型：`number | string`
 + 默认：`""`
 
 允许上传的单个文件大小，单位为 `BITS`，默认值为空字符串，表示不限制。

@@ -9,10 +9,15 @@
   "checkable": "0",
   "pageable": "0",
   "pagesize": "20",
+  "required": "0",
   "fixednumber": "0",
   "columns": [],
   "operations": [],
+  "operationshidden": "",
   "rowoperations": [],
+  "rowoperationshidden": "",
+  "rowoperationstitle": "",
+  "rowoperationswidth": "",
   "eventlist": []
 }
 ```
@@ -135,6 +140,11 @@
 }
 ```
 
+## operationshidden
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
+
+是否隐藏顶部操作栏。
 
 ## rowoperations
 + 类型：`IButtonViewRule[]`
@@ -153,6 +163,24 @@
   ]
 }
 ```
+
+## rowoperationshidden
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
+
+是否隐藏行操作栏。
+
+## rowoperationstitle
++ 类型：`string`
++ 默认：`"操作"`
+
+定义行操作栏标题。
+
+## rowoperationswidth
++ 类型：`number | string`
++ 默认：`""`
+
+定义行操作栏宽度，如果为空，则引擎会自动计算应用合适的宽度（基于行操作按钮文字计算）。
 
 ## eventlist.trigger
 + 类型：`string`
