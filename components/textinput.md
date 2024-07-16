@@ -8,6 +8,9 @@
   "value": "",
   "displaytype": "",
   "maxlength": "",
+  "required": "",
+  "textual": "",
+  "readonly": "",
   "eventlist": [
     {
       "trigger": "onvaluechange",

@@ -6,6 +6,9 @@
   "type": "select",
   "title": "选择器",
   "value": "",
+  "required": "",
+  "textual": "",
+  "readonly": "",
   "remotesearch": "",
   "options": [],
   "eventlist": []

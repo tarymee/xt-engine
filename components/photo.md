@@ -7,6 +7,9 @@
   "value": "",
   "maxnumber": "",
   "maxsize": "",
+  "required": "",
+  "textual": "",
+  "readonly": "",
   "accept": "image/*",
   "eventlist": []
 }
@@ -57,6 +60,7 @@ interface IPhotoValue {
           "placeholder": "图片",
           "name": "新增/编辑-图片",
           "required": "1",
+          "textual": "",
           "readonly": "",
           "maxnumber": "1",
           "maxsize": "1048576",

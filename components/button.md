@@ -5,6 +5,7 @@
   "type": "button",
   "title": "按钮",
   "value": "按钮",
+  "readonly": "",
   "eventlist": [
     {
       "trigger": "onclicked",

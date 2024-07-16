@@ -7,6 +7,9 @@
   "title": "单选控件",
   "value": "",
   "displaytype": "auto",
+  "required": "",
+  "textual": "",
+  "readonly": "",
   "options": [
     {
       "key": "1",

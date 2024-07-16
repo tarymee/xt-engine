@@ -7,6 +7,9 @@
   "value": "",
   "format": "yyyy-MM-dd",
   "unit": "date",
+  "required": "",
+  "textual": "",
+  "readonly": "",
   "eventlist": []
 }
 ```

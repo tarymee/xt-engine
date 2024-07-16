@@ -3,9 +3,12 @@
 
 ```json
 {
-  "type": "",
-  "title": "",
+  "type": "cascade",
+  "title": "级联选择器",
   "value": "",
+  "required": "",
+  "textual": "",
+  "readonly": "",
   "eventlist": []
 }
 ```

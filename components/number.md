@@ -9,6 +9,9 @@
   "valuetype": "",
   "max": "",
   "min": "",
+  "required": "",
+  "textual": "",
+  "readonly": "",
   "eventlist": [
     {
       "trigger": "onvaluechange",

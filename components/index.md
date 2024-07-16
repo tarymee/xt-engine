@@ -56,6 +56,7 @@
 | 属性名称 | 说明 |
 | ---- | ---- |
 | required | 控件是否必填 |
+| textual | 控件是否显示成文本模式 |
 | placeholder | 占位文字 |
 | hiddenclearbtn | 是否隐藏清空数据按钮 |
 | titlewidth | 标题的绝对宽度 |
@@ -151,7 +152,13 @@ page.getCtrl('foreach').readonly = true
 + 类型：`boolean | "1" | "0"`
 + 默认：`"0"`
 
-控件是否必填。
+输入型控件控件是否必填。
+
+## textual
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
+
+输入型控件是否显示成文本模式。
 
 ## placeholder
 + 类型：`string`
