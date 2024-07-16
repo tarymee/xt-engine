@@ -13,7 +13,11 @@
     </div>
     <div class="xt-input-content">
       <!-- :collapse-tags="multiselectable" -->
+      <div v-if="textual" class="xt-input-content-text">
+        {{ valueTextual }}
+      </div>
       <el-select
+        v-else
         v-model="value"
         size="small"
         :multiple="multiselectable"
@@ -49,6 +53,16 @@ export default {
       multiselectable: this.returnViewRulePropValue('multiselectable', 'boolean'),
       remotesearch: this.returnViewRulePropValue('remotesearch', 'boolean'),
       remotesearchText: ''
+    }
+  },
+  computed: {
+    valueTextual () {
+      if (this.value === '') {
+        return ''
+      } else {
+        const selItem = this.options.find((item) => item.key === this.value)
+        return selItem ? selItem.text : ''
+      }
     }
   },
   created () {

@@ -12,7 +12,11 @@
       <span v-if="required">*</span>{{ title }}
     </div>
     <div class="xt-input-content">
+      <div v-if="textual" class="xt-input-content-text">
+        {{ valueTextual }}
+      </div>
       <el-radio-group
+        v-else
         v-model="value"
         :disabled="readonly"
         class="xt-radio-group"
@@ -59,6 +63,14 @@ export default {
         styleObj.overflow = `hidden`
       }
       return styleObj
+    },
+    valueTextual () {
+      if (this.value === '') {
+        return ''
+      } else {
+        const selItem = this.options.find((item) => item.key === this.value)
+        return selItem ? selItem.text : ''
+      }
     }
   },
   mounted () {

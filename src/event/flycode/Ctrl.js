@@ -45,6 +45,14 @@ class Ctrl {
     this.setProp('required', value)
   }
 
+  get textual () {
+    return this.getProp('textual')
+  }
+
+  set textual (value) {
+    this.setProp('textual', value)
+  }
+
   get options () {
     return this.getProp('options')
   }

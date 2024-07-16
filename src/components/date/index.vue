@@ -12,7 +12,11 @@
       <span v-if="required">*</span>{{ title }}
     </div>
     <div class="xt-input-content">
+      <div v-if="textual" class="xt-input-content-text">
+        {{ valueTextual }}
+      </div>
       <el-date-picker
+        v-else
         v-model="value"
         size="small"
         :type="unit"
@@ -28,6 +32,7 @@
 </template>
 <script>
 import baseInputMixin from '../common/baseInputMixin'
+import dayjs from 'dayjs'
 
 export default {
   name: 'xt-date',
@@ -36,6 +41,15 @@ export default {
     return {
       format: this.returnViewRulePropValue('format', 'string', 'yyyy-MM-dd'),
       unit: this.returnViewRulePropValue('unit', 'string', 'date'),
+    }
+  },
+  computed: {
+    valueTextual () {
+      const format = this.format.replace(/y/g, 'Y').replace(/d/g, 'D')
+      // console.error(54454444)
+      // console.log(format)
+      // console.log(this.format)
+      return this.value ? dayjs(Number(this.value)).format(format) : ''
     }
   },
   created () {

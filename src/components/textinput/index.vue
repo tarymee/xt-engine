@@ -12,7 +12,11 @@
       <span v-if="required">*</span>{{ title }}
     </div>
     <div class="xt-input-content">
+      <div v-if="textual" class="xt-input-content-text">
+        {{ valueTextual }}
+      </div>
       <el-input
+        v-else
         v-model="value"
         size="small"
         :type="displaytype === 'textarea' ? 'textarea' : ''"

@@ -7,9 +7,9 @@
       <div class="xt-photo-content">
         <div v-for="(item, index) in value" :key="index" v-loading="item.__$$status === 'uploadding'" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)" element-loading-text="上传中" class="xt-photo-item">
           <el-image style="width: 80px; height: 80px" :src="item.__$$base64 || item.url" fit="cover" :preview-src-list="previewList"></el-image>
-          <i v-if="item.__$$status === 'done' && !readonly" class="xt-photo-item-icon el-icon-error" @click="handleRemove(index)"></i>
+          <i v-if="item.__$$status === 'done' && !readonly && !textual" class="xt-photo-item-icon el-icon-error" @click="handleRemove(index)"></i>
         </div>
-        <el-upload v-show="(maxnumber === '' || value.length < Number(maxnumber)) && !readonly" class="xt-photo-upload" action="javascript:;" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
+        <el-upload v-show="(maxnumber === '' || value.length < Number(maxnumber)) && !readonly && !textual" class="xt-photo-upload" action="javascript:;" :before-upload="handlerBeforeUpload" :http-request="handleHttpRequest" :accept="accept" :show-file-list="false" :multiple="true">
           <div class="xt-photo-btn"><i class="xt-photo-btn-icon el-icon-plus"></i></div>
         </el-upload>
       </div>

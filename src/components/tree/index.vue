@@ -12,86 +12,91 @@
       <span v-if="required">*</span>{{ title }}
     </div>
     <div v-if="displaytype !== 'navigation'" class="xt-input-content">
-      <!-- todo 缺少 hiddenclearbtn 属性 -->
-      <div v-if="intermediateselectmode !== 'individual'" v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">
-        <div class="xt-tree-input-text">{{ valueText }}</div>
-        <div class="xt-tree-input-icon">
-          <i class="el-icon-arrow-down" />
-        </div>
-        <div v-if="!valueText" class="xt-tree-input-placeholder">{{ placeholder }}</div>
+      <div v-if="textual" class="xt-input-content-text">
+        {{ valueTextual }}
       </div>
-      <div v-else v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">
-        <div class="xt-tree-input-icon">
-          <i class="el-icon-arrow-down" />
-        </div>
-        <div v-for="(item, index) in valueTextArr" :key="index" class="xt-tree-input-item">
-          {{ item.name }}
-          <i v-if="!readonly" class="xt-tree-input-item-close el-icon-close" @click="delItem(index)"></i>
-        </div>
-        <div v-if="!valueTextArr.length" class="xt-tree-input-placeholder">{{ placeholder }}</div>
-      </div>
-      <!-- todo 宽度基于控件宽度 -->
-      <el-popover
-        ref="popover"
-        :disabled="readonly"
-        placement="bottom"
-        width="200"
-        trigger="click"
-        @show="handlePopoverShow"
-      >
-        <el-tree
-          v-if="!isHasTags"
-          ref="tree"
-          class="xt-tree-tree"
-          :data="treeData"
-          node-key="id"
-          :default-expand-all="expandmodel === 'allexpand'"
-          :default-expanded-keys="defaultExpandedKeys"
-          check-on-click-node
-          empty-text="暂无数据"
-          :show-checkbox="multiselectable"
-          :check-strictly="multiselectable && intermediateselectmode === 'individual'"
-          :highlight-current="highlightCurrent"
-          :expand-on-click-node="expandOnClickNode"
-          :props="defaultProps"
-          @check="handleCheck"
-          @node-click="handleNodeClick"
-        />
-        <el-tree
-          v-if="isHasTags"
-          ref="tree"
-          class="xt-tree-tree"
-          :data="treeData"
-          node-key="id"
-          :default-expand-all="expandmodel === 'allexpand'"
-          :default-expanded-keys="defaultExpandedKeys"
-          check-on-click-node
-          empty-text="暂无数据"
-          :show-checkbox="multiselectable"
-          :check-strictly="multiselectable && intermediateselectmode === 'individual'"
-          :highlight-current="highlightCurrent"
-          :expand-on-click-node="expandOnClickNode"
-          :props="defaultProps"
-          @check="handleCheck"
-          @node-click="handleNodeClick"
-        >
-          <div slot-scope="{ node, data }" class="xt-tree-custom-tree-node">
-            <span class="el-tree-node__label" style="margin-right: 4px;">{{ node.label }}</span>
-            <template v-if="data.tags && data.tags.length">
-              <el-tag
-                v-for="(item, index) in data.tags"
-                :key="index"
-                size="mini"
-                :type="item.type"
-                :effect="item.effect"
-                style="margin-right: 4px;"
-              >
-                {{ item.text }}
-              </el-tag>
-            </template>
+      <template v-else>
+        <!-- todo 缺少 hiddenclearbtn 属性 -->
+        <div v-if="intermediateselectmode !== 'individual'" v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">
+          <div class="xt-tree-input-text">{{ valueText }}</div>
+          <div class="xt-tree-input-icon">
+            <i class="el-icon-arrow-down" />
           </div>
-        </el-tree>
-      </el-popover>
+          <div v-if="!valueText" class="xt-tree-input-placeholder">{{ placeholder }}</div>
+        </div>
+        <div v-else v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">
+          <div class="xt-tree-input-icon">
+            <i class="el-icon-arrow-down" />
+          </div>
+          <div v-for="(item, index) in valueTextArr" :key="index" class="xt-tree-input-item">
+            {{ item.name }}
+            <i v-if="!readonly" class="xt-tree-input-item-close el-icon-close" @click="delItem(index)"></i>
+          </div>
+          <div v-if="!valueTextArr.length" class="xt-tree-input-placeholder">{{ placeholder }}</div>
+        </div>
+        <!-- todo 宽度基于控件宽度 -->
+        <el-popover
+          ref="popover"
+          :disabled="readonly"
+          placement="bottom"
+          width="200"
+          trigger="click"
+          @show="handlePopoverShow"
+        >
+          <el-tree
+            v-if="!isHasTags"
+            ref="tree"
+            class="xt-tree-tree"
+            :data="treeData"
+            node-key="id"
+            :default-expand-all="expandmodel === 'allexpand'"
+            :default-expanded-keys="defaultExpandedKeys"
+            check-on-click-node
+            empty-text="暂无数据"
+            :show-checkbox="multiselectable"
+            :check-strictly="multiselectable && intermediateselectmode === 'individual'"
+            :highlight-current="highlightCurrent"
+            :expand-on-click-node="expandOnClickNode"
+            :props="defaultProps"
+            @check="handleCheck"
+            @node-click="handleNodeClick"
+          />
+          <el-tree
+            v-if="isHasTags"
+            ref="tree"
+            class="xt-tree-tree"
+            :data="treeData"
+            node-key="id"
+            :default-expand-all="expandmodel === 'allexpand'"
+            :default-expanded-keys="defaultExpandedKeys"
+            check-on-click-node
+            empty-text="暂无数据"
+            :show-checkbox="multiselectable"
+            :check-strictly="multiselectable && intermediateselectmode === 'individual'"
+            :highlight-current="highlightCurrent"
+            :expand-on-click-node="expandOnClickNode"
+            :props="defaultProps"
+            @check="handleCheck"
+            @node-click="handleNodeClick"
+          >
+            <div slot-scope="{ node, data }" class="xt-tree-custom-tree-node">
+              <span class="el-tree-node__label" style="margin-right: 4px;">{{ node.label }}</span>
+              <template v-if="data.tags && data.tags.length">
+                <el-tag
+                  v-for="(item, index) in data.tags"
+                  :key="index"
+                  size="mini"
+                  :type="item.type"
+                  :effect="item.effect"
+                  style="margin-right: 4px;"
+                >
+                  {{ item.text }}
+                </el-tag>
+              </template>
+            </div>
+          </el-tree>
+        </el-popover>
+      </template>
     </div>
 
     <el-tree
@@ -223,6 +228,9 @@ export default {
         })
       }
       return keys
+    },
+    valueTextual () {
+      return this.valueText
     }
   },
   created () {

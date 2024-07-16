@@ -7,10 +7,16 @@ export default {
   data () {
     return {
       isInputCtrl: true,
+      textual: this.returnViewRulePropValue('textual', 'boolean'),
       required: this.returnViewRulePropValue('required', 'boolean'),
       placeholder: this.returnViewRulePropValue('placeholder', 'string'),
       hiddenclearbtn: this.returnViewRulePropValue('hiddenclearbtn', 'boolean'),
       titlewidth: this.returnViewRulePropValue('titlewidth', 'unit', '30%'),
+    }
+  },
+  computed: {
+    valueTextual () {
+      return this.value
     }
   },
   methods: {
@@ -65,6 +71,16 @@ export default {
 }
 .xt-input-content {
   flex: 1;
+}
+.xt-input-content-text {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #333;
+  overflow: hidden;
+  /* word-wrap: break-word; */
+  word-break: break-all;
 }
 
 .xt-input .el-input {

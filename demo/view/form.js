@@ -54,6 +54,7 @@ export default {
                 {
                   "trigger": "onclicked",
                   "script": `
+                    // page.getCtrl('textinput').value = 'textinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinputtextinput'
                     page.getCtrl('textinput').value = 'textinput'
                     page.getCtrl('select').value = '1'
                     page.getCtrl('tree').value = '1'
@@ -61,6 +62,7 @@ export default {
                     page.getCtrl('cascade').value = ['1', '1-1', '1-1-1']
                     page.getCtrl('date').value = '1681228800000'
                     page.getCtrl('textarea').value = 'textarea'
+                    // page.getCtrl('textarea').value = 'textareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextareatextarea'
                     page.getCtrl('checkbox').value = ['0', true, 1]
                     page.getCtrl('radio').value = '0'
                     page.getCtrl('attachment').value = [
@@ -119,6 +121,33 @@ export default {
                     page.getCtrl('radio').required = !page.getCtrl('radio').required
                     page.getCtrl('attachment').required = !page.getCtrl('attachment').required
                     page.getCtrl('photo').required = !page.getCtrl('photo').required
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px 5px"
+              }
+            },
+            {
+              "type": "button",
+              "value": "切换文本显示",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    console.log('handle-textual')
+                    page.getCtrl('textinput').textual = !page.getCtrl('textinput').textual
+                    page.getCtrl('select').textual = !page.getCtrl('select').textual
+                    page.getCtrl('tree').textual = !page.getCtrl('tree').textual
+                    page.getCtrl('treemul').textual = !page.getCtrl('treemul').textual
+                    page.getCtrl('cascade').textual = !page.getCtrl('cascade').textual
+                    page.getCtrl('date').textual = !page.getCtrl('date').textual
+                    page.getCtrl('textarea').textual = !page.getCtrl('textarea').textual
+                    page.getCtrl('checkbox').textual = !page.getCtrl('checkbox').textual
+                    page.getCtrl('radio').textual = !page.getCtrl('radio').textual
+                    page.getCtrl('attachment').textual = !page.getCtrl('attachment').textual
+                    page.getCtrl('photo').textual = !page.getCtrl('photo').textual
                   `
                 }
               ],
@@ -222,6 +251,10 @@ export default {
                 {
                   "key": false,
                   "text": "false"
+                },
+                {
+                  "key": 0,
+                  "text": "数字0"
                 },
                 {
                   "key": 1,
@@ -744,7 +777,7 @@ export default {
             "type": "flycode",
             "title": "flycode",
             "script": `
-
+              // page.runEvent('')
             `
           }
         ]

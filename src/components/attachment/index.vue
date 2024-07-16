@@ -9,7 +9,7 @@
     </div>
     <div class="xt-input-content">
       <template v-if="!hidefile">
-        <div v-for="(item, index) in value" :key="index" class="xt-attachment-item" :class="{ 'xt-attachment-item-readonly': readonly }">
+        <div v-for="(item, index) in value" :key="index" class="xt-attachment-item" :class="{ 'xt-attachment-item-readonly': (readonly || textual) }">
           <a class="xt-attachment-item-file" :href="item.url" target="_blank">
             <i class="el-icon-document"></i>
             {{ item.filename }}
@@ -25,7 +25,7 @@
         </div>
       </template>
       <el-upload
-        v-show="(maxnumber === '' || value.length < Number(maxnumber)) && !readonly"
+        v-show="(maxnumber === '' || value.length < Number(maxnumber)) && !readonly && !textual"
         class="xt-attachment-upload" action="javascript:;"
         :before-upload="handlerBeforeUpload"
         :http-request="handleHttpRequest"

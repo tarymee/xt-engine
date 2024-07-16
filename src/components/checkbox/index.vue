@@ -12,7 +12,11 @@
       <span v-if="required">*</span>{{ title }}
     </div>
     <div class="xt-input-content">
+      <div v-if="textual" class="xt-input-content-text">
+        {{ valueTextual }}
+      </div>
       <el-checkbox-group
+        v-else
         v-model="value"
         :disabled="readonly"
         class="xt-checkbox-group"
@@ -28,7 +32,6 @@
           {{ item.text }}
         </el-checkbox>
       </el-checkbox-group>
-
       <!-- <el-button @click="test">sss</el-button> -->
     </div>
   </div>
@@ -64,6 +67,16 @@ export default {
         styleObj.overflow = `hidden`
       }
       return styleObj
+    },
+    valueTextual () {
+      // return typeof this.value
+      if (!this.value || !this.value.length) {
+        return ''
+      } else {
+        return this.value.map((item) => {
+          return this.options.find((item2) => item2.key === item).text
+        }).join('，')
+      }
     }
   },
   mounted () {

@@ -12,6 +12,7 @@
   "main": "src/index.js",
   "dependencies": {
     "axios": "^0.24.0",
+    "dayjs": "^1.11.11",
     "element-ui": "^2.15.14",
     "lodash-es": "^4.17.21",
     "uuid": "^8.3.2"
