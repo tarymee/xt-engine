@@ -55,6 +55,16 @@ export default {
         pidKey: 'parentid',
         childrenKey: 'children'
       })
+    },
+    valueTextual () {
+      // return typeof this.value
+      if (!this.value || !this.value.length) {
+        return ''
+      } else {
+        return this.value.map((item) => {
+          return this.options.find((item2) => item2.key === item).text
+        }).join('/')
+      }
     }
   },
   created () {
