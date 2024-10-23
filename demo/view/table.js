@@ -628,8 +628,10 @@ export default {
                     const firstRow = page.getCtrl('表格').row[0]
                     // const firstRow = page.getCtrl('表格').getRowByIndex(0)
                     console.log(firstRow)
+                    console.log(firstRow.getCtrl('select'))
                     firstRow.getCtrl('link').value = 'xxxx'
                     firstRow.getCtrl('select').value = ''
+                    firstRow.getCtrl('select').readonly = !firstRow.getCtrl('select').readonly
                     firstRow.getCtrl('select').options = [
                       {
                         key: 'xx',
