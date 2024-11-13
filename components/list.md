@@ -21,7 +21,8 @@
       "content": []
     }
   ],
-  // "operations": [],
+  "frontoperationshidden": "",
+  "operations": [],
   "rowoperations": [],
   "eventlist": []
 }
@@ -126,6 +127,11 @@
 
 定义列表前置控件，类型为数组，接受控件协议对象。
 
+## frontoperationshidden
++ 类型：`boolean | "1" | "0"`
++ 默认：`"0"`
+
+是否隐藏列表前置控件。
 
 ## eventlist.trigger
 同 table 控件。
@@ -142,6 +148,7 @@
 | pageable | 获取是否设置分页 |
 | pageInfo | 获取/设置分页 |
 | setCheck() | 设置行勾选状态 |
+| getCheck() | 获取行勾选状态 |
 | deleteInScope() | 删除所有行/焦点行/勾选行 |
 | append() | 插入行数据 |
 | update() | 更新行数据 |
@@ -163,6 +170,9 @@
 同 table 控件。
 
 ## setCheck()
+同 table 控件。
+
+## getCheck()
 同 table 控件。
 
 ## deleteInScope()

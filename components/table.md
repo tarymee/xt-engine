@@ -206,6 +206,7 @@
 | pageable | 获取是否设置分页 |
 | pageInfo | 获取/设置分页 |
 | setCheck() | 设置行勾选状态 |
+| getCheck() | 获取行勾选状态 |
 | deleteInScope() | 删除所有行/焦点行/勾选行 |
 | append() | 插入行数据 |
 | update() | 更新行数据 |
@@ -267,6 +268,7 @@ interface ArrayCtrl extends Ctrl {
   set pageInfo (pageInfo: PageInfo): void
 
   setCheck (value: boolean, index: number)
+  getCheck (index: number): boolean
 
   deleteInScope (scope: 'all' | 'focused' | 'checked')
   append (data: RowValue | RowValue[], type: 'head' | 'tail')
@@ -390,6 +392,21 @@ page.getCtrl('表格').pageInfo = {
 // 设置第一行为勾选状态
 page.getCtrl('表格').setCheck(true, 0)
 ```
+
+## getCheck()
++ 类型：`ArrayCtrl['getCheck']`
+
+获取行勾选状态。
+
++ 示例：
+
+```js
+// 获取第一行的勾选状态
+const flag = page.getCtrl('表格').getCheck(0)
+// 设置相反状态
+page.getCtrl('表格').setCheck(!flag, 0)
+```
+
 
 
 ## deleteInScope()

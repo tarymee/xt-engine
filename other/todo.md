@@ -14,6 +14,7 @@
 + 兼容 tree option： id = key name = text parentid
 + tag支持样式
 + 支持 textual 只显示文本
++ 控制 frontoperations 显隐
 
 
 # todo
@@ -26,7 +27,6 @@
 + 事件 code 校验重复 空值
 + tabboard 内控件校验 支持垂直样式
 + popview 支持抽屉 支持show-close 优化校验代码
-+ 控制 frontoperations 显隐
 + StorageProxy 所有项目检查 clear 方法有误
 + 研究 StorageProxy 用 代理写
 + 抽取baseinput slot

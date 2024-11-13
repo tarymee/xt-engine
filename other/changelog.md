@@ -1,7 +1,9 @@
 # 更新日志
 
 ## v1.0.2（未发版）
-
+- feat(table): 支持 flycode: getCheck
+- feat(list): 支持 flycode: getCheck setCheck
+- feat(list): 支持 frontoperationshidden 属性
 
 ## v1.0.1（2024-04-03）
 - feat(table): 优化 tree cascade date 控件在 table 中的显示效果
