@@ -13,6 +13,7 @@
 + 输入型控件readonly文字加深
 + 兼容 tree option： id = key name = text parentid
 + tag支持样式
++ 支持 textual 只显示文本
 
 
 # todo
@@ -25,14 +26,13 @@
 + 事件 code 校验重复 空值
 + tabboard 内控件校验 支持垂直样式
 + popview 支持抽屉 支持show-close 优化校验代码
-+ tags 控件优化样式
 + 控制 frontoperations 显隐
 + StorageProxy 所有项目检查 clear 方法有误
 + 研究 StorageProxy 用 代理写
 + 抽取baseinput slot
 + table update字数太多 操作栏错乱
 + table columns 隐藏某一列
-+ 支持 textonly 只显示文本？
+
 
 
 # 原则

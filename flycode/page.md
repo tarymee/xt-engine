@@ -167,13 +167,16 @@ interface Ctrl {
   setValue (value: any)
 
   get hidden (): boolean
-  set hidden (data: boolean)
+  set hidden (flag: boolean)
 
   get readonly (): boolean
-  set readonly (data: boolean)
+  set readonly (flag: boolean)
 
   get required (): boolean
-  set required (data: boolean)
+  set required (flag: boolean)
+
+  get textual (): boolean
+  set textual (flag: boolean)
 
   get options (): any[]
   set options (data: any[])
@@ -211,6 +214,10 @@ page.getCtrl('文本输入框').readonly = false
 page.getCtrl('文本输入框').required = true
 page.getCtrl('文本输入框').required = false
 
+// 设置文本模式/设置非文本模式，仅当控件为输入型控件时支持该方法
+page.getCtrl('文本输入框').textual = true
+page.getCtrl('文本输入框').textual = false
+
 // 设置数据源/获取数据源，仅当控件为数据源类型控件时（如选择器控件，树控件，多选框控件，单选框控件等）支持该方法
 page.getCtrl('下拉选择框').options = [
   {
@@ -233,7 +240,6 @@ page.getCtrl('树控件').setProp('displaytype', 'navigation')
 
 // 触发控件行为事件
 page.getCtrl('按钮').triggerEvent('onclicked')
-
 
 // 控件校验，不通过则返回 false，并弹出校验不通过控件的提示信息，如果通过则返回 true。
 // 当控件为 普通控件/输入型控件 时，执行的是单个控件校验方法

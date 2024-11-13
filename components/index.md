@@ -152,7 +152,7 @@ page.getCtrl('foreach').readonly = true
 + 类型：`boolean | "1" | "0"`
 + 默认：`"0"`
 
-输入型控件控件是否必填。
+输入型控件是否必填。
 
 ## textual
 + 类型：`boolean | "1" | "0"`
