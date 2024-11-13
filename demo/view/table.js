@@ -663,7 +663,7 @@ export default {
                   "script": `
                     const ctrl = page.getCtrl('表格').getOperationCtrl('add')
                     console.log(ctrl)
-                    ctrl.hidden = true
+                    ctrl.hidden = !ctrl.hidden
                   `
                 }
               ]

@@ -13,9 +13,9 @@
     </div>
     <div class="xt-input-content">
       <!-- :collapse-tags="multiselectable" -->
-      <div v-if="textual" class="xt-input-content-text">
+      <span v-if="textual" class="xt-input-content-text">
         {{ valueTextual }}
-      </div>
+      </span>
       <el-select
         v-else
         v-model="value"

@@ -12,9 +12,9 @@
       <span v-if="required">*</span>{{ title }}
     </div>
     <div v-if="displaytype !== 'navigation'" class="xt-input-content">
-      <div v-if="textual" class="xt-input-content-text">
+      <span v-if="textual" class="xt-input-content-text">
         {{ valueTextual }}
-      </div>
+      </span>
       <template v-else>
         <!-- todo 缺少 hiddenclearbtn 属性 -->
         <div v-if="intermediateselectmode !== 'individual'" v-popover:popover class="xt-tree-input" :class="{ 'xt-tree-input-readonly': readonly }">

@@ -12,9 +12,9 @@
       <span v-if="required">*</span>{{ title }}
     </div>
     <div class="xt-input-content">
-      <div v-if="textual" class="xt-input-content-text">
+      <span v-if="textual" class="xt-input-content-text">
         {{ valueTextual }}
-      </div>
+      </span>
       <el-cascader
         v-else
         v-model="value"
