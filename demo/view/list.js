@@ -20,7 +20,7 @@ export default {
           "content": [
             {
               "type": "button",
-              "value": "取值",
+              "value": "getValue",
               "displaytype": "primary",
               "eventlist": [
                 {
@@ -41,13 +41,14 @@ export default {
             },
             {
               "type": "button",
-              "value": "勾选",
+              "value": "setCheck",
               "displaytype": "primary",
               "eventlist": [
                 {
                   "trigger": "onclicked",
                   "script": `
-                    page.getCtrl('列表').setCheck(true, 0)
+                    const flag = page.getCtrl('列表').getCheck(0)
+                    page.getCtrl('列表').setCheck(!flag, 0)
                   `
                 }
               ],
@@ -147,6 +148,23 @@ export default {
             },
             {
               "type": "button",
+              "value": "隐藏/显示前置控件",
+              "displaytype": "primary",
+              "eventlist": [
+                {
+                  "trigger": "onclicked",
+                  "script": `
+                    const flag = page.getCtrl('列表').getProp('frontoperationshidden')
+                    page.getCtrl('列表').setProp('frontoperationshidden', !flag)
+                  `
+                }
+              ],
+              "style": {
+                "margin": "10px"
+              }
+            },
+            {
+              "type": "button",
               "value": "全局校验",
               "displaytype": "primary",
               "eventlist": [
@@ -158,22 +176,6 @@ export default {
                     if (!result) {
                       throw Error('validata')
                     }
-                  `
-                }
-              ],
-              "style": {
-                "margin": "10px"
-              }
-            },
-            {
-              "type": "button",
-              "value": "查询栏只读切换",
-              "displaytype": "primary",
-              "eventlist": [
-                {
-                  "trigger": "onclicked",
-                  "script": `
-                    page.getCtrl('查询栏').readonly = !page.getCtrl('查询栏').readonly
                   `
                 }
               ],
@@ -233,6 +235,7 @@ export default {
           "title": "列表",
           "name": "列表",
           "checkable": "1",
+          "frontoperationshidden": "",
           "pageable": "0",
           "pagesize": "20",
           "flex": "1",

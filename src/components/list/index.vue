@@ -15,6 +15,7 @@ export default {
       isArrayCtrl: true,
       pageable: this.returnViewRulePropValue('pageable', 'boolean'),
       checkable: this.returnViewRulePropValue('checkable', 'boolean'),
+      frontoperationshidden: this.returnViewRulePropValue('frontoperationshidden', 'boolean'),
       pageInfo: null,
       rowswidth: this.returnViewRulePropValue('rowswidth', 'string', '100%'),
       rowsstyle: this.returnViewRulePropValue('rowsstyle', 'string', ''), // 'card' | ''
@@ -189,6 +190,30 @@ export default {
       // debugger
       return realtimeValue
     },
+    setCheck (value, index) {
+      console.log(value)
+      if (!this.checkable) {
+        console.error('该控件暂不支持勾选操作，请检查 checkable 属性值。')
+      }
+      const row = this.value[index]
+      // console.log(row)
+      // console.log(value)
+      // debugger
+      if (row) {
+        if (value !== row.__$$checked) {
+          row.__$$checked = value
+        }
+      }
+    },
+    getCheck (index) {
+      if (!this.checkable) {
+        console.error('该控件暂不支持勾选操作，请检查 checkable 属性值。')
+      }
+      const flag = this.value[index].__$$checked
+      // console.log(flag)
+      // debugger
+      return flag
+    },
     getIndex (type = 'all') {
       const realtimeValue = this.getRealtimeValue()
       let result
@@ -305,7 +330,7 @@ export default {
             }
           },
           [
-            (frontoperations || []).map((item, i) => {
+            !this.frontoperationshidden ? (frontoperations || []).map((item, i) => {
               return h(
                 'div',
                 {
@@ -331,7 +356,7 @@ export default {
                   )
                 ]
               )
-            }),
+            }) : [],
             this.value.map((item, index) => {
               return h(
                 'div',

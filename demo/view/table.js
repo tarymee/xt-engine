@@ -614,7 +614,8 @@ export default {
                 {
                   "trigger": "onclicked",
                   "script": `
-                    page.getCtrl('表格').setCheck(true, 0)
+                    const flag = page.getCtrl('表格').getCheck(0)
+                    page.getCtrl('表格').setCheck(!flag, 0)
                   `
                 }
               ]

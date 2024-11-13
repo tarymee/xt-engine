@@ -251,6 +251,14 @@ class ArrayCtrl extends Ctrl {
     if (!this.instance.setCheck) throw Error('暂不支持该方法')
     this.instance.setCheck(value, index)
   }
+
+  getCheck (index) {
+    if (!this.instance.checkable) {
+      console.error('该控件暂不支持勾选操作，请检查 checkable 属性值。')
+    }
+    if (!this.instance.getCheck) throw Error('暂不支持该方法')
+    return this.instance.getCheck(index)
+  }
 }
 class ArrayRowCtrl {
   instanceMap

@@ -370,6 +370,15 @@ export default {
         }
       }, 0)
     },
+    getCheck (index) {
+      if (!this.checkable) {
+        console.error('该控件暂不支持勾选操作，请检查 checkable 属性值。')
+      }
+      const flag = this.value[index].__$$checked
+      // console.log(flag)
+      // debugger
+      return flag
+    },
     setPropReadonly (value) {
       // debugger
       // console.log(this.getAllRowsCtrlMap())
