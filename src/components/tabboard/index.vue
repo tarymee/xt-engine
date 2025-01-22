@@ -10,14 +10,14 @@ export default {
       isContainerCtrl: true,
       currentTitle: '',
       value: this.returnViewRulePropValue('value', 'number', 0),
-      cards: this.returnViewRulePropValue('cards', 'array', [])
+      cards: this.returnViewRulePropValue('cards', 'array', []),
+      nextvalue: -1,
+      iscanchange: true
     }
   },
   computed: {
     index () {
-      return this.cards.findIndex((item) => {
-        return item.title === this.currentTitle
-      })
+      return this.dealIndex(this.currentTitle)
     }
   },
   created() {
@@ -55,6 +55,23 @@ export default {
           }
         }
       })
+    },
+    // 根据title计算index
+    dealIndex (title) {
+      return this.cards.findIndex((item) => {
+        return item.title === title
+      })
+    },
+    beforeLeave (e) {
+      // console.log(e)
+      // debugger
+      this.nextvalue = this.dealIndex(e)
+      this.executeEvent('onvaluechangebefore')
+      setTimeout(() => {
+        this.nextvalue = -1
+        this.iscanchange = true
+      }, 0)
+      return this.iscanchange
     },
     getValue (getter) {
       return this.index
@@ -125,7 +142,8 @@ export default {
               style: {
                 height: '300px'
               },
-              value: _this.currentTitle || ''
+              value: _this.currentTitle || '',
+              beforeLeave: _this.beforeLeave
             },
             on: {
               'input' (newVal) {

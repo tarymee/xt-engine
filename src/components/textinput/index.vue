@@ -12,11 +12,7 @@
       <span v-if="required">*</span>{{ title }}
     </div>
     <div class="xt-input-content">
-      <span v-if="textual" class="xt-input-content-text">
-        {{ valueTextual }}
-      </span>
       <el-input
-        v-else
         v-model="value"
         size="small"
         :type="displaytype === 'textarea' ? 'textarea' : ''"
@@ -37,6 +33,7 @@
           />
         </template>
       </el-input>
+      <span class="error-message" style="color: #f00; font-size: 12px;" v-if="errMessage">{{errMessage}}</span>
     </div>
   </div>
   <!-- <xt-inputwrapper>
@@ -81,7 +78,10 @@ export default {
       displaytype: this.returnViewRulePropValue('displaytype', 'string', 'input'), // password || textarea || input
       maxlength: this.returnViewRulePropValue('maxlength', 'number'),
       minrow: this.returnViewRulePropValue('minrow', 'number', 2),
-      maxrow: this.returnViewRulePropValue('maxrow', 'number', 6)
+      maxrow: this.returnViewRulePropValue('maxrow', 'number', 6),
+      verificationrule: this.returnViewRulePropValue('verificationrule', 'string'),
+      verificationruletip: this.returnViewRulePropValue('verificationruletip', 'string', '校验失败'),
+      errMessage: ''
     }
   },
   mounted () {
@@ -91,11 +91,34 @@ export default {
   },
   methods: {
     handleChange (e) {
+      this.errMessage = this.getValidateRegMessage()
       this.executeEvent('onvaluechange')
+    },
+    getValidateRegMessage() {
+      if (!this.verificationrule) {
+        return ''
+      } else {
+        const reg = new RegExp(this.verificationrule)
+        if (!reg.test(this.value || '')) {
+          return this.verificationruletip
+        } else {
+          return ''
+        }
+      }
     },
     validata () {
       const requiredRes = this.requiredValidata()
       if (!requiredRes) return requiredRes
+      if (this.verificationrule) {
+        const errMessage = this.getValidateRegMessage()
+        if (errMessage) {
+          Message({
+            message: `${this.verificationruletip}`,
+            type: 'error'
+          })
+          return false
+        }
+      }
       if (this.maxlength !== '' && this.value.length > Number(this.maxlength)) {
         Message({
           message: `${this.title}最多支持输入${this.maxlength}个字`,

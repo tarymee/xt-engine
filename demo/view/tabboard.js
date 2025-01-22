@@ -211,6 +211,25 @@ export default {
                 console.log('onvaluechange')
                 console.log(page.getCtrl('tabboard框架').value)
               `
+            },
+            {
+              "trigger": "onvaluechangebefore",
+              "script": `
+                // 触发tab切换前事件
+                console.log('onvaluechangebefore')
+                console.log('当前触发的控件实例', eventTarget)
+                const curvalue = page.getCtrl('tabboard框架').value
+                const nextvalue = page.getCtrl('tabboard框架').getProp('nextvalue')
+                console.log('当前tab序号', curvalue)
+                console.log('要跳转的tab序号', nextvalue)
+                // 设置是否允许跳转
+                if (Math.random() > 0.5) {
+                  page.getCtrl('tabboard框架').setProp('iscanchange', true)
+                } else {
+                  page.message.error('随机数小于0.5不允许跳转')
+                  page.getCtrl('tabboard框架').setProp('iscanchange', false)
+                }
+              `
             }
           ],
         }

@@ -1,0 +1,12 @@
+{
+  "name": "@smart100/web-engine-docs",
+  "version": "*",
+  "description": "@smart100/web-engine 开发文档",
+  "scripts": {
+    "docs": "docsify serve -o -p 12323"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "docsify-cli": "^4.4.4"
+  }
+}
