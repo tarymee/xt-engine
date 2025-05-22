@@ -20,7 +20,7 @@ export default {
       // debugger
       // console.log(value)
       this.readonly = value
-      const childrenInstace = this.getChildrenInstace()
+      const childrenInstace = this.getAllChildrenInstace()
       // console.log(childrenInstace)
       // debugger
       childrenInstace.forEach((item) => {

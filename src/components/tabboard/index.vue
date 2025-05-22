@@ -23,7 +23,7 @@ export default {
   created() {
     // console.log(this.value)
     // debugger
-    this.setValue(this.value)
+    this.setValue(this.value, false)
   },
   mounted () {
     this.executeEvent('onload')
@@ -76,11 +76,18 @@ export default {
     getValue (getter) {
       return this.index
     },
-    setValue (value, setter) {
+    setValue (value, isvalidata = true) {
+      // debugger
       if (Object.prototype.toString.call(value) === '[object Number]' && value >= 0) {
         if (this.cards.length) {
           if (this.cards[value]) {
-            this.currentTitle = this.cards[value].title
+            if (isvalidata) {
+              if (this.beforeLeave(this.cards[value].title)) {
+                this.currentTitle = this.cards[value].title
+              }
+            } else  {
+              this.currentTitle = this.cards[value].title
+            }
           } else {
             throw new Error('赋值已超过标签页个数！')
           }
@@ -94,7 +101,7 @@ export default {
     // todo 校验tabboard内的控件 校验不通过切换到该tab
     validata () {
       let res = true
-      const childrenInstace = this.getChildrenInstace()
+      const childrenInstace = this.getAllChildrenInstace()
       for (let i = 0, len = childrenInstace.length; i < len; i++) {
         const item = childrenInstace[i]
         if (!item.isContainerCtrl) {
@@ -110,7 +117,7 @@ export default {
       // debugger
       // console.log(value)
       this.readonly = value
-      const childrenInstace = this.getChildrenInstace()
+      const childrenInstace = this.getAllChildrenInstace()
       // console.log(childrenInstace)
       // debugger
       childrenInstace.forEach((item) => {
@@ -199,3 +206,11 @@ export default {
 }
 </style>
 
+<style>
+/* http: //taas.wxchina.com:17042/zentao/bug-view-63559.html */
+.el-tabs__item:focus.is-active.is-focus:not(:active) {
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+  border-radius: 0!important;
+}
+</style>

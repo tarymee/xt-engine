@@ -163,7 +163,8 @@ export default {
                 {
                   "trigger": "onclicked",
                   "script": `
-                    const result = page.validata()
+                    // const result = page.validata()
+                    const result = page.getCtrl('表单layout').validata()
                     console.log(result)
                     if (!result) {
                       // throw Error('validata')

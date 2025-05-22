@@ -51,3 +51,4 @@ page.getCtrl('标签页').value = 1
 | ---- | ---- |
 | onload | 加载时触发 |
 | onvaluechange | tabboard 标签页切换时触发 |
+| onvaluechangebefore | tabboard 标签页切换前触发 一般用于校验 |

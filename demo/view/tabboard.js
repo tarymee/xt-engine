@@ -32,9 +32,9 @@ export default {
                 {
                   "trigger": "onclicked",
                   "script": `
-                    console.log('取值')
                     const value = page.getCtrl('tabboard框架').value
-                    console.log(value)
+                    const title = page.getCtrl('tabboard框架').getProp('currentTitle')
+                    console.log('取值: ', value, title)
                   `
                 }
               ],
@@ -213,7 +213,7 @@ export default {
               `
             },
             {
-              "trigger": "onvaluechangebefore",
+              "trigger": "onvaluechangebefore99",
               "script": `
                 // 触发tab切换前事件
                 console.log('onvaluechangebefore')
@@ -223,11 +223,41 @@ export default {
                 console.log('当前tab序号', curvalue)
                 console.log('要跳转的tab序号', nextvalue)
                 // 设置是否允许跳转
-                if (Math.random() > 0.5) {
+                if (nextvalue % 2 === 0) {
+                  page.message.success('双数允许跳转')
                   page.getCtrl('tabboard框架').setProp('iscanchange', true)
                 } else {
-                  page.message.error('随机数小于0.5不允许跳转')
+                  page.message.error('单数不允许跳转')
                   page.getCtrl('tabboard框架').setProp('iscanchange', false)
+                }
+              `
+            },
+            {
+              "trigger": "onvaluechangebefore",
+              "script": `
+                // 触发tab切换前事件
+                if (!page.getValue('jumponvaluechangebefore')) {
+                  console.log('onvaluechangebefore')
+                  console.log('当前触发的控件实例', eventTarget)
+                  const curvalue = page.getCtrl('tabboard框架').value
+                  const nextvalue = page.getCtrl('tabboard框架').getProp('nextvalue')
+                  console.log('当前tab序号', curvalue)
+                  console.log('要跳转的tab序号', nextvalue)
+
+                  page.getCtrl('tabboard框架').setProp('iscanchange', false)
+
+                  page.confirm('确定跳转？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消'
+                  }).then(() => {
+                    page.setValue('jumponvaluechangebefore', true)
+                    page.getCtrl('tabboard框架').value = nextvalue
+                    setTimeout(() => {
+                      page.setValue('jumponvaluechangebefore', false)
+                    }, 100)
+                  }).catch(() => {
+
+                  })
                 }
               `
             }

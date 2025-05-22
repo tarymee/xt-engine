@@ -33,7 +33,7 @@
           />
         </template>
       </el-input>
-      <span class="error-message" style="color: #f00; font-size: 12px;" v-if="errMessage">{{errMessage}}</span>
+      <span v-if="errMessage" class="error-message" style="color: #f00; font-size: 12px;">{{ errMessage }}</span>
     </div>
   </div>
   <!-- <xt-inputwrapper>

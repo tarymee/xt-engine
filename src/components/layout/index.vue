@@ -41,7 +41,7 @@ export default {
       // debugger
       // console.log(value)
       this.readonly = value
-      const childrenInstace = this.getChildrenInstace()
+      const childrenInstace = this.getAllChildrenInstace()
       // debugger
       childrenInstace.forEach((item) => {
         if (!item.isContainerCtrl) {
@@ -50,6 +50,20 @@ export default {
           item.readonly = value
         }
       })
+    },
+    validata () {
+      let res = true
+      const childrenInstace = this.getAllChildrenInstace()
+      for (let i = 0, len = childrenInstace.length; i < len; i++) {
+        const item = childrenInstace[i]
+        if (!item.isContainerCtrl) {
+          res = item.validata()
+        }
+        if (!res) {
+          break
+        }
+      }
+      return res
     }
   },
   render: function (h) {

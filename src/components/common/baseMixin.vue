@@ -351,7 +351,7 @@ export default {
       styleEle && styleEle.remove()
       // document.getElementsByTagName('head')[0].removeChild(styleEle)
     },
-    getChildrenInstace () {
+    getAllChildrenInstace () {
       let childrenCtrlCode = []
       this.engine.ctrlCodeMap.forEach((item, key) => {
         // console.log(item, key)

@@ -43,7 +43,7 @@ export default {
       // debugger
       // console.log(value)
       this.readonly = value
-      const childrenInstace = this.getChildrenInstace()
+      const childrenInstace = this.getAllChildrenInstace()
       childrenInstace.forEach((item) => {
         if (!item.isContainerCtrl) {
           item.setProp('readonly', value)
@@ -54,7 +54,7 @@ export default {
     },
     validata () {
       let res = true
-      const childrenInstace = this.getChildrenInstace()
+      const childrenInstace = this.getAllChildrenInstace()
       for (let i = 0, len = childrenInstace.length; i < len; i++) {
         const item = childrenInstace[i]
         if (!item.isContainerCtrl) {
