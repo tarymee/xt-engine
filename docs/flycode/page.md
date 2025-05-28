@@ -124,7 +124,7 @@ setTimeout(() => {
 + 类型：
 
 ```typescript
-type FunctionRunEvent = (name: string): boolean
+type FunctionRunEvent = (name: string): void
 ```
 
 调用表单事件。
@@ -134,6 +134,43 @@ type FunctionRunEvent = (name: string): boolean
 ```js
 // 调用 name = '新增' 的事件
 page.runEvent('新增')
+```
+
+## runEventByCode()
+
++ 类型：
+
+```typescript
+type FunctionRunEventByCode = (code: string): void
+```
+
+调用表单事件。
+
++ 示例：
+
+```js
+// 调用 code = 'handle-test' 的事件
+page.runEventByCode('handle-test')
+```
+
+## triggerEvent()
+
++ 类型：
+
+```typescript
+type FunctionTriggerEvent  = (ctrlName: string, triggerName: string): void
+```
+
+触发控件行为事件。
+
++ 示例：
+
+```js
+// 调用 name = '按钮' 的 'onclicked' 事件
+page.triggerEvent('按钮', 'onclicked')
+
+// 等于
+page.getCtrl('按钮').triggerEvent('onclicked')
 ```
 
 ## validata()

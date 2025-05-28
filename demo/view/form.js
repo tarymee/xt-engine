@@ -19,6 +19,7 @@ export default {
             {
               "type": "button",
               "value": "取值",
+              "name": "取值",
               "displaytype": "primary",
               "eventlist": [
                 {
@@ -778,7 +779,9 @@ export default {
             "type": "flycode",
             "title": "flycode",
             "script": `
-              // page.runEvent('')
+              page.runEvent('handle-test')
+              page.runEventByCode('handle-test1')
+              page.triggerEvent('取值', 'onclicked')
             `
           }
         ]
@@ -789,12 +792,25 @@ export default {
       {
         "code": "handle-test",
         "title": "",
-        "name": "",
+        "name": "handle-test",
         "actions": [
           {
             "type": "flycode",
             "script": `
               console.log('test')
+            `
+          }
+        ]
+      },
+      {
+        "code": "handle-test1",
+        "title": "",
+        "name": "",
+        "actions": [
+          {
+            "type": "flycode",
+            "script": `
+              console.log('test1')
             `
           }
         ]

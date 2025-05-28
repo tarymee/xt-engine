@@ -53,12 +53,24 @@ export default class EventManager {
       this.handlersEventMap.set(item.code, item)
     })
     const allEvent = [...initialEvent, ...interfaceEvent, ...handlersEvent]
+    // console.log(allEvent)
     allEvent.forEach((item, i) => {
+      if (!item.code) {
+        console.error(`事件【${JSON.stringify(item)}】的 code 不得为空, 请修改。`)
+      }
+      if (this.eventMap.get(item.code)) {
+        console.error(`code为【${item.code}】的事件重复, 请修改。`)
+      }
       this.eventMap.set(item.code, item)
+
       if (item.name) {
+        if (this.eventNameCodeMap.get(item.name)) {
+          console.error(`name为【${item.name}】的事件重复, 请修改。`)
+        }
         this.eventNameCodeMap.set(item.name, item.code)
       }
     })
+
   }
 
   /**
@@ -143,7 +155,12 @@ export default class EventManager {
    * @param eventCode 事件eventCode
    * @param option 回调参数
    */
-  runEvent (eventCode, option = {}) {
+  runEventByCode (eventCode, option = {}) {
+    const event = this.eventMap.get(eventCode)
+    if (!event) {
+      console.error(`找不到 code 为【${eventCode}】的事件，请检查。`)
+      return
+    }
     // console.log(eventCode)
     // debugger
     if (!this.isRunInitialEvent) {
@@ -152,7 +169,7 @@ export default class EventManager {
         option: option
       })
     } else {
-      const actionQueue = this.createActionQueue(this.eventMap.get(eventCode), option)
+      const actionQueue = this.createActionQueue(event, option)
       this.eventActuator.runTask(this.actionActuator, actionQueue, option)
     }
   }
@@ -169,7 +186,7 @@ export default class EventManager {
       this.isRunInitialEvent = true
       while (this.waitEventQueue.length > 0) {
         const waitEvent = this.waitEventQueue.shift()
-        waitEvent && this.runEvent(waitEvent.code, waitEvent.option)
+        waitEvent && this.runEventByCode(waitEvent.code, waitEvent.option)
       }
     }
     if (this.initialEventMap.size > 0) {
@@ -200,7 +217,7 @@ export default class EventManager {
           this.memoryPool.set('__eventlink', data.__eventlink)
         }
         if (data.pagecode === this.pagecode) {
-          this.runEvent(key)
+          this.runEventByCode(key)
         }
       }
       this.interfaceEventFunctionMap.set(value.key, fn)

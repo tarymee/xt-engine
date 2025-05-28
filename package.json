@@ -1,9 +1,10 @@
 {
   "name": "@smart100/web-engine",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "scripts": {
-    "dev": "vue-cli-service serve"
+    "dev": "vue-cli-service serve",
+    "docs": "cd docs && npm run docs"
   },
   "author": "tarymee <tarymee@qq.com>",
   "files": [

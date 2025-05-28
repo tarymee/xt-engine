@@ -75,13 +75,13 @@ export default {
     if (!this.notInEngine) {
       if (!this.notCreateVMInEngine) {
         if (this.engine.ctrlCodeMap.get(this.code)) {
-          console.error(`code为${this.code}的控件重复, 请修改。`)
+          console.error(`code为【${this.code}】的控件重复, 请修改。`)
         }
         this.engine.ctrlCodeMap.set(this.code, this)
 
         if (this.name) {
           if (this.engine.ctrlNameCodeMap.get(this.name)) {
-            console.error(`name为${this.name}的控件重复, 请修改。`)
+            console.error(`name为【${this.name}】的控件重复, 请修改。`)
           }
           this.engine.ctrlNameCodeMap.set(this.name, this.code)
         }
@@ -274,7 +274,7 @@ export default {
             // debugger
             // console.log(`${this.type}【${this.title || this.name || this.code}】执行 ${triggerType}`)
             if (!this.notInEngine) {
-              this.engine.eventManager.runEvent(event.handler, {
+              this.engine.eventManager.runEventByCode(event.handler, {
                 eventTarget: this,
                 ...option
               })

@@ -138,11 +138,26 @@ export default class Page {
       console.error(`${tipPrefix} 找不到 name 为【${eventName}】的事件，请检查。`)
       return
     }
-    this.eventManager.runEvent(eventCode, option)
+    this.eventManager.runEventByCode(eventCode, option)
   }
 
-  // 检查表单合法性
-  // constraintCheck () {}
+  // 表单事件调用
+  runEventByCode (eventCode, option) {
+    const tipPrefix = '[Page.runEventByCode(eventCode, option)]'
+    if (!eventCode) {
+      console.error(`${tipPrefix} 请传入调用事件的 code 值。`)
+      return
+    }
+    this.eventManager.runEventByCode(eventCode, option)
+  }
+
+  // 触发控件事件
+  triggerEvent(ctrlName, triggerName) {
+    const ctrl = this.getCtrl(ctrlName)
+    if (ctrl) {
+      ctrl.triggerEvent(triggerName)
+    }
+  }
 
   // 控件校验
   validata () {
@@ -180,9 +195,6 @@ export default class Page {
   // provide (name, value) {
   //   this[name] = value
   // }
-
-  // 设置表单数据加载状态
-  // setLoadStatus() {}
 
   // 弹出对话框
   // alert() {}
