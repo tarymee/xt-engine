@@ -1,12 +1,12 @@
 # 更新日志
 
-## v1.0.6
+## v1.0.6（2025-05-28）
 
 - feat(flycode): 新增 page.runEventByCode 方法
 - feat(event): 执行事件时如果传参错误在控制台打印友好提示
 - feat(flycode): 新增 page.triggerEvent 方法
 
-## v1.0.5（2025-3-11）
+## v1.0.5（2025-03-11）
 
 - feat(layout): layout 控件支持局部校验
 
