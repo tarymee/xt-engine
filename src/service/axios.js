@@ -1,6 +1,36 @@
 import axios from 'axios'
 import loading from './loading'
 import { get } from 'lodash-es'
+import { decrypt } from './crypt'
+
+
+// _encrydata
+export const normalizeEncryData = (response) => {
+  if (response.data && response.data._encrydata && typeof response.data._encrydata === 'string') {
+    const res = decrypt(response.data._encrydata)
+    try {
+      const resJson = JSON.parse(res)
+      response.data = {
+        ...resJson
+      }
+    } catch (e) {
+      response.data = res
+    }
+  }
+  if (response.body && response.body._encrydata && typeof response.body._encrydata === 'string') {
+    const res = decrypt(response.body._encrydata)
+    try {
+      const resJson = JSON.parse(res)
+      response.body = {
+        ...resJson
+      }
+    } catch (e) {
+      response.body = res
+    }
+  }
+
+  return response
+}
 
 const axiosInstance = axios.create({
   // timeout: 36000000
@@ -21,6 +51,7 @@ axiosInstance.interceptors.request.use(config => {
 })
 
 axiosInstance.interceptors.response.use((response) => {
+  normalizeEncryData(response)
   const isShowLoading = get(response, 'config.isShowLoading', true)
   isShowLoading && loading.close()
   return response

@@ -1,5 +1,9 @@
 # 更新日志
 
+## v1.0.7（2025-11-14）
+
+- feat: 接口支持加密解密
+
 ## v1.0.6（2025-05-28）
 
 - feat(flycode): 新增 page.runEventByCode 方法
