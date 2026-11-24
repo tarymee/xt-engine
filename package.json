@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "vue-cli-service serve",
-    "docs": "cd docs && npm run docs"
+    "docs": "cd docs && npm run docs",
+    "togithub": "node script/togithub.mjs"
   },
   "author": "tarymee <tarymee@qq.com>",
   "files": [

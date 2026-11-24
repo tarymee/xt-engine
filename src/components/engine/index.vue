@@ -6,7 +6,7 @@ import renderComponent from '../common/renderComponent'
 
 export default {
   name: 'xt-engine',
-  provide () {
+  provide() {
     return {
       engine: this
     }
@@ -40,13 +40,13 @@ export default {
     })
     // engineMap.set(this.pagecode, this)
   },
-  mounted () {
+  mounted() {
     // 如果这段代码放在 created 里 切换页面时先执行 destroy 先移除类 再 created 添加类 添加不上
     document.body.classList.add('xt-engine-wrapper')
 
     this.eventManager.init()
   },
-  destroy () {
+  destroy() {
     document.body.classList.remove('xt-engine-wrapper')
   },
   render: function (h) {
@@ -56,7 +56,7 @@ export default {
       'div',
       {
         attrs: {
-          class: 'xt-engine',
+          class: 'xt-engine'
         },
         directives: [
           // {
@@ -78,7 +78,6 @@ export default {
     )
   }
 }
-
 </script>
 
 <style scoped>
@@ -99,10 +98,10 @@ export default {
 }
 /* 解决弹窗信息被 el-dialog 覆盖的问题 两者初始化 z-index 都是 2000 但不共享 z-index 导致 */
 .xt-engine-wrapper .el-message {
-  z-index: 99999!important;
+  z-index: 99999 !important;
 }
 .xt-engine-wrapper .el-message-box__wrapper {
-  z-index: 9999!important;
+  z-index: 9999 !important;
   background-color: rgba(000, 000, 000, 0.5);
 }
 /* .xt-engine-wrapper .el-message-box__wrapper + .v-modal {
