@@ -7,4 +7,4 @@
 
 ## 2. 端到端验证
 
-- [ ] 2.1 运行 `npm run togithub` 完整流程：确认目标仓库 `F:\smart100\xt-engine-github` 出现源仓库内容、`node_modules`/`.git` 未被动、产生 `feat: 同步...` 提交并推送成功；二次运行输出"无变动，跳过提交"仍执行推送。验证：目标仓库 `git log -1` 与 `git status` 输出符合 spec 各 Scenario
+- [x] 2.1 运行 `npm run togithub` 完整流程：确认目标仓库 `F:\smart100\xt-engine-github` 出现源仓库内容、`node_modules`/`.git` 未被动、产生 `feat: 同步...` 提交并推送成功；二次运行输出"无变动，跳过提交"仍执行推送。验证：目标仓库 `git log -1` 与 `git status` 输出符合 spec 各 Scenario
